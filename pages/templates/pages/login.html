@@ -2,9 +2,9 @@
 {% block title %}Login{% endblock %}
 {% block content %}
 
-<body class="text-center">
-
-<main class="form-login">
+<body>
+{% include "pages/header.html" %}
+<main class="form-login text-center">
     <form action="">
         <h1 class="h3 mb-3 fw-normal">Login</h1>
         <div class="form-floating">
@@ -28,5 +28,6 @@
     </form>
 
 </main>
+{% include "pages/footer.html" %}
 </body>
 {% endblock %}
