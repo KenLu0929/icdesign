@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from . import models
 # Create your views here.
 
 
@@ -12,8 +12,14 @@ def registrationPage(request):
 
 
 def loginPage(request):
-    return render(request, 'pages/login.html')
+
+    constant = {
+        "title": "This is login page",
+    }
+
+    return render(request, 'pages/login.html', constant)
 
 
 def logoutPage(request):
+    
     return render(request, 'pages/index.html')
