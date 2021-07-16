@@ -14,7 +14,7 @@ def registrationPage(request):
 def loginPage(request):
 
     constant = {
-        "title": "this is login page",
+        "title": "This is login page",
     }
 
     return render(request, 'pages/login.html', constant)
