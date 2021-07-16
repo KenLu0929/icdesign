@@ -3,8 +3,8 @@
 {% block content %}
 <body>
 {% include "pages/header.html" %}
-  <section>
-    <div class="container">
+  <section class="flex-shrink-0">
+    <div class="container my-5">
 
       <div class="alert alert-warning text-center my-4">
         Looking for a more detailed example? Checkout the <==
@@ -21,11 +21,11 @@
           <div class="row align-items-center">
             <div class="col mt-4">
               <ul class="list-group">
-                <li class="list-group-item" ng-repeat="item in items"><i class="mdi mdi-drag"></i> 1. 本人所檢附的報名資料：中文姓名、身分證字號、出生年月日、聯絡電話、行動電話、通訊地址、E-Mail、身分別、就讀/畢業學校名稱、科系名稱、年級與班級、學歷、任職公司名稱及職稱，僅供「主辦單位」辦理鑑定考試使用、寄送相關考試資料及學習資訊、進行測驗相關統計、進行企業就業媒合之用。</li>
-                <li class="list-group-item" ng-repeat="item in items"><i class="mdi mdi-drag"></i> 2. 主辦單位將於原蒐集之特定目的、本次以外之產業之推廣、宣導及就業輔導、以及其他公務機關請求行政協助之目的範圍內，合理利用您的個人資料。</li>
-                <li class="list-group-item" ng-repeat="item in items"><i class="mdi mdi-drag"></i> 3. 本人瞭解所提供之個人資料，假如經由檢舉或主辦單位發現有不符真實身分或有冒用、盜用其他個人資料、資料不實等情事經查證屬實時，主辦單位有權取消本人的當次考試資格、成績或未來報名資格，並有權不提供鑑定考試相關服務。</li>
-                <li class="list-group-item" ng-repeat="item in items"><i class="mdi mdi-drag"></i> 4. 本人瞭解必須填寫完整且正確之報名資料，通訊地址、身分證字號、電話號碼及E-mail應正確，否則無法通知而致延誤考試及其他重要事項，其後果自行負責。</li>
-                <li class="list-group-item" ng-repeat="item in items"><i class="mdi mdi-drag"></i> 5. 考生對自己所有之個人資料，須負保密責任，若因洩漏予第三者，導致考生個人資料外洩、遺失、或無法正常使用本服務之情況，概由該考生自行負責，本網站得拒絕該考生使用本網站報名考試之權利。</li>
+                <li class="list-group-item"><i class="mdi mdi-drag"></i> 1. 本人所檢附的報名資料：中文姓名、身分證字號、出生年月日、聯絡電話、行動電話、通訊地址、E-Mail、身分別、就讀/畢業學校名稱、科系名稱、年級與班級、學歷、任職公司名稱及職稱，僅供「主辦單位」辦理鑑定考試使用、寄送相關考試資料及學習資訊、進行測驗相關統計、進行企業就業媒合之用。</li>
+                <li class="list-group-item"><i class="mdi mdi-drag"></i> 2. 主辦單位將於原蒐集之特定目的、本次以外之產業之推廣、宣導及就業輔導、以及其他公務機關請求行政協助之目的範圍內，合理利用您的個人資料。</li>
+                <li class="list-group-item"><i class="mdi mdi-drag"></i> 3. 本人瞭解所提供之個人資料，假如經由檢舉或主辦單位發現有不符真實身分或有冒用、盜用其他個人資料、資料不實等情事經查證屬實時，主辦單位有權取消本人的當次考試資格、成績或未來報名資格，並有權不提供鑑定考試相關服務。</li>
+                <li class="list-group-item"><i class="mdi mdi-drag"></i> 4. 本人瞭解必須填寫完整且正確之報名資料，通訊地址、身分證字號、電話號碼及E-mail應正確，否則無法通知而致延誤考試及其他重要事項，其後果自行負責。</li>
+                <li class="list-group-item"><i class="mdi mdi-drag"></i> 5. 考生對自己所有之個人資料，須負保密責任，若因洩漏予第三者，導致考生個人資料外洩、遺失、或無法正常使用本服務之情況，概由該考生自行負責，本網站得拒絕該考生使用本網站報名考試之權利。</li>
               </ul>
             </div>
           </div>
@@ -38,13 +38,24 @@
                 </label>
               </div>
 
-              <button class="btn btn-primary mt-4">Submit</button>
+              <div class="row align-items-center mt-4">
+                <div class="col-4">
+                  *請輸入您的身分證字號：
+                </div>
+                <div class="col-6">
+                  <input name="ic_id" type="text" class="form-control" placeholder="ID">
+                </div>
+                <div class="col-2">
+                  <button class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-{% include "pages/footer.html" %}
 </body>
 {% endblock %}
