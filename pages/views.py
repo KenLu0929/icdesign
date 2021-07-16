@@ -21,4 +21,5 @@ def loginPage(request):
 
 
 def logoutPage(request):
+    
     return render(request, 'pages/index.html')
