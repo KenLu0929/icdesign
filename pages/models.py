@@ -1,13 +1,17 @@
 from django.db import models
-
+from django.db import connection
+from django.utils import timezone
 # Create your models here.
 
-from django.db import connection
 
+dummy_data = {
+    "id": "a",
+    "pass": "a",
+}
 
-def get_users():
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM testing")
-        row = cursor.fetchall()
+class User(models.Model):
+    ic_id = models.CharField(max_length=100, primary_key=True)
+    ic_pass = models.CharField(max_length=100)
 
-    return row
+    class Meta:
+        ordering = ['ic_id']
