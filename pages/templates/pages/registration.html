@@ -7,7 +7,7 @@
     <div class="container my-5">
 
       <div class="alert alert-warning text-center my-4">
-        Looking for a more detailed example? Checkout the <==
+        This is sample
       </div>
 
       <div class="row justify-content-center">
@@ -43,15 +43,70 @@
                   *請輸入您的身分證字號：
                 </div>
                 <div class="col-6">
-                  <input name="ic_id" type="text" class="form-control" placeholder="ID">
+                  <input name="ic_id" id="icid" type="text" class="form-control" placeholder="ID">
                 </div>
                 <div class="col-2">
-                  <button class="btn btn-primary">Submit</button>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal"">Submit</button>
                 </div>
               </div>
-
-
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!-- Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">請先填寫您的登入資料</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+               <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                  <div class="alert alert-danger" role="alert">
+                    A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+                  </div>
+                  <div class="form-floating">
+                      <input type="text" class="form-control" name="ic_show" id="displayicID" disabled="disabled">
+                      <label>ID</label>
+                  </div>
+                  <div class="form-floating mt-4"">
+                      <input type="text" class="form-control" id="idname" name="ic_name" placeholder="e.g, Jhon Doe">
+                      <label for="idname">Full Name</label>
+                  </div>
+                  <div class="form-floating mt-4">
+                      <input type="password" class="form-control" id="idpassword" name="ic_password" placeholder="Keep it secret">
+                      <label for="idpassword">Password</label>
+                  </div>
+                <div class="form-floating mt-4">
+                    <input type="password" class="form-control" id="idcpassword" name="ic_cpassword" placeholder="Keep it secret">
+                    <label for="idcpassword">Confirm Password</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-target="#messageModal" data-bs-toggle="modal" data-bs-dismiss="modal">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="messageModal" aria-hidden="true" aria-labelledby="messageModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel2">You registration has been success</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            You registration has been success
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
