@@ -13,25 +13,27 @@ def index(request):
 def registration_page(request):
     params = {}
     url_page = 'pages/registration.html'
-    if 'user' in request.session:
-        # print("user is exist")
-        return render(request, url_page, params)
-    else:
-        # print("user is not exist")
-        return redirect('login')
+    return render(request, url_page, params)
+    # if 'user' in request.session:
+    #     # print("user is exist")
+    #     return render(request, url_page, params)
+    # else:
+    #     # print("user is not exist")
+    #     return redirect('login')
 
 
 def profile_page(request):
     params = {}
     url_page = 'pages/profile.html'
     # print("test")
-    if 'user' in request.session:
-        # print("user is exist")
-        print(request.session)
-        return render(request, url_page, params)
-    else:
-        # print("user is not exist")
-        return redirect('login')
+    return render(request, url_page, params)
+    # if 'user' in request.session:
+    #     # print("user is exist")
+    #     print(request.session)
+    #     return render(request, url_page, params)
+    # else:
+    #     # print("user is not exist")
+    #     return redirect('login')
 
 
 def login_page(request):
@@ -46,9 +48,9 @@ def login_page(request):
         # print(user)
         if user is not None:
             # login(request, user)
-            print(user)
-            request.session['user'] = id
-            request.session.modified = True
+            # print(user)
+            # request.session['user'] = id
+            # request.session.modified = True
             return redirect("profile")
         else:
             resp = {
