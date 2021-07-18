@@ -10,6 +10,9 @@ def index(request):
 def registrationPage(request):
     return render(request, 'pages/registration.html')
 
+def testRegistration(request):
+    return render(request, 'pages/testregistration.html')
+
 
 def loginPage(request):
 
