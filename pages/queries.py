@@ -21,6 +21,6 @@ def users_insert(data):
 
 def users_get(my_filter, column_name):
 
-    users = models.User.objects.filter(my_filter).values(column_name).distinct()
+    users = models.User.objects.filter(**my_filter).values(column_name).distinct()
 
     return users
