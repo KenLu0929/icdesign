@@ -6,7 +6,6 @@
 
 <section>
     <div class="container my-5 ">
-
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-8 col-xl-6">
                 <div class="row align-items-center">
@@ -83,13 +82,13 @@
                   </div>
                   <div class="col-md">
                     <div class="form-floating">
-                      <select class="form-select" id="selectStatus" name="ic_status" aria-label="Floating label select example">
+                      <select class="form-select" id="selectDegree" name="ic_status" aria-label="Floating label select example">
                           <option selected>Select your degree</option>
                           <option value="1">Diploma</option>
                           <option value="2">Master</option>
                           <option value="3">Doctor</option>
                       </select>
-                      <label for="selectCourse">Highest Degree</label>
+                      <label for="selectDegree">Highest Degree</label>
                     </div>
                   </div>
                 </div>
@@ -102,13 +101,13 @@
                   </div>
                   <div class="col-md">
                     <div class="form-floating">
-                      <select class="form-select" id="selectStatus" name="ic_status" aria-label="Floating label select example">
+                      <select class="form-select" id="selectPosition" name="ic_status" aria-label="Floating label select example">
                           <option selected>Select your degree</option>
                           <option value="1">Manager</option>
                           <option value="2">CEO</option>
                           <option value="3">Other</option>
                       </select>
-                      <label for="selectCourse">Position</label>
+                      <label for="selectPosition">Position</label>
                     </div>
                   </div>
                 </div>
@@ -121,7 +120,7 @@
                             </label>
                         </div>
                         <div>
-                            <button class="btn btn-primary mt-4 col-12" type="button" disabled>
+                            <button class="btn btn-primary mt-4 col-12" type="submit" disabled>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Loading...
                             </button>
@@ -164,7 +163,96 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-12 col-md-8 col-lg-8 col-xl-7 my-5" hidden>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1>Personal Information：</h1>
+                        <p class="text-h3">This should contains what user need to know before they fill their personal
+                            information. </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="mb-3 row">
+                    <label for="showCourse" class="col-sm-4 col-form-label">Test</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="showCourse" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="displayicID" class="col-sm-4 col-form-label">ID</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="displayicID" value="H800241522">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showFullname" class="col-sm-4 col-form-label">Full Name</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="showFullname" value="William Joe">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showEmail" class="col-sm-4 col-form-label">Email</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="showEmail" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showGender" class="col-sm-4 col-form-label">Gender</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="showGender" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showAddress" class="col-sm-4 col-form-label">Address</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="showAddress" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showDegree" class="col-sm-4 col-form-label">Status Degree</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="showDegree" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showSchoolName" class="col-sm-4 col-form-label">School Name</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="showSchoolName" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showHighestDegree" class="col-sm-4 col-form-label">Highest Degree</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="showHighestDegree" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showCompanyName" class="col-sm-4 col-form-label">Company Name</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="showCompanyName" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showPosition" class="col-sm-4 col-form-label">Position</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class="form-control-plaintext" id="showPosition" value="">
+                    </div>
+                </div>
+                <div class="row justify-content-start mt-4">
+                    <div class="col">
+                        <button class="btn btn-outline-secondary mt-4 col-4" type="submit">
+                            Modify
+                        </button>
+                        <button class="btn btn-primary mt-4 col-3" type="submit" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button>
+                        <button class="btn btn-primary mt-4 col-4" type="submit">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
