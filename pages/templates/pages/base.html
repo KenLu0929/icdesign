@@ -10,13 +10,72 @@
     <link rel="stylesheet" href="{% static 'index.css' %}">
     <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
     <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
 </head>
 
 {% block content %}
 
 
 {% endblock %}
-<footer>
+<footer class="footer mt-auto bt-5 bg-light">
+  <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-3 mb-3">
+            <ul class="list-unstyled small text-muted">
+              <li class="mb-2">Design for IC Design</a>.</li>
+              <li class="mb-2">Copyright 2021</li>
+            </ul>
+        </div>
+          <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#">回首頁</a></li>
+              <li class="mb-2"><a href="#">國研院</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+            <ul class="list-unstyled">
+                <li class="mb-2"><a href="#">隱私保護及網站安全政策</a></li>
+                <li class="mb-2"><a href="#">網站導覽</a></li>
+                <li class="mb-2"><a href="#">網站搜尋</a></li>
+            </ul>
+          </div>
+      </div>
+  </div>
 </footer>
+<script language="JavaScript">
+    $('#icid').change(function() {
+        $('#displayicID').val($(this).val());
+    });
+    $('#selectCourse').change(function() {
+        $('#showCourse').val($(this).val());
+    });
+    $('#idname').change(function() {
+        $('#showFullname').val($(this).val());
+    });
+    $('#idemail').change(function() {
+        $('#showEmail').val($(this).val());
+    });
+    $('#selectGender').change(function() {
+        $('#showGender').val($(this).val());
+    });
+    $('#textareaAdress').change(function() {
+        $('#showAddress').val($(this).val());
+    });
+    $('#selectStatus').change(function() {
+        $('#showDegree').val($(this).val());
+    });
+    $('#schoolName').change(function() {
+        $('#showSchoolName').val($(this).val());
+    });
+    $('#selectDegree').change(function() {
+        $('#showHighestDegree').val($(this).val());
+    });
+    $('#companyName').change(function() {
+        $('#showCompanyName').val($(this).val());
+    });
+    $('#selectPosition').change(function() {
+        $('#showPosition').val($(this).val());
+    });
+
+</script>
+
 </html>

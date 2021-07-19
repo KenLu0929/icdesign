@@ -21,6 +21,9 @@ def registration_page(request):
     #     # print("user is not exist")
     #     return redirect('login')
 
+def testRegistration(request):
+    return render(request, 'pages/testregistration.html')
+
 
 def profile_page(request):
     params = {}
