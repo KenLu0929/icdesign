@@ -142,3 +142,18 @@ SESSION_COOKIE_AGE = 5 * 60
 SESSION_SAVE_EVERY_REQUEST = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}

@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
+from django.http import JsonResponse
+from .queries import QueryUsers
 # from . import session_custom
 
 
@@ -11,6 +13,37 @@ def index(request):
 
 
 def registration_page(request):
+    if request.method == "POST":
+        print(request.POST)
+        ic_id = request.POST.get("ic_show", "")
+        ic_name = request.POST.get("ic_name", "")
+        ic_pass = request.POST.get("ic_password", "")
+        confirm_ic_pass = request.POST.get("confirm_ic_password", "")
+        # print(ic_pass)
+        if ic_pass != confirm_ic_pass:
+            params = {
+                "title": "Failed",
+                "body": "Your password are unmatched."
+            }
+            return JsonResponse(params)
+        else:
+            data = {
+                "ic_id": ic_id,
+                "full_name": ic_name,
+                "ic_pass": ic_pass,
+            }
+            q = QueryUsers.users_getsert(data)
+            title = "Success"
+            message = "Your registration are success."
+            if not q:
+                title = "Failed"
+                message = "Users already exists."
+            params = {
+                "title": title,
+                "body": message
+            }
+            return JsonResponse(params)
+
     params = {}
     url_page = 'pages/registration.html'
     return render(request, url_page, params)

@@ -76,10 +76,45 @@
         $('#showPosition').val($(this).val());
     });
 
-    $('#checkButtonReg').change(function () {
-    $('#submitBtnReg').prop("disabled", !this.checked);
+    // $('#checkButtonReg').change(function () {
+    //     $('#submitBtnReg').prop("disabled", !this.checked);
+    // })
 
-}).change()
+    function registChecking(){
+        if ($('#icid').val() != '' && $("#checkButtonReg").is(":checked")) {
+            $('#submitBtnReg').prop('disabled', false);
+        } else {
+            $('#submitBtnReg').prop('disabled', true);
+        }
+    }
+
+    $('#regisForm').on('submit', function(e){
+
+         e.preventDefault();
+
+           $.ajax({
+                type : "POST",
+                url: "{% url 'registration' %}",
+                data: $(this).serialize(),
+                success: function(data){
+                    /* response message */
+                    // console.log(data)
+                    $('#modalMessageTitle').html(data.title);
+                    $('#modalMessageBody').html(data.body);
+                }
+            });
+    });
+
+    function matchPassword() {
+      var pw1 = document.getElementById("idpassword");
+      var pw2 = document.getElementById("confirmidcpassword");
+      if(pw1 != pw2)
+      {
+        alert("Passwords did not match");
+      } else {
+        alert("Password created successfully");
+      }
+    }
 </script>
 
 </html>
