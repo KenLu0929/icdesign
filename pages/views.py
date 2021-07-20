@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from .queries import QueryUsers
+from icdesign import utils
 # from . import session_custom
 
 
@@ -13,6 +14,7 @@ def index(request):
 
 
 def registration_page(request):
+    url_page = 'pages/registration.html'
     if request.method == "POST":
         print(request.POST)
         ic_id = request.POST.get("ic_show", "")
@@ -27,51 +29,63 @@ def registration_page(request):
             }
             return JsonResponse(params)
         else:
-            data = {
-                "ic_id": ic_id,
-                "full_name": ic_name,
-                "ic_pass": ic_pass,
-            }
-            q = QueryUsers.users_getsert(data)
-            title = "Success"
-            message = "Your registration are success."
+            data = {"ic_id": ic_id, "full_name": ic_name, "ic_pass": ic_pass,
+                    "date_joined": utils.currentUnixTimeStamp()}
+            obj, q = QueryUsers.users_getsert(data)
+            # title = "Success"
+            # message = "Your registration are success."
             if not q:
                 title = "Failed"
                 message = "Users already exists."
-            params = {
-                "title": title,
-                "body": message
-            }
-            return JsonResponse(params)
+                params = {
+                    "title": title,
+                    "body": message
+                }
+                return JsonResponse(params)
+            request.session['user'] = ic_id
+            return render(request, url_page, obj)
 
-    params = {}
-    url_page = 'pages/registration.html'
-    return render(request, url_page, params)
-    # if 'user' in request.session:
-    #     # print("user is exist")
-    #     return render(request, url_page, params)
-    # else:
-    #     # print("user is not exist")
-    #     return redirect('login')
+    return render(request, url_page)
 
-def testRegistration(request):
-    return render(request, 'pages/testregistration.html')
+
+def test_registration_page(request):
+    url_page = 'pages/test_registration.html'
+    if 'user' in request.session:
+        ic_id = request.session['user']
+        if request.method == "POST":
+
+            data = {"ic_id": ic_id}
+            q = QueryUsers.users_upsert(data)
+            if not q:
+                title = "Failed"
+                message = "Information not updated."
+                params = {
+                    "title": title,
+                    "body": message
+                }
+                return JsonResponse(params)
+
+            return render(request, 'pages/profile.html')
+
+        return render(request, url_page)
+    else:
+        # print("user is not exist")
+        return redirect('login')
 
 def ictestInfo(request):
     return render(request, 'pages/ictestinfo.html')
 
 def profile_page(request):
-    params = {}
-    url_page = 'pages/profile.html'
-    # print("test")
-    return render(request, url_page, params)
-    # if 'user' in request.session:
-    #     # print("user is exist")
-    #     print(request.session)
-    #     return render(request, url_page, params)
-    # else:
-    #     # print("user is not exist")
-    #     return redirect('login')
+
+    if 'user' in request.session:
+        id = request.session['user']
+        url_page = 'pages/profile.html'
+        data = {"ic_id": id}
+        params = QueryUsers.users_get(data, )
+        return render(request, url_page, params)
+    else:
+        # print("user is not exist")
+        return redirect('login')
 
 
 def login_page(request):
@@ -87,8 +101,11 @@ def login_page(request):
         if user is not None:
             # login(request, user)
             # print(user)
-            # request.session['user'] = id
-            # request.session.modified = True
+            request.session['user'] = id
+            request.session.modified = True
+            data = {"ic_id": id, "last_login": utils.currentUnixTimeStamp()}
+            QueryUsers.users_upsert(data)
+
             return redirect("profile")
         else:
             resp = {
