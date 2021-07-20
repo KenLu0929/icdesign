@@ -72,6 +72,8 @@ def test_registration_page(request):
         # print("user is not exist")
         return redirect('login')
 
+def ictestInfo(request):
+    return render(request, 'pages/ictestinfo.html')
 
 def profile_page(request):
 
