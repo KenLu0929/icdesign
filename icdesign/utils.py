@@ -1,5 +1,5 @@
 from django.core.mail import BadHeaderError, send_mail
-from global_variables import ADMIN_EMAIL
+from .global_variables import ADMIN_EMAIL
 import logging
 import time
 

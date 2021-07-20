@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from .queries import QueryUsers
 from icdesign import utils
+
+
 # from . import session_custom
 
 
@@ -72,11 +74,12 @@ def test_registration_page(request):
         # print("user is not exist")
         return redirect('login')
 
-def ictestInfo(request):
-    return render(request, 'pages/ictestinfo.html')
+
+def ic_test_info_page(request):
+    return render(request, 'pages/ic_test_info.html')
+
 
 def profile_page(request):
-
     if 'user' in request.session:
         id = request.session['user']
         url_page = 'pages/profile.html'

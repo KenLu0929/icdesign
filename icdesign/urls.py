@@ -28,6 +28,5 @@ urlpatterns = [
     path('login/', views.login_page, name="login"),
     path('profile/', views.profile_page, name="profile"),
     path('testregistration/', views.test_registration_page, name="test_registration"),
-    path('ictestinfo/', views.ictestInfo, name="ictestinfo"),
-    path('testregistration/', views.testRegistration, name="testregistration"),
+    path('ictestinfo/', views.ic_test_info_page, name="ic_test_info"),
 ]
