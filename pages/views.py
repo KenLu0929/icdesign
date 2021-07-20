@@ -52,27 +52,27 @@ def registration_page(request):
 
 def test_registration_page(request):
     url_page = 'pages/test_registration.html'
-    if 'user' in request.session:
-        ic_id = request.session['user']
-        if request.method == "POST":
+    # if 'user' in request.session:
+    ic_id = request.session['user']
+    if request.method == "POST":
 
-            data = {"ic_id": ic_id}
-            q = QueryUsers.users_upsert(data)
-            if not q:
-                title = "Failed"
-                message = "Information not updated."
-                params = {
-                    "title": title,
-                    "body": message
-                }
-                return JsonResponse(params)
+        data = {"ic_id": ic_id}
+        q = QueryUsers.users_upsert(data)
+        if not q:
+            title = "Failed"
+            message = "Information not updated."
+            params = {
+                "title": title,
+                "body": message
+            }
+            return JsonResponse(params)
 
-            return render(request, 'pages/profile.html')
+        return render(request, 'pages/profile.html')
 
-        return render(request, url_page)
-    else:
-        # print("user is not exist")
-        return redirect('login')
+    return render(request, url_page)
+    # else:
+    #     # print("user is not exist")
+    #     return redirect('login')
 
 
 def ic_test_info_page(request):
@@ -80,15 +80,15 @@ def ic_test_info_page(request):
 
 
 def profile_page(request):
-    if 'user' in request.session:
-        id = request.session['user']
-        url_page = 'pages/profile.html'
-        data = {"ic_id": id}
-        params = QueryUsers.users_get(data, )
-        return render(request, url_page, params)
-    else:
-        # print("user is not exist")
-        return redirect('login')
+    # if 'user' in request.session:
+    id = request.session['user']
+    url_page = 'pages/profile.html'
+    data = {"ic_id": id}
+    params = QueryUsers.users_get(data, )
+    return render(request, url_page, params)
+    # else:
+    #     # print("user is not exist")
+    #     return redirect('login')
 
 
 def login_page(request):
