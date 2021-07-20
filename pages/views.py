@@ -53,8 +53,24 @@ def test_registration_page(request):
     if 'user' in request.session:
         ic_id = request.session['user']
         if request.method == "POST":
+            print(request.POST)
 
             data = {"ic_id": ic_id}
+
+            data["ic_courses"] = request.POST.get("ic_courses", "")
+            data["gender"] = request.POST.get("ic_gender", "")
+            data["email"] = request.POST.get("ic_email", "")
+            data["ic_school"] = request.POST.get("ic_school", "")
+            data["address"] = request.POST.get("ic_address", "")
+            data["ic_department"] = request.POST.get("ic_department", "")
+            data["department_school"] = request.POST.get("ic_statusSchool", "")
+            data["company_name"] = request.POST.get("ic_company", "")
+            data["ic_status"] = request.POST.get("ic_status", "")
+            data["ic_yearofexp"] = request.POST.get("ic_yearofexp", "")
+            data["ic_title"] = request.POST.get("ic_title", "")
+            data["highest_degree"] = request.POST.get("ic_degree", "")
+
+
             q = QueryUsers.users_upsert(data)
             if not q:
                 title = "Failed"
@@ -67,7 +83,12 @@ def test_registration_page(request):
 
             return render(request, 'pages/profile.html')
 
-        return render(request, url_page)
+        ic_id = request.session['user']
+        data = {"ic_id": ic_id}
+        # print(data)
+        params = QueryUsers.users_get(data)
+        # print(params)
+        return render(request, url_page, params)
     else:
         # print("user is not exist")
         return redirect('login')
@@ -82,9 +103,9 @@ def profile_page(request):
         ic_id = request.session['user']
         url_page = 'pages/profile.html'
         data = {"ic_id": ic_id}
-        print(data)
+        # print(data)
         params = QueryUsers.users_get(data)
-        print(params)
+        # print(params)
         return render(request, url_page, params)
     else:
         # print("user is not exist")

@@ -15,7 +15,9 @@ class QueryUsers:
         try:
             # user.save()
             obj, created = models.User.objects.update_or_create(**data)
-            logger.info("Data created Successfully: ", created)
+            print(created)
+            print(obj)
+            # logger.info("Data created Successfully: ", created)
             return True
         except Exception as e:
             logger.error("Data: ", data)

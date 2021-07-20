@@ -17,70 +17,70 @@
 
 {% endblock %}
 <footer class="footer mt-auto bt-5 bg-light">
-  <div class="container py-5">
-      <div class="row">
-        <div class="col-lg-3 mb-3">
-            <ul class="list-unstyled small text-muted">
-              <li class="mb-2">Design for IC Design</a>.</li>
-              <li class="mb-2">Copyright 2021</li>
-            </ul>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-3 mb-3">
+                <ul class="list-unstyled small text-muted">
+                    <li class="mb-2">Design for IC Design</a>.</li>
+                    <li class="mb-2">Copyright 2021</li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#">回首頁</a></li>
+                    <li class="mb-2"><a href="#">國研院</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#">隱私保護及網站安全政策</a></li>
+                    <li class="mb-2"><a href="#">網站導覽</a></li>
+                </ul>
+            </div>
         </div>
-          <div class="col-6 col-lg-2 offset-lg-1 mb-3">
-            <ul class="list-unstyled">
-              <li class="mb-2"><a href="#">回首頁</a></li>
-              <li class="mb-2"><a href="#">國研院</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-lg-2 offset-lg-1 mb-3">
-            <ul class="list-unstyled">
-                <li class="mb-2"><a href="#">隱私保護及網站安全政策</a></li>
-                <li class="mb-2"><a href="#">網站導覽</a></li>
-            </ul>
-          </div>
-      </div>
-  </div>
+    </div>
 </footer>
 <script language="JavaScript">
-    $('#icid').change(function() {
+    $('#icid').change(function () {
         $('#displayicID').val($(this).val());
     });
-    $('#selectCourse').change(function() {
+    $('#selectCourse').change(function () {
         $('#showCourse').val($(this).val());
     });
-    $('#idname').change(function() {
+    $('#idname').change(function () {
         $('#showFullname').val($(this).val());
     });
-    $('#idemail').change(function() {
+    $('#idemail').change(function () {
         $('#showEmail').val($(this).val());
     });
-    $('#selectGender').change(function() {
+    $('#selectGender').change(function () {
         $('#showGender').val($(this).val());
     });
-    $('#textareaAdress').change(function() {
+    $('#textareaAddress').change(function () {
         $('#showAddress').val($(this).val());
     });
-    $('#selectDegree').change(function() {
+    $('#selectDegree').change(function () {
         $('#showDegree').val($(this).val());
     });
-    $('#schoolName').change(function() {
+    $('#schoolName').change(function () {
         $('#showSchoolName').val($(this).val());
     });
-    $('#department').change(function() {
+    $('#department').change(function () {
         $('#showDepartment').val($(this).val());
     });
-    $('#selectStatusschool').change(function() {
+    $('#selectStatusschool').change(function () {
         $('#showStatusSchool').val($(this).val());
     });
-    $('#companyName').change(function() {
+    $('#companyName').change(function () {
         $('#showCompanyName').val($(this).val());
     });
-    $('#selectPosition').change(function() {
+    $('#selectPosition').change(function () {
         $('#showPosition').val($(this).val());
     });
-    $('#yearofExp').change(function() {
+    $('#yearofExp').change(function () {
         $('#showExp').val($(this).val());
     });
-    $('#userTitle').change(function() {
+    $('#userTitle').change(function () {
         $('#showTitle').val($(this).val());
     });
 
@@ -88,7 +88,7 @@
     //     $('#submitBtnReg').prop("disabled", !this.checked);
     // })
 
-    function registChecking(){
+    function registChecking() {
         if ($('#icid').val() != '' && $("#checkButtonReg").is(":checked")) {
             $('#submitBtnReg').prop('disabled', false);
         } else {
@@ -96,33 +96,60 @@
         }
     }
 
-    $('#regisForm').on('submit', function(e){
+    $('#regisForm').on('submit', function (e) {
 
-         e.preventDefault();
+        e.preventDefault();
 
-           $.ajax({
-                type : "POST",
-                url: "{% url 'registration' %}",
-                data: $(this).serialize(),
-                success: function(data){
-                    /* response message */
-                    // console.log(data)
-                    $('#modalMessageTitle').html(data.title);
-                    $('#modalMessageBody').html(data.body);
-                }
-            });
+        $.ajax({
+            type: "POST",
+            url: "{% url 'registration' %}",
+            data: $(this).serialize(),
+            success: function (data) {
+                /* response message */
+                // console.log(data)
+                $('#modalMessageTitle').html(data.title);
+                $('#modalMessageBody').html(data.body);
+            }
+        });
     });
+    $("#test_registration").show();
+    $("#summary_test_registration").hide();
 
-    function matchPassword() {
-      var pw1 = document.getElementById("idpassword");
-      var pw2 = document.getElementById("confirmidcpassword");
-      if(pw1 != pw2)
-      {
-        alert("Passwords did not match");
-      } else {
-        alert("Password created successfully");
-      }
-    }
+    document.getElementById('btn_test_reg').onclick = function (e) {
+        e.preventDefault();
+
+        // console.log( loginFormObject );
+        $("#test_registration").hide();
+        $("#summary_test_registration").show();
+
+    };
+
+    document.getElementById('btn_modify_reg').onclick = function (e) {
+        e.preventDefault();
+        $("#test_registration").show();
+        $("#summary_test_registration").hide();
+    };
+
+    document.getElementById('btn_final_submit').onclick = function (e) {
+        e.preventDefault();
+        let loginForm = $('#form_test_registration').serializeArray();
+        let loginFormObject = {};
+        $.each(loginForm,
+            function(i, v) {
+                loginFormObject[v.name] = v.value;
+            });
+        $.ajax({
+            type: "POST",
+            url: "{% url 'test_registration' %}",
+            data: loginFormObject,
+            success: function (data) {
+                /* response message */
+                // console.log(data)
+                $('#modalMessageTitle').html(data.title);
+                $('#modalMessageBody').html(data.body);
+            }
+        });
+    };
 </script>
 
 </html>
