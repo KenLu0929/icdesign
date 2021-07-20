@@ -27,17 +27,13 @@ class QueryUsers:
             # user.save()
             obj, created = models.User.objects.get_or_create(**data)
             # logger.info("Data created Successfully: ", created)
-
-
-            return created
+            return obj, created
         except Exception as e:
             logger.error("Data: ", data)
             logger.error('Failed to insert data user to database: ', str(e))
             return False
 
     @staticmethod
-    def users_get(my_filter, column_name):
-
-        users = models.User.objects.filter(**my_filter).values(column_name).distinct()
-
+    def users_get(my_filter):
+        users = models.User.objects.all().filter(**my_filter).distinct()
         return users
