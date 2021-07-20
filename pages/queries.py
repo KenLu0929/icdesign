@@ -1,5 +1,7 @@
 from . import models
 import logging
+from django.core import serializers
+import json
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -34,6 +36,16 @@ class QueryUsers:
             return False
 
     @staticmethod
-    def users_get(my_filter):
-        users = models.User.objects.all().filter(**my_filter).distinct()
-        return users
+    def users_get(my_filter, amount=1):
+        # print(my_filter)
+        if amount == 1:
+            users = models.User.objects.filter(**my_filter).distinct()
+            users_json = serializers.serialize('json', users)
+            users_json = json.loads(users_json)
+            # print("output:", users_json[0])
+            return users_json[0]
+        else:
+            users = models.User.objects.filter(**my_filter).distinct()
+            users_json = serializers.serialize('json', users)
+            users_json = json.loads(users_json)
+            return users_json

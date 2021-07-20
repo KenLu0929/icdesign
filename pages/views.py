@@ -9,8 +9,6 @@ from icdesign import utils
 
 
 # Create your views here.
-
-
 def index(request):
     return render(request, 'pages/index.html')
 
@@ -18,7 +16,7 @@ def index(request):
 def registration_page(request):
     url_page = 'pages/registration.html'
     if request.method == "POST":
-        print(request.POST)
+        # print(request.POST)
         ic_id = request.POST.get("ic_show", "")
         ic_name = request.POST.get("ic_name", "")
         ic_pass = request.POST.get("ic_password", "")
@@ -52,27 +50,27 @@ def registration_page(request):
 
 def test_registration_page(request):
     url_page = 'pages/test_registration.html'
-    # if 'user' in request.session:
-    ic_id = request.session['user']
-    if request.method == "POST":
+    if 'user' in request.session:
+        ic_id = request.session['user']
+        if request.method == "POST":
 
-        data = {"ic_id": ic_id}
-        q = QueryUsers.users_upsert(data)
-        if not q:
-            title = "Failed"
-            message = "Information not updated."
-            params = {
-                "title": title,
-                "body": message
-            }
-            return JsonResponse(params)
+            data = {"ic_id": ic_id}
+            q = QueryUsers.users_upsert(data)
+            if not q:
+                title = "Failed"
+                message = "Information not updated."
+                params = {
+                    "title": title,
+                    "body": message
+                }
+                return JsonResponse(params)
 
-        return render(request, 'pages/profile.html')
+            return render(request, 'pages/profile.html')
 
-    return render(request, url_page)
-    # else:
-    #     # print("user is not exist")
-    #     return redirect('login')
+        return render(request, url_page)
+    else:
+        # print("user is not exist")
+        return redirect('login')
 
 
 def ic_test_info_page(request):
@@ -80,33 +78,31 @@ def ic_test_info_page(request):
 
 
 def profile_page(request):
-    # if 'user' in request.session:
-    id = request.session['user']
-    url_page = 'pages/profile.html'
-    data = {"ic_id": id}
-    params = QueryUsers.users_get(data, )
-    return render(request, url_page, params)
-    # else:
-    #     # print("user is not exist")
-    #     return redirect('login')
+    if 'user' in request.session:
+        ic_id = request.session['user']
+        url_page = 'pages/profile.html'
+        data = {"ic_id": ic_id}
+        print(data)
+        params = QueryUsers.users_get(data)
+        print(params)
+        return render(request, url_page, params)
+    else:
+        # print("user is not exist")
+        return redirect('login')
 
 
 def login_page(request):
     if request.method == "POST":
 
-        id = request.POST.get("ic_id", "")
+        ic_id = request.POST.get("ic_id", "")
         pwd = request.POST.get("ic_password", "")
-
-        # print("id:", id)
-        # print("pwd:", pwd)
-        user = authenticate(request=request, username=id, password=pwd)
-        # print(user)
+        user = authenticate(request=request, username=ic_id, password=pwd)
         if user is not None:
             # login(request, user)
             # print(user)
-            request.session['user'] = id
+            request.session['user'] = ic_id
             request.session.modified = True
-            data = {"ic_id": id, "last_login": utils.currentUnixTimeStamp()}
+            data = {"ic_id": ic_id, "last_login": utils.currentUnixTimeStamp()}
             QueryUsers.users_upsert(data)
 
             return redirect("profile")

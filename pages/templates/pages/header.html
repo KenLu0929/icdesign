@@ -6,8 +6,8 @@
 <!--        </a>-->
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">IC test information</a></li>
+          <li><a href="{% url 'homepage' %}" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="{% url 'ic_test_info' %}" class="nav-link px-2 text-white">IC test information</a></li>
           <li><a href="#" class="nav-link px-2 text-white">Pre-exam preparation instructions</a></li>
           <li><a href="#" class="nav-link px-2 text-white">Sponsorship</a></li>
           <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
@@ -18,8 +18,8 @@
 <!--        </form>-->
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
+          <button onclick="location.href={% url 'login' %}" type="button" class="btn btn-outline-light me-2">Login</button>
+          <button onclick="location.href={% url 'registration' %}" type="button" class="btn btn-warning">Sign-up</button>
         </div>
       </div>
     </div>
