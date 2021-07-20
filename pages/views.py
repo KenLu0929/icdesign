@@ -57,6 +57,8 @@ def registration_page(request):
 def testRegistration(request):
     return render(request, 'pages/testregistration.html')
 
+def ictestInfo(request):
+    return render(request, 'pages/ictestinfo.html')
 
 def profile_page(request):
     params = {}
