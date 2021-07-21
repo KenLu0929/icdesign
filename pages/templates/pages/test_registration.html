@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div id="test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1" >
+            <div id="test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
                 <div class="row align-items-center">
                     <div class="col">
                         <h1>Personal Information：</h1>
@@ -48,18 +48,7 @@
                 </div>
                 <hr>
                 <form id="form_test_registration">
-                    <div class="align-items-center">
-                        <div class="form-floating">
-                            <select class="form-select" id="selectCourse" name="ic_courses"
-                                    aria-label="Floating label select example" required>
-                                <option value="" selected>Select your test</option>
-                                <option value="test_one">Test One</option>
-                                <option value="test_two">Test Two</option>
-                            </select>
-                            <label for="selectCourse">Test</label>
-                        </div>
-                    </div>
-                    <div class="row g-2 mt-4">
+                    <div class="row g-2 mt-2">
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" name="ic_id" id="icid" class="form-control" placeholder="ID"
@@ -76,15 +65,32 @@
                         </div>
                     </div>
                     <div class="align-items-center mt-4">
-                        <div class="form-floating">
-                            <select class="form-select" id="selectGender" name="ic_gender"
-                                    aria-label="Floating label select example" required>
-                                <option value="" selected>Choose your gender</option>
-                                <option value="man">Man</option>
-                                <option value="woman">Woman</option>
-                                <option value="other">Other</option>
-                            </select>
-                            <label for="selectCourse">Gender</label>
+                        <div class="form-floating row g-2">
+                            <div class="col-md-12">
+                                <label for="datepicker">Birth of Date</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input id="datepicker" value="" class="form-control" placeholder="yyyy/mm/dd" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="align-items-center mt-4">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <span>Select Gender</span>
+                            </div>
+                            <div class="col-md row g-2" style="margin-left: 0rem;">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                           id="selectGender1" value="man">
+                                    <label class="form-check-label" for="selectGender1">Man</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                           id="selectGender2" value="woman">
+                                    <label class="form-check-label" for="selectGender2">Woman</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="align-items-center mt-4">
@@ -128,7 +134,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
                     <div class="row g-3 mt-2">
                         <div class="col-md">
                             <div class="form-floating">
@@ -174,6 +180,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="align-items-center">
+                        <div class="row g-2 mt-4">
+                            <div class="col-md">
+                                <span>Select your test</span>
+                            </div>
+                            <div class="col-md row g-2" style="margin-left: 0rem;">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="selectCourse1" value="test_one">
+                                    <label class="form-check-label" for="selectCourse1">Test One</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="selectCourse2" value="test_two">
+                                    <label class="form-check-label" for="selectCourse2">Test Two</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
                     <div class="row justify-content-start mt-4">
                         <div class="col">
                             <div>
