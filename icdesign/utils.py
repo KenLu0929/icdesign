@@ -1,5 +1,4 @@
 from django.core.mail import BadHeaderError, send_mail
-from .global_variables import ADMIN_EMAIL
 import logging
 import time
 
@@ -11,7 +10,7 @@ def send_email(subject, message, recipient_list):
 
     if subject and message and recipient_list:
         try:
-            send_mail(subject, message, ADMIN_EMAIL, recipient_list)
+            send_mail(subject, message, "", recipient_list)
         except BadHeaderError:
             logger.error('Invalid header found.')
             return False

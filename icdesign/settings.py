@@ -88,7 +88,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTHENTICATION_BACKENDS = [
-    # 'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
     'icdesign.backends.CustomBackend'
 ]
 
@@ -142,6 +142,8 @@ SESSION_COOKIE_AGE = 60 * 60
 SESSION_SAVE_EVERY_REQUEST = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+ADMIN_EMAIL = ""
 
 
 LOGGING = {
