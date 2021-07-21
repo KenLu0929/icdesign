@@ -11,7 +11,14 @@ Javascript
 > pip install -r requirements.txt
 
 ## Run project on port:8000
+> python manage.py makemigrations
+> python manage.py migrate
 > python manage.py runserver 8000
+
+### using makefile for running application
+> make install (for install all python package)
+> make run_all (run projects with migrations stage)
+> make run port=<no_port> (only run project, default of port=8000)
 
 ## Project Structure
 path: `pages/templates/pages`

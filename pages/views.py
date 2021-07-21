@@ -1,59 +1,136 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-# from . import session_custom
+from django.contrib.auth import authenticate
+from django.http import JsonResponse
+from .queries import QueryUsers
+from icdesign import utils
+from icdesign.backends import login_only
 
 
 # Create your views here.
-
-
 def index(request):
     return render(request, 'pages/index.html')
 
 
 def registration_page(request):
-    params = {}
     url_page = 'pages/registration.html'
+    if request.method == "POST":
+        # print(request.POST)
+        ic_id = request.POST.get("ic_show", "")
+        ic_name = request.POST.get("ic_name", "")
+        ic_pass = request.POST.get("ic_password", "")
+        confirm_ic_pass = request.POST.get("confirm_ic_password", "")
+        # print(ic_pass)
+        if ic_pass != confirm_ic_pass:
+            params = {
+                "title": "Failed",
+                "body": "Your password are unmatched."
+            }
+            return JsonResponse(params)
+        else:
+            data = {"ic_id": ic_id, "ic_name": ic_name, "ic_pass": ic_pass,
+                    "date_joined": utils.currentUnixTimeStamp()}
+            obj, q = QueryUsers.users_getsert(data)
+            title = "Success"
+            message = "Your registration are success."
+            if not q:
+                title = "Failed"
+                message = "Users already exists."
+                params = {
+                    "title": title,
+                    "body": message
+                }
+                return JsonResponse(params)
+
+            params = {
+                "title": title,
+                "body": message
+            }
+            request.session['user'] = ic_id
+            return render(request, url_page, params)
+
+    return render(request, url_page)
+
+
+@login_only
+def test_registration_page(request):
+    url_page = 'pages/test_registration.html'
+
+    ic_id = request.session['user']
+    if request.method == "POST":
+        # print(request.POST)
+
+        data = {"ic_id": ic_id}
+
+        data["ic_courses"] = request.POST.get("ic_courses", "")
+        data["gender"] = request.POST.get("ic_gender", "")
+        data["email"] = request.POST.get("ic_email", "")
+        data["ic_school"] = request.POST.get("ic_school", "")
+        data["address"] = request.POST.get("ic_address", "")
+        data["ic_department"] = request.POST.get("ic_department", "")
+        data["department_school"] = request.POST.get("ic_statusSchool", "")
+        data["company_name"] = request.POST.get("ic_company", "")
+        data["ic_status"] = request.POST.get("ic_status", "")
+        data["ic_yearofexp"] = request.POST.get("ic_yearofexp", "")
+        data["ic_title"] = request.POST.get("ic_title", "")
+        data["highest_degree"] = request.POST.get("ic_degree", "")
+
+        q = QueryUsers.users_upsert(data)
+        if not q:
+            title = "Failed"
+            message = "Information not updated."
+            params = {
+                "title": title,
+                "body": message
+            }
+            return JsonResponse(params)
+
+        return render(request, 'pages/profile.html')
+
+    ic_id = request.session['user']
+    data = {"ic_id": ic_id}
+    # print(data)
+    params = QueryUsers.users_get(data)
+    # print(params)
     return render(request, url_page, params)
-    # if 'user' in request.session:
-    #     # print("user is exist")
-    #     return render(request, url_page, params)
-    # else:
-    #     # print("user is not exist")
-    #     return redirect('login')
-
-def testRegistration(request):
-    return render(request, 'pages/testregistration.html')
 
 
+def ic_test_info_page(request):
+    return render(request, 'pages/ic_test_info.html')
+
+
+@login_only
 def profile_page(request):
-    params = {}
+    ic_id = request.session['user']
     url_page = 'pages/profile.html'
-    # print("test")
+    data = {"ic_id": ic_id}
+    # print(data)
+    params = QueryUsers.users_get(data)
+    # print(params)
     return render(request, url_page, params)
-    # if 'user' in request.session:
-    #     # print("user is exist")
-    #     print(request.session)
-    #     return render(request, url_page, params)
-    # else:
-    #     # print("user is not exist")
-    #     return redirect('login')
 
 
 def login_page(request):
     if request.method == "POST":
 
-        id = request.POST.get("ic_id", "")
-        pwd = request.POST.get("ic_password", "")
+        ic_id = request.POST.get("ic_id", "")
+        ic_pass = request.POST.get("ic_password", "")
+        data = {
+            "ic_id": ic_id,
+            "ic_pass": ic_pass,
+        }
+        user = QueryUsers.users_get(data)
 
-        # print("id:", id)
-        # print("pwd:", pwd)
-        user = authenticate(request=request, username=id, password=pwd)
-        # print(user)
         if user is not None:
             # login(request, user)
             # print(user)
-            # request.session['user'] = id
-            # request.session.modified = True
+            request.session['user'] = ic_id
+            request.session.modified = True
+            filter_sql = {
+                "ic_id": ic_id
+            }
+            data = {"last_login": utils.currentUnixTimeStamp()}
+            QueryUsers.users_update(filter_sql, data)
+
             return redirect("profile")
         else:
             resp = {

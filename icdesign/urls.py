@@ -26,6 +26,9 @@ urlpatterns = [
     path('', views.index, name="homepage"),
     path('registration/', views.registration_page, name="registration"),
     path('login/', views.login_page, name="login"),
+    path('logout/', views.logout_page, name="logout"),
     path('profile/', views.profile_page, name="profile"),
-
+    path('testregistration/', views.test_registration_page, name="test_registration"),
+    path('ictestinfo/', views.ic_test_info_page, name="ic_test_info"),
+    path('news/<id_news>/', views.ic_test_info_page, name="news"),
 ]

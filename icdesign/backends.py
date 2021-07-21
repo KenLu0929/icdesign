@@ -1,19 +1,30 @@
-from pages.models import User
+from pages.models import Users
+from django.shortcuts import redirect
 
 
 class CustomBackend(object):
 
-    def authenticate(self, request, username=None, password=None, **kwargs):
+    @staticmethod
+    def authenticate(username=None, password=None, **kwargs):
 
         try:
-            user = User.objects.get(ic_id=username, ic_pass=password)
+            user = Users.objects.get(ic_id=username, ic_pass=password)
             return user
-        except User.DoesNotExist:
+        except Users.DoesNotExist:
             return None
 
-    def get_user(self, user_id):
+    @staticmethod
+    def get_user(user_id):
         try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
+            return Users.objects.get(pk=user_id)
+        except Users.DoesNotExist:
             return None
 
+
+def login_only(view_function):
+    def wrap(request, *args, **kwargs):
+        if 'user' in request.session:
+            return view_function(request, *args, **kwargs)
+        else:
+            return redirect('login')
+    return wrap
