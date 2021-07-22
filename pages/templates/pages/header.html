@@ -3,7 +3,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">ICDesign</a>
+    <a class="navbar-brand" href="{% url 'homepage' %}">ICDesign</a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -22,19 +22,22 @@
           <a class="nav-link" href="#" >FAQs</a>
         </li>
       </ul>
+      {% if fields.ic_id %}
+      <ul class="navbar-nav mb-2 mb-xl-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-bs-toggle="dropdown" aria-expanded="false">{{ fields.ic_name }}</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown06">
+              <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      {% else %}
       <form class="d-flex ">
           <button onclick="location.href={% url 'login' %}" type="button" class="btn btn-outline-light me-2">Login</button>
           <button onclick="location.href={% url 'registration' %}" type="button" class="btn btn-warning">Sign-up</button>
       </form>
-      <ul class="navbar-nav mb-2 mb-xl-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-bs-toggle="dropdown" aria-expanded="false">Jhon Doe</a>
-            <ul class="dropdown-menu" aria-labelledby="dropdown06">
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
+      {% endif %}
     </div>
   </div>
 </nav>

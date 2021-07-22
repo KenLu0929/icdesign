@@ -6,6 +6,7 @@ from django.utils import timezone
 # Create your models here.
 class Users(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
+    # personal data
     ic_id = models.CharField(max_length=100, unique=True, null=True)
     ic_name = models.CharField(max_length=100, null=True)
     ic_pass = models.CharField(max_length=100, null=True)
@@ -15,12 +16,18 @@ class Users(models.Model):
     ic_bod = models.DateField(null=True)  # Birth of Date
     ic_phone_no = models.CharField(max_length=100, null=True)
     ic_telephone = models.CharField(max_length=100, null=True)
-    ic_degree = models.CharField(max_length=100, null=True)
     ic_address = models.CharField(max_length=100, null=True)
+    # education data
+    ic_school = models.CharField(max_length=100, null=True)
+    ic_degree = models.CharField(max_length=100, null=True)
+    ic_status_school = models.CharField(max_length=100, null=True)
     ic_department = models.CharField(max_length=100, null=True)
     ic_company = models.CharField(max_length=100, null=True)
-    # ic_graduated_time = models.IntegerField(null=True)
+    ic_job_position = models.CharField(max_length=100, null=True)
     ic_graduated_status = models.IntegerField(null=True)  # 0 = not started yet, 1 = on progress, 2 = graduated.
+    ic_yearofexp = models.IntegerField(null=True)
+
+    # additional information
     date_joined = models.IntegerField(null=True)
     last_login = models.IntegerField(null=True)
     date_modified = models.IntegerField(null=True)

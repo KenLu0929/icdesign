@@ -68,7 +68,7 @@
                                 <label for="datepicker">Birth of Date</label>
                             </div>
                             <div class="col-md-12">
-                                <input id="datepicker" type="date" class="form-control" placeholder="yyyy/mm/dd"
+                                <input id="datepicker" name="ic_bod" type="date" class="form-control" placeholder="yyyy/mm/dd"
                                        required>
                             </div>
                         </div>
@@ -95,14 +95,14 @@
                     <div class="row g-2 mt-4">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="number" name="ic_phone" id="icphonenumber" class="form-control" placeholder="ID"
+                                <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control" placeholder="ID"
                                        maxlength="10" value="{{ fields.ic_phone }}">
                                 <label for="icphonenumber">Phone Number</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="ictelpnumber" name="ic_telp"
+                                <input type="text" class="form-control" id="ictelpnumber" name="ic_telephone"
                                        placeholder="e.g, Jhon Doe" value="{{ fields.ic_telp }}">
                                 <label for="ictelpnumber">Telp Number</label>
                             </div>
@@ -139,7 +139,7 @@
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
-                                <select class="form-select" id="selectStatusschool" name="ic_statusSchool"
+                                <select class="form-select" id="selectStatusschool" name="ic_status_school"
                                         aria-label="Floating label select example">
                                     <option value="" selected>Select your degree</option>
                                     <option value="study">Study</option>
@@ -160,9 +160,9 @@
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" id="selectPosition" name="ic_status" class="form-control"
+                                <input type="text" id="selectPosition" name="ic_service_department" class="form-control"
                                        placeholder="Service Department">
-                                <label for="companyName">Service Department</label>
+                                <label for="selectPosition">Service Department</label>
                             </div>
                         </div>
                         <div class="col-md">
@@ -176,9 +176,9 @@
                     <div class="row g-2 mt-2">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" id="userTitle" name="ic_title" class="form-control"
-                                       placeholder="Company name">
-                                <label for="companyName">Title</label>
+                                <input type="text" id="userTitle" name="ic_job_position" class="form-control"
+                                       placeholder="Job Position">
+                                <label for="userTitle">Job Position</label>
                             </div>
                         </div>
                         <div class="col-md">
@@ -337,7 +337,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showTitle" class="col-sm-4 col-form-label">Title</label>
+                    <label for="showTitle" class="col-sm-4 col-form-label">Job Position</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showTitle" value="">
                     </div>
@@ -519,17 +519,17 @@
         });
         loginFormObject["ic_test"] = values
         // console.log(loginFormObject)
-        // $.ajax({
-        //     type: "POST",
-        //     url: "{% url 'test_registration' %}",
-        //     data: loginFormObject,
-        //     success: function (data) {
-        //         /* response message */
-        //         // console.log(data)
-        //         $('#modalMessageTitle').html(data.title);
-        //         $('#modalMessageBody').html(data.body);
-        //     }
-        // });
+        $.ajax({
+            type: "POST",
+            url: "{% url 'test_registration' %}",
+            data: loginFormObject,
+            success: function (data) {
+                /* response message */
+                // console.log(data)
+                $('#modalMessageTitle').html(data.title);
+                $('#modalMessageBody').html(data.body);
+            }
+        });
     };
 
 </script>

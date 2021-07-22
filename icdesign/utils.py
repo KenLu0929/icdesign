@@ -28,5 +28,12 @@ def currentUnixTimeStamp():
 
 
 def remove_dict_key_empty(listDict):
-    result = [{k: v for k, v in d.items() if v and v.strip()} for d in listDict]
-    return result
+    clean = {}
+    for k, v in listDict.items():
+        if isinstance(v, dict):
+            nested = remove_dict_key_empty(v)
+            if len(nested.keys()) > 0:
+                clean[k] = nested
+        elif v is not None:
+            clean[k] = v
+    return clean
