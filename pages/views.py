@@ -1,14 +1,19 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from .queries import QueryUsers
 from icdesign import utils
-from icdesign.backends import login_only
+from icdesign.backends import login_only, update_registration
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'pages/index.html')
+    ic_id = request.session.get('user')
+    url_page = 'pages/index.html'
+    data = {"ic_id": ic_id}
+    # print(data)
+    params = QueryUsers.users_get(data)
+    print(params)
+    return render(request, url_page, params)
 
 
 def registration_page(request):
@@ -58,34 +63,19 @@ def test_registration_page(request):
     ic_id = request.session.get('user')
 
     if request.method == "POST":
-        print(request.POST)
+        # print(request.POST)
+        data = update_registration(request.POST)
 
-        data = {"ic_id": ic_id}
-
-        data["ic_courses"] = request.POST.get("ic_courses", "")
-        data["gender"] = request.POST.get("ic_gender", "")
-        data["email"] = request.POST.get("ic_email", "")
-        data["ic_school"] = request.POST.get("ic_school", "")
-        data["address"] = request.POST.get("ic_address", "")
-        data["ic_department"] = request.POST.get("ic_department", "")
-        data["department_school"] = request.POST.get("ic_statusSchool", "")
-        data["company_name"] = request.POST.get("ic_company", "")
-        data["ic_status"] = request.POST.get("ic_status", "")
-        data["ic_yearofexp"] = request.POST.get("ic_yearofexp", "")
-        data["ic_title"] = request.POST.get("ic_title", "")
-        data["highest_degree"] = request.POST.get("ic_degree", "")
-        print(data)
-        data = utils.remove_dict_key_empty(data)
-        print(data)
-        q = QueryUsers.users_upsert(data)
-        if not q:
-            title = "Failed"
-            message = "Information not updated."
-            params = {
-                "title": title,
-                "body": message
-            }
-            return JsonResponse(params)
+        filterQ = {"ic_id": ic_id}
+        # q = QueryUsers.users_update(filterQ, data)
+        # if not q:
+        #     title = "Failed"
+        #     message = "Information not updated."
+        #     params = {
+        #         "title": title,
+        #         "body": message
+        #     }
+        #     return JsonResponse(params)
 
         return render(request, 'pages/profile.html')
 
@@ -100,9 +90,9 @@ def ic_test_info_page(request):
     return render(request, 'pages/ic_test_info.html')
 
 
-# @login_only
+@login_only
 def profile_page(request):
-    ic_id = request.session['user']
+    ic_id = request.session.get('user')
     url_page = 'pages/profile.html'
     data = {"ic_id": ic_id}
     # print(data)

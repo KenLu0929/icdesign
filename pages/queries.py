@@ -46,6 +46,8 @@ class QueryUsers:
         users_json = json.loads(users_json)
         if len(users_json) == 1:
             return users_json[0]
+        elif len(users_json) == 0:
+            return {}
         return users_json
 
 
