@@ -17,7 +17,6 @@ def index(request):
 
 
 def registration_page(request):
-
     if request.method == "POST":
         # print(request.POST)
         ic_id = request.POST.get("ic_show", "")
@@ -27,43 +26,37 @@ def registration_page(request):
         # print(ic_pass)
         if ic_id == "" or ic_name == "" or ic_pass == "":
             params = {
-                "title": "Failed",
-                "body": "Please fill the form."
+                "error": True,
+                "message": "Please fill the form."
             }
             return JsonResponse(params)
 
         if ic_pass != confirm_ic_pass:
             params = {
-                "title": "Failed",
-                "body": "Your password are unmatched."
+                "error": True,
+                "message": "Your password are unmatched."
             }
             return JsonResponse(params)
         else:
             data = {"ic_id": ic_id, "ic_name": ic_name, "ic_pass": ic_pass,
                     "date_joined": utils.currentUnixTimeStamp()}
-            print("testing")
-            print(data)
+            # print("testing")
+            # print(data)
             obj, q = QueryUsers.users_getsert(data)
-            print(obj, q, type(q))
+            # print(obj, q, type(q))
             if q == False:
-                title = "Failed"
-                message = "Users already exists."
                 params = {
-                    "title": title,
-                    "body": message
+                    "error": True,
+                    "message": "Users already exists."
                 }
                 return JsonResponse(params)
             else:
-                print("test2")
+                # print("test2")
                 request.session['user'] = ic_id
                 url_page = 'pages/profile.html'
                 return render(request, url_page)
 
-
-
-
     url_page = 'pages/registration.html'
-
     return render(request, url_page)
 
 
@@ -80,15 +73,19 @@ def test_registration_page(request):
         filterQ = {"ic_id": ic_id}
         q = QueryUsers.users_update(filterQ, data)
         if not q:
-            title = "Failed"
-            message = "Information not updated."
             params = {
-                "title": title,
-                "body": message
+                "error": True,
+                "title": "Failed",
+                "body": "Information not updated."
             }
             return JsonResponse(params)
 
-        return render(request, 'pages/profile.html')
+        params = {
+            "error": False,
+            "title": "Success",
+            "body": "Registration is success."
+        }
+        return JsonResponse(params)
 
     data = {"ic_id": ic_id}
     # print(data)
@@ -121,7 +118,6 @@ def profile_page(request):
 
 
 def login_page(request):
-
     if request.method == "POST":
         # print("test")
         ic_id = request.POST.get("ic_id", "")

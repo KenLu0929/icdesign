@@ -39,7 +39,8 @@
                     <div class="col">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input id="checkButtonReg" type="checkbox" class="form-check-input" onchange="registChecking()">
+                                <input id="checkButtonReg" type="checkbox" class="form-check-input"
+                                       onchange="registChecking()">
                                 本人已充分知悉主辦單位上述告知事項。本人同意主辦單位，蒐集、處理、利用本人之個人資料，以及其他公務機關請求行政協助目的之提供。</a>
                             </label>
                         </div>
@@ -76,6 +77,9 @@
                     <form id="regisForm">
                         <div class="row">
                             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+
+                                <div id="alertID" class="alert alert-danger" role="alert"> this is alert</div>
+
                                 <div class="form-floating">
                                     <input type="text" class="form-control" name="ic_show" id="displayicID" readonly>
                                     <label>ID</label>
@@ -115,6 +119,7 @@
 </body>
 
 <script>
+    $('#alertID').hide()
     $('#icid').change(function () {
         $('#displayicID').val($(this).val());
     });
@@ -140,8 +145,15 @@
             success: function (data) {
                 /* response message */
                 console.log(data)
-                $('#modalMessageTitle').html(data.title);
-                $('#modalMessageBody').html(data.body);
+                if(data.error) {
+                    console.log("error")
+                    $('#alertID').html(data.message)
+                    $('#alertID').show()
+                } else {
+                    window.location.href = "{% url 'profile' %}";
+                }
+
+
             }
         });
     });
