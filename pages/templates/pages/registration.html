@@ -3,108 +3,127 @@
 {% block content %}
 <body class="d-flex flex-column h-100">
 {% include "pages/header.html" %}
-  <section class="flex-shrink-0">
+<section class="flex-shrink-0">
     <div class="container my-5">
-
-      <div class="alert alert-warning text-center my-4">
-        This is sample
-      </div>
-
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-8 col-xl-6">
-          <div class="row">
-            <div class="col text-center">
-              <h1>IC設計能力鑑定-線上報名</h1>
-              <p class="text-h3">財團法人國家實驗研究院台灣半導體研究中心(以下簡稱「主辦單位」)承接經濟部工業局智慧電子學院之專案，辦理IC設計能力鑑定。為遵守個人資料保護法規定，在您提供個人資料予主辦單位前，依法告知下列事項：</p>
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col mt-4">
-              <ul class="list-group">
-                <li class="list-group-item"><i class="mdi mdi-drag"></i> 1. 本人所檢附的報名資料：中文姓名、身分證字號、出生年月日、聯絡電話、行動電話、通訊地址、E-Mail、身分別、就讀/畢業學校名稱、科系名稱、年級與班級、學歷、任職公司名稱及職稱，僅供「主辦單位」辦理鑑定考試使用、寄送相關考試資料及學習資訊、進行測驗相關統計、進行企業就業媒合之用。</li>
-                <li class="list-group-item"><i class="mdi mdi-drag"></i> 2. 主辦單位將於原蒐集之特定目的、本次以外之產業之推廣、宣導及就業輔導、以及其他公務機關請求行政協助之目的範圍內，合理利用您的個人資料。</li>
-                <li class="list-group-item"><i class="mdi mdi-drag"></i> 3. 本人瞭解所提供之個人資料，假如經由檢舉或主辦單位發現有不符真實身分或有冒用、盜用其他個人資料、資料不實等情事經查證屬實時，主辦單位有權取消本人的當次考試資格、成績或未來報名資格，並有權不提供鑑定考試相關服務。</li>
-                <li class="list-group-item"><i class="mdi mdi-drag"></i> 4. 本人瞭解必須填寫完整且正確之報名資料，通訊地址、身分證字號、電話號碼及E-mail應正確，否則無法通知而致延誤考試及其他重要事項，其後果自行負責。</li>
-                <li class="list-group-item"><i class="mdi mdi-drag"></i> 5. 考生對自己所有之個人資料，須負保密責任，若因洩漏予第三者，導致考生個人資料外洩、遺失、或無法正常使用本服務之情況，概由該考生自行負責，本網站得拒絕該考生使用本網站報名考試之權利。</li>
-              </ul>
-            </div>
-          </div>
-          <div class="row justify-content-start mt-4">
-            <div class="col">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input id="checkButtonReg" type="checkbox" class="form-check-input">
-                  本人已充分知悉主辦單位上述告知事項。本人同意主辦單位，蒐集、處理、利用本人之個人資料，以及其他公務機關請求行政協助目的之提供。</a>
-                </label>
-              </div>
-
-              <div class="row align-items-center mt-4">
-                <div class="col-4">
-                  *請輸入您的身分證字號：
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+                <div class="row">
+                    <div class="col text-center">
+                        <h1>IC設計能力鑑定-線上報名</h1>
+                        <p class="text-h3">
+                            財團法人國家實驗研究院台灣半導體研究中心(以下簡稱「主辦單位」)承接經濟部工業局智慧電子學院之專案，辦理IC設計能力鑑定。為遵守個人資料保護法規定，在您提供個人資料予主辦單位前，依法告知下列事項：</p>
+                    </div>
                 </div>
-                <div class="col-6">
-                  <input name="ic_id" id="icid" type="text" class="form-control" placeholder="ID" maxlength="10" onchange="registChecking()">
+                <div class="row align-items-center">
+                    <div class="col mt-4">
+                        <ul class="list-group">
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 1.
+                                本人所檢附的報名資料：中文姓名、身分證字號、出生年月日、聯絡電話、行動電話、通訊地址、E-Mail、身分別、就讀/畢業學校名稱、科系名稱、年級與班級、學歷、任職公司名稱及職稱，僅供「主辦單位」辦理鑑定考試使用、寄送相關考試資料及學習資訊、進行測驗相關統計、進行企業就業媒合之用。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 2.
+                                主辦單位將於原蒐集之特定目的、本次以外之產業之推廣、宣導及就業輔導、以及其他公務機關請求行政協助之目的範圍內，合理利用您的個人資料。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 3.
+                                本人瞭解所提供之個人資料，假如經由檢舉或主辦單位發現有不符真實身分或有冒用、盜用其他個人資料、資料不實等情事經查證屬實時，主辦單位有權取消本人的當次考試資格、成績或未來報名資格，並有權不提供鑑定考試相關服務。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 4.
+                                本人瞭解必須填寫完整且正確之報名資料，通訊地址、身分證字號、電話號碼及E-mail應正確，否則無法通知而致延誤考試及其他重要事項，其後果自行負責。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 5.
+                                考生對自己所有之個人資料，須負保密責任，若因洩漏予第三者，導致考生個人資料外洩、遺失、或無法正常使用本服務之情況，概由該考生自行負責，本網站得拒絕該考生使用本網站報名考試之權利。
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-2">
-                  <!-- Button trigger modal -->
-                  <button id="submitBtnReg" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal" disabled>Submit</button>
+                <div class="row justify-content-start mt-4">
+                    <div class="col">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input id="checkButtonReg" type="checkbox" class="form-check-input"
+                                       onchange="registChecking()">
+                                本人已充分知悉主辦單位上述告知事項。本人同意主辦單位，蒐集、處理、利用本人之個人資料，以及其他公務機關請求行政協助目的之提供。</a>
+                            </label>
+                        </div>
+
+                        <div class="row align-items-center mt-4">
+                            <div class="col-4">
+                                *請輸入您的身分證字號：
+                            </div>
+                            <div class="col-6">
+                                <input name="ic_id" id="icid" type="text" class="form-control" placeholder="ID"
+                                       maxlength="10" onchange="registChecking()">
+                            </div>
+                            <div class="col-2">
+                                <!-- Button trigger modal -->
+                                <button id="submitBtnReg" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#signupModal" disabled>Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-     <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">請先填寫您的登入資料</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="regisForm">
-              <div class="row">
-               <div class="col-12 col-md-12 col-lg-12 col-xl-12">
-                  <div class="alert alert-danger" role="alert">
-                    A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-                  </div>
-                  <div class="form-floating">
-                      <input type="text" class="form-control" name="ic_show" id="displayicID" readonly>
-                      <label>ID</label>
-                  </div>
-                  <div class="form-floating mt-4">
-                      <input type="text" class="form-control" id="idname" name="ic_name" placeholder="e.g, Jhon Doe">
-                      <label for="idname">Full Name</label>
-                  </div>
-                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
-                  <div class="form-floating mt-4">
-                      <input type="password" class="form-control" id="idpassword" name="ic_password" placeholder="Keep it secret">
-                      <label for="idpassword">Password</label>
-                  </div>
-                <div class="form-floating mt-4">
-                    <input type="password" class="form-control" id="confirmidcpassword" name="confirm_ic_password" placeholder="Keep it secret">
-                    <label for="confirmidcpassword">Confirm Password</label>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">請先填寫您的登入資料</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-              </div>
+                <div class="modal-body">
+                    <form id="regisForm">
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+
+                                <div id="alertID" class="alert alert-danger" role="alert"> this is alert</div>
+
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="ic_show" id="displayicID" readonly>
+                                    <label>ID</label>
+                                </div>
+                                <div class="form-floating mt-4">
+                                    <input type="text" class="form-control" id="idname" name="ic_name"
+                                           placeholder="e.g, Jhon Doe" required>
+                                    <label for="idname">Full Name</label>
+                                </div>
+                                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+                                <div class="form-floating mt-4">
+                                    <input type="password" class="form-control" id="idpassword" name="ic_password"
+                                           placeholder="Keep it secret" required>
+                                    <label for="idpassword">Password</label>
+                                </div>
+                                <div class="form-floating mt-4">
+                                    <input type="password" class="form-control" id="confirmidcpassword"
+                                           name="confirm_ic_password" placeholder="Keep it secret" required>
+                                    <label for="confirmidcpassword">Confirm Password</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="SignUpBtn" type="submit" class="btn btn-primary">Sign Up
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
             </div>
-              <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button id="SignUpBtn" type="submit" class="btn btn-primary" data-bs-target="#messageModal" data-bs-toggle="modal" data-bs-dismiss="modal">Sign Up</button>
-          </div>
-            </form>
-
-          </div>
-
         </div>
-      </div>
     </div>
     {% include "pages/modal_message.html" %}
-  </section>
+</section>
 </body>
 
 <script>
+    $('#alertID').hide()
+    $('#icid').change(function () {
+        $('#displayicID').val($(this).val());
+    });
+
     function registChecking() {
         if ($('#icid').val() != '' && $("#checkButtonReg").is(":checked")) {
             $('#submitBtnReg').prop('disabled', false);
@@ -113,7 +132,9 @@
         }
     }
 
+
     $('#regisForm').on('submit', function (e) {
+
 
         e.preventDefault();
 
@@ -123,9 +144,16 @@
             data: $(this).serialize(),
             success: function (data) {
                 /* response message */
-                // console.log(data)
-                $('#modalMessageTitle').html(data.title);
-                $('#modalMessageBody').html(data.body);
+                console.log(data)
+                if(data.error) {
+                    console.log("error")
+                    $('#alertID').html(data.message)
+                    $('#alertID').show()
+                } else {
+                    window.location.href = "{% url 'profile' %}";
+                }
+
+
             }
         });
     });

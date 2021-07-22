@@ -30,5 +30,7 @@ urlpatterns = [
     path('profile/', views.profile_page, name="profile"),
     path('testregistration/', views.test_registration_page, name="test_registration"),
     path('ictestinfo/', views.ic_test_info_page, name="ic_test_info"),
-    path('news/<id_news>/', views.ic_test_info_page, name="news"),
+    path('preexam/', views.ic_pre_exam, name="ic_pre_exam"),
+    path('faqs/', views.ic_faqs, name="ic_faqs"),
+
 ]
