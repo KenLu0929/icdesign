@@ -38,26 +38,23 @@ class QueryUsers:
             return None, False
 
     @staticmethod
-    def users_get(my_filter, amount=1):
+    def users_get(my_filter):
         # print(my_filter)
-        if amount == 1:
-            users = models.Users.objects.filter(**my_filter).distinct()
-            users_json = serializers.serialize('json', users)
-            users_json = json.loads(users_json)
-            # print("output:", users_json[0])
+
+        users = models.Users.objects.filter(**my_filter).distinct()
+        users_json = serializers.serialize('json', users)
+        users_json = json.loads(users_json)
+        if len(users_json) == 1:
             return users_json[0]
-        else:
-            users = models.Users.objects.filter(**my_filter).distinct()
-            users_json = serializers.serialize('json', users)
-            users_json = json.loads(users_json)
-            return users_json
+        return users_json
+
 
     @staticmethod
     def users_update(filter_data, updated_data):
         # print(my_filter)
 
         q = models.Users.objects.filter(**filter_data).update(**updated_data)
-        print(q)
+        # print(q)
         # print("output:", users_json[0])
         return q
 
