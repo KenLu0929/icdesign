@@ -67,15 +67,15 @@ def test_registration_page(request):
         data = update_registration(request.POST)
 
         filterQ = {"ic_id": ic_id}
-        # q = QueryUsers.users_update(filterQ, data)
-        # if not q:
-        #     title = "Failed"
-        #     message = "Information not updated."
-        #     params = {
-        #         "title": title,
-        #         "body": message
-        #     }
-        #     return JsonResponse(params)
+        q = QueryUsers.users_update(filterQ, data)
+        if not q:
+            title = "Failed"
+            message = "Information not updated."
+            params = {
+                "title": title,
+                "body": message
+            }
+            return JsonResponse(params)
 
         return render(request, 'pages/profile.html')
 

@@ -34,19 +34,32 @@ def login_only(view_function):
 def update_registration(data_post):
     print(data_post)
     data = {}
-    data["ic_courses"] = data_post.get("ic_courses", "")
+    # personal data
+    data["ic_address"] = data_post.get("ic_address", "")
     data["ic_gender"] = data_post.get("ic_gender", "")
     data["ic_email"] = data_post.get("ic_email", "")
-    data["ic_school"] = data_post.get("ic_school", "")
     data["ic_address"] = data_post.get("ic_address", "")
+    data["ic_bod"] = data_post.get("ic_bod", "")
+    data["ic_phone_no"] = data_post.get("ic_phone_no", "")
+    data["ic_telephone"] = data_post.get("ic_telephone", "")
+
+    # education data
+    data["ic_school"] = data_post.get("ic_school", "")
+    data["ic_status_school"] = data_post.get("ic_status_school", "")
+    data["ic_degree"] = data_post.get("ic_degree", "")
+    data["ic_company"] = data_post.get("ic_company", "")
     data["ic_department"] = data_post.get("ic_department", "")
-    data["ic_statusSchool"] = data_post.get("ic_statusSchool", "")
-    data["company_name"] = data_post.get("ic_company", "")
-    data["ic_status"] = data_post.get("ic_status", "")
+    data["ic_service_department"] = data_post.get("ic_service_department", "")
+    data["ic_job_position"] = data_post.get("ic_job_position", "")
     data["ic_yearofexp"] = data_post.get("ic_yearofexp", "")
-    data["ic_title"] = data_post.get("ic_title", "")
-    data["highest_degree"] = data_post.get("ic_degree", "")
+
+    # ic_test = data_post.getlist("ic_test[]", "")
+    # for test in ic_test:
+    #
+    # print(ic_test)
+    data["date_modified"] = utils.currentUnixTimeStamp()
+
     print(data)
     data = utils.remove_dict_key_empty(data)
     print(data)
-    return data_post
+    return data
