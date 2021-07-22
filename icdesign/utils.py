@@ -25,3 +25,8 @@ def send_email(subject, message, recipient_list):
 def currentUnixTimeStamp():
     unixTime = int(time.time())
     return unixTime
+
+
+def remove_dict_key_empty(listDict):
+    result = [{k: v for k, v in d.items() if v and v.strip()} for d in listDict]
+    return result
