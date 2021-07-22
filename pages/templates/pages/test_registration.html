@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div id="test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1" hidden>
+            <div id="test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
                 <div class="row align-items-center">
                     <div class="col">
                         <h1>Personal Information：</h1>
@@ -88,6 +88,22 @@
                                            id="selectGender2" value="woman">
                                     <label class="form-check-label" for="selectGender2">Woman</label>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mt-4">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="number" name="ic_phone" id="icphonenumber" class="form-control" placeholder="ID"
+                                       maxlength="10" value="{{ fields.ic_phone }}">
+                                <label for="icphonenumber">Phone Number</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="ictelpnumber" name="ic_telp"
+                                       placeholder="e.g, Jhon Doe" value="{{ fields.ic_telp }}">
+                                <label for="ictelpnumber">Telp Number</label>
                             </div>
                         </div>
                     </div>
@@ -264,6 +280,18 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
+                        <label for="showPhone" class="col-sm-4 col-form-label">Phone Number</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showPhone" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showTelp" class="col-sm-4 col-form-label">Telp Number</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showTelp" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
                         <label for="showAddress" class="col-sm-4 col-form-label">Address</label>
                         <div class="col-sm-8">
                             <input type="text" readonly class="form-control-plaintext" id="showAddress" value="">
@@ -345,7 +373,7 @@
                 </div>
                 <hr>
             </div>
-            <div class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+            <div class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1" hidden>
                 <div class="row align-items-center">
                     <div class="col">
                         <h1>You've done the registration</h1>
