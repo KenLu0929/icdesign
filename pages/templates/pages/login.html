@@ -4,11 +4,11 @@
 
 <body class="d-flex flex-column h-100">
 {% include "pages/header.html" %}
-<div class="container mt-5">
-    <div class="col-md-4 offset-md-4">
-        <div class="card">
-            <div class="card-header text-center">
-                <h4>{{ title }}</h4>
+<div class="container mt-5" style="min-height: 66vh;">
+    <div class="col-12 col-md-4 offset-md-4">
+        <div class="card border-0">
+            <div class="card-header border-0 bg-white text-center py-3">
+                <h4>Login</h4>
             </div>
 
             <div class="card-body">
@@ -17,7 +17,7 @@
                     {% if error %}
                         <div>{{ message }}</div>
                     {% endif %}
-                    <div class="form-floating">
+                    <div class="form-floating mb-4">
                         <input name="ic_id" type="text" class="form-control" id="ic_id" placeholder="FT019224***">
                         <label for="ic_id">ID</label>
                     </div>
