@@ -51,11 +51,12 @@ def registration_page(request):
     return render(request, url_page)
 
 
-@login_only
+# @login_only
 def test_registration_page(request):
     url_page = 'pages/test_registration.html'
 
-    ic_id = request.session['user']
+    # ic_id = request.session['user']
+    ic_id = ""
     if request.method == "POST":
         # print(request.POST)
 
@@ -74,31 +75,31 @@ def test_registration_page(request):
         data["ic_title"] = request.POST.get("ic_title", "")
         data["highest_degree"] = request.POST.get("ic_degree", "")
 
-        q = QueryUsers.users_upsert(data)
-        if not q:
-            title = "Failed"
-            message = "Information not updated."
-            params = {
-                "title": title,
-                "body": message
-            }
-            return JsonResponse(params)
+        # q = QueryUsers.users_upsert(data)
+        # if not q:
+        #     title = "Failed"
+        #     message = "Information not updated."
+        #     params = {
+        #         "title": title,
+        #         "body": message
+        #     }
+        #     return JsonResponse(params)
 
         return render(request, 'pages/profile.html')
 
-    ic_id = request.session['user']
+    # ic_id = request.session['user']
     data = {"ic_id": ic_id}
     # print(data)
-    params = QueryUsers.users_get(data)
+    # params = QueryUsers.users_get(data)
     # print(params)
-    return render(request, url_page, params)
+    return render(request, url_page)
 
 
 def ic_test_info_page(request):
     return render(request, 'pages/ic_test_info.html')
 
 
-@login_only
+# @login_only
 def profile_page(request):
     ic_id = request.session['user']
     url_page = 'pages/profile.html'

@@ -40,3 +40,13 @@ footer a{
 .table > :not(caption) > * > *{
     width: 40px;
 }
+
+.gj-textbox-md{
+    border:1px solid #ced4da !important;
+    padding: 1rem 0.75rem !important;
+    height: calc(3.5rem + 2px);
+    line-height: 1.25;
+}
+.gj-datepicker-md [role=right-icon]{
+    padding: 1rem 0.75rem !important;
+}
