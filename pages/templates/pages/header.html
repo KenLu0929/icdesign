@@ -13,13 +13,13 @@
           <a class="nav-link" href="{% url 'ic_test_info' %}">IC test information</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" >Pre-exam preparation instructions</a>
+          <a class="nav-link" href="{% url 'ic_pre_exam' %}" >Pre-exam preparation instructions</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" >Sponsorship</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" >FAQs</a>
+          <a class="nav-link" href="{% url 'ic_faqs' %}" >FAQs</a>
         </li>
       </ul>
       {% if fields.ic_id %}
