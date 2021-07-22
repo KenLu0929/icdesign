@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.db import models
 from icdesign import utils
+from django.utils import timezone
 from icdesign import settings
 from django.utils.translation import gettext_lazy as _
 
@@ -79,8 +80,8 @@ class Exams(models.Model):
     exam_start_time = models.DateTimeField(null=True)
     exam_end_time = models.DateTimeField(null=True)
     exam_place = models.CharField(max_length=100, null=True)
-    exam_is_active = models.IntegerField(null=True)
-    date_created = models.DateTimeField(null=True, default=datetime.now().strftime(settings.DATETIME_FORMAT))
+    exam_is_active = models.IntegerField(null=True, default=0) # 0 = Not Active, 1 = Active
+    date_created = models.DateTimeField(null=True, default=datetime.now())
     date_modified = models.IntegerField(null=True)
 
     class Meta:
