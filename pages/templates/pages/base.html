@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="{% static 'index.css' %}">
     <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
     <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<!--    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />-->
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">-->
 </head>
 
 {% block content %}
@@ -44,131 +44,9 @@
     </div>
 </footer>
 <script language="JavaScript">
-    $('#datepicker').datepicker({
-      format: 'yyyy-mm-dd'
-    });
-    $('#icid').change(function () {
-        $('#displayicID').val($(this).val());
-    });
-    $('#selectCourse').change(function () {
-        $('#showCourse').val($(this).val());
-    });
-    $('#idname').change(function () {
-        $('#showFullname').val($(this).val());
-    });
-    $('#idemail').change(function () {
-        $('#showEmail').val($(this).val());
-    });
-    $('#selectGender').change(function () {
-        $('#showGender').val($(this).val());
-    });
-    $('#textareaAddress').change(function () {
-        $('#showAddress').val($(this).val());
-    });
-    $('#selectDegree').change(function () {
-        $('#showDegree').val($(this).val());
-    });
-    $('#schoolName').change(function () {
-        $('#showSchoolName').val($(this).val());
-    });
-    $('#department').change(function () {
-        $('#showDepartment').val($(this).val());
-    });
-    $('#selectStatusschool').change(function () {
-        $('#showStatusSchool').val($(this).val());
-    });
-    $('#companyName').change(function () {
-        $('#showCompanyName').val($(this).val());
-    });
-    $('#selectPosition').change(function () {
-        $('#showPosition').val($(this).val());
-    });
-    $('#yearofExp').change(function () {
-        $('#showExp').val($(this).val());
-    });
-    $('#userTitle').change(function () {
-        $('#showTitle').val($(this).val());
-    });
-    $('#icphonenumber').change(function () {
-        $('#showPhone').val($(this).val());
-    });
-    $('#ictelpnumber').change(function () {
-        $('#showTelp').val($(this).val());
-    });
 
-    // $('#checkButtonReg').change(function () {
-    //     $('#submitBtnReg').prop("disabled", !this.checked);
-    // })
 
-    function registChecking() {
-        if ($('#icid').val() != '' && $("#checkButtonReg").is(":checked")) {
-            $('#submitBtnReg').prop('disabled', false);
-        } else {
-            $('#submitBtnReg').prop('disabled', true);
-        }
-    }
 
-    $('#regisForm').on('submit', function (e) {
-
-        e.preventDefault();
-
-        $.ajax({
-            type: "POST",
-            url: "{% url 'registration' %}",
-            data: $(this).serialize(),
-            success: function (data) {
-                /* response message */
-                // console.log(data)
-                $('#modalMessageTitle').html(data.title);
-                $('#modalMessageBody').html(data.body);
-            }
-        });
-    });
-    $("#test_registration").show();
-    $("#summary_test_registration").hide();
-
-    document.getElementById('btn_test_reg').onclick = function (e) {
-        e.preventDefault();
-
-        // console.log( loginFormObject );
-        $("#test_registration").hide();
-        $("#summary_test_registration").show();
-
-    };
-
-    document.getElementById('btn_modify_reg').onclick = function (e) {
-        e.preventDefault();
-        $("#test_registration").show();
-        $("#summary_test_registration").hide();
-    };
-
-    document.getElementById('btn_final_submit').onclick = function (e) {
-        e.preventDefault();
-        let loginForm = $('#form_test_registration').serializeArray();
-        let loginFormObject = {};
-        $.each(loginForm,
-            function(i, v) {
-                loginFormObject[v.name] = v.value;
-            });
-        $.ajax({
-            type: "POST",
-            url: "{% url 'test_registration' %}",
-            data: loginFormObject,
-            success: function (data) {
-                /* response message */
-                // console.log(data)
-                $('#modalMessageTitle').html(data.title);
-                $('#modalMessageBody').html(data.body);
-            }
-        });
-    };
-
-    var datepickers = [].slice.call(document.querySelectorAll('[data-datepicker]'))
-    var datepickersList = datepickers.map(function (el) {
-        return new Datepicker(el, {
-            buttonClass: 'btn'
-        });
-    });
 </script>
 
 </html>

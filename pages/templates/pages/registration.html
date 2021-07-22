@@ -103,4 +103,31 @@
     {% include "pages/modal_message.html" %}
   </section>
 </body>
+
+<script>
+    function registChecking() {
+        if ($('#icid').val() != '' && $("#checkButtonReg").is(":checked")) {
+            $('#submitBtnReg').prop('disabled', false);
+        } else {
+            $('#submitBtnReg').prop('disabled', true);
+        }
+    }
+
+    $('#regisForm').on('submit', function (e) {
+
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "{% url 'registration' %}",
+            data: $(this).serialize(),
+            success: function (data) {
+                /* response message */
+                // console.log(data)
+                $('#modalMessageTitle').html(data.title);
+                $('#modalMessageBody').html(data.body);
+            }
+        });
+    });
+</script>
 {% endblock %}

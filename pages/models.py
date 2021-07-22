@@ -12,6 +12,7 @@ class Users(models.Model):
     ic_gender = models.CharField(max_length=50, null=True)
     ic_email = models.CharField(max_length=100, null=True)
     ic_address = models.CharField(max_length=100, null=True)
+    ic_bod = models.DateField(null=True)  # Birth of Date
     ic_phone_no = models.CharField(max_length=100, null=True)
     ic_telephone = models.CharField(max_length=100, null=True)
     ic_degree = models.CharField(max_length=100, null=True)
