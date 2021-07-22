@@ -89,6 +89,9 @@ def test_registration_page(request):
 def ic_test_info_page(request):
     return render(request, 'pages/ic_test_info.html')
 
+def ic_pre_exam(request):
+    return render(request, 'pages/pre_exam.html')
+
 
 @login_only
 def profile_page(request):

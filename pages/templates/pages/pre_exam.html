@@ -1,0 +1,119 @@
+{% extends "pages/base.html" %}
+{% block title %}This is Profile{% endblock %}
+{% block content %}
+<body>
+{% include "pages/header.html" %}
+<div class="container">
+    <div class="row my-4">
+        <div class="text-center">
+            <h4>IC佈局設計能力鑑定考試</h4>
+        </div>
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="accordion" id="accordionItem">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelHeadingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapseOne">
+                            本中心寒暑假課程
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                         aria-labelledby="panelHeadingOne">
+                        <div class="accordion-body">
+                            <table class="table mb-4">
+                                <thead>
+                                <tr>
+                                    <th scope="col">課程名稱</th>
+                                    <th scope="col">上課天數</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Analog IC Design using ADP and Laker</th>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Full-Custom IC Design Concepts</th>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Physical Verification with Calibre</th>
+                                    <td>2</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelHeadingTwo">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                aria-controls="ppanelHeadingTwo">
+                             E-learning
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+                         aria-labelledby="panelsStayOpen-headingTwo">
+                        <div class="accordion-body">
+                            <table class="table mb-4">
+                                <thead>
+                                <tr>
+                                    <th scope="col">課程名稱</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Full-Custom IC Design Concept</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelHeadingThree">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                aria-controls="panelHeadingThree">
+                            參考書目
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
+                         aria-labelledby="panelsStayOpen-headingThree">
+                        <div class="accordion-body">
+                            <ul class="list-group mb-4">
+                                <li class="list-group-item">1. 陳益誠、林貝儒、戴毓廷 (2012) 。Full-Customer IC Design Concepts。國家實驗研究院台灣半導體研究中心教育訓練 課程講義，未出版，新竹。</li>
+                                <li class="list-group-item">2. 李博明、唐經洲 (2012)。 VLSI設計概論/實習。新北市：高立。 ISBN 9789864128549。</li>
+                                <li class="list-group-item">3. Alan Hasting (2006), The art of analog layout (2nd ed.), Upper Saddle River, NJ : Pearson/Prentice Hall, 2006. ISBN 0-13-129329-X</li>
+                                <li class="list-group-item">4. Baker, R. Jacob (2010), CMOS: Circuit Design, Layout, and Simulation (3rd ed.), Wiley-IEEE Press, 2010. ISBN 978-0-470-88132-3</li>
+                                <li class="list-group-item">5. Christopher Saint, Judy Saint (2002), IC Mask Design: Essential Layout Techniques, McGraw-Hill, 2002. ISBN 0-07-138996-2</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelHeadingFour">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+                                aria-controls="panelHeadingFour">
+                            主辦單位將於考前提供50題測驗題與1題實作題題庫供考生練習
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show"
+                         aria-labelledby="panelsStayOpen-headingThree">
+                        <div class="accordion-body">
+                            <ul class="icon-list">
+                                <li><a href="https://www.tsri.org.tw/icdesign/doc/IC_layout_109.pdf" rel="noopener"
+                                       target="_blank">題庫下載</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}
