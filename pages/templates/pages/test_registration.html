@@ -143,7 +143,7 @@
                                         aria-label="Floating label select example">
                                     <option value="" selected>Select your degree</option>
                                     <option value="study">Study</option>
-                                    <option value=graduate">Graduate</option>
+                                    <option value="graduate">Graduate</option>
                                 </select>
                                 <label for="selectStatusschool">Status School</label>
                             </div>
@@ -432,8 +432,13 @@
     $('#icid').change(function () {
         $('#displayicID').val($(this).val());
     });
-    $('#selectCourse').change(function () {
-        $('#showCourse').val($(this).val());
+    $('input[name="ic_test"]').click(function () {
+        let values = [];
+        $("input[name='ic_test']:checked").each(function() {
+            values.push($(this).val());
+        });
+        // console.log(values)
+        $('#showCourse').val(values.toString());
     });
     $('#idname').change(function () {
         $('#showFullname').val($(this).val());
@@ -441,8 +446,10 @@
     $('#idemail').change(function () {
         $('#showEmail').val($(this).val());
     });
-    $('#selectGender').change(function () {
-        $('#showGender').val($(this).val());
+    $('input[name="ic_gender"]').click(function () {
+        let val = document.querySelector('input[name="ic_gender"]:checked').value;
+        // console.log(val)
+        $('#showGender').val(val);
     });
     $('#textareaAddress').change(function () {
         $('#showAddress').val($(this).val());
@@ -470,6 +477,12 @@
     });
     $('#userTitle').change(function () {
         $('#showTitle').val($(this).val());
+    });
+    $('#icphonenumber').change(function () {
+        $('#showPhone').val($(this).val());
+    });
+    $('#ictelpnumber').change(function () {
+        $('#showTelp').val($(this).val());
     });
 
 
@@ -501,11 +514,11 @@
             });
         // console.log(loginFormObject)
         let values = [];
-        $("input[name='ic_test']").each(function() {
+        $("input[name='ic_test']:checked").each(function() {
             values.push($(this).val());
         });
         loginFormObject["ic_test"] = values
-        console.log(loginFormObject)
+        // console.log(loginFormObject)
         // $.ajax({
         //     type: "POST",
         //     url: "{% url 'test_registration' %}",
