@@ -17,7 +17,6 @@ def index(request):
 
 
 def registration_page(request):
-    url_page = 'pages/registration.html'
     if request.method == "POST":
         # print(request.POST)
         ic_id = request.POST.get("ic_show", "")
@@ -25,34 +24,39 @@ def registration_page(request):
         ic_pass = request.POST.get("ic_password", "")
         confirm_ic_pass = request.POST.get("confirm_ic_password", "")
         # print(ic_pass)
+        if ic_id == "" or ic_name == "" or ic_pass == "":
+            params = {
+                "error": True,
+                "message": "Please fill the form."
+            }
+            return JsonResponse(params)
+
         if ic_pass != confirm_ic_pass:
             params = {
-                "title": "Failed",
-                "body": "Your password are unmatched."
+                "error": True,
+                "message": "Your password are unmatched."
             }
             return JsonResponse(params)
         else:
             data = {"ic_id": ic_id, "ic_name": ic_name, "ic_pass": ic_pass,
                     "date_joined": utils.currentUnixTimeStamp()}
+            # print("testing")
+            # print(data)
             obj, q = QueryUsers.users_getsert(data)
-            title = "Success"
-            message = "Your registration are success."
-            if not q:
-                title = "Failed"
-                message = "Users already exists."
+            # print(obj, q, type(q))
+            if q == False:
                 params = {
-                    "title": title,
-                    "body": message
+                    "error": True,
+                    "message": "Users already exists."
                 }
                 return JsonResponse(params)
+            else:
+                # print("test2")
+                request.session['user'] = ic_id
+                url_page = 'pages/profile.html'
+                return render(request, url_page)
 
-            params = {
-                "title": title,
-                "body": message
-            }
-            request.session['user'] = ic_id
-            return render(request, url_page, params)
-
+    url_page = 'pages/registration.html'
     return render(request, url_page)
 
 
@@ -67,17 +71,21 @@ def test_registration_page(request):
         data = update_registration(request.POST)
 
         filterQ = {"ic_id": ic_id}
-        # q = QueryUsers.users_update(filterQ, data)
-        # if not q:
-        #     title = "Failed"
-        #     message = "Information not updated."
-        #     params = {
-        #         "title": title,
-        #         "body": message
-        #     }
-        #     return JsonResponse(params)
+        q = QueryUsers.users_update(filterQ, data)
+        if not q:
+            params = {
+                "error": True,
+                "title": "Failed",
+                "body": "Information not updated."
+            }
+            return JsonResponse(params)
 
-        return render(request, 'pages/profile.html')
+        params = {
+            "error": False,
+            "title": "Success",
+            "body": "Registration is success."
+        }
+        return JsonResponse(params)
 
     data = {"ic_id": ic_id}
     # print(data)
@@ -89,11 +97,14 @@ def test_registration_page(request):
 def ic_test_info_page(request):
     return render(request, 'pages/ic_test_info.html')
 
+
 def ic_pre_exam(request):
     return render(request, 'pages/pre_exam.html')
 
+
 def ic_faqs(request):
     return render(request, 'pages/faqs.html')
+
 
 @login_only
 def profile_page(request):
@@ -108,7 +119,7 @@ def profile_page(request):
 
 def login_page(request):
     if request.method == "POST":
-
+        # print("test")
         ic_id = request.POST.get("ic_id", "")
         ic_pass = request.POST.get("ic_password", "")
         data = {
@@ -117,7 +128,7 @@ def login_page(request):
         }
         user = QueryUsers.users_get(data)
 
-        if user is not None:
+        if bool(user):
             # login(request, user)
             # print(user)
             request.session['user'] = ic_id

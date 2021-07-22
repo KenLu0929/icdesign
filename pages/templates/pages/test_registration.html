@@ -229,7 +229,7 @@
                                           aria-hidden="true"></span>
                                     Loading...
                                 </button>
-                                <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="button">
+                                <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit">
                                     <!--                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
                                     Submit
                                 </button>
@@ -488,7 +488,7 @@
 
     $("#test_registration").show();
     $("#summary_test_registration").hide();
-    document.getElementById('btn_test_reg').onclick = function (e) {
+    document.getElementById('form_test_registration').onsubmit = function (e) {
         e.preventDefault();
 
         // console.log( loginFormObject );
@@ -526,8 +526,13 @@
             success: function (data) {
                 /* response message */
                 // console.log(data)
-                $('#modalMessageTitle').html(data.title);
-                $('#modalMessageBody').html(data.body);
+                if (data.error) {
+                    $('#modalMessageTitle').html(data.title);
+                    $('#modalMessageBody').html(data.body);
+                } else {
+                    window.location.href = "{% url 'profile' %}";
+                }
+
             }
         });
     };

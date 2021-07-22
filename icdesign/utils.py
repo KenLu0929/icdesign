@@ -1,13 +1,15 @@
+from datetime import datetime
+
 from django.core.mail import BadHeaderError, send_mail
 import logging
 import time
+from icdesign import settings
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
 
 def send_email(subject, message, recipient_list):
-
     if subject and message and recipient_list:
         try:
             send_mail(subject, message, "", recipient_list)
@@ -37,3 +39,9 @@ def remove_dict_key_empty(listDict):
         elif v is not None:
             clean[k] = v
     return clean
+
+
+# %Y-%m-%d%
+def date_string_date(date_string):
+    date_time_obj = datetime.strptime(date_string, settings.DATE_FORMAT)
+    return date_time_obj
