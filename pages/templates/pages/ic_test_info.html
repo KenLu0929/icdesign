@@ -1,194 +1,193 @@
-{% extends "pages/base.html" %}
-{% block title %}This is Profile{% endblock %}
-{% block content %}
-<body>
-{% include "pages/header.html" %}
-<div class="container py-4">
-    <div class="row g-5 mb-4">
-        <div class="col-md-12">
-            <h2>IC佈局設計能力鑑定資訊</h2>
-            <p>This should be at least a little bit information about this section for</p>
-            <ul class="icon-list">
-                <li><a href="https://www.tsri.org.tw/icdesign/doc/IC_layout_FORM_109.pdf" rel="noopener"
-                       target="_blank">109年度IC佈局簡章下載</a></li>
-                <li><a href="https://www.tsri.org.tw/icdesign/doc/IC_layout_109.pdf" rel="noopener" target="_blank">IC佈局題庫下載</a>
-                </li>
-                <li><a href="https://www.tsri.org.tw/icdesign/doc/promotion_109.pdf" rel="noopener" target="_blank">IC設計能力鑑定報名優惠詳細辦法</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="row g-2">
-        <div class="col-lg-4 col-12">
-            <div id="list-ic" class="list-group">
-                <a class="list-group-item list-group-item-action" href="#list-item-1">考試費用</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-2">證照重要性與舉辦目的</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-3">報考資格</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-4">測驗內容：(詳細內容依簡章公告為主)</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-5">術科實作題使用之EDA Tool列表如下</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-6">測驗題型</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-7">術科實作考試注意事項</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-8">合格標準</a>
-            </div>
-        </div>
-        <div class="col-lg-8 col-12">
-            <div data-bs-spy="scroll" data-bs-target="#list-ic" data-bs-offset="0" class="scrollspy-iccontent"
-                 tabindex="0">
-                <div class="list-item-1">
-                    <h4 id="list-item-1">考試費用</h4>
-                    <p class="mb-4">學科筆試與術科實作合報2000元（推廣期間業界人士八折優惠，學生六折優惠，團體報名另有優惠）</p>
-                    <hr>
-                </div>
-                <div id="list-item-2">
-                    <h4>證照重要性與舉辦目的</h4>
-                    <ul class="list-group mb-4">
-                        <li class="list-group-item">1. 瞭解IC佈局上的專業知識與熟悉使用相關的技巧，以具備獨立完成完整IC佈局及驗證之基本能力為主要目的。</li>
-                        <li class="list-group-item">2. 提供各類IC佈局課程最終的學習成效評量。</li>
-                        <li class="list-group-item">3. 提供升學、求職、就業升遷之專業能力依據。</li>
-                    </ul>
-                    <hr>
-                </div>
-                <div id="list-item-3">
-                    <h4>報考資格</h4>
-                    <ul class="list-group mb-4">
-                        <li class="list-group-item">1. 大專以上在學學生</li>
-                        <li class="list-group-item">2. 業界人士（已經或想要從事設計相關產業之工程師）</li>
-                    </ul>
-                    <hr>
-                </div>
-                <div id="list-item-4">
-                    <h4>測驗內容</h4>
-                    <table class="table mb-4">
-                    <thead>
-                    <tr>
-                        <th scope="col">科目</th>
-                        <th scope="col">鑑定內容</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">學科筆試</th>
-                        <td>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">1. VLSI Fundamental</li>
-                                <li class="list-group-item">2. Layout Skill</li>
-                                <li class="list-group-item">3. Verification</li>
-                                <li class="list-group-item">4. Unix/Linux Fundamental</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">術科實作</th>
-                        <td>
-                            <p class="mb-4">佈局題：考生需在考試時間內全數完成以下四項條件即為通過；若有一項以上(或多項)未達成標準則為不通過。</p>
-                            <p class="mb-4">佈局題評分四項條件為：</p>
-                            <ul class="list-group list-group-flush mb-4">
-                                <li class="list-group-item">1. 佈局面積：符合題目所要求之面積條件</li>
-                                <li class="list-group-item">2. 佈局長寬比：符合題目所規範之長寬比?條件</li>
-                                <li class="list-group-item">3. DRC 驗證完成且完全無誤</li>
-                                <li class="list-group-item">4. LVS 驗證完成且完全無誤</li>
-                            </ul>
-                            <p>除錯題：考生需在考試時間內，按題目之描述將已知的佈局檔匯入，並將各題佈局檔的 DRC、LVS 錯誤找出進行修正，最後完成驗證，再分別匯出 DRC、LVS
-                                正確無誤之佈局檔與相關驗證結果。除錯題以解決原始題目的 DRC、LVS 錯誤為主，若考生因解決題目錯誤而額外產生其他 DRC 或 LVS
-                                錯誤，將按照額外產生的錯誤數量進行扣分(每多一個額外錯誤扣 1 分)，僅扣至該題 0 分為止。</p>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                </div>
-                <div id="list-item-5">
-                    <h4>術科實作題使用之EDA Tool列表如下</h4>
-                    <table class="table mb-4">
-                        <tbody>
-                        <tr>
-                            <th scope="row">製程資料(Technology)</th>
-                            <td>TSRI Virtual 0.18um CMOS Technology</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">佈局編輯軟體(Layout Editor)</th>
-                            <td>Cadence - Virtuoso (IC 5.1) Synopsys – Laker</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">DRC驗證軟體(DRC Verification)</th>
-                            <td>Mentor Graphics – Calibre DRC</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">LVS驗證軟體(LVS Verification)</th>
-                            <td>Mentor Graphics – Calibre LVS</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <hr>
-                </div>
-                <div id="list-item-6">
-                    <h4 >測驗題型</h4>
-                    <table class="table mb-4">
-                        <tbody>
-                        <tr>
-                            <th scope="row">測驗項目</th>
-                            <td>學科筆試</td>
-                            <td>術科實作</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">題數</th>
-                            <td>50</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">作答時間</th>
-                            <td>80分鐘</td>
-                            <td>270分鐘</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">測驗內容</th>
-                            <td>選擇 50 題</td>
-                            <td>佈局題 1 題，除錯題 2 題</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <hr>
-                </div>
-                <div id="list-item-7">
-                    <h4>術科實作考試注意事項</h4>
-                    <ul class="list-group list-group-flush mb-4">
-                        <li class="list-group-item">1. 製程資料(TSRI Virtual 0.18um CMOS Technology)，不提供PDK Library, P-cell, M-cell,等功能，所有元件(device)，包含電晶體、電阻、電容等均需自行繪製。</li>
-                        <li class="list-group-item">2. 術科考試時，需自行於Terminal 視窗以指令方式開啟佈局軟體</li>
-                        <li class="list-group-item">3. 術科佈局題考試時，考生最後須將佈局(Layout)匯出(Stream-out)成為GDS 檔案。</li>
-                        <li class="list-group-item">4. 術科除錯題考試時，考生需將考題之GDS 檔案，匯入(Stream-in)佈局軟體內。</li>
-                        <li class="list-group-item">5. 佈局題考試時，考題不僅限於繪製電晶體元件，可能包含製程資料(TSRI Virtual 0.18umCMOS Technology)所提供之電容、各類電阻等元件，請於考前自行練習相關元件佈局繪製方式。</li>
-                    </ul>
-                </div>
-                <div id="list-item-8">
-                    <h4>合格標準</h4>
-                    <p class="mb-4">筆試成績需達 80 分以上，術科成績需達 70 分以上，可取得授證資格</p>
-                    <h4>實作成績分佈說明：</h4>
-                    <table class="table mt-4">
-                        <thead>
-                    <tr>
-                        <th scope="col">科目</th>
-                        <th scope="col">鑑定內容</th>
-                    </tr>
-                    </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">86-100</th>
-                            <td>A</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">71-85</th>
-                            <td>B</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">70</th>
-                            <td>C</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+{% extends "pages/base.html" %} {% block title %}This is Profile{% endblock %} {% block content %}
 
-</div>
-</body>
-{% endblock %}
+<body> {% include "pages/header.html" %} <div class="container py-4">
+        <div class="row g-5 mb-4">
+            <div class="col-md-12">
+                <h2>IC佈局設計能力鑑定資訊</h2>
+                <p>This should be at least a little bit information about this section for</p>
+                <ul class="icon-list">
+                    <li><a href="https://www.tsri.org.tw/icdesign/doc/IC_layout_FORM_109.pdf" rel="noopener"
+                            target="_blank">109年度IC佈局簡章下載</a></li>
+                    <li><a href="https://www.tsri.org.tw/icdesign/doc/IC_layout_109.pdf" rel="noopener"
+                            target="_blank">IC佈局題庫下載</a>
+                    </li>
+                    <li><a href="https://www.tsri.org.tw/icdesign/doc/promotion_109.pdf" rel="noopener"
+                            target="_blank">IC設計能力鑑定報名優惠詳細辦法</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row g-2">
+            <div class="col-lg-4 col-12">
+                <div id="list-ic" class="list-group">
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">考試費用</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">證照重要性與舉辦目的</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-3">報考資格</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-4">測驗內容：(詳細內容依簡章公告為主)</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-5">術科實作題使用之EDA Tool列表如下</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-6">測驗題型</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-7">術科實作考試注意事項</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-8">合格標準</a>
+                </div>
+            </div>
+            <div class="col-lg-8 col-12">
+                <div data-bs-spy="scroll" data-bs-target="#list-ic" data-bs-offset="0" class="scrollspy-iccontent"
+                    tabindex="0">
+                    <div class="list-item-1">
+                        <h4 id="list-item-1">考試費用</h4>
+                        <p class="mb-4">學科筆試與術科實作合報2000元（推廣期間業界人士八折優惠，學生六折優惠，團體報名另有優惠）</p>
+                        <hr>
+                    </div>
+                    <div id="list-item-2">
+                        <h4>證照重要性與舉辦目的</h4>
+                        <ul class="list-group mb-4">
+                            <li class="list-group-item">1. 瞭解IC佈局上的專業知識與熟悉使用相關的技巧，以具備獨立完成完整IC佈局及驗證之基本能力為主要目的。</li>
+                            <li class="list-group-item">2. 提供各類IC佈局課程最終的學習成效評量。</li>
+                            <li class="list-group-item">3. 提供升學、求職、就業升遷之專業能力依據。</li>
+                        </ul>
+                        <hr>
+                    </div>
+                    <div id="list-item-3">
+                        <h4>報考資格</h4>
+                        <ul class="list-group mb-4">
+                            <li class="list-group-item">1. 大專以上在學學生</li>
+                            <li class="list-group-item">2. 業界人士（已經或想要從事設計相關產業之工程師）</li>
+                        </ul>
+                        <hr>
+                    </div>
+                    <div id="list-item-4">
+                        <h4>測驗內容</h4>
+                        <table class="table mb-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">科目</th>
+                                    <th scope="col">鑑定內容</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">學科筆試</th>
+                                    <td>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">1. VLSI Fundamental</li>
+                                            <li class="list-group-item">2. Layout Skill</li>
+                                            <li class="list-group-item">3. Verification</li>
+                                            <li class="list-group-item">4. Unix/Linux Fundamental</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">術科實作</th>
+                                    <td>
+                                        <p class="mb-4">佈局題：考生需在考試時間內全數完成以下四項條件即為通過；若有一項以上(或多項)未達成標準則為不通過。</p>
+                                        <p class="mb-4">佈局題評分四項條件為：</p>
+                                        <ul class="list-group list-group-flush mb-4">
+                                            <li class="list-group-item">1. 佈局面積：符合題目所要求之面積條件</li>
+                                            <li class="list-group-item">2. 佈局長寬比：符合題目所規範之長寬比?條件</li>
+                                            <li class="list-group-item">3. DRC 驗證完成且完全無誤</li>
+                                            <li class="list-group-item">4. LVS 驗證完成且完全無誤</li>
+                                        </ul>
+                                        <p>除錯題：考生需在考試時間內，按題目之描述將已知的佈局檔匯入，並將各題佈局檔的 DRC、LVS 錯誤找出進行修正，最後完成驗證，再分別匯出 DRC、LVS
+                                            正確無誤之佈局檔與相關驗證結果。除錯題以解決原始題目的 DRC、LVS 錯誤為主，若考生因解決題目錯誤而額外產生其他 DRC 或 LVS
+                                            錯誤，將按照額外產生的錯誤數量進行扣分(每多一個額外錯誤扣 1 分)，僅扣至該題 0 分為止。</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="list-item-5">
+                        <h4>術科實作題使用之EDA Tool列表如下</h4>
+                        <table class="table mb-4">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">製程資料(Technology)</th>
+                                    <td>TSRI Virtual 0.18um CMOS Technology</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">佈局編輯軟體(Layout Editor)</th>
+                                    <td>Cadence - Virtuoso (IC 5.1) Synopsys – Laker</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">DRC驗證軟體(DRC Verification)</th>
+                                    <td>Mentor Graphics – Calibre DRC</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">LVS驗證軟體(LVS Verification)</th>
+                                    <td>Mentor Graphics – Calibre LVS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
+                    <div id="list-item-6">
+                        <h4>測驗題型</h4>
+                        <table class="table mb-4">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">測驗項目</th>
+                                    <td>學科筆試</td>
+                                    <td>術科實作</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">題數</th>
+                                    <td>50</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">作答時間</th>
+                                    <td>80分鐘</td>
+                                    <td>270分鐘</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">測驗內容</th>
+                                    <td>選擇 50 題</td>
+                                    <td>佈局題 1 題，除錯題 2 題</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
+                    <div id="list-item-7">
+                        <h4>術科實作考試注意事項</h4>
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item">1. 製程資料(TSRI Virtual 0.18um CMOS Technology)，不提供PDK Library,
+                                P-cell, M-cell,等功能，所有元件(device)，包含電晶體、電阻、電容等均需自行繪製。</li>
+                            <li class="list-group-item">2. 術科考試時，需自行於Terminal 視窗以指令方式開啟佈局軟體</li>
+                            <li class="list-group-item">3. 術科佈局題考試時，考生最後須將佈局(Layout)匯出(Stream-out)成為GDS 檔案。</li>
+                            <li class="list-group-item">4. 術科除錯題考試時，考生需將考題之GDS 檔案，匯入(Stream-in)佈局軟體內。</li>
+                            <li class="list-group-item">5. 佈局題考試時，考題不僅限於繪製電晶體元件，可能包含製程資料(TSRI Virtual 0.18umCMOS
+                                Technology)所提供之電容、各類電阻等元件，請於考前自行練習相關元件佈局繪製方式。</li>
+                        </ul>
+                    </div>
+                    <div id="list-item-8">
+                        <h4>合格標準</h4>
+                        <p class="mb-4">筆試成績需達 80 分以上，術科成績需達 70 分以上，可取得授證資格</p>
+                        <h4>實作成績分佈說明：</h4>
+                        <table class="table mt-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">科目</th>
+                                    <th scope="col">鑑定內容</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">86-100</th>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">71-85</th>
+                                    <td>B</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">70</th>
+                                    <td>C</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body> {% endblock %}
