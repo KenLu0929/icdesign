@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .queries import QueryUsers
+from .queries import QueryUsers, QueryExams
 from icdesign import utils
 from icdesign.backends import login_only, update_registration
 
@@ -63,7 +63,7 @@ def registration_page(request):
 @login_only
 def test_registration_page(request):
     url_page = 'pages/test_registration.html'
-
+    params = None
     ic_id = request.session.get('user')
 
     if request.method == "POST":
@@ -90,7 +90,12 @@ def test_registration_page(request):
     data = {"ic_id": ic_id}
     # print(data)
     params = QueryUsers.users_get(data)
-    # print(params)
+    exams_data = {
+        "exam_is_active": 1,
+    }
+    params["exams_fields"] = QueryExams.exams_get(exams_data, True)
+    # params["exams_fields"] = {"test": "test"}
+    print(params)
     return render(request, url_page, params)
 
 
@@ -138,7 +143,8 @@ def profile_page(request):
 
 def login_page(request):
     ic_id = request.session.get('user')
-    if ic_id != "":
+    print(ic_id)
+    if ic_id is not None:
         return redirect("profile")
     if request.method == "POST":
         # print("test")
