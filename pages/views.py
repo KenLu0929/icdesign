@@ -39,7 +39,7 @@ def registration_page(request):
             return JsonResponse(params)
         else:
             data = {"ic_id": ic_id, "ic_name": ic_name, "ic_pass": ic_pass,
-                    "date_joined": utils.currentUnixTimeStamp()}
+                    "date_joined": utils.currentUnixTimeStamp(), "last_login": utils.currentUnixTimeStamp() }
             # print("testing")
             # print(data)
             obj, q = QueryUsers.users_getsert(data)
@@ -95,15 +95,34 @@ def test_registration_page(request):
 
 
 def ic_test_info_page(request):
-    return render(request, 'pages/ic_test_info.html')
+    ic_id = request.session.get('user')
+    url_page = 'pages/ic_test_info.html'
+    data = {"ic_id": ic_id}
+    # print(data)
+    params = QueryUsers.users_get(data)
+    # print(params)
+    return render(request, url_page, params)
 
 
 def ic_pre_exam(request):
-    return render(request, 'pages/pre_exam.html')
+    ic_id = request.session.get('user')
+    url_page = 'pages/pre_exam.html'
+    data = {"ic_id": ic_id}
+    # print(data)
+    params = QueryUsers.users_get(data)
+    # print(params)
+    return render(request, url_page, params)
 
 
 def ic_faqs(request):
-    return render(request, 'pages/faqs.html')
+    ic_id = request.session.get('user')
+    url_page = 'pages/faqs.html'
+    data = {"ic_id": ic_id}
+    # print(data)
+    params = QueryUsers.users_get(data)
+    # print(params)
+    return render(request, url_page, params)
+
 
 
 @login_only
@@ -113,11 +132,14 @@ def profile_page(request):
     data = {"ic_id": ic_id}
     # print(data)
     params = QueryUsers.users_get(data)
-    # print(params)
+    print(params)
     return render(request, url_page, params)
 
 
 def login_page(request):
+    ic_id = request.session.get('user')
+    if ic_id != "":
+        return redirect("profile")
     if request.method == "POST":
         # print("test")
         ic_id = request.POST.get("ic_id", "")

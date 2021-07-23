@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.utils import timezone
 from django.db import models
 from icdesign import utils
 from django.utils import timezone
@@ -63,7 +64,7 @@ class ExamLogs(models.Model):
     exam_grade = models.CharField(max_length=5, null=True)
     exam_finish = models.BooleanField(null=True)
     exam_place = models.CharField(max_length=100, null=True)
-    date_created = models.IntegerField(null=True)
+    date_created = models.DateTimeField(null=True, default=timezone.now)
     date_modified = models.IntegerField(null=True)
 
     class Meta:
@@ -81,7 +82,7 @@ class Exams(models.Model):
     exam_end_time = models.DateTimeField(null=True)
     exam_place = models.CharField(max_length=100, null=True)
     exam_is_active = models.IntegerField(null=True, default=0) # 0 = Not Active, 1 = Active
-    date_created = models.DateTimeField(null=True, default=datetime.now())
+    date_created = models.DateTimeField(null=True, default=timezone.now)
     date_modified = models.IntegerField(null=True)
 
     class Meta:
@@ -96,7 +97,7 @@ class News(models.Model):
     news_title = models.CharField(max_length=100, null=True)
     news_body = models.CharField(max_length=100, null=True)
     news_author = models.CharField(max_length=100, null=True)
-    date_created = models.IntegerField(null=True)
+    date_created = models.DateTimeField(null=True, default=timezone.now)
     date_modified = models.IntegerField(null=True)
 
     class Meta:
@@ -110,7 +111,7 @@ class Sponsorship(models.Model):
     sponsor_id = models.AutoField(primary_key=True)
     sponsor_name = models.CharField(max_length=100, null=True)
     sponsor_url = models.CharField(max_length=100, null=True)
-    date_created = models.IntegerField(null=True)
+    date_created = models.DateTimeField(null=True, default=timezone.now)
     date_modified = models.IntegerField(null=True)
 
     class Meta:
