@@ -50,14 +50,14 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" name="ic_id" id="icid" class="form-control" placeholder="ID"
-                                       maxlength="10" value="{{ fields.ic_id }}" disabled>
+                                       maxlength="10" value="{{ ic_id }}" disabled>
                                 <label for="icid">ID</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="idname" name="ic_name"
-                                       placeholder="e.g, Jhon Doe" value="{{ fields.ic_name }}" disabled>
+                                       placeholder="e.g, Jhon Doe" value="{{ ic_name }}" disabled>
                                 <label for="icid">Full Name</label>
                             </div>
                         </div>
@@ -96,14 +96,14 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control" placeholder="ID"
-                                       maxlength="10" value="{{ fields.ic_phone }}">
+                                       maxlength="10" value="{{ic_phone }}">
                                 <label for="icphonenumber">Phone Number</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="ictelpnumber" name="ic_telephone"
-                                       placeholder="e.g, Jhon Doe" value="{{ fields.ic_telp }}">
+                                       placeholder="e.g, Jhon Doe" value="{{ ic_telp }}">
                                 <label for="ictelpnumber">Telp Number</label>
                             </div>
                         </div>
@@ -201,16 +201,15 @@
                                 <span>Select your test</span>
                             </div>
                             <div class="col-md row g-2" style="margin-left: 0rem;">
+                                {% for field in exams_fields %}
+
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="ic_test" id="selectCourse1"
-                                           value="test_one">
-                                    <label class="form-check-label" for="selectCourse1">Test One</label>
+                                           value="{{field.exam_id}}">
+                                    <label class="form-check-label" for="selectCourse1">{{ field.exam_name }}</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="ic_test" id="selectCourse2"
-                                           value="test_two">
-                                    <label class="form-check-label" for="selectCourse2">Test Two</label>
-                                </div>
+
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -366,11 +365,11 @@
                 <!--                </form>-->
 
             </div>
-            <div class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1" hidden>
+            <div id="see_schedule" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
                 <div class="row align-items-center">
                     <div class="col">
                         <h1>請選擇欲報名的科別</h1>
-                        <p class="text-h3">目前尚未開放任何考試科別 <a href="#">see text schedule</a></p>
+                        <p class="text-h3">目前尚未開放任何考試科別 <a href="">see text schedule</a></p>
                         <div class="col">
                         </div>
                     </div>
@@ -489,6 +488,14 @@
 
     $("#test_registration").show();
     $("#summary_test_registration").hide();
+    $("#see_schedule").hide();
+    let test = '{{ exams_fields }}';
+    if (test == '{}' || test == "[]"){
+        $("#test_registration").hide();
+        $("#summary_test_registration").hide();
+        $("#see_schedule").show();
+    }
+    console.log(test)
     document.getElementById('form_test_registration').onsubmit = function (e) {
         e.preventDefault();
 
