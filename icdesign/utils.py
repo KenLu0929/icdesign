@@ -45,3 +45,13 @@ def remove_dict_key_empty(listDict):
 def date_string_date(date_string):
     date_time_obj = datetime.strptime(date_string, settings.DATE_FORMAT)
     return date_time_obj
+
+
+def get_fields_only(data):
+    # print(data)
+    new_data = []
+    for a in data:
+        # print(a)
+        new_data.append(a.get("fields"))
+    # print(new_data)
+    return new_data
