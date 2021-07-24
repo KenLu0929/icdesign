@@ -22,10 +22,10 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'ic_faqs' %}">FAQs</a>
         </li>
-      </ul> {% if fields.ic_id %} <ul class="navbar-nav mb-2 mb-xl-0">
+      </ul> {% if ic_id %} <ul class="navbar-nav mb-2 mb-xl-0">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-bs-toggle="dropdown"
-            aria-expanded="false">{{ fields.ic_name }}</a>
+            aria-expanded="false">{{ ic_name }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown06">
             <li><a class="dropdown-item" href="{% url 'profile' %}">個人檔案</a></li>
             <li><a class="dropdown-item" href="{% url 'logout' %}">登出</a></li>

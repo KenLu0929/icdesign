@@ -1,6 +1,8 @@
 from pages.models import Users
+from pages.queries import QueryExams, QueryExamsLogs
 from django.shortcuts import redirect
 from icdesign import utils
+
 
 class CustomBackend(object):
 
@@ -31,35 +33,66 @@ def login_only(view_function):
     return wrap
 
 
-def update_registration(data_post):
-    print(data_post)
-    data = {}
+def update_registration(data_post, ic_id):
+    # print(data_post)
+    data = {
+        "ic_address": data_post.get("ic_address", ""),
+        "ic_gender": data_post.get("ic_gender", ""),
+        "ic_email": data_post.get("ic_email", ""),
+        "ic_bod": data_post.get("ic_bod", ""),
+        "ic_phone_no": data_post.get("ic_phone_no", ""),
+        "ic_telephone": data_post.get("ic_telephone", ""),
+        "ic_school": data_post.get("ic_school", ""),
+        "ic_status_school": data_post.get("ic_status_school", ""),
+        "ic_degree": data_post.get("ic_degree", ""),
+        "ic_company": data_post.get("ic_company", ""),
+        "ic_department": data_post.get("ic_department", ""),
+        "ic_service_department": data_post.get("ic_service_department", ""),
+        "ic_job_position": data_post.get("ic_job_position", ""),
+        "ic_yearofexp": data_post.get("ic_yearofexp", "")
+    }
+
     # personal data
-    data["ic_address"] = data_post.get("ic_address", "")
-    data["ic_gender"] = data_post.get("ic_gender", "")
-    data["ic_email"] = data_post.get("ic_email", "")
-    data["ic_address"] = data_post.get("ic_address", "")
-    data["ic_bod"] = data_post.get("ic_bod", "")
-    data["ic_phone_no"] = data_post.get("ic_phone_no", "")
-    data["ic_telephone"] = data_post.get("ic_telephone", "")
 
     # education data
-    data["ic_school"] = data_post.get("ic_school", "")
-    data["ic_status_school"] = data_post.get("ic_status_school", "")
-    data["ic_degree"] = data_post.get("ic_degree", "")
-    data["ic_company"] = data_post.get("ic_company", "")
-    data["ic_department"] = data_post.get("ic_department", "")
-    data["ic_service_department"] = data_post.get("ic_service_department", "")
-    data["ic_job_position"] = data_post.get("ic_job_position", "")
-    data["ic_yearofexp"] = data_post.get("ic_yearofexp", "")
 
-    # ic_test = data_post.getlist("ic_test[]", "")
-    # for test in ic_test:
-    #
-    # print(ic_test)
-    data["date_modified"] = utils.currentUnixTimeStamp()
+    ic_test = data_post.getlist("ic_test[]", [])
+    exam_list = []
+    for exam_id in ic_test:
+        # print(exam_id)
+        exam = {}
+        filter_exam = {"exam_id": exam_id}
+        exam_info = QueryExams.exams_get(filter_exam)
+        exam["ic_id"] = ic_id
+        exam["exam_id"] = exam_id
+        # exam["user"] = ic_id
+        exam["exam_place"] = exam_info.get("exam_place", "")
+        exam["exam_ticket_no"] = utils.generate_exams_ticket(exam_id)
+        # print(exam)
+        q = QueryExamsLogs.exams_upsert(exam)
+        if q == False:
+            return {}
 
-    print(data)
+        exam["exam_start_time"] = exam_info.get("exam_start_time", "")
+        exam["exam_end_time"] = exam_info.get("exam_end_time", "")
+        exam_list.append(exam)
+
+    # print(data)
     data = utils.remove_dict_key_empty(data)
-    print(data)
-    return data
+    # print(data)
+    return data, exam_list
+
+
+def checking_user_taken_exam(ic_id, exam_list):
+    exams_filter = {
+        "ic_id": ic_id,
+        "exam_finish": False
+    }
+    taken_exam = []
+    result = QueryExamsLogs.exams_get(exams_filter)
+    for a in result:
+        e_id = a.get("exam_id")
+        if e_id in exam_list:
+            taken_exam.append(e_id)
+    # print("checking_user_taken_exam:", result)
+    return taken_exam

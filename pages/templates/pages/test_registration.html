@@ -68,7 +68,8 @@
                                 <label for="datepicker">Birth of Date</label>
                             </div>
                             <div class="col-md-12">
-                                <input id="datepicker" name="ic_bod" type="date" class="form-control" placeholder="yyyy/mm/dd"
+                                <input id="datepicker" name="ic_bod" type="date" class="form-control"
+                                       placeholder="yyyy/mm/dd"
                                        required>
                             </div>
                         </div>
@@ -95,7 +96,8 @@
                     <div class="row g-2 mt-4">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control" placeholder="ID"
+                                <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control"
+                                       placeholder="ID"
                                        maxlength="10" value="{{ic_phone }}">
                                 <label for="icphonenumber">Phone Number</label>
                             </div>
@@ -197,16 +199,17 @@
                     </div>
                     <div class="align-items-center">
                         <div class="row g-2 mt-4">
-                            <div class="col-md">
+                            <div class="col-12 col-md-4">
                                 <span>Select your test</span>
                             </div>
-                            <div class="col-md row g-2" style="margin-left: 0rem;">
+                            <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
                                 {% for field in exams_fields %}
 
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="ic_test" id="selectCourse1"
                                            value="{{field.exam_id}}">
-                                    <label class="form-check-label" for="selectCourse1">{{ field.exam_name }}</label>
+                                    <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }} (Place:
+                                        {{ field.exam_place }}) | {{ field.exam_start_time }} - {{ field.exam_end_time }}</label>
                                 </div>
 
                                 {% endfor %}
@@ -259,14 +262,14 @@
                     <label for="displayicID" class="col-sm-4 col-form-label">ID</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="displayicID"
-                               value="{{ fields.ic_id }}">
+                               value="{{ ic_id }}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="showFullname" class="col-sm-4 col-form-label">Full Name</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showFullname"
-                               value="{{ fields.ic_name }}">
+                               value="{{ ic_name }}">
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -376,50 +379,13 @@
                 </div>
                 <hr>
             </div>
-            <div class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1" hidden>
+            <div id="last_stage_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
                 <div class="row align-items-center">
                     <div class="col">
                         <h1>You've done the registration</h1>
                         <p class="text-h3">The registration is done, now you may proceed to the next step</p>
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <div class="col d-flex align-items-start">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
-                                        <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z"/>
-                                        <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z"/>
-                                    </svg>
-                                    <div>
-                                        <h5 class="fw-bold mb-2"> Test One & Test Two</h5>
-                                        <p>Test that you took</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="col d-flex align-items-start">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
-                                    </svg>
-                                    <div>
-                                        <h5 class="fw-bold mb-2">Test Location</h5>
-                                        <p>No. 135號, Yuandong Road, Zhongli District, Taoyuan City, 320</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="col d-flex align-items-start">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
-                                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-                                    </svg>
-                                    <div>
-                                        <h5 class="fw-bold mb-2">+886 192 124</h5>
-                                        <p>Telp Number</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <hr>
             </div>
         </div>
     </div>
@@ -434,7 +400,7 @@
     });
     $('input[name="ic_test"]').click(function () {
         let values = [];
-        $("input[name='ic_test']:checked").each(function() {
+        $("input[name='ic_test']:checked").each(function () {
             values.push($(this).val());
         });
         // console.log(values)
@@ -488,14 +454,15 @@
 
     $("#test_registration").show();
     $("#summary_test_registration").hide();
+    $("#last_stage_registration").hide();
     $("#see_schedule").hide();
     let test = '{{ exams_fields }}';
-    if (test == '{}' || test == "[]"){
+    if (test == '{}' || test == "[]") {
         $("#test_registration").hide();
         $("#summary_test_registration").hide();
         $("#see_schedule").show();
     }
-    console.log(test)
+    // console.log(test)
     document.getElementById('form_test_registration').onsubmit = function (e) {
         e.preventDefault();
 
@@ -522,7 +489,7 @@
             });
         // console.log(loginFormObject)
         let values = [];
-        $("input[name='ic_test']:checked").each(function() {
+        $("input[name='ic_test']:checked").each(function () {
             values.push($(this).val());
         });
         loginFormObject["ic_test"] = values
@@ -537,8 +504,71 @@
                 if (data.error) {
                     $('#modalMessageTitle').html(data.title);
                     $('#modalMessageBody').html(data.body);
+                    $('#messageModal').modal('show');
                 } else {
-                    window.location.href = "{% url 'profile' %}";
+                    // window.location.href = "{% url 'profile' %}";
+
+                    data.body.forEach(function (item) {
+
+                        $('#last_stage_registration').append(`
+            <hr>
+            <div class="row mt-4">
+    <div class="col-12">
+        <div class="col d-flex align-items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z"/>
+                <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z"/>
+            </svg>
+            <div>
+                <h5 class="fw-bold mb-2">Test ID</h5>
+                <p>${item.exam_id}</p>
+            </div>
+        </div>
+    </div>
+
+                        <div class="row mt-4">
+    <div class="col-12">
+        <div class="col d-flex align-items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z"/>
+                <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z"/>
+            </svg>
+            <div>
+                <h5 class="fw-bold mb-2"> Ticket No</h5>
+                <p>${item.exam_ticket_no}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="col d-flex align-items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
+            </svg>
+            <div>
+                <h5 class="fw-bold mb-2">Test Location</h5>
+                <p>${item.exam_place}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="col d-flex align-items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+            </svg>
+            <div>
+                <h5 class="fw-bold mb-2">Date & time</h5>
+                <p>${item.exam_start_time} - ${item.exam_end_time}</p>
+            </div>
+        </div>
+    </div>
+</div>
+                        `)
+
+                    })
+
+                    $("#test_registration").hide();
+                    $("#summary_test_registration").hide();
+                    $("#last_stage_registration").show();
                 }
 
             }

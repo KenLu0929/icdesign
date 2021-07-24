@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .queries import QueryUsers, QueryExams
+from .queries import QueryUsers, QueryExams, QueryExamsLogs
 from icdesign import utils
-from icdesign.backends import login_only, update_registration
+from icdesign.backends import login_only, update_registration, checking_user_taken_exam
 
 
 # Create your views here.
@@ -12,7 +12,7 @@ def index(request):
     data = {"ic_id": ic_id}
     # print(data)
     params = QueryUsers.users_get(data)
-    print(params)
+    # print(params)
     return render(request, url_page, params)
 
 
@@ -39,7 +39,7 @@ def registration_page(request):
             return JsonResponse(params)
         else:
             data = {"ic_id": ic_id, "ic_name": ic_name, "ic_pass": ic_pass,
-                    "date_joined": utils.currentUnixTimeStamp(), "last_login": utils.currentUnixTimeStamp() }
+                    "last_login": utils.currentUnixTimeStamp()}
             # print("testing")
             # print(data)
             obj, q = QueryUsers.users_getsert(data)
@@ -63,12 +63,40 @@ def registration_page(request):
 @login_only
 def test_registration_page(request):
     url_page = 'pages/test_registration.html'
-    params = None
     ic_id = request.session.get('user')
 
     if request.method == "POST":
         # print(request.POST)
-        data = update_registration(request.POST)
+
+        # checking if user already took the exam
+        ic_test = request.POST.getlist("ic_test[]", [])
+
+        if not ic_test:
+            params = {
+                "error": True,
+                "title": "Failed",
+                "body": "Please select the exams."
+            }
+            return JsonResponse(params)
+        res = checking_user_taken_exam(ic_id, ic_test)
+        if res:
+            # print("test_registration_page:", res)
+            taken_exams = ", ".join(res)
+            params = {
+                "error": True,
+                "title": "Failed",
+                "body": f"you already took {taken_exams} exams."
+            }
+            return JsonResponse(params)
+        # print("test_registration_page 2:", res)
+        data, exams_list = update_registration(request.POST, ic_id)
+        if data == {}:
+            params = {
+                "error": True,
+                "title": "Failed",
+                "body": "Some Error Happen please contact admin."
+            }
+            return JsonResponse(params)
 
         filterQ = {"ic_id": ic_id}
         q = QueryUsers.users_update(filterQ, data)
@@ -83,8 +111,9 @@ def test_registration_page(request):
         params = {
             "error": False,
             "title": "Success",
-            "body": "Registration is success."
+            "body": exams_list
         }
+        # print(params)
         return JsonResponse(params)
 
     data = {"ic_id": ic_id}
@@ -95,7 +124,7 @@ def test_registration_page(request):
     }
     params["exams_fields"] = QueryExams.exams_get(exams_data, True)
     # params["exams_fields"] = {"test": "test"}
-    print(params)
+    # print(params)
     return render(request, url_page, params)
 
 
@@ -129,7 +158,6 @@ def ic_faqs(request):
     return render(request, url_page, params)
 
 
-
 @login_only
 def profile_page(request):
     ic_id = request.session.get('user')
@@ -137,13 +165,65 @@ def profile_page(request):
     data = {"ic_id": ic_id}
     # print(data)
     params = QueryUsers.users_get(data)
-    print(params)
+    # print(params)
+
+    exams_filter = {
+        "ic_id": ic_id,
+    }
+    result = QueryExamsLogs.exams_get(exams_filter)
+    params["exams_fields"] = result
     return render(request, url_page, params)
+
+
+@login_only
+def change_password(request):
+    ic_id = request.session.get('user')
+    if request.method == "POST":
+        print(request.POST)
+        ic_pass = request.POST.get("ic_password", "")
+        ic_new_repassword = request.POST.get("ic_new_repassword", "")
+        ic_new_password = request.POST.get("ic_new_password", "")
+
+        if ic_new_password != ic_new_repassword:
+            params = {
+                "error": False,
+                "title": "Success",
+                "body": "Your password are unmatched."
+            }
+            return JsonResponse(params)
+
+        filter_sql = {
+            "ic_id": ic_id,
+            "ic_pass": ic_pass,
+        }
+        user = QueryUsers.users_get(filter_sql)
+
+        if bool(user):
+            updated_data = {
+                "ic_pass": ic_new_password,
+            }
+            QueryUsers.users_update(filter_sql, updated_data)
+            params = {
+                "error": False,
+                "title": "Success",
+                "body": "Your Password is changed."
+            }
+            return JsonResponse(params)
+        else:
+            params = {
+                "error": True,
+                "title": "Failed",
+                "body": "Old Password is wrong."
+            }
+            # print(resp)
+            return JsonResponse(params)
+
+    return redirect("profile")
 
 
 def login_page(request):
     ic_id = request.session.get('user')
-    print(ic_id)
+    # print(ic_id)
     if ic_id is not None:
         return redirect("profile")
     if request.method == "POST":

@@ -118,7 +118,7 @@ DATE_FORMAT = "%Y-%m-%d%"
 
 TIME_ZONE = 'Asia/Taipei'
 
-USE_I18N = True
+USE_I18N = False
 
 USE_L10N = False
 

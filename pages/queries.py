@@ -130,3 +130,66 @@ class QueryExams:
         # print(q)
         # print("output:", users_json[0])
         return q
+
+
+'''
+Query for table exams_logs
+'''
+
+
+class QueryExamsLogs:
+    # insert users data
+    @staticmethod
+    def exams_upsert(data):
+        # user = models.User(**data)
+        try:
+            # user.save()
+            obj, created = models.ExamLogs.objects.update_or_create(**data)
+            # users_get
+            # logger.info("Data created Successfully: ", created)
+            return True
+        except Exception as e:
+            logger.error("Data: ", data)
+            logger.error('Failed to insert data user to database: ', str(e))
+            return False
+
+    @staticmethod
+    def exams_getsert(data):
+        # user = models.User(**data)
+        try:
+            # user.save()
+            obj, created = models.ExamLogs.objects.get_or_create(**data)
+            # logger.info("Data created Successfully: ", created)
+            return obj, created
+        except Exception as e:
+            logger.error("Data: ", data)
+            logger.error('Failed to insert data user to database: ', e)
+            return None, False
+
+    @staticmethod
+    def exams_get(my_filter, select_all=False):
+        # print(my_filter)
+
+        exams = models.ExamLogs.objects.filter(**my_filter).distinct()
+        exams_json = serializers.serialize('json', exams)
+        exams_json = json.loads(exams_json)
+
+        exams_json = get_fields_only(exams_json)
+        if select_all:
+            return exams_json
+        if len(exams_json) == 1:
+            exams_json = exams_json[0]
+            return exams_json
+        elif len(exams_json) == 0:
+            return {}
+        return exams_json
+
+    @staticmethod
+    def exams_update(filter_data, updated_data):
+        # print(my_filter)
+
+        q = models.ExamLogs.objects.filter(**filter_data).update(**updated_data)
+        # print(q)
+        # print("output:", users_json[0])
+        return q
+
