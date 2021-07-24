@@ -99,6 +99,7 @@ def test_registration_page(request):
     return render(request, url_page, params)
 
 
+
 def ic_test_info_page(request):
     ic_id = request.session.get('user')
     url_page = 'pages/ic_test_info.html'
@@ -108,6 +109,14 @@ def ic_test_info_page(request):
     # print(params)
     return render(request, url_page, params)
 
+def ic_sponsorship(request):
+    ic_id = request.session.get('user')
+    url_page = 'pages/sponsorship.html'
+    data = {"ic_id": ic_id}
+    # print(data)
+    params = QueryUsers.users_get(data)
+    # print(params)
+    return render(request, url_page, params)
 
 def ic_pre_exam(request):
     ic_id = request.session.get('user')

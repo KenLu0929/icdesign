@@ -32,5 +32,6 @@ urlpatterns = [
     path('ictestinfo/', views.ic_test_info_page, name="ic_test_info"),
     path('preexam/', views.ic_pre_exam, name="ic_pre_exam"),
     path('faqs/', views.ic_faqs, name="ic_faqs"),
+    path('sponsorship/', views.ic_sponsorship, name="ic_sponsorship"),
 
 ]
