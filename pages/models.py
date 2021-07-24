@@ -41,9 +41,9 @@ class Users(models.Model):
     ic_yearofexp = models.IntegerField(null=True)
     # additional data
     ic_graduated_status = models.IntegerField(null=True, default=0)  # 0 = not started yet, 1 = on progress, 2 = graduated.
-    date_joined = models.IntegerField(null=True, default=utils.currentUnixTimeStamp())
     last_login = models.IntegerField(null=True)
-    date_modified = models.IntegerField(null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['last_login']
@@ -54,18 +54,15 @@ class Users(models.Model):
 
 class ExamLogs(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
-    exam_name = models.CharField(max_length=100, null=True)
-    ic_id = models.CharField(max_length=100, null=True)
-    user = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
     exam_ticket_no = models.CharField(max_length=100, null=True)
     exam_id = models.CharField(max_length=100, null=True)
-    exam_taken_time = models.IntegerField(null=True)
-    exam_taken = models.BooleanField(null=True)
+    ic_id = models.CharField(max_length=100, null=True)
+    # user = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
     exam_grade = models.CharField(max_length=5, null=True)
-    exam_finish = models.BooleanField(null=True)
+    exam_finish = models.BooleanField(null=True, default=False)
     exam_place = models.CharField(max_length=100, null=True)
-    date_created = models.DateTimeField(null=True, default=timezone.now)
-    date_modified = models.IntegerField(null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['date_created']
@@ -77,13 +74,13 @@ class ExamLogs(models.Model):
 class Exams(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
     exam_name = models.CharField(max_length=100, null=True)
-    exam_id = models.CharField(max_length=100, null=True)
+    exam_id = models.CharField(max_length=100, unique=True, null=True)
     exam_start_time = models.DateTimeField(null=True)
     exam_end_time = models.DateTimeField(null=True)
     exam_place = models.CharField(max_length=100, null=True)
     exam_is_active = models.IntegerField(null=True, default=0) # 0 = Not Active, 1 = Active
-    date_created = models.DateTimeField(null=True, default=timezone.now)
-    date_modified = models.IntegerField(null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['date_created']
@@ -97,8 +94,8 @@ class News(models.Model):
     news_title = models.CharField(max_length=100, null=True)
     news_body = models.CharField(max_length=100, null=True)
     news_author = models.CharField(max_length=100, null=True)
-    date_created = models.DateTimeField(null=True, default=timezone.now)
-    date_modified = models.IntegerField(null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['date_created']
@@ -111,8 +108,8 @@ class Sponsorship(models.Model):
     sponsor_id = models.AutoField(primary_key=True)
     sponsor_name = models.CharField(max_length=100, null=True)
     sponsor_url = models.CharField(max_length=100, null=True)
-    date_created = models.DateTimeField(null=True, default=timezone.now)
-    date_modified = models.IntegerField(null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['date_created']
