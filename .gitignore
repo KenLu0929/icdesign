@@ -7,7 +7,7 @@
 .idea
 # Icon must end with two \r
 Icon
-
+pages/migrations
 
 # Thumbnails
 ._*
@@ -87,4 +87,5 @@ local_settings.py
 
 .env
 db.sqlite3
+venv
 

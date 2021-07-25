@@ -1,0 +1,77 @@
+{% extends "pages/base.html" %}
+{% block title %}Pre-Exam{% endblock %}
+{% block content %}
+<body>
+{% include "pages/header.html" %}
+<div class="container">
+    <div class="row g-2 my-4">
+        <div class="col-12 col-md-4">
+            <div class="text-center">
+                <h4>考前準備說明</h4>
+                <p>IC佈局設計能力鑑定考試</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <div class="mb-4">
+                <h5>1. 本中心寒暑假課程</h5>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">課程名稱</th>
+                        <th scope="col">上課天數</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Analog IC Design using ADP and Laker</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Full-Custom IC Design Concepts</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Physical Verification with Calibre</td>
+                        <td>2</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mb-4">
+                <h5>E-learning</h5>
+                <table class="table mb-4">
+                    <thead>
+                    <tr>
+                        <th scope="col">課程名稱</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Full-Custom IC Design Concept</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mb-4">
+                <h5>參考書目</h5>
+                <ul class="mb-4">
+                    <li>陳益誠、林貝儒、戴毓廷 (2012) 。Full-Customer IC Design Concepts。國家實驗研究院台灣半導體研究中心教育訓練 課程講義，未出版，新竹</li>
+                    <li>李博明、唐經洲 (2012)。 VLSI設計概論/實習。新北市：高立。 ISBN 9789864128549</li>
+                    <li>Alan Hasting (2006), The art of analog layout (2nd ed.), Upper Saddle River, NJ : Pearson/Prentice Hall, 2006. ISBN 0-13-129329-X</li>
+                    <li>Baker, R. Jacob (2010), CMOS: Circuit Design, Layout, and Simulation (3rd ed.), Wiley-IEEE Press, 2010. ISBN 978-0-470-88132-3</li>
+                    <li>Christopher Saint, Judy Saint (2002), IC Mask Design: Essential Layout Techniques, McGraw-Hill, 2002. ISBN 0-07-138996-2</li>
+                </ul>
+            </div>
+            <div class="mb-4">
+                <h5>主辦單位將於考前提供50題測驗題與1題實作題題庫供考生練習</h5>
+                <ul class="icon-list">
+                    <li><a href="https://www.tsri.org.tw/icdesign/doc/IC_layout_109.pdf" rel="noopener"
+                           target="_blank">題庫下載</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

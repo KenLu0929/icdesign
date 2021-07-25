@@ -1,0 +1,580 @@
+{% extends "pages/base.html" %}
+{% block title %}Registration{% endblock %}
+{% block content %}
+<body class="">
+{% include "pages/header.html" %}
+
+<section>
+    <div class="container my-5 ">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 col-lg-4 col-xl-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>考試需知：</h1>
+                        <p class="text-h3">Far far away, behind the word mountains, far from the countries Vokalia and
+                            Consonantia. </p>
+                    </div>
+                    <div class="col-12">
+                        <ul class="list-group">
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 1.
+                                本人所檢附的報名資料：中文姓名、身分證字號、出生年月日、聯絡電話、行動電話、通訊地址、E-Mail、身分別、就讀/畢業學校名稱、科系名稱、年級與班級、學歷、任職公司名稱及職稱，僅供「主辦單位」辦理鑑定考試使用、寄送相關考試資料及學習資訊、進行測驗相關統計、進行企業就業媒合之用。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 2.
+                                主辦單位將於原蒐集之特定目的、本次以外之產業之推廣、宣導及就業輔導、以及其他公務機關請求行政協助之目的範圍內，合理利用您的個人資料。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 3.
+                                本人瞭解所提供之個人資料，假如經由檢舉或主辦單位發現有不符真實身分或有冒用、盜用其他個人資料、資料不實等情事經查證屬實時，主辦單位有權取消本人的當次考試資格、成績或未來報名資格，並有權不提供鑑定考試相關服務。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 4.
+                                本人瞭解必須填寫完整且正確之報名資料，通訊地址、身分證字號、電話號碼及E-mail應正確，否則無法通知而致延誤考試及其他重要事項，其後果自行負責。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 5.
+                                考生對自己所有之個人資料，須負保密責任，若因洩漏予第三者，導致考生個人資料外洩、遺失、或無法正常使用本服務之情況，概由該考生自行負責，本網站得拒絕該考生使用本網站報名考試之權利。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1>Personal Information：</h1>
+                        <p class="text-h3">This should contains what user need to know before they fill their personal
+                            information. </p>
+                    </div>
+                </div>
+                <hr>
+                <form id="form_test_registration">
+                    <div class="row g-2 mt-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" name="ic_id" id="icid" class="form-control" placeholder="ID"
+                                       maxlength="10" value="{{ ic_id }}" disabled>
+                                <label for="icid">ID</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="idname" name="ic_name"
+                                       placeholder="e.g, Jhon Doe" value="{{ ic_name }}" disabled>
+                                <label for="icid">Full Name</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="align-items-center mt-4">
+                        <div class="form-floating row g-2">
+                            <div class="col-md-12">
+                                <label for="datepicker">Birth of Date</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input id="datepicker" name="ic_bod" type="date" class="form-control"
+                                       placeholder="yyyy/mm/dd"
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="align-items-center mt-4">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <span>Select Gender</span>
+                            </div>
+                            <div class="col-md row g-2" style="margin-left: 0rem;">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="ic_gender"
+                                           id="selectGender1" value="man">
+                                    <label class="form-check-label" for="selectGender1">Man</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="ic_gender"
+                                           id="selectGender2" value="woman">
+                                    <label class="form-check-label" for="selectGender2">Woman</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mt-4">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control"
+                                       placeholder="ID"
+                                       maxlength="10" value="{{ic_phone }}">
+                                <label for="icphonenumber">Phone Number</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="ictelpnumber" name="ic_telephone"
+                                       placeholder="e.g, Jhon Doe" value="{{ ic_telp }}">
+                                <label for="ictelpnumber">Telp Number</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="align-items-center mt-4">
+                        <div class="form-floating">
+                            <input type="email" id="idemail" name="ic_email" class="form-control"
+                                   placeholder="this@youremail.com" required>
+                            <label for="idemail">Email address</label>
+                        </div>
+                    </div>
+                    <div class="align-items-center mt-4">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
+                                      style="height : 100px;" name="ic_address" required></textarea>
+                            <label for="textareaAddress">Address</label>
+                        </div>
+                    </div>
+                    <div class="row g-3 mt-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" id="schoolName" name="ic_school" class="form-control"
+                                       placeholder="School name">
+                                <label for="schoolName">School name</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" id="department" name="ic_department" class="form-control"
+                                       placeholder="Department">
+                                <label for="department">Department</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <select class="form-select" id="selectStatusschool" name="ic_status_school"
+                                        aria-label="Floating label select example">
+                                    <option value="" selected>Select your degree</option>
+                                    <option value="study">Study</option>
+                                    <option value="graduate">Graduate</option>
+                                </select>
+                                <label for="selectStatusschool">Status School</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+                    <div class="row g-3 mt-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" id="companyName" name="ic_company" class="form-control"
+                                       placeholder="Company name">
+                                <label for="companyName">Company Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" id="selectPosition" name="ic_service_department" class="form-control"
+                                       placeholder="Service Department">
+                                <label for="selectPosition">Service Department</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
+                                       placeholder="Year of experience" value="0">
+                                <label for="companyName">Year of experience</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mt-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" id="userTitle" name="ic_job_position" class="form-control"
+                                       placeholder="Job Position">
+                                <label for="userTitle">Job Position</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <select class="form-select" id="selectDegree" name="ic_degree"
+                                        aria-label="Floating label select example">
+                                    <option value="" selected>Select your degree</option>
+                                    <option value="high_school">High School</option>
+                                    <option value="bachelor">Bachelor</option>
+                                    <option value="master">Master</option>
+                                    <option value="doctor">Doctor</option>
+                                </select>
+                                <label for="selectDegree">Highest Degree</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="align-items-center">
+                        <div class="row g-2 mt-4">
+                            <div class="col-12 col-md-4">
+                                <span>Select your test</span>
+                            </div>
+                            <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
+                                {% for field in exams_fields %}
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="ic_test" id="selectCourse1"
+                                           value="{{field.exam_id}}">
+                                    <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }} (Place:
+                                        {{ field.exam_place }}) | {{ field.exam_start_time }} - {{ field.exam_end_time
+                                        }}</label>
+                                </div>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="row justify-content-start mt-4">
+                        <div class="col">
+                            <div>
+                                <label>
+                                    By clicking Submit you are agree to <a href="#">Terms and
+                                    Conditions</a>
+                                </label>
+                            </div>
+                            <div>
+<!--                                <button class="btn btn-primary mt-4 col-12" disabled>-->
+<!--                                    <span class="spinner-border spinner-border-sm" role="status"-->
+<!--                                          aria-hidden="true"></span>-->
+<!--                                    Loading...-->
+<!--                                </button>-->
+                                <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit">
+                                    <!--                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
+                                    Submit
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div id="summary_test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1>Personal Information：</h1>
+                        <p class="text-h3">This should contains what user need to know before they fill their personal
+                            information. </p>
+                    </div>
+                </div>
+                <hr>
+                <!--                <form id="form_summary_test_registration">-->
+                <div class="mb-3 row">
+                    <label for="showCourse" class="col-sm-4 col-form-label">Test</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showCourse" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="displayicID" class="col-sm-4 col-form-label">ID</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="displayicID"
+                               value="{{ ic_id }}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showFullname" class="col-sm-4 col-form-label">Full Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showFullname"
+                               value="{{ ic_name }}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showEmail" class="col-sm-4 col-form-label">Email</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showEmail" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showGender" class="col-sm-4 col-form-label">Gender</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showGender" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showPhone" class="col-sm-4 col-form-label">Phone Number</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showPhone" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showTelp" class="col-sm-4 col-form-label">Telp Number</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showTelp" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showAddress" class="col-sm-4 col-form-label">Address</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showAddress" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showSchoolName" class="col-sm-4 col-form-label">School Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showSchoolName" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showDepartment" class="col-sm-4 col-form-label">Department</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showDepartment" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showStatusSchool" class="col-sm-4 col-form-label">Status School</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showStatusSchool" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showCompanyName" class="col-sm-4 col-form-label">Company Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showCompanyName" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showPosition" class="col-sm-4 col-form-label">Service Department</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showPosition" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showExp" class="col-sm-4 col-form-label">Year of Experiences</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showExp" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showTitle" class="col-sm-4 col-form-label">Job Position</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showTitle" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showDegree" class="col-sm-4 col-form-label">Highest Degree</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showDegree" value="">
+                    </div>
+                </div>
+                <div class="row justify-content-start mt-4">
+                    <div class="col">
+                        <button id="btn_modify_reg" class="btn btn-outline-secondary mt-4 col-4" type="button">
+                            Modify
+                        </button>
+<!--                        <button class="btn btn-primary mt-4 col-3" type="button" disabled>-->
+<!--                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
+<!--                            Loading...-->
+<!--                        </button>-->
+                        <button id="btn_final_submit" type="button" class="btn btn-primary mt-4 col-4">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+                <!--                </form>-->
+
+            </div>
+            <div id="see_schedule" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1>請選擇欲報名的科別</h1>
+                        <p class="text-h3">目前尚未開放任何考試科別 <a href="">see text schedule</a></p>
+                        <div class="col">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div id="last_stage_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1>You've done the registration</h1>
+                        <p class="text-h3">The registration is done, now you may proceed to the next step</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "pages/modal_message.html" %}
+</section>
+</body>
+
+<script>
+
+    $('#icid').change(function () {
+        $('#displayicID').val($(this).val());
+    });
+    $('input[name="ic_test"]').click(function () {
+        let values = [];
+        $("input[name='ic_test']:checked").each(function () {
+            values.push($(this).val());
+        });
+        // console.log(values)
+        $('#showCourse').val(values.toString());
+    });
+    $('#idname').change(function () {
+        $('#showFullname').val($(this).val());
+    });
+    $('#idemail').change(function () {
+        $('#showEmail').val($(this).val());
+    });
+    $('input[name="ic_gender"]').click(function () {
+        let val = document.querySelector('input[name="ic_gender"]:checked').value;
+        // console.log(val)
+        $('#showGender').val(val);
+    });
+    $('#textareaAddress').change(function () {
+        $('#showAddress').val($(this).val());
+    });
+    $('#selectDegree').change(function () {
+        $('#showDegree').val($(this).val());
+    });
+    $('#schoolName').change(function () {
+        $('#showSchoolName').val($(this).val());
+    });
+    $('#department').change(function () {
+        $('#showDepartment').val($(this).val());
+    });
+    $('#selectStatusschool').change(function () {
+        $('#showStatusSchool').val($(this).val());
+    });
+    $('#companyName').change(function () {
+        $('#showCompanyName').val($(this).val());
+    });
+    $('#selectPosition').change(function () {
+        $('#showPosition').val($(this).val());
+    });
+    $('#yearofExp').change(function () {
+        $('#showExp').val($(this).val());
+    });
+    $('#userTitle').change(function () {
+        $('#showTitle').val($(this).val());
+    });
+    $('#icphonenumber').change(function () {
+        $('#showPhone').val($(this).val());
+    });
+    $('#ictelpnumber').change(function () {
+        $('#showTelp').val($(this).val());
+    });
+
+
+    $("#test_registration").show();
+    $("#summary_test_registration").hide();
+    $("#last_stage_registration").hide();
+    $("#see_schedule").hide();
+    let test = '{{ exams_fields }}';
+    if (test == '{}' || test == "[]") {
+        $("#test_registration").hide();
+        $("#summary_test_registration").hide();
+        $("#see_schedule").show();
+    }
+    // console.log(test)
+    document.getElementById('form_test_registration').onsubmit = function (e) {
+        e.preventDefault();
+
+        // console.log( loginFormObject );
+        $("#test_registration").hide();
+        $("#summary_test_registration").show();
+
+    };
+
+    document.getElementById('btn_modify_reg').onclick = function (e) {
+        e.preventDefault();
+        $("#test_registration").show();
+        $("#summary_test_registration").hide();
+    };
+
+    document.getElementById('btn_final_submit').onclick = function (e) {
+        e.preventDefault();
+        let loginForm = $('#form_test_registration').serializeArray();
+        // console.log(loginForm)
+        let loginFormObject = {};
+        $.each(loginForm,
+            function (i, v) {
+                loginFormObject[v.name] = v.value;
+            });
+        // console.log(loginFormObject)
+        let values = [];
+        $("input[name='ic_test']:checked").each(function () {
+            values.push($(this).val());
+        });
+        loginFormObject["ic_test"] = values
+        // console.log(loginFormObject)
+        $.ajax({
+            type: "POST",
+            url: "{% url 'test_registration' %}",
+            data: loginFormObject,
+            success: function (data) {
+                /* response message */
+                // console.log(data)
+                if (data.error) {
+                    $('#modalMessageTitle').html(data.title);
+                    $('#modalMessageBody').html(data.body);
+                    $('#messageModal').modal('show');
+                } else {
+                    // window.location.href = "{% url 'profile' %}";
+
+                    data.body.forEach(function (item) {
+
+                        $('#last_stage_registration').append(`
+            <hr>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="col d-flex align-items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+                        </svg>
+                        <div>
+                            <h5 class="fw-bold mb-2">Test ID</h5>
+                            <p>${item.exam_id}</p>
+                        </div>
+                    </div>
+                </div>
+                            <div class="col-12">
+                                <div class="col d-flex align-items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                                        <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z"/>
+                                        <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z"/>
+                                    </svg>
+                                    <div>
+                                        <h5 class="fw-bold mb-2"> Ticket No</h5>
+                                        <p>${item.exam_ticket_no}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="col d-flex align-items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
+                                    </svg>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">Test Location</h5>
+                                        <p>${item.exam_place}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="col d-flex align-items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                                        <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+                                        <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                                    </svg>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">Date & time</h5>
+                                        <p>${item.exam_start_time} - ${item.exam_end_time}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `)
+
+                    })
+
+                    $("#test_registration").hide();
+                    $("#summary_test_registration").hide();
+                    $("#last_stage_registration").show();
+                }
+
+            }
+        });
+    };
+
+
+</script>
+
+{% endblock %}
