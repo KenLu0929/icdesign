@@ -184,6 +184,22 @@ def profile_page(request):
     return render(request, url_page, params)
 
 
+def profile_modify(request):
+    ic_id = request.session.get('user')
+    url_page = 'pages/profile_modify.html'
+    data = {"ic_id": ic_id}
+    # print(data)
+    params = QueryUsers.users_get(data)
+    # print(params)
+
+    exams_filter = {
+        "ic_id": ic_id,
+    }
+    result = QueryExamsLogs.exams_get(exams_filter)
+    params["exams_fields"] = result
+    return render(request, url_page, params)
+
+
 @login_only
 def change_password(request):
     ic_id = request.session.get('user')
