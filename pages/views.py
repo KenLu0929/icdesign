@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .queries import QueryUsers, QueryExams, QueryExamsLogs
+from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
-from icdesign.backends import login_only, update_registration, checking_user_taken_exam
+from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile
 
 
 # Create your views here.
@@ -12,6 +12,7 @@ def index(request):
     data = {"ic_id": ic_id}
     # print(data)
     params = QueryUsers.users_get(data)
+    params["news_fields"] = QueryNews.news_get()
     # print(params)
     return render(request, url_page, params)
 
@@ -128,7 +129,6 @@ def test_registration_page(request):
     return render(request, url_page, params)
 
 
-
 def ic_test_info_page(request):
     ic_id = request.session.get('user')
     url_page = 'pages/ic_test_info.html'
@@ -138,6 +138,7 @@ def ic_test_info_page(request):
     # print(params)
     return render(request, url_page, params)
 
+
 def ic_sponsorship(request):
     ic_id = request.session.get('user')
     url_page = 'pages/sponsorship.html'
@@ -146,6 +147,7 @@ def ic_sponsorship(request):
     params = QueryUsers.users_get(data)
     # print(params)
     return render(request, url_page, params)
+
 
 def ic_pre_exam(request):
     ic_id = request.session.get('user')
@@ -184,19 +186,35 @@ def profile_page(request):
     return render(request, url_page, params)
 
 
+@login_only
 def profile_modify(request):
     ic_id = request.session.get('user')
     url_page = 'pages/profile_modify.html'
     data = {"ic_id": ic_id}
     # print(data)
-    params = QueryUsers.users_get(data)
-    # print(params)
 
-    exams_filter = {
-        "ic_id": ic_id,
-    }
-    result = QueryExamsLogs.exams_get(exams_filter)
-    params["exams_fields"] = result
+    if request.method == "POST":
+        filterQ = {"ic_id": ic_id}
+        data = update_profile(request.POST)
+        q = QueryUsers.users_update(filterQ, data)
+        if not q:
+            params = {
+                "error": True,
+                "title": "Failed",
+                "body": "Information not updated."
+            }
+            return JsonResponse(params)
+
+        params = {
+            "error": False,
+            "title": "Success",
+            "body": "Profile Information is updated."
+        }
+        # print(params)
+        return JsonResponse(params)
+
+    params = QueryUsers.users_get(data)
+
     return render(request, url_page, params)
 
 
