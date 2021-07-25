@@ -65,7 +65,7 @@ class ExamLogs(models.Model):
     date_modified = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
-        ordering = ['date_created']
+        ordering = ['date_created', "exam_grade"]
         managed = True
         verbose_name = "exam log"
         verbose_name_plural = "exam logs"
@@ -83,7 +83,7 @@ class Exams(models.Model):
     date_modified = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
-        ordering = ['date_created']
+        ordering = ['date_created', 'exam_start_time', 'exam_end_time']
         managed = True
         verbose_name = "exam"
         verbose_name_plural = "exams"
@@ -106,8 +106,8 @@ class News(models.Model):
 
 class Sponsorship(models.Model):
     sponsor_id = models.AutoField(primary_key=True)
-    sponsor_name = models.CharField(max_length=100, null=True)
-    sponsor_url = models.CharField(max_length=100, null=True)
+    sponsor_name = models.CharField(max_length=200, null=True)
+    sponsor_url = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, null=True)
 
