@@ -1,5 +1,5 @@
 {% extends "pages/base.html" %}
-{% block title %}This is Profile{% endblock %}
+{% block title %}Profile{% endblock %}
 {% block content %}
 {% include "pages/header.html" %}
 <body>
@@ -7,8 +7,8 @@
     <div class="row">
         <div class="col text-white">
             <div class=""></div>
-            <h1>Profile</h1>
-            <span>Here is your detail of your profile</span>
+            <h1>Update Profile</h1>
+            <span>Here is your detail of your profile that you want to updated.</span>
         </div>
     </div>
 </div>
@@ -35,32 +35,13 @@
     </div>
 </div>
 <div class="container pt-2 pb-5">
-    <div class="row g-2">
-        <div class="col col-md-4">
-            <div class="card py-3 px-3">
-                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
-                            aria-selected="true">General
-                    </button>
-                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
-                            aria-selected="false">Security
-                    </button>
-                    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
-                            data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
-                            aria-selected="false">Grade
-                    </button>
-                </div>
-            </div>
-
-        </div>
-        <div class="col col-md-8">
+    <div class="row">
+        <div class="col col-md-12">
             <div class="card">
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane py-3 px-3 fade show active" id="v-pills-home" role="tabpanel"
                          aria-labelledby="v-pills-home-tab">
-                        <div id="test_registration" class="col-12 col-md-8 col-lg-8 col-xl-12">
+                        <div id="test_registration" class="col-12">
                             <div class="row align-items-center">
                                 <div class="col">
                                     <h1>Personal Information：</h1>
@@ -70,7 +51,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <form id="form_test_registration">
+                            <form id="form_profile_modify">
                                 <div class="row g-2 mt-2">
                                     <div class="col-md">
                                         <div class="form-floating">
@@ -107,13 +88,14 @@
                                         </div>
                                         <div class="col-md row g-2" style="margin-left: 0rem;">
                                             <div class="form-check form-check-inline">
+
                                                 <input class="form-check-input" type="radio" name="ic_gender"
-                                                       id="selectGender1" value="man">
+                                                       id="selectGender1" value="man" {% if ic_gender == "man" %} checked{% endif %}>
                                                 <label class="form-check-label" for="selectGender1">Man</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="ic_gender"
-                                                       id="selectGender2" value="woman">
+                                                       id="selectGender2" value="woman" {% if ic_gender == "woman" %} checked{% endif %}>
                                                 <label class="form-check-label" for="selectGender2">Woman</label>
                                             </div>
                                         </div>
@@ -148,7 +130,8 @@
                                 <div class="align-items-center mt-4">
                                     <div class="form-floating">
                             <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
-                                      style="height : 100px;" name="ic_address" value="{{ ic_address }}" required></textarea>
+                                      style="height : 100px;" name="ic_address"
+                                      required>{{ ic_address }}</textarea>
                                         <label for="textareaAddress">Address</label>
                                     </div>
                                 </div>
@@ -228,10 +211,7 @@
                                     </div>
                                 </div>
                                 <hr class="my-4">
-                            </form>
-
-                        </div>
-                        <div class="row g-2 mb-4">
+                                <div class="row g-2 mb-4">
                             <div class="col col-md-6">
                                 <button class="btn btn-primary col-12" type="submit">Confirm</button>
                             </div>
@@ -239,77 +219,10 @@
                                 <button class="btn btn-outline-primary col-12" id="cancel_modify">Cancel</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane py-3 px-3 fade" id="v-pills-profile" role="tabpanel"
-                         aria-labelledby="v-pills-profile-tab" style="min-height: 37vh;">
-                        <div class="container">
-                            <h4 class="mb-4">Change Password</h4>
-                            <form id="changepasswordform">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="col">
-                                            <div class="form-floating">
-                                                <input type="password" class="form-control" id="idpassword"
-                                                       name="ic_password"
-                                                       placeholder="Keep it secret" required>
-                                                <label for="idpassword">Old Password</label>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
-                                        <div class="row g-2">
-                                            <div class="col">
-                                                <div class="form-floating mt-4">
-                                                    <input type="password" class="form-control" id="idnewpassword"
-                                                           name="ic_new_password"
-                                                           placeholder="Keep it secret" required>
-                                                    <label for="idnewpassword">New Password</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-floating mt-4">
-                                                    <input type="password" class="form-control" id="idnewrepassword"
-                                                           name="ic_new_repassword"
-                                                           placeholder="Keep it secret" required>
-                                                    <label for="idnewrepassword">Retype Password</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-4">
-                                            <div class="col">
-                                                <button class="btn btn-outline-primary" type="submit"> Change Password
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
                             </form>
 
                         </div>
-                    </div>
-                    <div class="tab-pane py-3 px-3 fade" id="v-pills-messages" role="tabpanel"
-                         aria-labelledby="v-pills-messages-tab" style="min-height: 37vh;">
-                        <div class="container">
-                            <h4 class="mb-4">Grade and Certification Download</h4>
-                            <table class="table">
-                                {% for field in exams_fields %}
-                                <tr>
-                                    <td>{{field.exam_ticket_no}}</td>
-                                    <td>{{field.exam_id}}</td>
-                                    <td>{{field.exam_place}}</td>
-                                    <td>{{field.exam_grade}}</td>
-                                    <th class="complain text-end"><a
-                                            href="https://www.tsri.org.tw/icdesign/doc/reconfirm_v109.doc">Complain
-                                        grade</a></th>
-                                </tr>
-                                {% endfor %}
-                            </table>
-                            <ul class="icon-list">
-                                <li><a href="#" rel="noopener"
-                                       target="_blank">Download your certification</a></li>
-                            </ul>
 
-                        </div>
                     </div>
                 </div>
             </div>
@@ -321,27 +234,29 @@
 </body>
 
 <script>
-    $('#v-pills-tab a').on('click', function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
+    function selectElement(id, valueToSelect) {
+    let element = document.getElementById(id);
+    element.value = valueToSelect;
+}
+    selectElement('selectStatusschool', '{{ ic_status_school }}')
+    selectElement('selectDegree', '{{ ic_degree }}')
 
-    $('#changepasswordform').on('submit', function (e) {
+
+
+    $('#form_profile_modify').on('submit', function (e) {
 
 
         e.preventDefault();
 
         $.ajax({
             type: "POST",
-            url: "{% url 'change_password' %}",
+            url: "{% url 'profile_modify' %}",
             data: $(this).serialize(),
             success: function (data) {
                 /* response message */
                 $('#modalMessageTitle').html(data.title);
                 $('#modalMessageBody').html(data.body);
                 $('#messageModal').modal('show');
-
-
             }
         });
     });
@@ -350,10 +265,10 @@
         window.location.href = "{% url 'profile' %}";
     });
 
-    $(document).ready(function(){
-       $('#cancel_modify').click(function(){
-             window.location.href='../profile';
-       });
+    $(document).ready(function () {
+        $('#cancel_modify').click(function () {
+            window.location.href = "{% url 'profile' %}";
+        });
     });
 
 
