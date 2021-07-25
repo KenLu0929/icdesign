@@ -92,7 +92,7 @@ class Exams(models.Model):
 class News(models.Model):
     news_id = models.AutoField(primary_key=True)
     news_title = models.CharField(max_length=100, null=True)
-    news_body = models.CharField(max_length=100, null=True)
+    news_body = models.CharField(max_length=500, null=True)
     news_author = models.CharField(max_length=100, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, null=True)

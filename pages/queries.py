@@ -193,3 +193,16 @@ class QueryExamsLogs:
         # print("output:", users_json[0])
         return q
 
+
+class QueryNews:
+
+    @staticmethod
+    def news_get():
+        # print(my_filter)
+
+        news = models.News.objects.all().distinct()
+        news_json = serializers.serialize('json', news)
+        news_json = json.loads(news_json)
+        news_json = get_fields_only(news_json)
+
+        return news_json

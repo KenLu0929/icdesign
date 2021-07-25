@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .queries import QueryUsers, QueryExams, QueryExamsLogs
+from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile
 
@@ -12,6 +12,7 @@ def index(request):
     data = {"ic_id": ic_id}
     # print(data)
     params = QueryUsers.users_get(data)
+    params["news_fields"] = QueryNews.news_get()
     # print(params)
     return render(request, url_page, params)
 
