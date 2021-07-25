@@ -49,7 +49,7 @@ def update_registration(data_post, ic_id):
         "ic_department": data_post.get("ic_department", ""),
         "ic_service_department": data_post.get("ic_service_department", ""),
         "ic_job_position": data_post.get("ic_job_position", ""),
-        "ic_yearofexp": data_post.get("ic_yearofexp", "")
+        "ic_yearofexp": data_post.get("ic_yearofexp", 0)
     }
 
     # personal data
@@ -89,7 +89,7 @@ def checking_user_taken_exam(ic_id, exam_list):
         "exam_finish": False
     }
     taken_exam = []
-    result = QueryExamsLogs.exams_get(exams_filter)
+    result = QueryExamsLogs.exams_get(exams_filter, True)
     for a in result:
         e_id = a.get("exam_id")
         if e_id in exam_list:
