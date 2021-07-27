@@ -42,6 +42,24 @@ def remove_dict_key_empty(listDict):
     return clean
 
 
+def dict_clean(items):
+    # checking for dictionary and replacing if None
+    # print(items)
+    if isinstance(items, dict):
+
+        for key in items:
+            if items[key] is None:
+                items[key] = ""
+            else:
+                dict_clean(items[key])
+
+    # checking for list, and testing for each value
+    elif isinstance(items, list):
+        for val in items:
+            dict_clean(val)
+    return items
+
+
 # %Y-%m-%d%
 def date_string_date(date_string):
     date_time_obj = datetime.strptime(date_string, settings.DATE_FORMAT)
@@ -61,5 +79,5 @@ def get_fields_only(data):
 def generate_exams_ticket(exams_id):
     x = uuid.uuid4()
     x = str(x)[:7].upper()
-    ticket = exams_id+x+str(currentUnixTimeStamp())
+    ticket = exams_id + x + str(currentUnixTimeStamp())
     return ticket
