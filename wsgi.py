@@ -1,0 +1,1 @@
+from icdesign.wsgi import application

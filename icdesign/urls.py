@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from pages import views
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -35,5 +36,10 @@ urlpatterns = [
     path('preexam/', views.ic_pre_exam, name="ic_pre_exam"),
     path('faqs/', views.ic_faqs, name="ic_faqs"),
     path('sponsorship/', views.ic_sponsorship, name="ic_sponsorship"),
-
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# print(urlpatterns)

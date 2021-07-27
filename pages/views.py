@@ -54,7 +54,7 @@ def registration_page(request):
             else:
                 # print("test2")
                 request.session['user'] = ic_id
-                url_page = 'pages/profile.html'
+                url_page = 'pages/test_registration.html'
                 return render(request, url_page)
 
     url_page = 'pages/registration.html'
@@ -120,6 +120,7 @@ def test_registration_page(request):
     data = {"ic_id": ic_id}
     # print(data)
     params = QueryUsers.users_get(data)
+    params = utils.dict_clean(params)
     exams_data = {
         "exam_is_active": 1,
     }
@@ -176,12 +177,15 @@ def profile_page(request):
     data = {"ic_id": ic_id}
     # print(data)
     params = QueryUsers.users_get(data)
+    params = utils.dict_clean(params)
     # print(params)
 
     exams_filter = {
         "ic_id": ic_id,
     }
-    result = QueryExamsLogs.exams_get(exams_filter)
+    result = QueryExamsLogs.exams_get(exams_filter, True)
+    # print(params)
+    # print(result)
     params["exams_fields"] = result
     return render(request, url_page, params)
 
@@ -214,6 +218,7 @@ def profile_modify(request):
         return JsonResponse(params)
 
     params = QueryUsers.users_get(data)
+    params = utils.dict_clean(params)
 
     return render(request, url_page, params)
 
