@@ -65,14 +65,16 @@
                             <div class="row g-2 mb-2">
                                 <label for="displayicID" class="col-sm-4 col-form-label">ID</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly="readonly" class="form-control-plaintext" id="displayicID"
+                                    <input type="text" readonly="readonly" class="form-control-plaintext"
+                                           id="displayicID"
                                            value="{{ ic_id }}" disabled>
                                 </div>
                             </div>
                             <div class="row g-2 mb-2">
                                 <label for="showFullname" class="col-sm-4 col-form-label">Full Name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly="readonly" class="form-control-plaintext" id="showFullname"
+                                    <input type="text" readonly="readonly" class="form-control-plaintext"
+                                           id="showFullname"
                                            value="{{ ic_name }}" disabled>
                                 </div>
                             </div>
@@ -94,7 +96,8 @@
                             <div class="row g-2 mb-2">
                                 <label for="showGender" class="col-sm-4 col-form-label">Gender</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly="readonly" class="form-control-plaintext" id="showGender"
+                                    <input type="text" readonly="readonly" class="form-control-plaintext"
+                                           id="showGender"
                                            value="{{ ic_gender }}">
                                 </div>
                             </div>
@@ -115,42 +118,48 @@
                             <div class="row g-2 mb-2">
                                 <label for="showAddress" class="col-sm-4 col-form-label">Address</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly="readonly" class="form-control-plaintext" id="showAddress"
+                                    <input type="text" readonly="readonly" class="form-control-plaintext"
+                                           id="showAddress"
                                            value="{{ ic_address }}">
                                 </div>
                             </div>
                             <div class="row g-2 mb-2">
                                 <label for="showSchoolName" class="col-sm-4 col-form-label">School Name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly="readonly" class="form-control-plaintext" id="showSchoolName"
+                                    <input type="text" readonly="readonly" class="form-control-plaintext"
+                                           id="showSchoolName"
                                            value="{{ ic_school }}">
                                 </div>
                             </div>
                             <div class="row g-2 mb-2">
                                 <label for="showDepartment" class="col-sm-4 col-form-label">Department</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly="readonly" class="form-control-plaintext" id="showDepartment"
+                                    <input type="text" readonly="readonly" class="form-control-plaintext"
+                                           id="showDepartment"
                                            value="{{ ic_department }}">
                                 </div>
                             </div>
                             <div class="row g-2 mb-2">
                                 <label for="showStatusSchool" class="col-sm-4 col-form-label">Status School</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly="readonly" class="form-control-plaintext" id="showStatusSchool"
+                                    <input type="text" readonly="readonly" class="form-control-plaintext"
+                                           id="showStatusSchool"
                                            value="{{ ic_status_school }}">
                                 </div>
                             </div>
                             <div class="row g-2 mb-2">
                                 <label for="showCompanyName" class="col-sm-4 col-form-label">Company Name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly="readonly" class="form-control-plaintext" id="showCompanyName"
+                                    <input type="text" readonly="readonly" class="form-control-plaintext"
+                                           id="showCompanyName"
                                            value="{{ ic_company }}">
                                 </div>
                             </div>
                             <div class="row g-2 mb-2">
                                 <label for="showPosition" class="col-sm-4 col-form-label">Service Department</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly="readonly" class="form-control-plaintext" id="showPosition"
+                                    <input type="text" readonly="readonly" class="form-control-plaintext"
+                                           id="showPosition"
                                            value="{{ ic_service_department }}">
                                 </div>
                             </div>
@@ -171,7 +180,8 @@
                             <div class="row g-2 mb-2">
                                 <label for="showDegree" class="col-sm-4 col-form-label">Highest Degree</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly="readonly" class="form-control-plaintext" id="showDegree"
+                                    <input type="text" readonly="readonly" class="form-control-plaintext"
+                                           id="showDegree"
                                            value="{{ ic_degree }}">
                                 </div>
                             </div>
@@ -288,10 +298,10 @@
         window.location.href = "{% url 'profile' %}";
     });
 
-    $(document).ready(function(){
-       $('#modify_form').click(function(){
-             window.location.href='../profilemodify';
-       });
+    $(document).ready(function () {
+        $('#modify_form').click(function () {
+            window.location.href = "{% url 'profile_modify' %}";
+        });
     });
 
 </script>
