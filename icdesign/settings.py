@@ -92,15 +92,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'icdesign',
-        'USER': 'root',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
-        'PASSWORD': '',
+        'USER': 'icdesign_admin',
+        'PASSWORD': 'icdesign!@#123',
         'HOST': 'localhost',
         'PORT': '3306',
     },
 }
+
 
 pymysql.version_info = (1, 4, 2, "final", 0)
 pymysql.install_as_MySQLdb()
@@ -147,12 +148,8 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_URL = '/pages/templates/static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / "pages/templates/static",
-    '/var/www/static/',
-]
+STATIC_URL = '/static/'
+STATIC_ROOT = "/home/lqa1luur9zxd/public_html/static"
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
