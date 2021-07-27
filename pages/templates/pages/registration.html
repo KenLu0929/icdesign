@@ -146,11 +146,11 @@
                 /* response message */
                 console.log(data)
                 if(data.error) {
-                    console.log("error")
+                    // console.log("error")
                     $('#alertID').html(data.message)
                     $('#alertID').show()
                 } else {
-                    window.location.href = "{% url 'profile' %}";
+                    window.location.href = "{% url 'test_registration' %}";
                 }
 
 
