@@ -199,8 +199,7 @@ class QueryNews:
     @staticmethod
     def news_get():
         # print(my_filter)
-
-        news = models.News.objects.all().distinct()
+        news = models.News.objects.filter(news_is_active=1).distinct()
         news_json = serializers.serialize('json', news)
         news_json = json.loads(news_json)
         news_json = get_fields_only(news_json)
