@@ -27,7 +27,7 @@
                         <label for="ic_password">密碼</label>
                     </div>
                     <div class="mt-3">
-                        <a href="" class="">忘記密碼?</a>
+                        <a href="" class="" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">忘記密碼?</a>
                     </div>
                     <input class="w-100 btn btn-lg btn-primary my-3" type="submit" value="Login" >
                     <div>
@@ -38,6 +38,42 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade show" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Forget Password</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Your password has been sent to your email <strong>tirmcdohl@gmail.com</strong></p>
+              <span>or contact our administrator :</span>
+              <div class="row">
+                  <div class="col-12">
+                      <span><a href="mailto:icdesign.nycu@gmail.com.tw">icdesign.nycu@gmail.com.tw</a></span>
+                  </div>
+                  <div class="col-12">
+                      <span>Tel : (03)571-2121 轉 54431</span>
+                  </div>
+              </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 </body>
+
+<script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+      myInput.focus()
+    })
+</script>
 {% endblock %}
