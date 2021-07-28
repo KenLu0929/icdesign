@@ -4,6 +4,12 @@ from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile
 
+# for pdf rendering/view
+from easy_pdf.views import PDFTemplateResponseMixin
+from django.views.generic import DetailView
+
+    
+    
 
 # Create your views here.
 def index(request):
@@ -313,3 +319,18 @@ def logout_page(request):
     except:
         return redirect('login')
     return redirect('login')
+    
+    
+class PDFView(PDFTemplateResponseMixin, DetailView):
+    template_name = 'pages/ICLAYOUT_BRIEF.html'
+    context_object_name = 'obj'
+    
+    
+def ic_privacy(request):
+    ic_id = request.session.get('user')
+    url_page = 'pages/privacy_notice.html'
+    data = {"ic_id": ic_id}
+    # print(data)
+    params = QueryUsers.users_get(data)
+    # print(params)
+    return render(request, url_page, params)

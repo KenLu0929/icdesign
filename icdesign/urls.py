@@ -36,6 +36,7 @@ urlpatterns = [
     path('preexam/', views.ic_pre_exam, name="ic_pre_exam"),
     path('faqs/', views.ic_faqs, name="ic_faqs"),
     path('sponsorship/', views.ic_sponsorship, name="ic_sponsorship"),
+    path('privacy/', views.ic_privacy, name="ic_privacy"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
