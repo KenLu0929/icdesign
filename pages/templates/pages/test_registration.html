@@ -69,7 +69,7 @@
                             </div>
                             <div class="col-md-12">
                                 <input id="datepicker" name="ic_bod" type="date" class="form-control"
-                                       placeholder="yyyy/mm/dd"
+                                       placeholder="yyyy-mm-dd" value="{{ ic_bod }}"
                                        required>
                             </div>
                         </div>
@@ -82,12 +82,12 @@
                             <div class="col-md row g-2" style="margin-left: 0rem;">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="ic_gender"
-                                           id="selectGender1" value="男">
+                                           id="selectGender1" value="男" {% if ic_gender == "男" %} checked{% endif %}>
                                     <label class="form-check-label" for="selectGender1">男</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="ic_gender"
-                                           id="selectGender2" value="女">
+                                           id="selectGender2" value="女" {% if ic_gender == "女" %} checked{% endif %}>
                                     <label class="form-check-label" for="selectGender2">女</label>
                                 </div>
                             </div>
@@ -97,15 +97,14 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control"
-                                       placeholder="ID"
-                                       maxlength="10" value="{{ic_phone }}", pattern="[09][0-9]{8}">
+                                       placeholder="ID" value="{{ ic_phone_no }}" , pattern="[09][0-9]*">
                                 <label for="icphonenumber">手機號碼</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="ictelpnumber" name="ic_telephone"
-                                       placeholder="e.g, Jhon Doe" value="{{ ic_telp }}" pattern="[0][0-9]{11}">
+                                       placeholder="e.g, Jhon Doe" value="{{ ic_telephone }}" pattern="[0][0-9]*">
                                 <label for="ictelpnumber">電話號碼</label>
                             </div>
                         </div>
@@ -113,14 +112,14 @@
                     <div class="align-items-center mt-4">
                         <div class="form-floating">
                             <input type="email" id="idemail" name="ic_email" class="form-control"
-                                   placeholder="this@youremail.com" required>
+                                   placeholder="this@youremail.com" value="{{ ic_email }}" disabled>
                             <label for="idemail">Email ＊相關後續考試聯絡資訊將透過此聯絡</label>
                         </div>
                     </div>
                     <div class="align-items-center mt-4">
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
-                                      style="height : 100px;" name="ic_address" required></textarea>
+                                      style="height : 100px;" name="ic_address" required>{{ ic_address }}</textarea>
                             <label for="textareaAddress">郵寄地址</label>
                         </div>
                     </div>
@@ -128,21 +127,21 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="schoolName" name="ic_school" class="form-control"
-                                       placeholder="School name">
+                                       placeholder="School name" value="{{ ic_school }}">
                                 <label for="schoolName">學校名稱</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="department" name="ic_department" class="form-control"
-                                       placeholder="Department">
+                                       placeholder="Department" value="{{ ic_department }}">
                                 <label for="department">系所／年級</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <select class="form-select" id="selectStatusschool" name="ic_status_school"
-                                        aria-label="Floating label select example">
+                                        aria-label="Floating label select example" value="{{ ic_department }}">
                                     <option value="" selected>--請選擇--</option>
                                     <option value="在學">在學</option>
                                     <option value="畢業">畢業</option>
@@ -157,21 +156,21 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="companyName" name="ic_company" class="form-control"
-                                       placeholder="Company name">
+                                       placeholder="Company name" value="{{ ic_company }}">
                                 <label for="companyName">公司名稱</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="selectPosition" name="ic_service_department" class="form-control"
-                                       placeholder="Service Department">
+                                       placeholder="Service Department" value="{{ ic_service_department }}">
                                 <label for="selectPosition">服務部門</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
-                                       placeholder="Year of experience" value="0">
+                                       placeholder="Year of experience" value="{{ ic_yearofexp }}" min="0">
                                 <label for="companyName">相關工作經驗年資</label>
                             </div>
                         </div>
@@ -180,7 +179,7 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="userTitle" name="ic_job_position" class="form-control"
-                                       placeholder="Job Position">
+                                       placeholder="Job Position" value="{{ ic_job_position }}">
                                 <label for="userTitle">職稱</label>
                             </div>
                         </div>
@@ -210,8 +209,9 @@
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="ic_test" id="selectCourse1"
                                            value="{{field.exam_id}}">
-                                    <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }} (Place:
-                                        {{ field.exam_place }}) | {{ field.exam_start_time }} - {{ field.exam_end_time }}</label>
+                                    <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }}
+                                        (Place: {{ field.exam_place }}) |
+                                        {{ field.exam_start_time }} - {{ field.exam_end_time }}</label>
                                 </div>
 
                                 {% endfor %}
@@ -227,11 +227,11 @@
                                 </label>
                             </div>
                             <div>
-<!--                                <button class="btn btn-primary mt-4 col-12" disabled>-->
-<!--                                    <span class="spinner-border spinner-border-sm" role="status"-->
-<!--                                          aria-hidden="true"></span>-->
-<!--                                    Loading...-->
-<!--                                </button>-->
+                                <!--                                <button class="btn btn-primary mt-4 col-12" disabled>-->
+                                <!--                                    <span class="spinner-border spinner-border-sm" role="status"-->
+                                <!--                                          aria-hidden="true"></span>-->
+                                <!--                                    Loading...-->
+                                <!--                                </button>-->
                                 <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit">
                                     <!--                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
                                     送出
@@ -356,10 +356,10 @@
                         <button id="btn_modify_reg" class="btn btn-outline-secondary mt-4 col-4" type="button">
                             修改
                         </button>
-<!--                        <button class="btn btn-primary mt-4 col-3" type="button" disabled>-->
-<!--                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
-<!--                            Loading...-->
-<!--                        </button>-->
+                        <!--                        <button class="btn btn-primary mt-4 col-3" type="button" disabled>-->
+                        <!--                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
+                        <!--                            Loading...-->
+                        <!--                        </button>-->
                         <button id="btn_final_submit" type="button" class="btn btn-primary mt-4 col-4">
                             確認
                         </button>
@@ -394,62 +394,13 @@
 </body>
 
 <script>
+    function selectElement(id, valueToSelect) {
+        let element = document.getElementById(id);
+        element.value = valueToSelect;
+    }
 
-    $('#icid').change(function () {
-        $('#displayicID').val($(this).val());
-    });
-    $('input[name="ic_test"]').click(function () {
-        let values = [];
-        $("input[name='ic_test']:checked").each(function () {
-            values.push($(this).val());
-        });
-        // console.log(values)
-        $('#showCourse').val(values.toString());
-    });
-    $('#idname').change(function () {
-        $('#showFullname').val($(this).val());
-    });
-    $('#idemail').change(function () {
-        $('#showEmail').val($(this).val());
-    });
-    $('input[name="ic_gender"]').click(function () {
-        let val = document.querySelector('input[name="ic_gender"]:checked').value;
-        // console.log(val)
-        $('#showGender').val(val);
-    });
-    $('#textareaAddress').change(function () {
-        $('#showAddress').val($(this).val());
-    });
-    $('#selectDegree').change(function () {
-        $('#showDegree').val($(this).val());
-    });
-    $('#schoolName').change(function () {
-        $('#showSchoolName').val($(this).val());
-    });
-    $('#department').change(function () {
-        $('#showDepartment').val($(this).val());
-    });
-    $('#selectStatusschool').change(function () {
-        $('#showStatusSchool').val($(this).val());
-    });
-    $('#companyName').change(function () {
-        $('#showCompanyName').val($(this).val());
-    });
-    $('#selectPosition').change(function () {
-        $('#showPosition').val($(this).val());
-    });
-    $('#yearofExp').change(function () {
-        $('#showExp').val($(this).val());
-    });
-    $('#userTitle').change(function () {
-        $('#showTitle').val($(this).val());
-    });
-    $('#icphonenumber').change(function () {
-        $('#showPhone').val($(this).val());
-    });
-    $('#ictelpnumber').change(function () {
-        $('#showTelp').val($(this).val());
-    });
+    selectElement('selectStatusschool', '{{ ic_status_school }}')
+    selectElement('selectDegree', '{{ ic_degree }}')
 
 
     $("#test_registration").show();
@@ -465,7 +416,44 @@
     // console.log(test)
     document.getElementById('form_test_registration').onsubmit = function (e) {
         e.preventDefault();
+        console.log("test")
+        $('#displayicID').val($(this).val());
+        let values = [];
+        $("input[name='ic_test']:checked").each(function () {
+            values.push($("#icid").val());
+        });
+        // console.log(values)
+        $('#showCourse').val(values.toString());
 
+        $('#showFullname').val($('#idname').val());
+
+        $('#showEmail').val($('#idemail').val());
+
+        let val = document.querySelector('input[name="ic_gender"]:checked').value;
+        // console.log(val)
+        $('#showGender').val(val);
+
+        $('#showAddress').val($('#textareaAddress').val());
+
+        $('#showDegree').val($('#selectDegree').val());
+
+        $('#showSchoolName').val($('#schoolName').val());
+
+        $('#showDepartment').val($('#department').val());
+
+        $('#showStatusSchool').val($('#selectStatusschool').val());
+
+        $('#showCompanyName').val($('#companyName').val());
+
+        $('#showPosition').val($('#selectPosition').val());
+
+        $('#showExp').val($('#yearofExp').val());
+
+        $('#showTitle').val($('#userTitle').val());
+
+        $('#showPhone').val($('#icphonenumber').val());
+
+        $('#showTelp').val($('#ictelpnumber').val());
         // console.log( loginFormObject );
         $("#test_registration").hide();
         $("#summary_test_registration").show();

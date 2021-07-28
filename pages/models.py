@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+
 class GenderClass(models.TextChoices):
     MAN = '男', _('男')
     WOMAN = '女', _('女')
@@ -32,7 +33,7 @@ class Users(models.Model):
         choices=GenderClass.choices,
         null=True
     )
-    ic_email = models.CharField(max_length=100, null=True)
+    ic_email = models.CharField(max_length=100, unique=True, null=True)
     ic_address = models.CharField(max_length=100, null=True)
     ic_bod = models.DateField(null=True)  # Birth of Date
     ic_phone_no = models.CharField(max_length=100, null=True)
@@ -49,7 +50,7 @@ class Users(models.Model):
     ic_department = models.CharField(max_length=100, null=True)
     ic_service_department = models.CharField(max_length=100, null=True)
     ic_job_position = models.CharField(max_length=100, null=True)
-    ic_yearofexp = models.IntegerField(null=True)
+    ic_yearofexp = models.IntegerField(null=True, default=0)
     # additional data
     ic_graduated_status = models.IntegerField(null=True,
                                               default=0)  # 0 = not started yet, 1 = on progress, 2 = graduated.
@@ -91,7 +92,7 @@ class Exams(models.Model):
     exam_end_time = models.DateTimeField(null=True)
     exam_place = models.CharField(max_length=100, null=True)
     exam_is_active = models.IntegerField(null=True, default=0)  # 0 = Not Active, 1 = Active
-    exam_prerequisite = models.CharField(max_length=100, null=True) # string with separator ","
+    exam_prerequisite = models.CharField(max_length=100, null=True, default="-")  # string with separator ","
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, null=True)
 
