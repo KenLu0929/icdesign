@@ -125,8 +125,9 @@
     });
 
     function registChecking() {
-        var _id = $('#icid').val();
-        var verification = _id.match("^[A-Z][12]\\d{8}$");
+
+        let _id = $('#icid').val();
+        let verification = _id.match("^[A-Z][12]\\d{8}$");
         if (verification && $('#icid').val() != '' && $("#checkButtonReg").is(":checked")) {
             $('#submitBtnReg').prop('disabled', false);
         } else {
@@ -148,7 +149,7 @@
             data: $(this).serialize(),
             success: function (data) {
                 /* response message */
-                console.log(data)
+                // console.log(data)
                 if(data.error) {
                     // console.log("error")
                     $('#alertID').html(data.message)
