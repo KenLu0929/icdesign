@@ -47,6 +47,33 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+              <div class="row">
+                  <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                      <div id="alertID" class="alert alert-danger" role="alert">ID isn't exist</div>
+                      <form id="forgotPassword">
+                          <div class="form-floating">
+                            <input type="text" name="ic_id" id="icid" class="form-control" placeholder="ID"
+                                   maxlength="10" value="{{ ic_id }}">
+                            <label for="icid">身分證字號</label>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Forgot</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade show" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Forget Password</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
             <p>Your password has been sent to your email <strong>tirmcdohl@gmail.com</strong></p>
               <span>or contact our administrator :</span>
               <div class="row">
