@@ -50,7 +50,7 @@
                                 *請輸入您的身分證字號：
                             </div>
                             <div class="col-6">
-                                <input name="ic_id" id="icid" type="text" class="form-control" placeholder="ID"
+                                <input name="ic_id" id="icid" type="text" class="form-control" placeholder="身分證字號"
                                        maxlength="10" onchange="registChecking()">
                             </div>
                             <div class="col-2">
@@ -125,13 +125,17 @@
     });
 
     function registChecking() {
-        if ($('#icid').val() != '' && $("#checkButtonReg").is(":checked")) {
+        var _id = $('#icid').val();
+        var verification = _id.match("^[A-Z][12]\\d{8}$");
+        if (verification && $('#icid').val() != '' && $("#checkButtonReg").is(":checked")) {
             $('#submitBtnReg').prop('disabled', false);
         } else {
             $('#submitBtnReg').prop('disabled', true);
         }
     }
-
+    
+    
+    
 
     $('#regisForm').on('submit', function (e) {
 

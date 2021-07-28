@@ -1,5 +1,5 @@
 {% extends "pages/base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}首頁{% endblock %}
 {% block content %}
 <body>
 {% include "pages/header.html" %}
@@ -21,7 +21,7 @@
         </p>
 
         <div class="d-flex flex-column flex-md-row">
-          <a href="{% url 'test_registration' %}" class="btn btn-lg btn-outline-primary mb-3" onclick="">Schedule Now</a>
+          <a href="{% url 'test_registration' %}" class="btn btn-lg btn-outline-primary mb-3" onclick="">立刻報名</a>
         </div>
       </div>
     </div>
@@ -34,11 +34,11 @@
                         <h4 class="mb-3">IC佈局設計能力鑑定資訊</h4>
                         <p class="text-h3 mb-3">立即註冊幫你快速完成報名!</p>
                         <ul class="list-group mb-3">
-                          <li class="list-group-item" aria-current="true">快速了解你為什麼需要測驗</li>
-                          <li class="list-group-item">考前準備</li>
-                          <li class="list-group-item">FAQS</li>
+                          <li class="list-group-item" aria-current="true"><a href="https://icdesign.tw/ictestinfo/#list-item-2">快速了解你為什麼需要測驗</a></li>
+                          <li class="list-group-item"><a href="https://icdesign.tw/preexam/">考前準備</a></li>
+                          <li class="list-group-item"><a href="https://icdesign.tw/faqs/">FAQS</a></li>
                         </ul>
-                        <a href="#" class="icon-link">
+                        <a href="https://icdesign.tw/ictestinfo/" class="icon-link">
                           了解更多>>
                           <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
                         </a>
@@ -52,37 +52,37 @@
                           <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
                         </svg>
                         <div>
-                            <h4 class="fw-bold mb-0">Free Test</h4>
-                            <p>This semester you can get test for free.</p>
+                            <h4 class="fw-bold mb-0">免費報名</h4>
+                            <p>本次報名以及註冊不需收取報名費</p>
                         </div>
                     </div>
                     <div class="col d-flex align-items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.75em" height="1.75em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-2"" viewBox="0 0 16 16">
-                          <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
-                        </svg>
+                        <!--<svg xmlns="http://www.w3.org/2000/svg" width="1.75em" height="1.75em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-2"" viewBox="0 0 16 16">-->
+                        <!--  <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>-->
+                        <!--</svg>-->
                         <div>
-                            <h4 class="fw-bold mb-0">Free Test</h4>
-                            <p>This semester you can get test for free.</p>
+                            <!--<h4 class="fw-bold mb-0">Free Test</h4>-->
+                            <!--<p>This semester you can get test for free.</p>-->
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="col d-flex align-items-start mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.75em" height="1.75em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-2"" viewBox="0 0 16 16">
-                          <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
-                        </svg>
+                        <!--<svg xmlns="http://www.w3.org/2000/svg" width="1.75em" height="1.75em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-2"" viewBox="0 0 16 16">-->
+                        <!--  <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>-->
+                        <!--</svg>-->
                         <div>
-                            <h4 class="fw-bold mb-0">Free Test</h4>
-                            <p>This semester you can get test for free.</p>
+                            <!--<h4 class="fw-bold mb-0">Free Test</h4>-->
+                            <!--<p>This semester you can get test for free.</p>-->
                         </div>
                     </div>
                     <div class="col d-flex align-items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.75em" height="1.75em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-2"" viewBox="0 0 16 16">
-                          <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
-                        </svg>
+                        <!--<svg xmlns="http://www.w3.org/2000/svg" width="1.75em" height="1.75em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-2"" viewBox="0 0 16 16">-->
+                        <!--  <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>-->
+                        <!--</svg>-->
                         <div>
-                            <h4 class="fw-bold mb-0">Free Test</h4>
-                            <p>This semester you can get test for free.</p>
+                            <!--<h4 class="fw-bold mb-0">Free Test</h4>-->
+                            <!--<p>This semester you can get test for free.</p>-->
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
     </div>
     <div class="container px-4 py-5">
         <div class="col mb-4">
-            <h4>Latest News</h4>
+            <h4>最新消息</h4>
         </div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for field in news_fields %}
