@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 def send_email(subject, message, recipient_list):
     if subject and message and recipient_list:
         try:
-            send_mail(subject, message, "", recipient_list)
+            send_mail(subject, message, settings.EMAIL_HOST, recipient_list)
         except BadHeaderError:
             logger.error('Invalid header found.')
             return False
