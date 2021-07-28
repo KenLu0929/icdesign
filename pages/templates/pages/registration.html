@@ -78,33 +78,33 @@
                         <div class="row">
                             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
 
-                                <div id="alertID" class="alert alert-danger" role="alert"> this is alert</div>
+                                <div id="alertID" class="alert alert-danger" role="alert">提醒您！！</div>
 
                                 <div class="form-floating">
                                     <input type="text" class="form-control" name="ic_show" id="displayicID" readonly>
-                                    <label>ID</label>
+                                    <label>身分證字號</label>
                                 </div>
                                 <div class="form-floating mt-4">
                                     <input type="text" class="form-control" id="idname" name="ic_name"
                                            placeholder="e.g, Jhon Doe" required>
-                                    <label for="idname">Full Name</label>
+                                    <label for="idname">姓名</label>
                                 </div>
                                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
                                 <div class="form-floating mt-4">
                                     <input type="password" class="form-control" id="idpassword" name="ic_password"
                                            placeholder="Keep it secret" required>
-                                    <label for="idpassword">Password</label>
+                                    <label for="idpassword">密碼</label>
                                 </div>
                                 <div class="form-floating mt-4">
                                     <input type="password" class="form-control" id="confirmidcpassword"
                                            name="confirm_ic_password" placeholder="Keep it secret" required>
-                                    <label for="confirmidcpassword">Confirm Password</label>
+                                    <label for="confirmidcpassword">確認密碼</label>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button id="SignUpBtn" type="submit" class="btn btn-primary">Sign Up
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                            <button id="SignUpBtn" type="submit" class="btn btn-primary">註冊
                             </button>
                         </div>
                     </form>
@@ -125,7 +125,6 @@
     });
 
     function registChecking() {
-
         let _id = $('#icid').val();
         let verification = _id.match("^[A-Z][12]\\d{8}$");
         if (verification && $('#icid').val() != '' && $("#checkButtonReg").is(":checked")) {
@@ -149,7 +148,7 @@
             data: $(this).serialize(),
             success: function (data) {
                 /* response message */
-                // console.log(data)
+                console.log(data)
                 if(data.error) {
                     // console.log("error")
                     $('#alertID').html(data.message)
