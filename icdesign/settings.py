@@ -31,6 +31,14 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["icdesign.tw", "www.icdesign.tw"]
 
+# Maintenance Configuration
+
+# if True the maintenance-mode will be activated
+MAINTENANCE_MODE = False
+
+# if True admin site will not be affected by the maintenance-mode page
+MAINTENANCE_MODE_IGNORE_ADMIN_SITE = True
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Add our new application
     'pages.apps.PagesConfig',
+    'maintenance_mode'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'maintenance_mode.middleware.MaintenanceModeMiddleware'
 ]
 
 ROOT_URLCONF = 'icdesign.urls'
@@ -67,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'maintenance_mode.context_processors.maintenance_mode'
             ],
         },
     },
@@ -166,16 +177,35 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 ADMIN_EMAIL = ""
 
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['console'],
+#         'level': 'INFO',
+#     },
+# }
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'tmp/debug.log',
         },
     },
-    'root': {
-        'handlers': ['console'],
-        'level': 'INFO',
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     },
 }

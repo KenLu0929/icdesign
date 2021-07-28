@@ -4,14 +4,20 @@ from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile
 
+# for pdf rendering/view
+from easy_pdf.views import PDFTemplateResponseMixin
+from django.views.generic import DetailView
+
 
 # Create your views here.
 def index(request):
-    ic_id = request.session.get('user')
     url_page = 'pages/index.html'
-    data = {"ic_id": ic_id}
-    # print(data)
-    params = QueryUsers.users_get(data)
+    params = {}
+    if 'user' in request.session:
+        ic_id = request.session.get('user')
+        data = {"ic_id": ic_id}
+        # print(data)
+        params = QueryUsers.users_get(data)
     params["news_fields"] = QueryNews.news_get()
     # print(params)
     return render(request, url_page, params)
@@ -131,42 +137,46 @@ def test_registration_page(request):
 
 
 def ic_test_info_page(request):
-    ic_id = request.session.get('user')
     url_page = 'pages/ic_test_info.html'
-    data = {"ic_id": ic_id}
-    # print(data)
-    params = QueryUsers.users_get(data)
-    # print(params)
+    params = {}
+    if 'user' in request.session:
+        ic_id = request.session.get('user')
+        data = {"ic_id": ic_id}
+        # print(data)
+        params = QueryUsers.users_get(data)
     return render(request, url_page, params)
 
 
 def ic_sponsorship(request):
-    ic_id = request.session.get('user')
     url_page = 'pages/sponsorship.html'
-    data = {"ic_id": ic_id}
-    # print(data)
-    params = QueryUsers.users_get(data)
-    # print(params)
+    params = {}
+    if 'user' in request.session:
+        ic_id = request.session.get('user')
+        data = {"ic_id": ic_id}
+        # print(data)
+        params = QueryUsers.users_get(data)
     return render(request, url_page, params)
 
 
 def ic_pre_exam(request):
-    ic_id = request.session.get('user')
     url_page = 'pages/pre_exam.html'
-    data = {"ic_id": ic_id}
-    # print(data)
-    params = QueryUsers.users_get(data)
-    # print(params)
+    params = {}
+    if 'user' in request.session:
+        ic_id = request.session.get('user')
+        data = {"ic_id": ic_id}
+        # print(data)
+        params = QueryUsers.users_get(data)
     return render(request, url_page, params)
 
 
 def ic_faqs(request):
-    ic_id = request.session.get('user')
     url_page = 'pages/faqs.html'
-    data = {"ic_id": ic_id}
-    # print(data)
-    params = QueryUsers.users_get(data)
-    # print(params)
+    params = {}
+    if 'user' in request.session:
+        ic_id = request.session.get('user')
+        data = {"ic_id": ic_id}
+        # print(data)
+        params = QueryUsers.users_get(data)
     return render(request, url_page, params)
 
 
@@ -313,3 +323,38 @@ def logout_page(request):
     except:
         return redirect('login')
     return redirect('login')
+
+
+def forget_password(request):
+    if request.method == "POST":
+        # print("test")
+        ic_id = request.POST.get("ic_id", "")
+
+        data = {
+            "ic_id": ic_id,
+        }
+        user = QueryUsers.users_get(data)
+
+        if bool(user):
+            # send to the email
+            print("print email")
+        else:
+            print("show error to user if the account doesnt exist.")
+
+    return render(request, 'pages/login.html')
+
+
+class PDFView(PDFTemplateResponseMixin, DetailView):
+    template_name = 'pages/ICLAYOUT_BRIEF.html'
+    context_object_name = 'obj'
+
+
+def ic_privacy(request):
+    url_page = 'pages/privacy_notice.html'
+    params = {}
+    if 'user' in request.session:
+        ic_id = request.session.get('user')
+        data = {"ic_id": ic_id}
+        # print(data)
+        params = QueryUsers.users_get(data)
+    return render(request, url_page, params)

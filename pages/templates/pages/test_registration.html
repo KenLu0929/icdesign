@@ -39,9 +39,9 @@
             <div id="test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h1>Personal Information：</h1>
-                        <p class="text-h3">This should contains what user need to know before they fill their personal
-                            information. </p>
+                        <h1>個人資訊：</h1>
+                        <!--<p class="text-h3">This should contains what user need to know before they fill their personal-->
+                        <!--    information. </p>-->
                     </div>
                 </div>
                 <hr>
@@ -51,21 +51,21 @@
                             <div class="form-floating">
                                 <input type="text" name="ic_id" id="icid" class="form-control" placeholder="ID"
                                        maxlength="10" value="{{ ic_id }}" disabled>
-                                <label for="icid">ID</label>
+                                <label for="icid">身分證字號</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="idname" name="ic_name"
                                        placeholder="e.g, Jhon Doe" value="{{ ic_name }}" disabled>
-                                <label for="icid">Full Name</label>
+                                <label for="icid">姓名</label>
                             </div>
                         </div>
                     </div>
                     <div class="align-items-center mt-4">
                         <div class="form-floating row g-2">
                             <div class="col-md-12">
-                                <label for="datepicker">Birth of Date</label>
+                                <label for="datepicker">出生日期</label>
                             </div>
                             <div class="col-md-12">
                                 <input id="datepicker" name="ic_bod" type="date" class="form-control"
@@ -77,18 +77,18 @@
                     <div class="align-items-center mt-4">
                         <div class="row g-2">
                             <div class="col-md">
-                                <span>Select Gender</span>
+                                <span>性別</span>
                             </div>
                             <div class="col-md row g-2" style="margin-left: 0rem;">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="ic_gender"
-                                           id="selectGender1" value="man">
-                                    <label class="form-check-label" for="selectGender1">Man</label>
+                                           id="selectGender1" value="男">
+                                    <label class="form-check-label" for="selectGender1">男</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="ic_gender"
-                                           id="selectGender2" value="woman">
-                                    <label class="form-check-label" for="selectGender2">Woman</label>
+                                           id="selectGender2" value="女">
+                                    <label class="form-check-label" for="selectGender2">女</label>
                                 </div>
                             </div>
                         </div>
@@ -98,15 +98,15 @@
                             <div class="form-floating">
                                 <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control"
                                        placeholder="ID"
-                                       maxlength="10" value="{{ic_phone }}">
-                                <label for="icphonenumber">Phone Number</label>
+                                       maxlength="10" value="{{ic_phone }}", pattern="[09][0-9]{8}">
+                                <label for="icphonenumber">手機號碼</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="ictelpnumber" name="ic_telephone"
-                                       placeholder="e.g, Jhon Doe" value="{{ ic_telp }}">
-                                <label for="ictelpnumber">Telp Number</label>
+                                       placeholder="e.g, Jhon Doe" value="{{ ic_telp }}" pattern="[0][0-9]{11}">
+                                <label for="ictelpnumber">電話號碼</label>
                             </div>
                         </div>
                     </div>
@@ -114,14 +114,14 @@
                         <div class="form-floating">
                             <input type="email" id="idemail" name="ic_email" class="form-control"
                                    placeholder="this@youremail.com" required>
-                            <label for="idemail">Email address</label>
+                            <label for="idemail">Email ＊相關後續考試聯絡資訊將透過此聯絡</label>
                         </div>
                     </div>
                     <div class="align-items-center mt-4">
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
                                       style="height : 100px;" name="ic_address" required></textarea>
-                            <label for="textareaAddress">Address</label>
+                            <label for="textareaAddress">郵寄地址</label>
                         </div>
                     </div>
                     <div class="row g-3 mt-2">
@@ -129,25 +129,26 @@
                             <div class="form-floating">
                                 <input type="text" id="schoolName" name="ic_school" class="form-control"
                                        placeholder="School name">
-                                <label for="schoolName">School name</label>
+                                <label for="schoolName">學校名稱</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="department" name="ic_department" class="form-control"
                                        placeholder="Department">
-                                <label for="department">Department</label>
+                                <label for="department">系所／年級</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <select class="form-select" id="selectStatusschool" name="ic_status_school"
                                         aria-label="Floating label select example">
-                                    <option value="" selected>Select your degree</option>
-                                    <option value="study">Study</option>
-                                    <option value="graduate">Graduate</option>
+                                    <option value="" selected>--請選擇--</option>
+                                    <option value="在學">在學</option>
+                                    <option value="畢業">畢業</option>
+                                    <option value="肄業">肄業</option>
                                 </select>
-                                <label for="selectStatusschool">Status School</label>
+                                <label for="selectStatusschool">就學狀態</label>
                             </div>
                         </div>
                     </div>
@@ -157,21 +158,21 @@
                             <div class="form-floating">
                                 <input type="text" id="companyName" name="ic_company" class="form-control"
                                        placeholder="Company name">
-                                <label for="companyName">Company Name</label>
+                                <label for="companyName">公司名稱</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="selectPosition" name="ic_service_department" class="form-control"
                                        placeholder="Service Department">
-                                <label for="selectPosition">Service Department</label>
+                                <label for="selectPosition">服務部門</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
                                        placeholder="Year of experience" value="0">
-                                <label for="companyName">Year of experience</label>
+                                <label for="companyName">相關工作經驗年資</label>
                             </div>
                         </div>
                     </div>
@@ -180,27 +181,28 @@
                             <div class="form-floating">
                                 <input type="text" id="userTitle" name="ic_job_position" class="form-control"
                                        placeholder="Job Position">
-                                <label for="userTitle">Job Position</label>
+                                <label for="userTitle">職稱</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <select class="form-select" id="selectDegree" name="ic_degree"
                                         aria-label="Floating label select example">
-                                    <option value="" selected>Select your degree</option>
-                                    <option value="high_school">High School</option>
-                                    <option value="bachelor">Bachelor</option>
-                                    <option value="master">Master</option>
-                                    <option value="doctor">Doctor</option>
+                                    <option value="" selected>--請選擇--</option>
+                                    <option value="高中">專科</option>
+                                     <option value="專科">專科</option>
+                                    <option value="學士">學士</option>
+                                    <option value="碩士">碩士</option>
+                                    <option value="博士">博士</option>
                                 </select>
-                                <label for="selectDegree">Highest Degree</label>
+                                <label for="selectDegree">最高學歷</label>
                             </div>
                         </div>
                     </div>
                     <div class="align-items-center">
                         <div class="row g-2 mt-4">
                             <div class="col-12 col-md-4">
-                                <span>Select your test</span>
+                                <span>選擇考試科目</span>
                             </div>
                             <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
                                 {% for field in exams_fields %}
@@ -221,8 +223,7 @@
                         <div class="col">
                             <div>
                                 <label>
-                                    By clicking Submit you are agree to <a href="#">Terms and
-                                    Conditions</a>
+                                    按下送出表示您已同意上述 <a href="#">注意事項</a>
                                 </label>
                             </div>
                             <div>
@@ -233,7 +234,7 @@
 <!--                                </button>-->
                                 <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit">
                                     <!--                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
-                                    Submit
+                                    送出
                                 </button>
                             </div>
 
@@ -245,28 +246,27 @@
             <div id="summary_test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h1>Personal Information：</h1>
-                        <p class="text-h3">This should contains what user need to know before they fill their personal
-                            information. </p>
+                        <h1>個人資訊：</h1>
+                        <p class="text-h3">請確認資訊沒有錯誤 </p>
                     </div>
                 </div>
                 <hr>
                 <!--                <form id="form_summary_test_registration">-->
                 <div class="mb-3 row">
-                    <label for="showCourse" class="col-sm-4 col-form-label">Test</label>
+                    <label for="showCourse" class="col-sm-4 col-form-label">報考考科</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showCourse" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="displayicID" class="col-sm-4 col-form-label">ID</label>
+                    <label for="displayicID" class="col-sm-4 col-form-label">身分證字號</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="displayicID"
                                value="{{ ic_id }}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showFullname" class="col-sm-4 col-form-label">Full Name</label>
+                    <label for="showFullname" class="col-sm-4 col-form-label">姓名</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showFullname"
                                value="{{ ic_name }}">
@@ -279,74 +279,74 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showGender" class="col-sm-4 col-form-label">Gender</label>
+                    <label for="showGender" class="col-sm-4 col-form-label">性別</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showGender" value="">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="showPhone" class="col-sm-4 col-form-label">Phone Number</label>
+                    <label for="showPhone" class="col-sm-4 col-form-label">手機號碼</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showPhone" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showTelp" class="col-sm-4 col-form-label">Telp Number</label>
+                    <label for="showTelp" class="col-sm-4 col-form-label">電話號碼</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showTelp" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showAddress" class="col-sm-4 col-form-label">Address</label>
+                    <label for="showAddress" class="col-sm-4 col-form-label">郵寄地址</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showAddress" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showSchoolName" class="col-sm-4 col-form-label">School Name</label>
+                    <label for="showSchoolName" class="col-sm-4 col-form-label">學校名稱</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showSchoolName" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showDepartment" class="col-sm-4 col-form-label">Department</label>
+                    <label for="showDepartment" class="col-sm-4 col-form-label">系所／年級</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showDepartment" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showStatusSchool" class="col-sm-4 col-form-label">Status School</label>
+                    <label for="showStatusSchool" class="col-sm-4 col-form-label">就學狀態</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showStatusSchool" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showCompanyName" class="col-sm-4 col-form-label">Company Name</label>
+                    <label for="showCompanyName" class="col-sm-4 col-form-label">公司名稱</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showCompanyName" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showPosition" class="col-sm-4 col-form-label">Service Department</label>
+                    <label for="showPosition" class="col-sm-4 col-form-label">服務部門</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showPosition" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showExp" class="col-sm-4 col-form-label">Year of Experiences</label>
+                    <label for="showExp" class="col-sm-4 col-form-label">相關工作經驗年資</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showExp" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showTitle" class="col-sm-4 col-form-label">Job Position</label>
+                    <label for="showTitle" class="col-sm-4 col-form-label">職稱</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showTitle" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="showDegree" class="col-sm-4 col-form-label">Highest Degree</label>
+                    <label for="showDegree" class="col-sm-4 col-form-label">最高學歷</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showDegree" value="">
                     </div>
@@ -354,14 +354,14 @@
                 <div class="row justify-content-start mt-4">
                     <div class="col">
                         <button id="btn_modify_reg" class="btn btn-outline-secondary mt-4 col-4" type="button">
-                            Modify
+                            修改
                         </button>
 <!--                        <button class="btn btn-primary mt-4 col-3" type="button" disabled>-->
 <!--                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
 <!--                            Loading...-->
 <!--                        </button>-->
                         <button id="btn_final_submit" type="button" class="btn btn-primary mt-4 col-4">
-                            Submit
+                            確認
                         </button>
                     </div>
                 </div>
@@ -372,7 +372,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h1>請選擇欲報名的科別</h1>
-                        <p class="text-h3">目前尚未開放任何考試科別 <a href="">see text schedule</a></p>
+                        <p class="text-h3">目前尚未開放任何考試科別 <a href="">查看簡章</a></p>
                         <div class="col">
                         </div>
                     </div>
@@ -382,8 +382,8 @@
             <div id="last_stage_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h1>You've done the registration</h1>
-                        <p class="text-h3">The registration is done, now you may proceed to the next step</p>
+                        <h1>您已完成註冊</h1>
+                        <p class="text-h3">您已完成註冊與報考</p>
                     </div>
                 </div>
             </div>

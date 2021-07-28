@@ -1,16 +1,23 @@
-from datetime import datetime
-
-from django.utils import timezone
 from django.db import models
-from icdesign import utils
-from django.utils import timezone
-from icdesign import settings
 from django.utils.translation import gettext_lazy as _
 
-
 class GenderClass(models.TextChoices):
-    MAN = 'man', _('male')
-    WOMAN = 'woman', _('female')
+    MAN = '男', _('男')
+    WOMAN = '女', _('女')
+
+
+class DegreeClass(models.TextChoices):
+    HIGH_SCHOOL = '高中', _('高中')
+    SPECIALIST = '專科', _('專科')
+    BACHELOR = '學士', _('學士')
+    MASTER = '碩士', _('碩士')
+    DOCTOR = '博士', _('博士')
+
+
+class StatusSchoolClass(models.TextChoices):
+    STUDY = '在學', _('在學')
+    GRADUATE = '畢業', _('畢業')
+    UNDERGRADUATE = '肄業', _('肄業')
 
 
 # Create your models here.
@@ -32,15 +39,20 @@ class Users(models.Model):
     ic_telephone = models.CharField(max_length=100, null=True)
     # education data
     ic_school = models.CharField(max_length=100, null=True)
-    ic_status_school = models.CharField(max_length=100, null=True)
-    ic_degree = models.CharField(max_length=100, null=True)
+    ic_status_school = models.CharField(max_length=100,
+                                        choices=StatusSchoolClass.choices,
+                                        null=True)
+    ic_degree = models.CharField(max_length=100,
+                                 choices=DegreeClass.choices,
+                                 null=True)
     ic_company = models.CharField(max_length=100, null=True)
     ic_department = models.CharField(max_length=100, null=True)
     ic_service_department = models.CharField(max_length=100, null=True)
     ic_job_position = models.CharField(max_length=100, null=True)
     ic_yearofexp = models.IntegerField(null=True)
     # additional data
-    ic_graduated_status = models.IntegerField(null=True, default=0)  # 0 = not started yet, 1 = on progress, 2 = graduated.
+    ic_graduated_status = models.IntegerField(null=True,
+                                              default=0)  # 0 = not started yet, 1 = on progress, 2 = graduated.
     last_login = models.IntegerField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, null=True)
@@ -78,7 +90,8 @@ class Exams(models.Model):
     exam_start_time = models.DateTimeField(null=True)
     exam_end_time = models.DateTimeField(null=True)
     exam_place = models.CharField(max_length=100, null=True)
-    exam_is_active = models.IntegerField(null=True, default=0) # 0 = Not Active, 1 = Active
+    exam_is_active = models.IntegerField(null=True, default=0)  # 0 = Not Active, 1 = Active
+    exam_prerequisite = models.CharField(max_length=100, null=True) # string with separator ","
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, null=True)
 
@@ -94,6 +107,7 @@ class News(models.Model):
     news_title = models.CharField(max_length=100, null=True)
     news_body = models.CharField(max_length=500, null=True)
     news_author = models.CharField(max_length=100, null=True)
+    news_is_active = models.IntegerField(null=True, default=1)  # 0 = Not Active, 1 = Active
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, null=True)
 
