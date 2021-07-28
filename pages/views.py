@@ -12,15 +12,19 @@ from django.views.generic import DetailView
 # Create your views here.
 def index(request):
     url_page = 'pages/index.html'
-    params = {}
+    CUS_PARAMS = {
+        "ic_id": "",
+        "ic_name": "",
+    }
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
         # print(data)
-        params = QueryUsers.users_get(data)
-    params["news_fields"] = QueryNews.news_get()
+        CUS_PARAMS = QueryUsers.users_get(data)
+
+    CUS_PARAMS["news_fields"] = QueryNews.news_get()
     # print(params)
-    return render(request, url_page, params)
+    return render(request, url_page, CUS_PARAMS)
 
 
 def registration_page(request):
@@ -60,11 +64,14 @@ def registration_page(request):
             else:
                 # print("test2")
                 request.session['user'] = ic_id
-                url_page = 'pages/test_registration.html'
-                return render(request, url_page)
-
+                # url_page = 'pages/test_registration.html'
+                redirect("test_registration")
     url_page = 'pages/registration.html'
-    return render(request, url_page)
+    CUS_PARAMS = {
+        "ic_id": "",
+        "ic_name": "",
+    }
+    return render(request, url_page, CUS_PARAMS)
 
 
 @login_only
@@ -125,59 +132,73 @@ def test_registration_page(request):
 
     data = {"ic_id": ic_id}
     # print(data)
-    params = QueryUsers.users_get(data)
-    params = utils.dict_clean(params)
+    CUS_PARAMS = QueryUsers.users_get(data)
+    CUS_PARAMS = utils.dict_clean(CUS_PARAMS)
     exams_data = {
         "exam_is_active": 1,
     }
-    params["exams_fields"] = QueryExams.exams_get(exams_data, True)
+    CUS_PARAMS["exams_fields"] = QueryExams.exams_get(exams_data, True)
+    CUS_PARAMS["title"] = ""
+    CUS_PARAMS["body"] = ""
     # params["exams_fields"] = {"test": "test"}
     # print(params)
-    return render(request, url_page, params)
+    return render(request, url_page, CUS_PARAMS)
 
 
 def ic_test_info_page(request):
     url_page = 'pages/ic_test_info.html'
-    params = {}
+    CUS_PARAMS = {
+        "ic_id": "",
+        "ic_name": "",
+    }
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
         # print(data)
-        params = QueryUsers.users_get(data)
-    return render(request, url_page, params)
+        CUS_PARAMS = QueryUsers.users_get(data)
+    return render(request, url_page, CUS_PARAMS)
 
 
 def ic_sponsorship(request):
     url_page = 'pages/sponsorship.html'
-    params = {}
+    CUS_PARAMS = {
+        "ic_id": "",
+        "ic_name": "",
+    }
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
         # print(data)
-        params = QueryUsers.users_get(data)
-    return render(request, url_page, params)
+        CUS_PARAMS = QueryUsers.users_get(data)
+    return render(request, url_page, CUS_PARAMS)
 
 
 def ic_pre_exam(request):
     url_page = 'pages/pre_exam.html'
-    params = {}
+    CUS_PARAMS = {
+        "ic_id": "",
+        "ic_name": "",
+    }
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
         # print(data)
-        params = QueryUsers.users_get(data)
-    return render(request, url_page, params)
+        CUS_PARAMS = QueryUsers.users_get(data)
+    return render(request, url_page, CUS_PARAMS)
 
 
 def ic_faqs(request):
     url_page = 'pages/faqs.html'
-    params = {}
+    CUS_PARAMS = {
+        "ic_id": "",
+        "ic_name": "",
+    }
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
         # print(data)
-        params = QueryUsers.users_get(data)
-    return render(request, url_page, params)
+        CUS_PARAMS = QueryUsers.users_get(data)
+    return render(request, url_page, CUS_PARAMS)
 
 
 @login_only
@@ -197,6 +218,8 @@ def profile_page(request):
     # print(params)
     # print(result)
     params["exams_fields"] = result
+    params["title"] = ""
+    params["body"] = ""
     return render(request, url_page, params)
 
 
@@ -229,7 +252,8 @@ def profile_modify(request):
 
     params = QueryUsers.users_get(data)
     params = utils.dict_clean(params)
-
+    params["title"] = ""
+    params["body"] = ""
     return render(request, url_page, params)
 
 
@@ -237,7 +261,7 @@ def profile_modify(request):
 def change_password(request):
     ic_id = request.session.get('user')
     if request.method == "POST":
-        print(request.POST)
+        # print(request.POST)
         ic_pass = request.POST.get("ic_password", "")
         ic_new_repassword = request.POST.get("ic_new_repassword", "")
         ic_new_password = request.POST.get("ic_new_password", "")
@@ -314,7 +338,13 @@ def login_page(request):
             # print(resp)
             return render(request, 'pages/login.html', resp)
 
-    return render(request, 'pages/login.html')
+    CUS_PARAMS = {
+        "ic_id": "",
+        "ic_name": "",
+        "error": False,
+        "message": "",
+    }
+    return render(request, 'pages/login.html', CUS_PARAMS)
 
 
 def logout_page(request):
@@ -340,8 +370,13 @@ def forget_password(request):
             print("print email")
         else:
             print("show error to user if the account doesnt exist.")
-
-    return render(request, 'pages/login.html')
+    CUS_PARAMS = {
+        "ic_id": "",
+        "ic_name": "",
+        "error": False,
+        "message": "",
+    }
+    return render(request, 'pages/login.html', CUS_PARAMS)
 
 
 class PDFView(PDFTemplateResponseMixin, DetailView):
@@ -351,10 +386,15 @@ class PDFView(PDFTemplateResponseMixin, DetailView):
 
 def ic_privacy(request):
     url_page = 'pages/privacy_notice.html'
-    params = {}
+    CUS_PARAMS = {
+        "ic_id": "",
+        "ic_name": "",
+        "error": False,
+        "message": "",
+    }
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
         # print(data)
-        params = QueryUsers.users_get(data)
-    return render(request, url_page, params)
+        CUS_PARAMS = QueryUsers.users_get(data)
+    return render(request, url_page, CUS_PARAMS)
