@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
+from icdesign import error_messages
 from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile
 
 # for pdf rendering/view
@@ -38,14 +39,14 @@ def registration_page(request):
         if ic_id == "" or ic_name == "" or ic_pass == "":
             params = {
                 "error": True,
-                "message": "Please fill the form."
+                "message": error_messages.PLEASE_FILL_FORM
             }
             return JsonResponse(params)
 
         if ic_pass != confirm_ic_pass:
             params = {
                 "error": True,
-                "message": "Your password are unmatched."
+                "message": error_messages.UNMATCHED_PASS
             }
             return JsonResponse(params)
         else:
@@ -53,12 +54,18 @@ def registration_page(request):
                     "last_login": utils.currentUnixTimeStamp()}
             # print("testing")
             # print(data)
+            if QueryUsers.users_checking_fields_exists({"ic_id": ic_id}):
+                params = {
+                    "error": True,
+                    "message": error_messages.ID_EXIST
+                }
+                return JsonResponse(params)
             obj, q = QueryUsers.users_getsert(data)
             # print(obj, q, type(q))
             if q == False:
                 params = {
                     "error": True,
-                    "message": "Users already exists."
+                    "message": obj
                 }
                 return JsonResponse(params)
             else:
@@ -66,6 +73,7 @@ def registration_page(request):
                 request.session['user'] = ic_id
                 # url_page = 'pages/test_registration.html'
                 redirect("test_registration")
+
     url_page = 'pages/registration.html'
     CUS_PARAMS = {
         "ic_id": "",
@@ -89,7 +97,7 @@ def test_registration_page(request):
             params = {
                 "error": True,
                 "title": "Failed",
-                "body": "Please select the exams."
+                "body": error_messages.SELECT_EXAM
             }
             return JsonResponse(params)
         res = checking_user_taken_exam(ic_id, ic_test)
@@ -99,7 +107,7 @@ def test_registration_page(request):
             params = {
                 "error": True,
                 "title": "Failed",
-                "body": f"you already took {taken_exams} exams."
+                "body": error_messages.TOOK_EXAM + taken_exams
             }
             return JsonResponse(params)
         # print("test_registration_page 2:", res)
@@ -108,17 +116,24 @@ def test_registration_page(request):
             params = {
                 "error": True,
                 "title": "Failed",
-                "body": "Some Error Happen please contact admin."
+                "body": error_messages.GENERAL_ERROR
             }
             return JsonResponse(params)
 
         filterQ = {"ic_id": ic_id}
-        q = QueryUsers.users_update(filterQ, data)
+        q, message = QueryUsers.users_update(filterQ, data)
+        if message is not None:
+            params = {
+                "error": True,
+                "title": "Failed",
+                "body": message
+            }
+            return JsonResponse(params)
         if not q:
             params = {
                 "error": True,
                 "title": "Failed",
-                "body": "Information not updated."
+                "body": error_messages.NOT_UPDATED_INFO
             }
             return JsonResponse(params)
 
@@ -141,7 +156,7 @@ def test_registration_page(request):
     CUS_PARAMS["title"] = ""
     CUS_PARAMS["body"] = ""
     # params["exams_fields"] = {"test": "test"}
-    # print(params)
+    # print(CUS_PARAMS)
     return render(request, url_page, CUS_PARAMS)
 
 
@@ -226,34 +241,45 @@ def profile_page(request):
 @login_only
 def profile_modify(request):
     ic_id = request.session.get('user')
-    url_page = 'pages/profile_modify.html'
-    data = {"ic_id": ic_id}
-    # print(data)
+
+    # print(request)
 
     if request.method == "POST":
+
         filterQ = {"ic_id": ic_id}
+
         data = update_profile(request.POST)
-        q = QueryUsers.users_update(filterQ, data)
+        # print("testing: ",data)
+        q, message = QueryUsers.users_update(filterQ, data)
+        if message is not None:
+            params = {
+                "error": True,
+                "title": "Failed",
+                "body": message
+            }
+            return JsonResponse(params)
         if not q:
             params = {
                 "error": True,
                 "title": "Failed",
-                "body": "Information not updated."
+                "body": error_messages.NOT_UPDATED_INFO
             }
             return JsonResponse(params)
 
         params = {
             "error": False,
             "title": "Success",
-            "body": "Profile Information is updated."
+            "body": error_messages.UPDATED_INFO
         }
         # print(params)
         return JsonResponse(params)
 
+    data = {"ic_id": ic_id}
     params = QueryUsers.users_get(data)
     params = utils.dict_clean(params)
     params["title"] = ""
     params["body"] = ""
+    url_page = 'pages/profile_modify.html'
     return render(request, url_page, params)
 
 
@@ -270,7 +296,7 @@ def change_password(request):
             params = {
                 "error": False,
                 "title": "Success",
-                "body": "Your password are unmatched."
+                "body": error_messages.UNMATCHED_PASS
             }
             return JsonResponse(params)
 
@@ -288,14 +314,14 @@ def change_password(request):
             params = {
                 "error": False,
                 "title": "Success",
-                "body": "Your Password is changed."
+                "body": error_messages.PASSWORD_CHANGED
             }
             return JsonResponse(params)
         else:
             params = {
                 "error": True,
                 "title": "Failed",
-                "body": "Old Password is wrong."
+                "body": error_messages.WRONG_OLD_PASSWORD
             }
             # print(resp)
             return JsonResponse(params)
@@ -333,7 +359,7 @@ def login_page(request):
         else:
             resp = {
                 "error": True,
-                "message": "invalid id or password"
+                "message": error_messages.INVALID_LOGIN
             }
             # print(resp)
             return render(request, 'pages/login.html', resp)
