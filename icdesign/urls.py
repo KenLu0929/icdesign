@@ -31,6 +31,7 @@ urlpatterns = [
     path('profile', views.profile_page, name="profile"),
     path('profilemodify', views.profile_modify, name="profile_modify"),
     path('changepassword', views.change_password, name="change_password"),
+    path('forgetpassword', views.forget_password, name="forget_password"),
     path('testregistration', views.test_registration_page, name="test_registration"),
     path('ictestinfo', views.ic_test_info_page, name="ic_test_info"),
     path('preexam', views.ic_pre_exam, name="ic_pre_exam"),
@@ -40,7 +41,4 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
 # print(urlpatterns)

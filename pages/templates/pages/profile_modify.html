@@ -88,12 +88,12 @@
                                             <div class="form-check form-check-inline">
 
                                                 <input class="form-check-input" type="radio" name="ic_gender"
-                                                       id="selectGender1" value="男" {% if ic_gender == "man" %} checked{% endif %}>
+                                                       id="selectGender1" value="男" {% if ic_gender == "男" %} checked{% endif %}>
                                                 <label class="form-check-label" for="selectGender1">男</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="ic_gender"
-                                                       id="selectGender2" value="女" {% if ic_gender == "woman" %} checked{% endif %}>
+                                                       id="selectGender2" value="女" {% if ic_gender == "女" %} checked{% endif %}>
                                                 <label class="form-check-label" for="selectGender2">女</label>
                                             </div>
                                         </div>
@@ -181,7 +181,7 @@
                                     <div class="col-md">
                                         <div class="form-floating">
                                             <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
-                                                   placeholder="Year of experience" value="{{ ic_yearofexp }}">
+                                                   placeholder="Year of experience" value="{{ ic_yearofexp|default:0 }}" min="0">
                                             <label for="companyName">相關工作經驗年資</label>
                                         </div>
                                     </div>
@@ -235,25 +235,28 @@
 
 <script>
     function selectElement(id, valueToSelect) {
-    let element = document.getElementById(id);
-    element.value = valueToSelect;
-}
+        let element = document.getElementById(id);
+        element.value = valueToSelect;
+    }
+
     selectElement('selectStatusschool', '{{ ic_status_school }}')
     selectElement('selectDegree', '{{ ic_degree }}')
 
 
-
+    let ErrData;
     $('#form_profile_modify').on('submit', function (e) {
 
-
+        // console.log("testing")
         e.preventDefault();
-
+        // console.log($(this).serialize())
         $.ajax({
             type: "POST",
             url: "{% url 'profile_modify' %}",
             data: $(this).serialize(),
             success: function (data) {
                 /* response message */
+                // console.log(data)
+                ErrData = data.error
                 $('#modalMessageTitle').html(data.title);
                 $('#modalMessageBody').html(data.body);
                 $('#messageModal').modal('show');
@@ -262,7 +265,10 @@
     });
 
     $(document).on('hidden.bs.modal', '#messageModal', function () {
-        window.location.href = "{% url 'profile' %}";
+        if (ErrData != true) {
+            window.location.href = "{% url 'profile' %}";
+        }
+
     });
 
     $(document).ready(function () {

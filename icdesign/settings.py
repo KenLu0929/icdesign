@@ -173,10 +173,12 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 60 * 60
 SESSION_SAVE_EVERY_REQUEST = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-ADMIN_EMAIL = ""
-
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "icdesigntaiwan@gmail.com"
+EMAIL_HOST_PASSWORD = "123qweasd!@#"
 # LOGGING = {
 #     'version': 1,
 #     'disable_existing_loggers': False,

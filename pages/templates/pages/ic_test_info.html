@@ -1,5 +1,5 @@
 {% extends "pages/base.html" %} {% block title %}IC佈局設計能力鑑定資訊{% endblock %} {% block content %}
-
+{% load static %}
 <body> {% include "pages/header.html" %} <div class="container py-4">
         <div class="row g-5 mb-4">
             <div class="col-md-12">
@@ -7,14 +7,9 @@
                 <!--<p>This should be at least a little bit information about this section for</p>-->
                 <br>
                 <ul class="icon-list">
-                    <li><a href="https://www.tsri.org.tw/icdesign/doc/IC_layout_FORM_109.pdf" rel="noopener"
-                            target="_blank">109年度IC佈局簡章下載</a></li>
-                    <li><a href="https://www.tsri.org.tw/icdesign/doc/IC_layout_109.pdf" rel="noopener"
-                            target="_blank">IC佈局題庫下載</a>
+                    <li><a href="{% static 'download_file/IC_Design_brief.pdf' %}">109年度IC佈局簡章下載</a></li>
+                    <li><a href="{% static 'download_file/IC_layout_110_question_bank.pdf' %}">IC佈局題庫下載</a>
                     </li>
-                    <!--<li><a href="https://www.tsri.org.tw/icdesign/doc/promotion_109.pdf" rel="noopener"-->
-                    <!--        target="_blank">IC設計能力鑑定報名優惠詳細辦法</a>-->
-                    <!--</li>-->
                 </ul>
             </div>
         </div>
@@ -61,8 +56,8 @@
                         <table class="table mb-4">
                             <thead>
                                 <tr>
-                                    <th scope="col">科目</th>
-                                    <th scope="col">鑑定內容</th>
+                                    <th scope="col" style="width: 40px;">科目</th>
+                                    <th scope="col" style="width: 40px;">鑑定內容</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -173,15 +168,15 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">86-100</th>
+                                    <th scope="row" style="width: 120px;">86-100</th>
                                     <td>優。熟練且可獨立完成積體電路佈局與驗證，並熟練佈局驗證除錯能力與技巧。</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">71-85</th>
+                                    <th scope="row" style="width: 120px;">71-85</th>
                                     <td>佳。熟練且可獨立完成積體電路佈局與驗證，並具備基本佈局驗證除錯能力。</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">70</th>
+                                    <th scope="row" style="width: 120px;">70</th>
                                     <td>合格。具備基本獨立完成積體電路佈局與驗證能力。</td>
                                 </tr>
                             </tbody>

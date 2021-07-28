@@ -3,6 +3,8 @@ import logging
 from django.core import serializers
 import json
 from icdesign.utils import get_fields_only
+from django.db import IntegrityError
+from icdesign import error_messages
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -20,8 +22,8 @@ class QueryUsers:
         try:
             # user.save()
             obj, created = models.Users.objects.update_or_create(**data)
-            # print(created)
-            # print(obj)
+            print(created)
+            print(obj)
             # logger.info("Data created Successfully: ", created)
             return True
         except Exception as e:
@@ -36,6 +38,8 @@ class QueryUsers:
             # user.save()
             obj, created = models.Users.objects.get_or_create(**data)
             # logger.info("Data created Successfully: ", created)
+            print(obj)
+            print(created)
             return obj, created
         except Exception as e:
             logger.error("Data: ", data)
@@ -62,10 +66,17 @@ class QueryUsers:
     @staticmethod
     def users_update(filter_data, updated_data):
         # print(my_filter)
+        # print(updated_data)
+        # print("testing")
+        try:
+            q = models.Users.objects.filter(**filter_data).update(**updated_data)
+            return q, None
+        except IntegrityError:
+            return None, error_messages.EMAIL_TAKEN
 
-        q = models.Users.objects.filter(**filter_data).update(**updated_data)
-        # print(q)
-        # print("output:", users_json[0])
+    @staticmethod
+    def users_checking_fields_exists(filter_data):
+        q = models.Users.objects.filter(**filter_data).exists()
         return q
 
 

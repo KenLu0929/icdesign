@@ -35,7 +35,7 @@
 </div>
 <div class="container pt-2 pb-5">
     <div class="row g-2">
-        <div class="col col-md-4">
+        <div class="col-12 col-md-4">
             <div class="card py-3 px-3">
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
@@ -54,7 +54,7 @@
             </div>
 
         </div>
-        <div class="col col-md-8">
+        <div class="col-12 col-md-8">
             <div class="card">
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane py-3 px-3 fade show active" id="v-pills-home" role="tabpanel"
@@ -238,14 +238,14 @@
                          aria-labelledby="v-pills-messages-tab" style="min-height: 37vh;">
                         <div class="container">
                             <h4 class="mb-4">成績與證書下載</h4>
-                            <table class="table">
+                            <table class="table row">
                                 {% for field in exams_fields %}
-                                <tr>
-                                    <td>{{field.exam_ticket_no}}</td>
-                                    <td>{{field.exam_id}}</td>
-                                    <td>{{field.exam_place}}</td>
-                                    <td>{{field.exam_grade}}</td>
-                                    <th class="complain text-end"><a
+                                <tr class="row">
+                                    <td class="col-12 col-md-4">{{field.exam_ticket_no}}</td>
+                                    <td class="col-12 col-md-2">{{field.exam_id}}</td>
+                                    <td class="col-12 col-md-2">{{field.exam_place}}</td>
+                                    <td class="col-12 col-md-1">{{field.exam_grade}}</td>
+                                    <th class="complain text-end col-12 col-md-3"><a
                                             href="https://www.tsri.org.tw/icdesign/doc/reconfirm_v109.doc">Complain
                                         grade</a></th>
                                 </tr>

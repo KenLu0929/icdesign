@@ -37,9 +37,6 @@ footer a{
     margin-top: .5rem;
     overflow: auto;
 }
-.table > :not(caption) > * > *{
-    width: 40px;
-}
 
 .gj-textbox-md{
     border:1px solid #ced4da !important;
