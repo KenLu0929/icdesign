@@ -50,14 +50,14 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" name="ic_id" id="icid" class="form-control" placeholder="ID"
-                                       maxlength="10" value="{{ ic_id }}" disabled>
+                                       maxlength="10" value="{{ ic_id }}" readonly>
                                 <label for="icid">身分證字號</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="idname" name="ic_name"
-                                       placeholder="e.g, Jhon Doe" value="{{ ic_name }}" disabled>
+                                       placeholder="e.g, Jhon Doe" value="{{ ic_name }}" readonly>
                                 <label for="icid">姓名</label>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                     <div class="align-items-center mt-4">
                         <div class="form-floating">
                             <input type="email" id="idemail" name="ic_email" class="form-control"
-                                   placeholder="this@youremail.com" value="{{ ic_email }}" disabled>
+                                   placeholder="this@youremail.com" value="{{ ic_email }}" readonly>
                             <label for="idemail">Email ＊相關後續考試聯絡資訊將透過此聯絡</label>
                         </div>
                     </div>
@@ -416,11 +416,11 @@
     // console.log(test)
     document.getElementById('form_test_registration').onsubmit = function (e) {
         e.preventDefault();
-        console.log("test")
-        $('#displayicID').val($(this).val());
+        // console.log("test")
+        $('#displayicID').val($('#icid').val());
         let values = [];
         $("input[name='ic_test']:checked").each(function () {
-            values.push($("#icid").val());
+            values.push($(this).val());
         });
         // console.log(values)
         $('#showCourse').val(values.toString());

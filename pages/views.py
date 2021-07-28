@@ -385,7 +385,7 @@ def forget_password(request):
     if request.method == "POST":
         # print("test")
         ic_id = request.POST.get("ic_id", "")
-
+        # print(ic_id)
         data = {
             "ic_id": ic_id,
         }
@@ -393,9 +393,27 @@ def forget_password(request):
 
         if bool(user):
             # send to the email
-            print("print email")
+            email = user.get("ic_email", "")
+            if email == '':
+                resp = {
+                    "error": True,
+                    "message": error_messages.EMAIL_NOT_REGISTERED
+                }
+                return JsonResponse(resp)
+
+            utils.send_email(error_messages.SUBJECT_EMAIL_FORGET_PASS, error_messages.BODY_EMAIL_FORGET_PASS + user.get("ic_pass"), [email])
+            # print(res)
+            resp = {
+                "error": False,
+                "message": email
+            }
+            return JsonResponse(resp)
         else:
-            print("show error to user if the account doesnt exist.")
+            resp = {
+                "error": True,
+                "message": error_messages.ID_NOT_REGISTERED
+            }
+            return JsonResponse(resp)
     CUS_PARAMS = {
         "ic_id": "",
         "ic_name": "",
