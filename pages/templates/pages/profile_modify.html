@@ -7,8 +7,8 @@
     <div class="row">
         <div class="col text-white">
             <div class=""></div>
-            <h1>Update Profile</h1>
-            <span>Here is your detail of your profile that you want to updated.</span>
+            <h1>更新個人檔案</h1>
+            <span>此處可以更新您先前填寫的個人資訊</span>
         </div>
     </div>
 </div>
@@ -29,9 +29,7 @@
             <use xlink:href="#info-fill"/>
         </svg>
         <div>
-            <strong> <a href="{% url 'test_registration' %}" class="alert-link">Registration for</a></strong> your exam
-            now.
-        </div>
+            <strong> <a href="{% url 'test_registration' %}" class="alert-link">立即報考</a></strong></div>
     </div>
 </div>
 <div class="container pt-2 pb-5">
@@ -44,10 +42,10 @@
                         <div id="test_registration" class="col-12">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h1>Personal Information：</h1>
-                                    <p class="text-h3">This should contains what user need to know before they fill
+                                    <h1>個人資訊：</h1>
+                                    <!-- <p class="text-h3">This should contains what user need to know before they fill
                                         their personal
-                                        information. </p>
+                                        information. </p> -->
                                 </div>
                             </div>
                             <hr>
@@ -58,21 +56,21 @@
                                             <input type="text" name="ic_id" id="icid" class="form-control"
                                                    placeholder="ID"
                                                    maxlength="10" value="{{ ic_id }}" disabled>
-                                            <label for="icid">ID</label>
+                                            <label for="icid">身分證字號</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="idname" name="ic_name"
                                                    placeholder="e.g, Jhon Doe" value="{{ ic_name }}" disabled>
-                                            <label for="icid">Full Name</label>
+                                            <label for="icid">姓名</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="align-items-center mt-4">
                                     <div class="form-floating row g-2">
                                         <div class="col-md-12">
-                                            <label for="datepicker">Birth of Date</label>
+                                            <label for="datepicker">出生日期</label>
                                         </div>
                                         <div class="col-md-12">
                                             <input id="datepicker" name="ic_bod" type="date" class="form-control"
@@ -84,19 +82,19 @@
                                 <div class="align-items-center mt-4">
                                     <div class="row g-2">
                                         <div class="col-md">
-                                            <span>Select Gender</span>
+                                            <span>性別</span>
                                         </div>
                                         <div class="col-md row g-2" style="margin-left: 0rem;">
                                             <div class="form-check form-check-inline">
 
                                                 <input class="form-check-input" type="radio" name="ic_gender"
-                                                       id="selectGender1" value="man" {% if ic_gender == "man" %} checked{% endif %}>
-                                                <label class="form-check-label" for="selectGender1">Man</label>
+                                                       id="selectGender1" value="男" {% if ic_gender == "man" %} checked{% endif %}>
+                                                <label class="form-check-label" for="selectGender1">男</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="ic_gender"
-                                                       id="selectGender2" value="woman" {% if ic_gender == "woman" %} checked{% endif %}>
-                                                <label class="form-check-label" for="selectGender2">Woman</label>
+                                                       id="selectGender2" value="女" {% if ic_gender == "woman" %} checked{% endif %}>
+                                                <label class="form-check-label" for="selectGender2">女</label>
                                             </div>
                                         </div>
                                     </div>
@@ -108,7 +106,7 @@
                                                    class="form-control"
                                                    placeholder="ID"
                                                    maxlength="10" value="{{ ic_phone_no }}">
-                                            <label for="icphonenumber">Phone Number</label>
+                                            <label for="icphonenumber">手機號碼</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
@@ -116,7 +114,7 @@
                                             <input type="text" class="form-control" id="ictelpnumber"
                                                    name="ic_telephone"
                                                    placeholder="e.g, Jhon Doe" value="{{ ic_telephone }}">
-                                            <label for="ictelpnumber">Telp Number</label>
+                                            <label for="ictelpnumber">電話號碼</label>
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +122,7 @@
                                     <div class="form-floating">
                                         <input type="email" id="idemail" name="ic_email" class="form-control"
                                                placeholder="this@youremail.com" value="{{ ic_email }}" required>
-                                        <label for="idemail">Email address</label>
+                                        <label for="idemail">Email</label>
                                     </div>
                                 </div>
                                 <div class="align-items-center mt-4">
@@ -132,7 +130,7 @@
                             <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
                                       style="height : 100px;" name="ic_address"
                                       required>{{ ic_address }}</textarea>
-                                        <label for="textareaAddress">Address</label>
+                                        <label for="textareaAddress">郵寄地址</label>
                                     </div>
                                 </div>
                                 <div class="row g-3 mt-2">
@@ -140,25 +138,26 @@
                                         <div class="form-floating">
                                             <input type="text" id="schoolName" name="ic_school" class="form-control"
                                                    placeholder="School name" value="{{ ic_school }}">
-                                            <label for="schoolName">School name</label>
+                                            <label for="schoolName">學校名稱</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
                                             <input type="text" id="department" name="ic_department" class="form-control"
                                                    placeholder="Department" value="{{ ic_department }}">
-                                            <label for="department">Department</label>
+                                            <label for="department">系所／年級</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
                                             <select class="form-select" id="selectStatusschool" name="ic_status_school"
                                                     aria-label="Floating label select example">
-                                                <option value="" selected>Select your degree</option>
-                                                <option value="study">Study</option>
-                                                <option value="graduate">Graduate</option>
+                                                    <option value="" selected>--請選擇--</option>
+                                                    <option value="在學">在學</option>
+                                                    <option value="畢業">畢業</option>
+                                                    <option value="肄業">肄業</option>
                                             </select>
-                                            <label for="selectStatusschool">Status School</label>
+                                            <label for="selectStatusschool">就學狀態</label>
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +167,7 @@
                                         <div class="form-floating">
                                             <input type="text" id="companyName" name="ic_company" class="form-control"
                                                    placeholder="Company name" value="{{ ic_company }}">
-                                            <label for="companyName">Company Name</label>
+                                            <label for="companyName">公司名稱</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
@@ -176,14 +175,14 @@
                                             <input type="text" id="selectPosition" name="ic_service_department"
                                                    class="form-control"
                                                    placeholder="Service Department" value="{{ ic_service_department }}">
-                                            <label for="selectPosition">Service Department</label>
+                                            <label for="selectPosition">服務部門</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
                                             <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
                                                    placeholder="Year of experience" value="{{ ic_yearofexp }}">
-                                            <label for="companyName">Year of experience</label>
+                                            <label for="companyName">相關工作經驗年資</label>
                                         </div>
                                     </div>
                                 </div>
@@ -193,30 +192,31 @@
                                             <input type="text" id="userTitle" name="ic_job_position"
                                                    class="form-control"
                                                    placeholder="Job Position" value="{{ ic_job_position }}">
-                                            <label for="userTitle">Job Position</label>
+                                            <label for="userTitle">職稱</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
                                             <select class="form-select" id="selectDegree" name="ic_degree"
                                                     aria-label="Floating label select example">
-                                                <option value="" selected>Select your degree</option>
-                                                <option value="high_school">High School</option>
-                                                <option value="bachelor">Bachelor</option>
-                                                <option value="master">Master</option>
-                                                <option value="doctor">Doctor</option>
+                                                    <option value="" selected>--請選擇--</option>
+                                                    <option value="高中">高中</option>
+                                                     <option value="專科">專科</option>
+                                                    <option value="學士">學士</option>
+                                                    <option value="碩士">碩士</option>
+                                                    <option value="博士">博士</option>
                                             </select>
-                                            <label for="selectDegree">Highest Degree</label>
+                                            <label for="selectDegree">最高學歷</label>
                                         </div>
                                     </div>
                                 </div>
                                 <hr class="my-4">
                                 <div class="row g-2 mb-4">
                             <div class="col col-md-6">
-                                <button class="btn btn-primary col-12" type="submit">Confirm</button>
+                                <button class="btn btn-primary col-12" type="submit">確認修改</button>
                             </div>
                             <div class="col col-md-6">
-                                <button class="btn btn-outline-primary col-12" id="cancel_modify">Cancel</button>
+                                <button class="btn btn-outline-primary col-12" id="cancel_modify">取消</button>
                             </div>
                         </div>
                             </form>

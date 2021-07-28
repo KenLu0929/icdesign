@@ -1,22 +1,23 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-
 class GenderClass(models.TextChoices):
-    MAN = 'man', _('male')
-    WOMAN = 'woman', _('female')
+    MAN = '男', _('男')
+    WOMAN = '女', _('女')
 
 
 class DegreeClass(models.TextChoices):
-    HIGH_SCHOOL = 'high_school', _('high school')
-    BACHELOR = 'bachelor', _('bachelor')
-    MASTER = 'master', _('master')
-    DOCTOR = 'doctor', _('doctor')
+    HIGH_SCHOOL = '高中', _('高中')
+    SPECIALIST = '專科', _('專科')
+    BACHELOR = '學士', _('學士')
+    MASTER = '碩士', _('碩士')
+    DOCTOR = '博士', _('博士')
 
 
 class StatusSchoolClass(models.TextChoices):
-    STUDY = 'study', _('study')
-    GRADUATE = 'graduate', _('graduate')
+    STUDY = '在學', _('在學')
+    GRADUATE = '畢業', _('畢業')
+    UNDERGRADUATE = '肄業', _('肄業')
 
 
 # Create your models here.
@@ -90,6 +91,7 @@ class Exams(models.Model):
     exam_end_time = models.DateTimeField(null=True)
     exam_place = models.CharField(max_length=100, null=True)
     exam_is_active = models.IntegerField(null=True, default=0)  # 0 = Not Active, 1 = Active
+    exam_prerequisite = models.CharField(max_length=100, null=True) # string with separator ","
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, null=True)
 

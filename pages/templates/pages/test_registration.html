@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="ic_gender"
-                                           id="selectGender2" value="男">
+                                           id="selectGender2" value="女">
                                     <label class="form-check-label" for="selectGender2">女</label>
                                 </div>
                             </div>
@@ -98,14 +98,14 @@
                             <div class="form-floating">
                                 <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control"
                                        placeholder="ID"
-                                       maxlength="10" value="{{ic_phone }}">
+                                       maxlength="10" value="{{ic_phone }}", pattern="[09][0-9]{8}">
                                 <label for="icphonenumber">手機號碼</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="ictelpnumber" name="ic_telephone"
-                                       placeholder="e.g, Jhon Doe" value="{{ ic_telp }}">
+                                       placeholder="e.g, Jhon Doe" value="{{ ic_telp }}" pattern="[0][0-9]{11}">
                                 <label for="ictelpnumber">電話號碼</label>
                             </div>
                         </div>
@@ -189,7 +189,7 @@
                                 <select class="form-select" id="selectDegree" name="ic_degree"
                                         aria-label="Floating label select example">
                                     <option value="" selected>--請選擇--</option>
-                                    <option value="高中">高中</option>
+                                    <option value="高中">專科</option>
                                      <option value="專科">專科</option>
                                     <option value="學士">學士</option>
                                     <option value="碩士">碩士</option>

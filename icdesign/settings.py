@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 # Maintenance Configuration
 
 # if True the maintenance-mode will be activated
-MAINTENANCE_MODE = True
+MAINTENANCE_MODE = False
 
 # if True admin site will not be affected by the maintenance-mode page
 MAINTENANCE_MODE_IGNORE_ADMIN_SITE = True
