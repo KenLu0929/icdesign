@@ -38,6 +38,8 @@ urlpatterns = [
     path('faqs', views.ic_faqs, name="ic_faqs"),
     path('sponsorship', views.ic_sponsorship, name="ic_sponsorship"),
     path('privacy', views.ic_privacy, name="ic_privacy"),
+    path('brief_download', views.download_file_brief,name="ic_brief_download"),
+    path('question_bank_download', views.download_file_question_bank,name="ic_question_bank_download"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
