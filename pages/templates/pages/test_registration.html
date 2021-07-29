@@ -112,7 +112,7 @@
                     <div class="align-items-center mt-4">
                         <div class="form-floating">
                             <input type="email" id="idemail" name="ic_email" class="form-control"
-                                   placeholder="this@youremail.com" value="{{ ic_email }}" readonly>
+                                   placeholder="this@youremail.com" value="{{ ic_email }}" {% if ic_email %} readonly {% endif %}>
                             <label for="idemail">Email ＊相關後續考試聯絡資訊將透過此聯絡</label>
                         </div>
                     </div>

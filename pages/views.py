@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign import error_messages
-from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile
+from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, prerequisite_exams
 
 # for pdf rendering/view
 from easy_pdf.views import PDFTemplateResponseMixin
@@ -78,6 +78,8 @@ def registration_page(request):
     CUS_PARAMS = {
         "ic_id": "",
         "ic_name": "",
+        "title": "",
+        "body": "",
     }
     return render(request, url_page, CUS_PARAMS)
 
@@ -108,6 +110,16 @@ def test_registration_page(request):
                 "error": True,
                 "title": "Failed",
                 "body": error_messages.TOOK_EXAM + taken_exams
+            }
+            return JsonResponse(params)
+
+        res = prerequisite_exams(ic_id, ic_test)
+        if res:
+            # print("test_registration_page:", res)
+            params = {
+                "error": True,
+                "title": "Failed",
+                "body": "<hr>".join(res)
             }
             return JsonResponse(params)
         # print("test_registration_page 2:", res)
