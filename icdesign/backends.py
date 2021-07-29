@@ -2,7 +2,7 @@ from pages.models import Users
 from pages.queries import QueryExams, QueryExamsLogs
 from django.shortcuts import redirect
 from icdesign import utils
-
+from icdesign import error_messages
 
 class CustomBackend(object):
 
@@ -119,3 +119,41 @@ def checking_user_taken_exam(ic_id, exam_list):
             taken_exam.append(e_id)
     # print("checking_user_taken_exam:", result)
     return taken_exam
+
+
+def prerequisite_exams(ic_id, exam_list):
+    unavailable_exams = []
+    finish_exams = []
+    filter_sql = {
+        "ic_id": ic_id,
+        "exam_finish": True
+    }
+    res = QueryExamsLogs.exams_get(filter_sql, True)
+    for taken_exams in res:
+        finish_exams.append(taken_exams.get("exam_id"))
+    # print(finish_exams)
+    for exam_id in exam_list:
+        filter_exams = {
+            "exam_id": exam_id
+        }
+        exam_res = QueryExams.exams_get(filter_exams)
+        prerequisite = exam_res.get("exam_prerequisite")
+        # print("prerequisite: ", prerequisite)
+        if prerequisite == "-" or prerequisite == "":
+            continue
+        prerequisite = [x.strip() for x in prerequisite.split(',')]
+        # print("arr prerequisite: ", prerequisite)
+        # check if users had take the prerequisite exams
+        # check = all(item in finish_exams for item in prerequisite)
+        preq_exams = []
+        for item in prerequisite:
+            if item not in finish_exams:
+                preq_exams.append(item)
+
+        if preq_exams:
+            preq = ",".join(preq_exams)
+            # string_msg = f"you cannot take exams {exam_id}{preq}"
+            string_msg = error_messages.PREQ_EXAMS_ERR_MESSAGE_PREFIX + exam_id + error_messages.PREQ_EXAMS_ERR_MESSAGE_SUFFIX + preq
+            unavailable_exams.append(string_msg)
+
+    return unavailable_exams
