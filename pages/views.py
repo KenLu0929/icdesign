@@ -78,6 +78,8 @@ def registration_page(request):
     CUS_PARAMS = {
         "ic_id": "",
         "ic_name": "",
+        "title": "",
+        "body": "",
     }
     return render(request, url_page, CUS_PARAMS)
 
