@@ -1,5 +1,7 @@
+import mimetypes
+
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign import error_messages
