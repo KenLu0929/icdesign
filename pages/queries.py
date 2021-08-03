@@ -22,8 +22,8 @@ class QueryUsers:
         try:
             # user.save()
             obj, created = models.Users.objects.update_or_create(**data)
-            print(created)
-            print(obj)
+            # print(created)
+            # print(obj)
             # logger.info("Data created Successfully: ", created)
             return True
         except Exception as e:
@@ -38,8 +38,8 @@ class QueryUsers:
             # user.save()
             obj, created = models.Users.objects.get_or_create(**data)
             # logger.info("Data created Successfully: ", created)
-            print(obj)
-            print(created)
+            # print(obj)
+            # print(created)
             return obj, created
         except Exception as e:
             logger.error("Data: ", data)
