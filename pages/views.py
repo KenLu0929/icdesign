@@ -100,7 +100,7 @@ def test_registration_page(request):
         if not ic_test:
             params = {
                 "error": True,
-                "title": "Failed",
+                "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": error_messages.SELECT_EXAM
             }
             return JsonResponse(params)
@@ -110,7 +110,7 @@ def test_registration_page(request):
             taken_exams = ", ".join(res)
             params = {
                 "error": True,
-                "title": "Failed",
+                "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": error_messages.TOOK_EXAM + taken_exams
             }
             return JsonResponse(params)
@@ -120,7 +120,7 @@ def test_registration_page(request):
             # print("test_registration_page:", res)
             params = {
                 "error": True,
-                "title": "Failed",
+                "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": "<hr>".join(res)
             }
             return JsonResponse(params)
@@ -129,7 +129,7 @@ def test_registration_page(request):
         if data == {}:
             params = {
                 "error": True,
-                "title": "Failed",
+                "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": error_messages.GENERAL_ERROR
             }
             return JsonResponse(params)
@@ -139,21 +139,21 @@ def test_registration_page(request):
         if message is not None:
             params = {
                 "error": True,
-                "title": "Failed",
+                "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": message
             }
             return JsonResponse(params)
         if not q:
             params = {
                 "error": True,
-                "title": "Failed",
+                "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": error_messages.NOT_UPDATED_INFO
             }
             return JsonResponse(params)
 
         params = {
             "error": False,
-            "title": "Success",
+            "title": error_messages.HEAD_MESSAGE_SUCCESS,
             "body": exams_list
         }
         # print(params)
@@ -268,21 +268,21 @@ def profile_modify(request):
         if message is not None:
             params = {
                 "error": True,
-                "title": "Failed",
+                "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": message
             }
             return JsonResponse(params)
         if not q:
             params = {
                 "error": True,
-                "title": "Failed",
+                "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": error_messages.NOT_UPDATED_INFO
             }
             return JsonResponse(params)
 
         params = {
             "error": False,
-            "title": "Success",
+            "title": error_messages.HEAD_MESSAGE_SUCCESS,
             "body": error_messages.UPDATED_INFO
         }
         # print(params)
@@ -309,7 +309,7 @@ def change_password(request):
         if ic_new_password != ic_new_repassword:
             params = {
                 "error": False,
-                "title": "Success",
+                "title": error_messages.HEAD_MESSAGE_SUCCESS,
                 "body": error_messages.UNMATCHED_PASS
             }
             return JsonResponse(params)
@@ -327,14 +327,14 @@ def change_password(request):
             QueryUsers.users_update(filter_sql, updated_data)
             params = {
                 "error": False,
-                "title": "Success",
+                "title": error_messages.HEAD_MESSAGE_SUCCESS,
                 "body": error_messages.PASSWORD_CHANGED
             }
             return JsonResponse(params)
         else:
             params = {
                 "error": True,
-                "title": "Failed",
+                "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": error_messages.WRONG_OLD_PASSWORD
             }
             # print(resp)
