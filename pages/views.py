@@ -454,3 +454,25 @@ def ic_privacy(request):
         # print(data)
         CUS_PARAMS = QueryUsers.users_get(data)
     return render(request, url_page, CUS_PARAMS)
+
+
+
+def download_file_brief(request):
+    # fill these variables with real values
+    fl_path = 'pages/IC_layout_brief_110.pdf'
+    filename = 'IC_layout_brief_110.pdf'
+    fl = open(fl_path, 'rb')
+    mime_type, _ = mimetypes.guess_type(fl_path)
+    response = HttpResponse(fl, content_type=mime_type)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
+    
+def download_file_question_bank(request):
+    # fill these variables with real values
+    fl_path = 'pages/IC_layout_110_question_bank.pdf'
+    filename = 'IC_layout_110_question_bank.pdf'
+    fl = open(fl_path, 'rb')
+    mime_type, _ = mimetypes.guess_type(fl_path)
+    response = HttpResponse(fl, content_type=mime_type)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
