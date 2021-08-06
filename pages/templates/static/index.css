@@ -47,9 +47,11 @@ footer a{
 .gj-datepicker-md [role=right-icon]{
     padding: 1rem 0.75rem !important;
 }
+
 .bg-custom{
     background-color: #1b2a4e !important;
 }
-.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active{
-    font-weight: bold !important;
+
+.bg-dark {
+    background-color: #002744 !important;
 }
