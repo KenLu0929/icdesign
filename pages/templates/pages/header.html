@@ -1,14 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-3">
+<div class="nav-scroller bg-body">
+  <nav class="nav nav-underline container navbar-collapse justify-content-md-center" aria-label="Secondary navigation">
+    <a class="mx-2 my-3" aria-current="page" href="#"><img src="https://raw.githubusercontent.com/yuwaylan/yuwaylan.github.io/master/img/IEI.png" alt="" width="120px" height="40px"></a>
+    <a class="mx-2 my-3" href="#"><img src="https://raw.githubusercontent.com/yuwaylan/yuwaylan.github.io/master/img/NYMCTU.png" alt="" width="180px" height="40px" ></a>
+  </nav>
+</div>
+<nav class="navbar-expand-lg navbar-dark bg-dark py-3 shadow-sm sticky-top">
   <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
       aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="{% url 'homepage' %}">ICDesign</a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">首頁</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'test_registration' %}">立刻報名</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'ic_test_info' %}">半導體佈局設計工程師能力鑑定</a>
@@ -33,7 +41,7 @@
         </li>
       </ul> {% else %} <form class="d-flex ">
       <a class="btn btn-primary mx-2 col-6" href="{% url 'login' %}" role="button">登入</a>
-      <a class="btn btn-warning col-6" href="{% url 'registration' %}" role="button">註冊</a>
+      <a class="btn btn-outline-warning col-6" href="{% url 'registration' %}" role="button">註冊</a>
 
 <!--        <button onclick="location.href={% url 'login' %}" type="button"-->
 <!--          class="btn btn-outline-light me-2">登入</button>-->
