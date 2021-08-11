@@ -458,6 +458,8 @@ def ic_privacy(request):
     return render(request, url_page, CUS_PARAMS)
 
 
+def ic_report(request):
+    return render(request, 'pages/report.html')
 
 def download_file_brief(request):
     # fill these variables with real values
