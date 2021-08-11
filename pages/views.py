@@ -5,7 +5,8 @@ from django.http import JsonResponse, HttpResponse
 from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign import error_messages
-from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, prerequisite_exams
+from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, \
+    prerequisite_exams
 
 # for pdf rendering/view
 from easy_pdf.views import PDFTemplateResponseMixin
@@ -415,7 +416,8 @@ def forget_password(request):
                 }
                 return JsonResponse(resp)
 
-            utils.send_email(error_messages.SUBJECT_EMAIL_FORGET_PASS, error_messages.BODY_EMAIL_FORGET_PASS + user.get("ic_pass"), [email])
+            utils.send_email(error_messages.SUBJECT_EMAIL_FORGET_PASS,
+                             error_messages.BODY_EMAIL_FORGET_PASS + user.get("ic_pass"), [email])
             # print(res)
             resp = {
                 "error": False,
@@ -459,7 +461,30 @@ def ic_privacy(request):
 
 
 def ic_report(request):
-    return render(request, 'pages/report.html')
+    # print(ticket_no)
+    ticket_id = request.GET.get("id")
+    final_output = {}
+    exams_filter = {
+        "exam_ticket_no": ticket_id,
+    }
+    exam_logs = QueryExamsLogs.exams_get(exams_filter, False)
+    final_output["exam_logs"] = exam_logs
+    # print(exam_logs)
+    data = {"ic_id": exam_logs.get("ic_id")}
+    # print(data)
+    user = QueryUsers.users_get(data)
+    final_output["user"] = user
+    # print(user)
+
+    exams_data = {
+        "exam_id": exam_logs.get("exam_id"),
+    }
+    final_output["exams"] = QueryExams.exams_get(exams_data, False)
+    print(final_output)
+
+    # final_output
+    return render(request, 'pages/report.html', final_output)
+
 
 def download_file_brief(request):
     # fill these variables with real values
@@ -470,7 +495,8 @@ def download_file_brief(request):
     response = HttpResponse(fl, content_type=mime_type)
     response['Content-Disposition'] = "attachment; filename=%s" % filename
     return response
-    
+
+
 def download_file_question_bank(request):
     # fill these variables with real values
     fl_path = 'pages/IC_layout_110_question_bank.pdf'

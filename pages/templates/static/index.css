@@ -11,6 +11,8 @@ footer a{
     text-decoration: none;
 }
 
+button.link { background:none;border:none; }
+
 .icon-list{
     padding-left: 0;
     list-style: none;
@@ -55,3 +57,4 @@ footer a{
 .bg-dark {
     background-color: #002744 !important;
 }
+

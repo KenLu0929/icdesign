@@ -18,37 +18,52 @@
 				<tbody class="">
 					<tr>
 					  <th scope="row" style="width: 25%;">姓名</th>
-					  <td style="width: 25%;">1</td>
+					  <td style="width: 25%;">{{ user.ic_name }}</td>
 					  <th scope="row" style="width: 25%;">身份證字號</th>
-					  <td style="width: 25%;">2</td>
+					  <td style="width: 25%;">{{ user.ic_id }}</td>
 					</tr>
 					<tr>
 					  <th scope="row" style="width: 25%;">准考證號碼</th>
-					  <td style="width: 25%;">1</td>
+					  <td style="width: 25%;">{{ exam_logs.exam_ticket_no }}</td>
 					  <th scope="row" style="width: 25%;">考試日期</th>
-					  <td style="width: 25%;">2</td>
+					  <td style="width: 25%;">{{ exams.exam_start_time }}</td>
 					</tr>
 					<tr class="text-center">
 					  <th scope="row" colspan="4" >鑑定考試成績</th>
 					</tr>
 					<tr>
-					  <th scope="row" style="width: 25%;">准考證號碼</th>
-					  <td style="width: 25%;">1</td>
+					  <th scope="row" style="width: 25%;">學科成績</th>
+					  <td style="width: 25%;">{{ exam_logs.exam_id }}</td>
 					  <th scope="row" style="width: 25%;">成績</th>
-					  <td style="width: 25%;">2</td>
+					  <td style="width: 25%;">{{ exam_logs.exam_grade }}</td>
 					</tr>
 					<tr>
 					  <th scope="row" style="width: 25%;">分</th>
-					  <td style="width: 25%;">1</td>
+					  <td style="width: 25%;">{{ exam_logs.exam_minutes }}</td>
 					  <td colspan="2">
-						  <div class="form-check form-check-inline">
+
+						  {% if exam_logs.exam_finish %}
+                    <div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="option1" checked>
 							  <label class="form-check-label" for="inlineRadio1">合格</label>
-							</div>
-							<div class="form-check form-check-inline">
+						<div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="option2">
 							  <label class="form-check-label" for="inlineRadio2">不合格</label>
 							</div>
+							</div>
+						  {% else %}
+						  	<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="option1">
+							  <label class="form-check-label" for="inlineRadio1">合格</label>
+						<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="option2" checked>
+							  <label class="form-check-label" for="inlineRadio2">不合格</label>
+							</div>
+							</div>
+                    {% endif %}
+
+
+
 					  </td>
 					</tr>
 					<tr class="text-center">
