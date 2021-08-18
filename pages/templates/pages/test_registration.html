@@ -1,408 +1,385 @@
-{% extends "pages/base.html" %}
-{% block title %}Registration{% endblock %}
-{% block content %}
-<body class="">
-{% include "pages/header.html" %}
+{% extends "pages/base.html" %} {% block title %}Registration{% endblock %} {% block content %}
 
-<section>
-    <div class="container my-5 ">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-4 col-lg-4 col-xl-5">
-                <div class="row">
-                    <div class="col-12">
-                        <h1>考試需知：</h1>
-                        <!-- <p class="text-h3">Far far away, behind the word mountains, far from the countries Vokalia and
+<body class=""> {% include "pages/header.html" %} <section>
+        <div class="container my-5 ">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-4 col-lg-4 col-xl-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>考試需知：</h1>
+                            <!-- <p class="text-h3">Far far away, behind the word mountains, far from the countries Vokalia and
                             Consonantia. </p> -->
-                    </div>
-                    <div class="col-12">
-                        <ul class="list-group">
-                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 1.
-                                本人所檢附的報名資料：中文姓名、身分證字號、出生年月日、聯絡電話、行動電話、通訊地址、E-Mail、身分別、就讀/畢業學校名稱、科系名稱、年級與班級、學歷、任職公司名稱及職稱，僅供「主辦單位」辦理鑑定考試使用、寄送相關考試資料及學習資訊、進行測驗相關統計、進行企業就業媒合之用。
-                            </li>
-                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 2.
-                                主辦單位將於原蒐集之特定目的、本次以外之產業之推廣、宣導及就業輔導、以及其他公務機關請求行政協助之目的範圍內，合理利用您的個人資料。
-                            </li>
-                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 3.
-                                本人瞭解所提供之個人資料，假如經由檢舉或主辦單位發現有不符真實身分或有冒用、盜用其他個人資料、資料不實等情事經查證屬實時，主辦單位有權取消本人的當次考試資格、成績或未來報名資格，並有權不提供鑑定考試相關服務。
-                            </li>
-                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 4.
-                                本人瞭解必須填寫完整且正確之報名資料，通訊地址、身分證字號、電話號碼及E-mail應正確，否則無法通知而致延誤考試及其他重要事項，其後果自行負責。
-                            </li>
-                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 5.
-                                考生對自己所有之個人資料，須負保密責任，若因洩漏予第三者，導致考生個人資料外洩、遺失、或無法正常使用本服務之情況，概由該考生自行負責，本網站得拒絕該考生使用本網站報名考試之權利。
-                            </li>
-                        </ul>
+                        </div>
+                        <div class="col-12">
+                            <ul class="list-group">
+                                <li class="list-group-item"><i class="mdi mdi-drag"></i> 1.
+                                    本人所檢附的報名資料：中文姓名、身分證字號、出生年月日、聯絡電話、行動電話、通訊地址、E-Mail、身分別、就讀/畢業學校名稱、科系名稱、年級與班級、學歷、任職公司名稱及職稱，僅供「主辦單位」辦理鑑定考試使用、寄送相關考試資料及學習資訊、進行測驗相關統計、進行企業就業媒合之用。
+                                </li>
+                                <li class="list-group-item"><i class="mdi mdi-drag"></i> 2.
+                                    主辦單位將於原蒐集之特定目的、本次以外之產業之推廣、宣導及就業輔導、以及其他公務機關請求行政協助之目的範圍內，合理利用您的個人資料。 </li>
+                                <li class="list-group-item"><i class="mdi mdi-drag"></i> 3.
+                                    本人瞭解所提供之個人資料，假如經由檢舉或主辦單位發現有不符真實身分或有冒用、盜用其他個人資料、資料不實等情事經查證屬實時，主辦單位有權取消本人的當次考試資格、成績或未來報名資格，並有權不提供鑑定考試相關服務。
+                                </li>
+                                <li class="list-group-item"><i class="mdi mdi-drag"></i> 4.
+                                    本人瞭解必須填寫完整且正確之報名資料，通訊地址、身分證字號、電話號碼及E-mail應正確，否則無法通知而致延誤考試及其他重要事項，其後果自行負責。 </li>
+                                <li class="list-group-item"><i class="mdi mdi-drag"></i> 5.
+                                    考生對自己所有之個人資料，須負保密責任，若因洩漏予第三者，導致考生個人資料外洩、遺失、或無法正常使用本服務之情況，概由該考生自行負責，本網站得拒絕該考生使用本網站報名考試之權利。
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div id="test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h1>個人資訊：</h1>
-                        <!--<p class="text-h3">This should contains what user need to know before they fill their personal-->
-                        <!--    information. </p>-->
-                    </div>
-                </div>
-                <hr>
-                <form id="form_test_registration">
-                    <div class="row g-2 mt-2">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" name="ic_id" id="icid" class="form-control" placeholder="ID"
-                                       maxlength="10" value="{{ ic_id }}" readonly>
-                                <label for="icid">身分證字號</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="idname" name="ic_name"
-                                       placeholder="e.g, Jhon Doe" value="{{ ic_name }}" readonly>
-                                <label for="icid">姓名</label>
-                            </div>
+                <div id="test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h1>個人資訊：</h1>
+                            <!--<p class="text-h3">This should contains what user need to know before they fill their personal-->
+                            <!--    information. </p>-->
                         </div>
                     </div>
-                    <div class="align-items-center mt-4">
-                        <div class="form-floating row g-2">
-                            <div class="col-md-12">
-                                <label for="datepicker">出生日期</label>
-                            </div>
-                            <div class="col-md-12">
-                                <input id="datepicker" name="ic_bod" type="date" class="form-control"
-                                       placeholder="yyyy-mm-dd" value="{{ ic_bod }}"
-                                       required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="align-items-center mt-4">
-                        <div class="row g-2">
+                    <hr>
+                    <form id="form_test_registration">
+                        <div class="row g-2 mt-2">
                             <div class="col-md">
-                                <span>性別</span>
-                            </div>
-                            <div class="col-md row g-2" style="margin-left: 0rem;">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ic_gender"
-                                           id="selectGender1" value="男" {% if ic_gender == "男" %} checked{% endif %}>
-                                    <label class="form-check-label" for="selectGender1">男</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ic_gender"
-                                           id="selectGender2" value="女" {% if ic_gender == "女" %} checked{% endif %}>
-                                    <label class="form-check-label" for="selectGender2">女</label>
+                                <div class="form-floating">
+                                    <input type="text" name="ic_id" id="icid" class="form-control" placeholder="ID"
+                                        maxlength="10" value="{{ ic_id }}" readonly>
+                                    <label for="icid">身分證字號</label>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row g-2 mt-4">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control"
-                                       placeholder="ID" value="{{ ic_phone_no }}" , pattern="[09][0-9]*">
-                                <label for="icphonenumber">手機號碼</label>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="idname" name="ic_name"
+                                        placeholder="e.g, Jhon Doe" value="{{ ic_name }}" readonly>
+                                    <label for="icid">姓名</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="ictelpnumber" name="ic_telephone"
-                                       placeholder="e.g, Jhon Doe" value="{{ ic_telephone }}" pattern="[0][0-9]*">
-                                <label for="ictelpnumber">電話號碼</label>
+                        <div class="align-items-center mt-4">
+                            <div class="form-floating row g-2">
+                                <div class="col-md-12">
+                                    <label for="datepicker"><a style="color:red;">*</a>出生日期</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <input id="datepicker" name="ic_bod" type="date" class="form-control"
+                                        placeholder="yyyy-mm-dd" value="{{ ic_bod }}"
+                                        required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="align-items-center mt-4">
-                        <div class="form-floating">
-                            <input type="email" id="idemail" name="ic_email" class="form-control"
-                                   placeholder="this@youremail.com" value="{{ ic_email }}" {% if ic_email %} readonly {% endif %}>
-                            <label for="idemail">Email ＊相關後續考試聯絡資訊將透過此聯絡</label>
-                        </div>
-                    </div>
-                    <div class="align-items-center mt-4">
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
-                                      style="height : 100px;" name="ic_address" required>{{ ic_address }}</textarea>
-                            <label for="textareaAddress">郵寄地址</label>
-                        </div>
-                    </div>
-                    <div class="row g-3 mt-2">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" id="schoolName" name="ic_school" class="form-control"
-                                       placeholder="School name" value="{{ ic_school }}">
-                                <label for="schoolName">學校名稱</label>
+                        <div class="align-items-center mt-4">
+                            <div class="row g-2">
+                                <div class="col-md">
+                                    <span><a style="color:red;">*</a>性別</span>
+                                </div>
+                                <div class="col-md row g-2" style="margin-left: 0rem;">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="ic_gender"
+                                            id="selectGender1" value="男" {% if ic_gender == "男" %} checked{% endif %}>
+                                        <label class="form-check-label" for="selectGender1">男</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="ic_gender"
+                                            id="selectGender2" value="女" {% if ic_gender == "女" %} checked{% endif %}>
+                                        <label class="form-check-label" for="selectGender2">女</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" id="department" name="ic_department" class="form-control"
-                                       placeholder="Department" value="{{ ic_department }}">
-                                <label for="department">系所／年級</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <select class="form-select" id="selectStatusschool" name="ic_status_school"
-                                        aria-label="Floating label select example" value="{{ ic_department }}">
-                                    <option value="" selected>--請選擇--</option>
-                                    <option value="在學">在學</option>
-                                    <option value="畢業">畢業</option>
-                                    <option value="肄業">肄業</option>
-                                </select>
-                                <label for="selectStatusschool">就學狀態</label>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
-                    <div class="row g-3 mt-2">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" id="companyName" name="ic_company" class="form-control"
-                                       placeholder="Company name" value="{{ ic_company }}">
-                                <label for="companyName">公司名稱</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" id="selectPosition" name="ic_service_department" class="form-control"
-                                       placeholder="Service Department" value="{{ ic_service_department }}">
-                                <label for="selectPosition">服務部門</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
-                                       placeholder="Year of experience" value="{{ ic_yearofexp }}" min="0">
-                                <label for="companyName">相關工作經驗年資</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-2 mt-2">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" id="userTitle" name="ic_job_position" class="form-control"
-                                       placeholder="Job Position" value="{{ ic_job_position }}">
-                                <label for="userTitle">職稱</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <select class="form-select" id="selectDegree" name="ic_degree"
-                                        aria-label="Floating label select example">
-                                    <option value="" selected>--請選擇--</option>
-                                    <option value="高中">高中</option>
-                                    <option value="專科">專科</option>
-                                    <option value="學士">學士</option>
-                                    <option value="碩士">碩士</option>
-                                    <option value="博士">博士</option>
-                                </select>
-                                <label for="selectDegree">最高學歷</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="align-items-center">
                         <div class="row g-2 mt-4">
-                            <div class="col-12 col-md-4">
-                                <span>選擇考試科目</span>
-                            </div>
-                            <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
-                                {% for field in exams_fields %}
-
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="ic_test" id="selectCourse1"
-                                           value="{{field.exam_id}}">
-                                    <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }}
-                                        (Place: {{ field.exam_place }}) |
-                                        {{ field.exam_start_time }} - {{ field.exam_end_time }}</label>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control"
+                                        placeholder="ID" value="{{ ic_phone_no }}" , pattern="[09][0-9]*">
+                                    <label for="icphonenumber"><a style="color:red;">*</a>手機號碼</label>
                                 </div>
-
-                                {% endfor %}
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="ictelpnumber" name="ic_telephone"
+                                        placeholder="e.g, Jhon Doe" value="{{ ic_telephone }}" pattern="[0][0-9]*">
+                                    <label for="ictelpnumber"><a style="color:red;">*</a>電話號碼</label>
+                                </div>
                             </div>
                         </div>
+                        <div class="align-items-center mt-4">
+                            <div class="form-floating">
+                                <input type="email" id="idemail" name="ic_email" class="form-control"
+                                    placeholder="this@youremail.com" value="{{ ic_email }}" {% if ic_email %} readonly
+                                    {% endif %}>
+                                <label for="idemail">Email <a style="color:red;">*相關後續考試聯絡資訊將透過此聯絡</a></label>
+                            </div>
+                        </div>
+                        <div class="align-items-center mt-4">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
+                                    style="height : 100px;" name="ic_address" required>{{ ic_address }}</textarea>
+                                <label for="textareaAddress"><a style="color:red;">*</a>郵寄地址</label>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" id="schoolName" name="ic_school" class="form-control"
+                                        placeholder="School name" value="{{ ic_school }}">
+                                    <label for="schoolName"><a style="color:red;">*</a>學校名稱</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" id="department" name="ic_department" class="form-control"
+                                        placeholder="Department" value="{{ ic_department }}">
+                                    <label for="department"><a style="color:red;">*</a>系所／年級</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="selectStatusschool" name="ic_status_school"
+                                        aria-label="Floating label select example" value="{{ ic_department }}">
+                                        <option value="" selected>--請選擇--</option>
+                                        <option value="在學">在學</option>
+                                        <option value="畢業">畢業</option>
+                                        <option value="肄業">肄業</option>
+                                    </select>
+                                    <label for="selectStatusschool"><a style="color:red;">*</a>就學狀態</label>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+                        <div class="row g-3 mt-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" id="companyName" name="ic_company" class="form-control"
+                                        placeholder="Company name" value="{{ ic_company }}">
+                                    <label for="companyName">公司名稱</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" id="selectPosition" name="ic_service_department"
+                                        class="form-control"
+                                        placeholder="Service Department" value="{{ ic_service_department }}">
+                                    <label for="selectPosition">服務部門</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
+                                        placeholder="Year of experience" value="{{ ic_yearofexp }}" min="0">
+                                    <label for="companyName">相關工作經驗年資</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-2 mt-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" id="userTitle" name="ic_job_position" class="form-control"
+                                        placeholder="Job Position" value="{{ ic_job_position }}">
+                                    <label for="userTitle">職稱</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="selectDegree" name="ic_degree"
+                                        aria-label="Floating label select example">
+                                        <option value="" selected>--請選擇--</option>
+                                        <option value="高中">高中</option>
+                                        <option value="專科">專科</option>
+                                        <option value="學士">學士</option>
+                                        <option value="碩士">碩士</option>
+                                        <option value="博士">博士</option>
+                                    </select>
+                                    <label for="selectDegree"><a style="color:red;">*</a>最高學歷</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="align-items-center">
+                            <div class="row g-2 mt-4">
+                                <div class="col-12 col-md-4">
+                                    <span><a style="color:red;">*</a>選擇考試科目</span>
+                                </div>
+                                <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
+                                    {% for field in exams_fields %} <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="ic_test"
+                                            id="selectCourse1"
+                                            value="{{field.exam_id}}">
+                                        <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }}
+                                            (Place: {{ field.exam_place }}) | {{ field.exam_start_time }} -
+                                            {{ field.exam_end_time }}</label>
+                                    </div> {% endfor %} </div>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="row justify-content-start mt-4">
+                            <div class="col">
+                                <div>
+                                    <label> 按下送出表示您已同意上述 <a href="#">注意事項</a>
+                                    </label>
+                                </div>
+                                <div>
+                                    <!--                                <button class="btn btn-primary mt-4 col-12" disabled>-->
+                                    <!--                                    <span class="spinner-border spinner-border-sm" role="status"-->
+                                    <!--                                          aria-hidden="true"></span>-->
+                                    <!--                                    Loading...-->
+                                    <!--                                </button>-->
+                                    <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit">
+                                        <!--                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
+                                        送出 </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="summary_test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h1>個人資訊：</h1>
+                            <p class="text-h3">請確認資訊沒有錯誤 </p>
+                        </div>
                     </div>
-                    <hr class="my-4">
+                    <hr>
+                    <!--                <form id="form_summary_test_registration">-->
+                    <div class="mb-3 row">
+                        <label for="showCourse" class="col-sm-4 col-form-label">報考考科</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showCourse" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="displayicID" class="col-sm-4 col-form-label">身分證字號</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="displayicID"
+                                value="{{ ic_id }}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showFullname" class="col-sm-4 col-form-label">姓名</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showFullname"
+                                value="{{ ic_name }}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showEmail" class="col-sm-4 col-form-label">Email</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showEmail" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showGender" class="col-sm-4 col-form-label">性別</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showGender" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showPhone" class="col-sm-4 col-form-label">手機號碼</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showPhone" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showTelp" class="col-sm-4 col-form-label">電話號碼</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showTelp" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showAddress" class="col-sm-4 col-form-label">郵寄地址</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showAddress" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showSchoolName" class="col-sm-4 col-form-label">學校名稱</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showSchoolName" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showDepartment" class="col-sm-4 col-form-label">系所／年級</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showDepartment" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showStatusSchool" class="col-sm-4 col-form-label">就學狀態</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showStatusSchool" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showCompanyName" class="col-sm-4 col-form-label">公司名稱</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showCompanyName" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showPosition" class="col-sm-4 col-form-label">服務部門</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showPosition" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showExp" class="col-sm-4 col-form-label">相關工作經驗年資</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showExp" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showTitle" class="col-sm-4 col-form-label">職稱</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showTitle" value="">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="showDegree" class="col-sm-4 col-form-label">最高學歷</label>
+                        <div class="col-sm-8">
+                            <input type="text" readonly class="form-control-plaintext" id="showDegree" value="">
+                        </div>
+                    </div>
                     <div class="row justify-content-start mt-4">
                         <div class="col">
-                            <div>
-                                <label>
-                                    按下送出表示您已同意上述 <a href="#">注意事項</a>
-                                </label>
-                            </div>
-                            <div>
-                                <!--                                <button class="btn btn-primary mt-4 col-12" disabled>-->
-                                <!--                                    <span class="spinner-border spinner-border-sm" role="status"-->
-                                <!--                                          aria-hidden="true"></span>-->
-                                <!--                                    Loading...-->
-                                <!--                                </button>-->
-                                <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit">
-                                    <!--                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
-                                    送出
-                                </button>
-                            </div>
-
+                            <button id="btn_modify_reg" class="btn btn-outline-secondary mt-4 col-4" type="button"> 修改
+                            </button>
+                            <!--                        <button class="btn btn-primary mt-4 col-3" type="button" disabled>-->
+                            <!--                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
+                            <!--                            Loading...-->
+                            <!--                        </button>-->
+                            <button id="btn_final_submit" type="button" class="btn btn-primary mt-4 col-4"> 確認 </button>
                         </div>
                     </div>
-                </form>
-
-            </div>
-            <div id="summary_test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h1>個人資訊：</h1>
-                        <p class="text-h3">請確認資訊沒有錯誤 </p>
-                    </div>
+                    <!--                </form>-->
                 </div>
-                <hr>
-                <!--                <form id="form_summary_test_registration">-->
-                <div class="mb-3 row">
-                    <label for="showCourse" class="col-sm-4 col-form-label">報考考科</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showCourse" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="displayicID" class="col-sm-4 col-form-label">身分證字號</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="displayicID"
-                               value="{{ ic_id }}">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showFullname" class="col-sm-4 col-form-label">姓名</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showFullname"
-                               value="{{ ic_name }}">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showEmail" class="col-sm-4 col-form-label">Email</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showEmail" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showGender" class="col-sm-4 col-form-label">性別</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showGender" value="">
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label for="showPhone" class="col-sm-4 col-form-label">手機號碼</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showPhone" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showTelp" class="col-sm-4 col-form-label">電話號碼</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showTelp" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showAddress" class="col-sm-4 col-form-label">郵寄地址</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showAddress" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showSchoolName" class="col-sm-4 col-form-label">學校名稱</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showSchoolName" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showDepartment" class="col-sm-4 col-form-label">系所／年級</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showDepartment" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showStatusSchool" class="col-sm-4 col-form-label">就學狀態</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showStatusSchool" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showCompanyName" class="col-sm-4 col-form-label">公司名稱</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showCompanyName" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showPosition" class="col-sm-4 col-form-label">服務部門</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showPosition" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showExp" class="col-sm-4 col-form-label">相關工作經驗年資</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showExp" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showTitle" class="col-sm-4 col-form-label">職稱</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showTitle" value="">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="showDegree" class="col-sm-4 col-form-label">最高學歷</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="showDegree" value="">
-                    </div>
-                </div>
-                <div class="row justify-content-start mt-4">
-                    <div class="col">
-                        <button id="btn_modify_reg" class="btn btn-outline-secondary mt-4 col-4" type="button">
-                            修改
-                        </button>
-                        <!--                        <button class="btn btn-primary mt-4 col-3" type="button" disabled>-->
-                        <!--                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
-                        <!--                            Loading...-->
-                        <!--                        </button>-->
-                        <button id="btn_final_submit" type="button" class="btn btn-primary mt-4 col-4">
-                            確認
-                        </button>
-                    </div>
-                </div>
-                <!--                </form>-->
-
-            </div>
-            <div id="see_schedule" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h1>請選擇欲報名的科別</h1>
-                        <p class="text-h3">目前尚未開放任何考試科別 <a href="">查看簡章</a></p>
+                <div id="see_schedule" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+                    <div class="row align-items-center">
                         <div class="col">
+                            <h1>請選擇欲報名的科別</h1>
+                            <p class="text-h3">目前尚未開放任何考試科別 <a href="">查看簡章</a></p>
+                            <div class="col">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div id="last_stage_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h1>您已完成註冊</h1>
+                            <p class="text-h3">您已完成註冊與報考</p>
                         </div>
                     </div>
                 </div>
-                <hr>
             </div>
-            <div id="last_stage_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h1>您已完成註冊</h1>
-                        <p class="text-h3">您已完成註冊與報考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% include "pages/modal_message.html" %}
-</section>
+        </div> {% include "pages/modal_message.html" %}
+    </section>
 </body>
-
 <script>
     function selectElement(id, valueToSelect) {
         let element = document.getElementById(id);
         element.value = valueToSelect;
     }
-
     selectElement('selectStatusschool', '{{ ic_status_school }}')
     selectElement('selectDegree', '{{ ic_degree }}')
-
-
     $("#test_registration").show();
     $("#summary_test_registration").hide();
     $("#last_stage_registration").hide();
@@ -424,57 +401,39 @@
         });
         // console.log(values)
         $('#showCourse').val(values.toString());
-
         $('#showFullname').val($('#idname').val());
-
         $('#showEmail').val($('#idemail').val());
-
         let val = document.querySelector('input[name="ic_gender"]:checked').value;
         // console.log(val)
         $('#showGender').val(val);
-
         $('#showAddress').val($('#textareaAddress').val());
-
         $('#showDegree').val($('#selectDegree').val());
-
         $('#showSchoolName').val($('#schoolName').val());
-
         $('#showDepartment').val($('#department').val());
-
         $('#showStatusSchool').val($('#selectStatusschool').val());
-
         $('#showCompanyName').val($('#companyName').val());
-
         $('#showPosition').val($('#selectPosition').val());
-
         $('#showExp').val($('#yearofExp').val());
-
         $('#showTitle').val($('#userTitle').val());
-
         $('#showPhone').val($('#icphonenumber').val());
-
         $('#showTelp').val($('#ictelpnumber').val());
         // console.log( loginFormObject );
         $("#test_registration").hide();
         $("#summary_test_registration").show();
-
     };
-
     document.getElementById('btn_modify_reg').onclick = function (e) {
         e.preventDefault();
         $("#test_registration").show();
         $("#summary_test_registration").hide();
     };
-
     document.getElementById('btn_final_submit').onclick = function (e) {
         e.preventDefault();
         let loginForm = $('#form_test_registration').serializeArray();
         // console.log(loginForm)
         let loginFormObject = {};
-        $.each(loginForm,
-            function (i, v) {
-                loginFormObject[v.name] = v.value;
-            });
+        $.each(loginForm, function (i, v) {
+            loginFormObject[v.name] = v.value;
+        });
         // console.log(loginFormObject)
         let values = [];
         $("input[name='ic_test']:checked").each(function () {
@@ -495,9 +454,7 @@
                     $('#messageModal').modal('show');
                 } else {
                     // window.location.href = "{% url 'profile' %}";
-
                     data.body.forEach(function (item) {
-
                         $('#last_stage_registration').append(`
             <hr>
             <div class="row mt-4">
@@ -549,19 +506,12 @@
                             </div>
                         </div>
                         `)
-
                     })
-
                     $("#test_registration").hide();
                     $("#summary_test_registration").hide();
                     $("#last_stage_registration").show();
                 }
-
             }
         });
     };
-
-
-</script>
-
-{% endblock %}
+</script> {% endblock %}
