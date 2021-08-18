@@ -485,6 +485,10 @@ def ic_report(request):
     # final_output
     return render(request, 'pages/report.html', final_output)
 
+def ic_admission_ticket(request):
+    # final_output
+    return render(request, 'pages/admission_ticket.html')
+
 
 def download_file_brief(request):
     # fill these variables with real values
