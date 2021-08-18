@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+      <!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Report{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'sheets-of-paper-a4.css' %}">
+		<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+	</head>
+	<body class="document">
+		<div class="page" contenteditable="false">
+			<img src="{% static 'images/Picture1.png' %}" alt="" style="width: 140px; margin-bottom: 1.5em;">
+			<h3 class="mb-4" style="text-align: center; line-height: 1.5em;">智慧電子人才應用發展推動計畫-IC設計能力鑑定 <br>110年IC佈局設計能力鑑定考試<br>成績單</h3>
+			<table class="table table-bordered mb-5">
+				<tbody class="">
+					<tr>
+					  <th scope="row" style="width: 25%;">姓名</th>
+					  <td style="width: 25%;">{{ user.ic_name }}</td>
+					  <th scope="row" style="width: 25%;">身份證字號</th>
+					  <td style="width: 25%;">{{ user.ic_id }}</td>
+					</tr>
+					<tr>
+					  <th scope="row" style="width: 25%;">准考證號碼</th>
+					  <td style="width: 25%;">{{ exam_logs.exam_ticket_no }}</td>
+					  <th scope="row" style="width: 25%;">考試日期</th>
+					  <td style="width: 25%;">{{ exams.exam_start_time }}</td>
+					</tr>
+					<tr class="text-center">
+					  <th scope="row" colspan="4" >鑑定考試成績</th>
+					</tr>
+					<tr>
+					  <th scope="row" style="width: 25%;">學科成績</th>
+					  <td style="width: 25%;">{{ exam_logs.exam_id }}</td>
+					  <th scope="row" style="width: 25%;">成績</th>
+					  <td style="width: 25%;">{{ exam_logs.exam_grade }}</td>
+					</tr>
+					<tr>
+					  <th scope="row" style="width: 25%;">分</th>
+					  <td style="width: 25%;">{{ exam_logs.exam_minutes }}</td>
+					  <td colspan="2">
+
+						  {% if exam_logs.exam_finish %}
+                    <div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="option1" checked>
+							  <label class="form-check-label" for="inlineRadio1">合格</label>
+						<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="option2">
+							  <label class="form-check-label" for="inlineRadio2">不合格</label>
+							</div>
+							</div>
+						  {% else %}
+						  	<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="option1">
+							  <label class="form-check-label" for="inlineRadio1">合格</label>
+						<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="option2" checked>
+							  <label class="form-check-label" for="inlineRadio2">不合格</label>
+							</div>
+							</div>
+                    {% endif %}
+
+
+
+					  </td>
+					</tr>
+					<tr class="text-center">
+					  <th scope="row" colspan="4" >術科成績（實作）</th>
+					</tr>
+					<tr>
+					  <th scope="row" style="width: 25%;">類比IC設計</th>
+					  <td style="width: 25%;">1</td>
+					  <th scope="row" style="width: 25%;">成績</th>
+					  <td style="width: 25%;">2</td>
+					</tr>
+					<tr>
+					  <th scope="row" style="width: 25%;">分</th>
+					  <td style="width: 25%;">1</td>
+					  <td colspan="2">
+						  <div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio3" value="option3" checked>
+							  <label class="form-check-label" for="inlineRadio3">合格</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="option4">
+							  <label class="form-check-label" for="inlineRadio4">不合格</label>
+							</div>
+					  </td>
+					</tr>
+					<tr>
+					  <th scope="row" style="width: 25%;">數位IC設計</th>
+					  <td style="width: 25%;">1</td>
+					  <th scope="row" style="width: 25%;">成績</th>
+					  <td style="width: 25%;">2</td>
+					</tr>
+					<tr>
+					  <th scope="row" style="width: 25%;">分</th>
+					  <td style="width: 25%;">1</td>
+					  <td colspan="2">
+						  <div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio5" value="option5" checked>
+							  <label class="form-check-label" for="inlineRadio5">合格</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio6" value="option6">
+							  <label class="form-check-label" for="inlineRadio6">不合格</label>
+							</div>
+					  </td>
+					</tr>
+					<tr class="text-center">
+					  <th scope="row" colspan="4" >說明</th>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">1. 學科成績滿分100分，需達80分（含）以上始為合格</li>
+								<li class="list-group-item danger">2. 術科成績，分類比IC、數位IC兩項，每項成績達70分（含）以上始為合格 </li>
+							</ul>
+						</td>
+					</tr>
+				  </tbody>
+			</table>
+			<div class="row g-3">
+				<div class="col-2">
+					<span>主辦單位：</span>
+				</div>
+				<div class="col-1 me-4">
+					<img src="{% static 'images/Picture3.png' %}" alt="" style="width: 60px;">
+				</div>
+				<div class="col-8">
+					<img src="{% static 'images/Picture2.png' %}" alt="" style="width: 240px; padding-top: 10px;">
+				</div>
+
+			</div>
+		</div>
+		<script type="text/javascript">
+		window.print();
+		</script>
+	</body>
+</html>
