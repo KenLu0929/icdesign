@@ -245,6 +245,8 @@
                                     <td class="col-12 col-md-2">{{field.exam_id}}</td>
                                     <td class="col-12 col-md-2">{{field.exam_place}}</td>
                                     <td class="col-12 col-md-1">{{field.exam_grade}}</td>
+                                    <td class="col-12 col-md-1">{{field.exam_status}}</td>
+                                    <td class="col-12 col-md-1"><button class="btn btn-outline-success" {% if field.exam_status != "approved" %} disabled {% endif %} onclick="print_report('{{ field.exam_ticket_no }}')">Download Tickets</button></td>
                                     <th class="complain text-end col-12 col-md-3"><a
                                             href="https://www.tsri.org.tw/icdesign/doc/reconfirm_v109.doc">Complain
                                         grade</a></th>
@@ -292,6 +294,11 @@
             }
         });
     });
+
+    function print_report(logs_id){
+        console.log(logs_id)
+        window.location.href = "{% url 'ic_report' %}?id="+logs_id;
+    }
 
     $(document).on('hidden.bs.modal', '#messageModal', function () {
         window.location.href = "{% url 'profile' %}";

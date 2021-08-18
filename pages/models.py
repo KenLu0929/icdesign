@@ -21,6 +21,12 @@ class StatusSchoolClass(models.TextChoices):
     UNDERGRADUATE = '肄業', _('肄業')
 
 
+class ExamsStatusClass(models.TextChoices):
+    WAITING = 'waiting', _('waiting')
+    REJECTED = 'rejected', _('rejected')
+    APPROVED = 'approved', _('approved')
+
+
 # Create your models here.
 class Users(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
@@ -71,14 +77,19 @@ class ExamLogs(models.Model):
     exam_id = models.CharField(max_length=100, null=True)
     ic_id = models.CharField(max_length=100, null=True)
     # user = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
-    exam_grade = models.CharField(max_length=5, null=True)
+    exam_grade = models.CharField(max_length=5, null=True, default="-")
+    exam_minutes = models.CharField(max_length=5, null=True, default="-")
+    exam_status = models.CharField(max_length=100,
+                                   choices=ExamsStatusClass.choices,
+                                   null=True,
+                                   default=ExamsStatusClass.WAITING)
     exam_finish = models.BooleanField(null=True, default=False)
     exam_place = models.CharField(max_length=100, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
-        ordering = ['date_created', "exam_grade"]
+        ordering = ["date_created", "exam_status", "exam_grade"]
         managed = True
         verbose_name = "exam log"
         verbose_name_plural = "exam logs"

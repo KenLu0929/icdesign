@@ -40,7 +40,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
     search_fields = ("ic_id", "exam_id", "exam_place", "exam_ticket_no")
 
     filter_horizontal = ()
-    list_filter = ["exam_finish"]
+    list_filter = ["exam_finish", "exam_status"]
     fieldsets = ()
 
 
