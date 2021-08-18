@@ -22,9 +22,14 @@ class StatusSchoolClass(models.TextChoices):
 
 
 class ExamsStatusClass(models.TextChoices):
-    WAITING = 'waiting', _('waiting')
-    REJECTED = 'rejected', _('rejected')
-    APPROVED = 'approved', _('approved')
+    WAITING = '等待中', _('等待中')
+    REJECTED = '拒絕', _('拒絕')
+    APPROVED = '同意', _('同意')
+
+
+class ExamsLevelClass(models.TextChoices):
+    ELECTIVE = '學科', _('學科')
+    PRACTICAL = '術科', _('術科')
 
 
 # Create your models here.
@@ -102,6 +107,10 @@ class Exams(models.Model):
     exam_start_time = models.DateTimeField(null=True)
     exam_end_time = models.DateTimeField(null=True)
     exam_place = models.CharField(max_length=100, null=True)
+    exam_prefix = models.CharField(max_length=100, null=True)
+    exam_level = models.CharField(max_length=100,
+                                  choices=ExamsLevelClass.choices,
+                                  null=True)
     exam_is_active = models.IntegerField(null=True, default=0)  # 0 = Not Active, 1 = Active
     exam_prerequisite = models.CharField(max_length=100, null=True, default="-")  # string with separator ","
     date_created = models.DateTimeField(auto_now_add=True, null=True)

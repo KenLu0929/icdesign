@@ -409,7 +409,7 @@ def forget_password(request):
         if bool(user):
             # send to the email
             email = user.get("ic_email", "")
-            if email == '':
+            if email == '' or email == '-':
                 resp = {
                     "error": True,
                     "message": error_messages.EMAIL_NOT_REGISTERED
