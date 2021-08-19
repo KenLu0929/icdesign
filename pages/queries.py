@@ -204,6 +204,11 @@ class QueryExamsLogs:
         # print("output:", users_json[0])
         return q
 
+    @staticmethod
+    def exams_ins(data):
+        q = models.ExamLogs.objects.filter(**data)
+        return q
+
 
 class QueryNews:
 

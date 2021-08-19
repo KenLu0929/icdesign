@@ -58,6 +58,7 @@ def update_registration(data_post, ic_id):
     # education data
 
     ic_test = data_post.getlist("ic_test[]", [])
+    exam_ticket_no = utils.generate_exams_ticket_v2()
     exam_list = []
     for exam_id in ic_test:
         # print(exam_id)
@@ -68,12 +69,13 @@ def update_registration(data_post, ic_id):
         exam["exam_id"] = exam_id
         # exam["user"] = ic_id
         exam["exam_place"] = exam_info.get("exam_place", "")
-        exam["exam_ticket_no"] = utils.generate_exams_ticket(exam_id)
+        # exam["exam_ticket_no"] = utils.generate_exams_ticket(exam_id)
+        exam["exam_ticket_no"] = exam_ticket_no
         # print(exam)
         q = QueryExamsLogs.exams_upsert(exam)
         if not q:
             return {}
-
+        exam["exam_name"] = exam_info.get("exam_name", "")
         exam["exam_start_time"] = exam_info.get("exam_start_time", "")
         exam["exam_end_time"] = exam_info.get("exam_end_time", "")
         exam_list.append(exam)
