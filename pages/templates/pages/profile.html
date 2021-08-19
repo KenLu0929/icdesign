@@ -47,9 +47,12 @@
                         <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
                             aria-selected="false">安全性 </button>
+                        <button class="nav-link" id="v-pills-ticket-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-ticket" type="button" role="tab" aria-controls="v-pills-ticket"
+                            aria-selected="false">准考證 </button>
                         <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
-                            aria-selected="false">資料下載 </button>
+                            aria-selected="false">成績 </button>
                     </div>
                 </div>
             </div>
@@ -236,6 +239,16 @@
                                 </form>
                             </div>
                         </div>
+                        <div class="tab-pane py-3 px-3 fade" id="v-pills-ticket" role="tabpanel"
+                            aria-labelledby="v-pills-ticket-tab" style="min-height: 37vh;">
+                            <div class="container">
+                                <h4 class="mb-4">准考證下載</h4>
+                                <ul class="icon-list">
+                                    <li><a  rel="noopener"
+                                            target="_blank">准考證將於2021/9/10下載</a></li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="tab-pane py-3 px-3 fade" id="v-pills-messages" role="tabpanel"
                             aria-labelledby="v-pills-messages-tab" style="min-height: 37vh;">
                             <div class="container">
@@ -250,9 +263,6 @@
                                                 {% if field.exam_status != "approved" %} disabled {% endif %}
                                                 onclick="print_report('{{ field.exam_ticket_no }}')">Download
                                                 Tickets</button></td>
-                                        <th class="complain text-end col-12 col-md-3"><a
-                                                href="https://www.tsri.org.tw/icdesign/doc/reconfirm_v109.doc">Complain
-                                                grade</a></th>
                                     </tr> {% endfor %} </table>
                                 <ul class="icon-list">
                                     <li><a href="#" rel="noopener"
