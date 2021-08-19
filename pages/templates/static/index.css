@@ -58,3 +58,17 @@ button.link { background:none;border:none; }
     background: linear-gradient(90deg, rgba(28,62,128,1) 22%, rgba(20,15,107,1) 77%) !important;
 }
 
+body{
+     /* The image used */
+  background-image: url("images/background-01.png");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+}
+
