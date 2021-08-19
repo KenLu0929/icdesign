@@ -55,6 +55,6 @@ button.link { background:none;border:none; }
 }
 
 .bg-dark {
-    background-color: #002744 !important;
+    background: linear-gradient(90deg, rgba(28,62,128,1) 22%, rgba(20,15,107,1) 77%) !important;
 }
 
