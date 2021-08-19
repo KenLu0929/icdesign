@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from icdesign import utils
 from icdesign import error_messages
 
+
 class CustomBackend(object):
 
     @staticmethod
@@ -70,7 +71,7 @@ def update_registration(data_post, ic_id):
         exam["exam_ticket_no"] = utils.generate_exams_ticket(exam_id)
         # print(exam)
         q = QueryExamsLogs.exams_upsert(exam)
-        if q == False:
+        if not q:
             return {}
 
         exam["exam_start_time"] = exam_info.get("exam_start_time", "")

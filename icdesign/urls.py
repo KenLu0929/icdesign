@@ -39,6 +39,7 @@ urlpatterns = [
     path('sponsorship', views.ic_sponsorship, name="ic_sponsorship"),
     path('privacy', views.ic_privacy, name="ic_privacy"),
     path('report', views.ic_report, name="ic_report"),
+    path('admissionticket', views.ic_admission_ticket, name="ic_admission_ticket"),
     path('brief_download', views.download_file_brief,name="ic_brief_download"),
     path('question_bank_download', views.download_file_question_bank,name="ic_question_bank_download"),
 ]

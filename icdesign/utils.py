@@ -5,7 +5,7 @@ import logging
 import time
 from icdesign import settings
 import uuid
-from pages.models import ExamLogs
+from pages.models import CounterExamsLogs
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -78,7 +78,7 @@ def get_fields_only(data):
 
 
 def generate_exams_ticket(exams_id):
-    last_logs = ExamLogs.objects.all().order_by('auto_increment_id').last()
+    last_logs = CounterExamsLogs.objects.all().order_by('auto_increment_id').last()
     suffix = "0001"
     if last_logs:
         suffix = str(int(last_logs.auto_increment_id) + 1).zfill(4)
@@ -86,4 +86,5 @@ def generate_exams_ticket(exams_id):
     x = str(x)[:5].upper()
     # ticket = exams_id + x + str(currentUnixTimeStamp()) + suffix
     ticket = exams_id + x + suffix
+
     return ticket

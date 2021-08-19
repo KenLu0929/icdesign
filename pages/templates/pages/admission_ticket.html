@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+      <!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Admission Ticket{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'sheets-of-paper-a4.css' %}">
+		<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+	</head>
+	<body class="document">
+		<div class="page" contenteditable="false">
+			<img src="{% static 'images/Picture1.png' %}" alt="" style="width: 140px; margin-bottom: 1.5em;">
+			<h3 class="mb-4" style="text-align: center; line-height: 1.5em;">經濟部工業局智慧電子人才應用發展推動計畫 半導體佈局設計工程師能力鑑定 准考證</h3>
+			<table class="table table-bordered mb-5">
+				<tbody class="">
+					<tr>
+					  <th scope="row" style="width: 25%;">姓名</th>
+					  <td style="width: 25%;">{{ user.ic_name }}</td>
+					  <th scope="row" style="width: 25%;">身份證字號</th>
+					  <td style="width: 25%;">{{ user.ic_id }}</td>
+					</tr>
+					<tr>
+					  <th scope="row" style="width: 25%;">准考證號碼</th>
+					  <td style="width: 25%;">{{ exam_logs.exam_ticket_no }}</td>
+					  <th scope="row" style="width: 25%;">考試日期</th>
+					  <td style="width: 25%;">{{ exams.exam_start_time }}</td>
+					</tr>
+					<tr class="text-center">
+					  <th scope="row" colspan="4" >鑑定考試成績</th>
+					</tr>
+					<tr>
+					  <th scope="row" style="width: 25%;">備註</th>
+					  <td colspan="3" style="width: 25%;">考試當天請攜帶 <br>➀ 准考證（請自行列印）<br>➁ 個人身份證明有效證件正本 (有效證件正本包括：國民身分證、有照片之健保卡、駕駛執照、護照或居留證等。)</td>
+					</tr>
+					<tr>
+					  <th scope="row" style="width: 25%;">防疫措施</th>
+					  <td colspan="3" style="width: 25%;">為因應新冠肺炎疫情，測驗當天請 <br>➀ 自備口罩並全程佩戴應試<br>➁ 進入考場前需配合測量額溫。建議提早半小時至考場，以免延誤入場；額溫超過37.5（含）度者，不得入場應試。</td>
+					</tr>
+				  </tbody>
+			</table>
+
+			<span>考試時間</span>
+			<table class="table table-bordered mb-5">
+				<thead>
+					<tr>
+						<th scope="col" style="width: 40px;">時間</th>
+						<th scope="col" style="width: 40px;">科目</th>
+						<th scope="col" style="width: 40px;">題型</th>
+					</tr>
+				</thead>
+				<tbody class="">
+					<tr>
+					  <td style="witdh: 30%;">10:00~11:20 (80分鐘)</td>
+					  <td >學科（線上測驗）</td>
+					  <td >選擇50題</td>
+					</tr>
+					<tr>
+					  <td>11:30~12:00 (30分鐘)</td>
+					  <td colspan="2">術科實作環境熟悉</td>
+					</tr>
+					<tr>
+					  <td>13:00~17:30 (270分鐘)</td>
+					  <td>術科實作</td>
+						<td>佈局題1題、除錯題2題</td>
+					</tr>
+				  </tbody>
+			</table>
+			<div class="row">
+				<div class="col-12">
+					<span>委辦單位：國立陽明交通大學</span>
+				</div>
+
+			</div>
+		</div>
+		<script type="text/javascript">
+		window.print();
+		</script>
+	</body>
+</html>
