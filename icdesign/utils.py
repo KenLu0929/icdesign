@@ -6,6 +6,7 @@ import time
 from icdesign import settings
 import uuid
 from pages.models import CounterExamsLogs
+from pages import queries
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -87,4 +88,20 @@ def generate_exams_ticket(exams_id):
     # ticket = exams_id + x + str(currentUnixTimeStamp()) + suffix
     ticket = exams_id + x + suffix
 
+    return ticket
+
+
+def generate_exams_ticket_v2():
+    last_logs = CounterExamsLogs.objects.all().order_by('auto_increment_id').last()
+    prefix = "EXAM"
+    suffix = "0001"
+    if last_logs:
+        suffix = str(int(last_logs.auto_increment_id) + 1).zfill(4)
+    x = uuid.uuid4()
+    x = str(x)[:5].upper()
+    # ticket = exams_id + x + str(currentUnixTimeStamp()) + suffix
+    ticket = prefix + x + suffix
+    res = queries.QueryCounterExamsLogs.users_upsert()
+    if not res:
+        logger.error("cannot increment counterExamsLogs.")
     return ticket

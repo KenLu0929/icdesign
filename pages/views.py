@@ -5,7 +5,9 @@ from django.http import JsonResponse, HttpResponse
 from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign import error_messages
-from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, prerequisite_exams
+from pypika import Query
+from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, \
+    prerequisite_exams
 
 # for pdf rendering/view
 from easy_pdf.views import PDFTemplateResponseMixin
@@ -461,15 +463,28 @@ def ic_privacy(request):
 
 def ic_report(request):
     # print(ticket_no)
-    ticket_id = request.GET.get("id")
+    ic_id = request.session.get('user')
     final_output = {}
     exams_filter = {
-        "exam_ticket_no": ticket_id,
+        "exam_is_active": 1,
     }
-    exam_logs = QueryExamsLogs.exams_get(exams_filter, False)
+    exams = QueryExams.exams_get(exams_filter, False)
+
+    exams_id = []
+    for a in exams:
+        # print(a)
+        exams_id.append(a.get("exam_id"))
+
+    # print(exams_id)
+    exams_logs_filter = {
+        "ic_id": ic_id,
+        "exam_id__in": exams_id
+    }
+
+    exam_logs = QueryExamsLogs.exams_get(exams_logs_filter, False)
     final_output["exam_logs"] = exam_logs
     # print(exam_logs)
-    data = {"ic_id": exam_logs.get("ic_id")}
+    data = {"ic_id": ic_id}
     # print(data)
     user = QueryUsers.users_get(data)
     final_output["user"] = user
@@ -479,14 +494,53 @@ def ic_report(request):
         "exam_id": exam_logs.get("exam_id"),
     }
     final_output["exams"] = QueryExams.exams_get(exams_data, False)
-    print(final_output)
+    # print(final_output)
 
     # final_output
     return render(request, 'pages/report.html', final_output)
 
+
 def ic_admission_ticket(request):
-    # final_output
-    return render(request, 'pages/admission_ticket.html')
+    ic_id = request.session.get('user')
+    final_output = {}
+
+    exams_filter = {
+        "exam_is_active": 1,
+    }
+    exams = QueryExams.exams_get(exams_filter, False)
+    exams_date = []
+    exams_id = []
+    for a in exams:
+        # print(a)
+        exams_id.append(a.get("exam_id"))
+        exams_date.append(str(a.get("exam_start_time")).split("T")[0])
+
+    exams_date = list(set(exams_date))
+    # print(exams_id)
+    exams_logs_filter = {
+        "ic_id": ic_id,
+        "exam_id__in": exams_id
+    }
+    # print(exams)
+    exam_logs = QueryExamsLogs.exams_get(exams_logs_filter, False)
+    if len(exams) > 1:
+        exams = exams[0]
+    exams["exam_start_time"] = ", ".join(exams_date)
+    final_output["exams"] = exams
+
+    if len(exam_logs) > 1:
+        exam_logs = exam_logs[0]
+
+    # print(exam_logs)
+    final_output["exam_logs"] = exam_logs
+    # print(exam_logs)
+    data = {"ic_id": ic_id}
+    # print(data)
+    user = QueryUsers.users_get(data)
+    final_output["user"] = user
+    # print(user)
+    # print(final_output)
+    return render(request, 'pages/admission_ticket.html', final_output)
 
 
 def download_file_brief(request):
@@ -509,6 +563,7 @@ def download_file_question_bank(request):
     response = HttpResponse(fl, content_type=mime_type)
     response['Content-Disposition'] = "attachment; filename=%s" % filename
     return response
+
 
 def download_file_User_case_diagram(request):
     # fill these variables with real values
