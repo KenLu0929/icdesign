@@ -5,7 +5,7 @@ from django.http import JsonResponse, HttpResponse
 from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign import error_messages
-from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, \
+from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, 
     prerequisite_exams
 
 # for pdf rendering/view
@@ -480,33 +480,14 @@ def ic_report(request):
         "exam_id": exam_logs.get("exam_id"),
     }
     final_output["exams"] = QueryExams.exams_get(exams_data, False)
-    # print(final_output)
+    print(final_output)
 
     # final_output
     return render(request, 'pages/report.html', final_output)
 
-
 def ic_admission_ticket(request):
     # final_output
-    ticket_id = request.GET.get("id")
-    final_output = {}
-    exams_filter = {
-        "exam_ticket_no": ticket_id,
-    }
-    exam_logs = QueryExamsLogs.exams_get(exams_filter, False)
-    final_output["exam_logs"] = exam_logs
-    # print(exam_logs)
-    data = {"ic_id": exam_logs.get("ic_id")}
-    # print(data)
-    user = QueryUsers.users_get(data)
-    final_output["user"] = user
-    # print(user)
-
-    exams_data = {
-        "exam_id": exam_logs.get("exam_id"),
-    }
-    final_output["exams"] = QueryExams.exams_get(exams_data, False)
-    return render(request, 'pages/admission_ticket.html', final_output)
+    return render(request, 'pages/admission_ticket.html')
 
 
 def download_file_brief(request):
@@ -522,8 +503,18 @@ def download_file_brief(request):
 
 def download_file_question_bank(request):
     # fill these variables with real values
-    fl_path = 'pages/IC_layout_110_question_bank.pdf'
-    filename = 'IC_layout_110_question_bank.pdf'
+    fl_path = 'pages/IC_layout_110考古題.pdf'
+    filename = 'IC_layout_110考古題.pdf'
+    fl = open(fl_path, 'rb')
+    mime_type, _ = mimetypes.guess_type(fl_path)
+    response = HttpResponse(fl, content_type=mime_type)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
+
+def download_file_User_case_diagram(request):
+    # fill these variables with real values
+    fl_path = 'pages/User_case_diagram.pdf'
+    filename = 'User case diagram.pdf'
     fl = open(fl_path, 'rb')
     mime_type, _ = mimetypes.guess_type(fl_path)
     response = HttpResponse(fl, content_type=mime_type)
