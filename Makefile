@@ -12,6 +12,8 @@ superuser:
 	python manage.py createsuperuser
 test:
 	python manage.py test
+static:
+	python manage.py collectstatic
 run_all:
 	python manage.py makemigrations
 	python manage.py migrate
