@@ -503,8 +503,8 @@ def download_file_brief(request):
 
 def download_file_question_bank(request):
     # fill these variables with real values
-    fl_path = 'pages/IC_layout_110考古題.pdf'
-    filename = 'IC_layout_110考古題.pdf'
+    fl_path = 'pages/IC_layout_110_question_bank.pdf'
+    filename = 'IC_layout_110_question_bank.pdf'
     fl = open(fl_path, 'rb')
     mime_type, _ = mimetypes.guess_type(fl_path)
     response = HttpResponse(fl, content_type=mime_type)
