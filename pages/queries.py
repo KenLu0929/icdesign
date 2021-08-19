@@ -216,3 +216,18 @@ class QueryNews:
         news_json = get_fields_only(news_json)
 
         return news_json
+
+
+class QueryCounterExamsLogs:
+
+    @staticmethod
+    def users_upsert():
+        # user = models.User(**data)
+        try:
+            cel = models.CounterExamsLogs()
+            cel.content = ""
+            cel.save()
+            return True
+        except Exception as e:
+            logger.error('Failed to insert data user to database: ', str(e))
+            return False
