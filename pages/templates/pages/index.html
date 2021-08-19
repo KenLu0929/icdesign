@@ -1,8 +1,10 @@
 {% extends "pages/base.html" %}
+{% load static %}
 {% block title %}110年半導體佈局設計工程師能力鑑定{% endblock %}
 {% block content %}
 <body>
 {% include "pages/header.html" %}
+<section class="background-overlay"></section>
 <div class="container py-5">
 <!--    <div class="container-fluid py-5">-->
 <!--        <h3 class="display-6 fw-bold">歡迎來到 半導體佈局設計工程師能力鑑定</h3>-->
@@ -11,10 +13,10 @@
 <!--    </div>-->
     <div class="container px-4 px-md-3">
     <div class="row align-items-lg-center">
-      <div class="col-12 mx-auto col-md-4 order-md-2 col-lg-5 mb-4">
-        <img id="post" src="https://raw.githubusercontent.com/yuwaylan/yuwaylan.github.io/master/img/dummypost_srink_600.jpg" style="max-width:100%;height:auto;">
+      <div class="col-12 mx-auto col-md-4 order-md-2 col-lg-6 mb-4">
+        <img id="post" src="{% static 'images/5059285-01.png' %}" style="max-width:100%;height:auto;" >
       </div>
-      <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
+      <div class="col-md-8 order-md-1 col-lg-6 text-center text-md-start">
         <h1 class="mb-3">歡迎來到半導體佈局設計工程師能力鑑定</h1>
         <p class="lead mb-4">
           立即註冊幫你快速完成報名！
