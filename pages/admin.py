@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Users, ExamLogs, Exams, News, Sponsorship
+from .models import Users, ExamLogs, Exams, News, Sponsorship, CounterExamsLogs
 
 # Register your models here.
 
@@ -68,8 +68,17 @@ class SponsorshipAdmin(admin.ModelAdmin):
     fieldsets = ()
 
 
+class CounterExamsLogsAdmin(admin.ModelAdmin):
+    readonly_fields = ("date_created", "date_modified", "content", "auto_increment_id")
+
+    filter_horizontal = ()
+    list_filter = []
+    fieldsets = ()
+
+
 admin.site.register(Users, UsersAdmin)
 admin.site.register(Exams, ExamsAdmin)
 admin.site.register(ExamLogs, ExamLogsAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Sponsorship, SponsorshipAdmin)
+admin.site.register(CounterExamsLogs, CounterExamsLogsAdmin)
