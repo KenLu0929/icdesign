@@ -70,7 +70,7 @@
                                 <div class="align-items-center mt-4">
                                     <div class="form-floating row g-2">
                                         <div class="col-md-12">
-                                            <label for="datepicker">出生日期</label>
+                                            <label for="datepicker"><a style="color:red;">*</a>出生日期</label>
                                         </div>
                                         <div class="col-md-12">
                                             <input id="datepicker" name="ic_bod" type="date" class="form-control"
@@ -82,7 +82,7 @@
                                 <div class="align-items-center mt-4">
                                     <div class="row g-2">
                                         <div class="col-md">
-                                            <span>性別</span>
+                                            <span><a style="color:red;">*</a>性別</span>
                                         </div>
                                         <div class="col-md row g-2" style="margin-left: 0rem;">
                                             <div class="form-check form-check-inline">
@@ -106,7 +106,7 @@
                                                    class="form-control"
                                                    placeholder="ID"
                                                    maxlength="10" value="{{ ic_phone_no }}">
-                                            <label for="icphonenumber">手機號碼</label>
+                                            <label for="icphonenumber"><a style="color:red;">*</a>手機號碼</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
@@ -114,7 +114,7 @@
                                             <input type="text" class="form-control" id="ictelpnumber"
                                                    name="ic_telephone"
                                                    placeholder="e.g, Jhon Doe" value="{{ ic_telephone }}">
-                                            <label for="ictelpnumber">電話號碼</label>
+                                            <label for="ictelpnumber"><a style="color:red;">*</a>電話號碼</label>
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
                             <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
                                       style="height : 100px;" name="ic_address"
                                       required>{{ ic_address }}</textarea>
-                                        <label for="textareaAddress">郵寄地址</label>
+                                        <label for="textareaAddress"><a style="color:red;">*</a>郵寄地址</label>
                                     </div>
                                 </div>
                                 <div class="row g-3 mt-2">
@@ -138,14 +138,14 @@
                                         <div class="form-floating">
                                             <input type="text" id="schoolName" name="ic_school" class="form-control"
                                                    placeholder="School name" value="{{ ic_school }}">
-                                            <label for="schoolName">學校名稱</label>
+                                            <label for="schoolName"><a style="color:red;">*</a>學校名稱</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
                                             <input type="text" id="department" name="ic_department" class="form-control"
                                                    placeholder="Department" value="{{ ic_department }}">
-                                            <label for="department">系所／年級</label>
+                                            <label for="department"><a style="color:red;">*</a>系所／年級</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
@@ -157,7 +157,7 @@
                                                     <option value="畢業">畢業</option>
                                                     <option value="肄業">肄業</option>
                                             </select>
-                                            <label for="selectStatusschool">就學狀態</label>
+                                            <label for="selectStatusschool"><a style="color:red;">*</a>就學狀態</label>
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@
                                                     <option value="碩士">碩士</option>
                                                     <option value="博士">博士</option>
                                             </select>
-                                            <label for="selectDegree">最高學歷</label>
+                                            <label for="selectDegree"><a style="color:red;">*</a>最高學歷</label>
                                         </div>
                                     </div>
                                 </div>
