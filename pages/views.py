@@ -5,7 +5,6 @@ from django.http import JsonResponse, HttpResponse
 from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign import error_messages
-from pypika import Query
 from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, \
     prerequisite_exams
 
