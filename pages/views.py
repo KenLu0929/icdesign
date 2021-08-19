@@ -409,7 +409,7 @@ def forget_password(request):
         if bool(user):
             # send to the email
             email = user.get("ic_email", "")
-            if email == '':
+            if email == '' or email == '-':
                 resp = {
                     "error": True,
                     "message": error_messages.EMAIL_NOT_REGISTERED
@@ -480,10 +480,33 @@ def ic_report(request):
         "exam_id": exam_logs.get("exam_id"),
     }
     final_output["exams"] = QueryExams.exams_get(exams_data, False)
-    print(final_output)
+    # print(final_output)
 
     # final_output
     return render(request, 'pages/report.html', final_output)
+
+
+def ic_admission_ticket(request):
+    # final_output
+    ticket_id = request.GET.get("id")
+    final_output = {}
+    exams_filter = {
+        "exam_ticket_no": ticket_id,
+    }
+    exam_logs = QueryExamsLogs.exams_get(exams_filter, False)
+    final_output["exam_logs"] = exam_logs
+    # print(exam_logs)
+    data = {"ic_id": exam_logs.get("ic_id")}
+    # print(data)
+    user = QueryUsers.users_get(data)
+    final_output["user"] = user
+    # print(user)
+
+    exams_data = {
+        "exam_id": exam_logs.get("exam_id"),
+    }
+    final_output["exams"] = QueryExams.exams_get(exams_data, False)
+    return render(request, 'pages/admission_ticket.html', final_output)
 
 
 def download_file_brief(request):
