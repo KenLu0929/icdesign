@@ -298,7 +298,7 @@
 
     function print_report(logs_id) {
         console.log(logs_id)
-        window.location.href = "{% url 'ic_report' %}?id=" + logs_id;
+        window.location.href = "{% url 'ic_admission_ticket' %}?id=" + logs_id;
     }
     $(document).on('hidden.bs.modal', '#messageModal', function () {
         window.location.href = "{% url 'profile' %}";
