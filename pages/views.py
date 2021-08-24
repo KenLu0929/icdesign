@@ -489,8 +489,9 @@ def ic_report(request):
     final_output["user"] = user
     # print(user)
 
+    # print(exam_logs)
     exams_data = {
-        "exam_id": exam_logs.get("exam_id"),
+        "exam_id": exam_logs[0].get("exam_id"),
     }
     final_output["exams"] = QueryExams.exams_get(exams_data, False)
     # print(final_output)
