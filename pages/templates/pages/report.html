@@ -1,108 +1,80 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-	<head>
-      <!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Report{% endblock %}</title>
-		<link rel="stylesheet" href="{% static 'sheets-of-paper-a4.css' %}">
-		<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-	</head>
-	<body class="document">
-		<div class="page" contenteditable="false">
-			<img src="{% static 'images/Picture1.png' %}" alt="" style="width: 140px; margin-bottom: 1.5em;">
-			<h3 class="mb-4" style="text-align: center; line-height: 1.5em;">經濟部工業局智慧電子人才應用發展推動計畫 半導體佈局設計工程師能力鑑定 成績單</h3>
-			<table class="table table-bordered mb-5">
-				<tbody class="">
-					<tr>
-					  <th scope="row" style="width: 25%;">姓名</th>
-					  <td style="width: 25%;">{{ user.ic_name }}</td>
-					  <th scope="row" style="width: 25%;">身份證字號</th>
-					  <td style="width: 25%;">{{ user.ic_id }}</td>
-					</tr>
-					<tr>
-					  <th scope="row" style="width: 25%;">准考證號碼</th>
-					  <td style="width: 25%;">{{ exam_logs.exam_ticket_no }}</td>
-					  <th scope="row" style="width: 25%;">考試日期</th>
-					  <td style="width: 25%;">{{ exams.exam_start_time }}</td>
-					</tr>
-					<tr class="text-center">
-					  <th scope="row" colspan="4" >鑑定考試成績</th>
-					</tr>
-					<tr>
-					  <th scope="row" style="width: 25%;">學科成績</th>
-					  <td style="width: 25%;">成績 {{ exam_logs.exam_grade }} 分</td>
-						<td colspan="2">
-						  {% if exam_logs.exam_finish %}
-						<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="option1" checked>
-								  <label class="form-check-label" for="inlineRadio1">合格</label>
-							<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="option2">
-								  <label class="form-check-label" for="inlineRadio2">不合格</label>
-								</div>
-								</div>
-							  {% else %}
-								<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="option1">
-								  <label class="form-check-label" for="inlineRadio1">合格</label>
-							<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="option2" checked>
-								  <label class="form-check-label" for="inlineRadio2">不合格</label>
-								</div>
-								</div>
-						{% endif %}
-						  </td>
-					</tr>
-					<tr>
-					  <th scope="row" style="width: 25%;">術科成績（實作）</th>
-					  <td style="width: 25%;">成績 {{ exam_logs.exam_grade }} 分</td>
-						<td colspan="2">
-						  {% if exam_logs.exam_finish %}
-						<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio3" value="option3" checked>
-								  <label class="form-check-label" for="inlineRadio3">合格</label>
-							<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio4" value="option4">
-								  <label class="form-check-label" for="inlineRadio4">不合格</label>
-								</div>
-								</div>
-							  {% else %}
-								<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio3" value="option3">
-								  <label class="form-check-label" for="inlineRadio3">合格</label>
-							<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio4" value="option4" checked>
-								  <label class="form-check-label" for="inlineRadio4">不合格</label>
-								</div>
-								</div>
-						{% endif %}
-						  </td>
-					</tr>
-					<tr class="text-center">
-					  <th scope="row" colspan="4" >說明</th>
-					</tr>
-					<tr>
-						<td colspan="4">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">1.	學科成績滿分100分，需達80分（含）以上始為合格</li>
-								<li class="list-group-item danger">2. 術科成績，分類比IC、數位IC兩項，每項成績達70分（含）以上始為合格 </li>
-							</ul>
-						</td>
-					</tr>
-				  </tbody>
-			</table>
-			<div class="row">
-				<div class="col-12">
-					<span>委辦單位：國立陽明交通大學：</span>
-				</div>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Report{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'sheets-of-paper-a4.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+</head>
+<body class="document">
+<div class="page" contenteditable="false">
+    <img src="{% static 'images/Picture1.png' %}" alt="" style="width: 140px; margin-bottom: 1.5em;">
+    <h3 class="mb-4" style="text-align: center; line-height: 1.5em;">經濟部工業局智慧電子人才應用發展推動計畫 半導體佈局設計工程師能力鑑定 成績單</h3>
+    <table class="table table-bordered mb-5">
+        <tbody class="">
+        <tr>
+            <th scope="row" style="width: 25%;">姓名</th>
+            <td style="width: 25%;">{{ user.ic_name }}</td>
+            <th scope="row" style="width: 25%;">身份證字號</th>
+            <td style="width: 25%;">{{ user.ic_id }}</td>
+        </tr>
+        <tr>
+            <th scope="row" style="width: 25%;">准考證號碼</th>
+            <td style="width: 25%;">{{ exam_logs.exam_ticket_no }}</td>
+            <th scope="row" style="width: 25%;">考試日期</th>
+            <td style="width: 25%;">{{ exams.exam_start_time }}</td>
+        </tr>
+        <tr class="text-center">
+            <th scope="row" colspan="4">鑑定考試成績</th>
+        </tr>
+        <tr>
+            <th scope="row" style="width: 25%;">學科成績</th>
+            <td style="width: 25%;">成績 {{ exam_logs.exam_grade }} 分</td>
+            <td colspan="2">
+                {% if exam_logs.exam_finish %}
+                <span>合格</span>
+                {% else %}
+                <span>不合格</span>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" style="width: 25%;">術科成績（實作）</th>
+            <td style="width: 25%;">成績 {{ exam_logs.exam_grade }} 分</td>
+            <td colspan="2">
+                {% if exam_logs.exam_finish %}
+                <span>合格</span>
+                {% else %}
+                <span>不合格</span>
+                {% endif %}
+            </td>
+        </tr>
+        <tr class="text-center">
+            <th scope="row" colspan="4">說明</th>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">1. 學科成績滿分100分，需達80分（含）以上始為合格</li>
+                    <li class="list-group-item danger">2. 術科成績，分類比IC、數位IC兩項，每項成績達70分（含）以上始為合格</li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-12">
+            <span>委辦單位：國立陽明交通大學：</span>
+        </div>
 
-			</div>
-		</div>
-		<script type="text/javascript">
-		window.print();
-		</script>
-	</body>
+    </div>
+</div>
+<script type="text/javascript">
+    window.print();
+</script>
+</body>
 </html>
