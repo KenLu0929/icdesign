@@ -94,6 +94,7 @@ class ExamLogs(models.Model):
                                    verbose_name="考試狀態")
     exam_finish = models.BooleanField(null=True, default=False, verbose_name="考試是否結束")
     exam_place = models.CharField(max_length=100, null=True, verbose_name="考試地點")
+    exam_room = models.CharField(max_length=100, null=True, verbose_name="考場")
     date_created = models.DateTimeField(auto_now_add=True, null=True, verbose_name="考試創建日期")
     date_modified = models.DateTimeField(auto_now=True, null=True, verbose_name="考試修改日期")
 

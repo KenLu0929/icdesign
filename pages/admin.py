@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from io import StringIO
 
 from .models import Users, ExamLogs, Exams, News, Sponsorship, CounterExamsLogs
+from .queries import QueryUsers, QueryExams
 
 # Register your models here.
 
@@ -24,6 +25,8 @@ class UsersAdmin(admin.ModelAdmin):
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()
+
+    actions = ['download_csv']
 
     @admin.action(description='Download marked data as CSV')
     def download_csv(self, request, queryset):
@@ -57,7 +60,7 @@ class ExamsAdmin(admin.ModelAdmin):
     list_filter = ["exam_is_active", "exam_place", "exam_level"]
     fieldsets = ()
 
-    actions = ['make_activated', 'make_not_activated']
+    actions = ['make_activated', 'make_not_activated', 'download_csv']
 
     @admin.action(description='Mark selected exams as ACTIVATED')
     def make_activated(self, request, queryset):
@@ -106,7 +109,8 @@ class ExamLogsAdmin(admin.ModelAdmin):
     filter_horizontal = ()
     list_filter = ["exam_finish", "exam_status"]
     fieldsets = ()
-    actions = ['make_approved', 'make_rejected']
+    actions = ['make_approved', 'make_rejected', 'download_csv',
+               'download_exams_report', 'download_candidate_report']
 
     @admin.action(description='Mark selected logs as APPROVED')
     def make_approved(self, request, queryset):
@@ -131,15 +135,77 @@ class ExamLogsAdmin(admin.ModelAdmin):
         f = StringIO()
         writer = csv.writer(f)
         writer.writerow(["exam_ticket_no", "admission_ticket_no", "exam_id", "ic_id", "exam_grade",
-                         "exam_minutes", "exam_status", "exam_finish", "exam_place", "date_created"])
+                         "exam_minutes", "exam_status", "exam_finish", "exam_place", "exam_room", "date_created"])
 
         for s in queryset:
+            data = {"ic_id": s.ic_id}
+            user = QueryUsers.users_get(data)
             writer.writerow([s.exam_ticket_no, s.admission_ticket_no, s.exam_id, s.ic_id, s.exam_grade,
-                             s.exam_minutes, s.exam_status, s.exam_finish, s.exam_place, s.date_created])
+                             s.exam_minutes, s.exam_status, s.exam_finish, s.exam_place, s.exam_room, s.date_created])
 
         f.seek(0)
         response = HttpResponse(f, content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename=exams-logs-report.csv'
+        return response
+
+    @admin.action(description='Download marked data as Exams Report')
+    def download_exams_report(self, request, queryset):
+        f = StringIO()
+        writer = csv.writer(f)
+        writer.writerow(["Date of Test", "Test ID", "Test Name", "Test Room", "Admission ticket number", "Name"])
+
+        for s in queryset:
+            user_data = {"ic_id": s.ic_id}
+            user = QueryUsers.users_get(user_data)
+
+            exam_data = {"exam_id": s.exam_id}
+            exam = QueryExams.exams_get(exam_data)
+
+            writer.writerow([exam.get("exam_start_time"), s.exam_id, exam.get("exam_name"),
+                             s.exam_room, s.exam_ticket_no, user.get("ic_name")])
+
+        f.seek(0)
+        response = HttpResponse(f, content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=exams-report.csv'
+        return response
+
+    @admin.action(description='Download marked data as Candidate Report')
+    def download_candidate_report(self, request, queryset):
+        f = StringIO()
+        writer = csv.writer(f)
+        writer.writerow(["Admission ticket number", "Test ID", "Test Name",
+                         "Test Area", "Test room", "ID",
+                         "Name", "Gender", "Date of Birth",
+                         "Phone Number", "Address", "University",
+                         "Major Courses", "Status", "Graduate Status",
+                         "Company", "Department", "Position",
+                         "Years of Experience", "Test Score", "Test Status"])
+
+        for s in queryset:
+            user_data = {"ic_id": s.ic_id}
+            user = QueryUsers.users_get(user_data)
+
+            exam_data = {"exam_id": s.exam_id}
+            exam = QueryExams.exams_get(exam_data)
+            test_status = "-"
+            if s.exam_grade != "" and s.exam_grade != "-":
+                if int(s.exam_grade) >= 70:
+                    test_status = "PASS"
+                else:
+                    test_status = "FAIL"
+
+            writer.writerow([s.exam_ticket_no, s.exam_id, exam.get("exam_name"),
+                             exam.get("exam_place"), s.exam_room, user.get("ic_id"),
+                             user.get("ic_name"), user.get("ic_gender"), user.get("ic_bod"),
+                             user.get("ic_phone_no"), user.get("ic_address"), user.get("ic_school"),
+                             user.get("ic_department"), s.exam_status, user.get("ic_status_school"),
+                             user.get("ic_company"), user.get("ic_department"), user.get("ic_job_position"),
+                             user.get("ic_yearofexp"), s.exam_grade, test_status,
+                             ])
+
+        f.seek(0)
+        response = HttpResponse(f, content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=candidate-report.csv'
         return response
 
 
