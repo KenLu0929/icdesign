@@ -81,6 +81,7 @@ class Users(models.Model):
 class ExamLogs(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
     exam_ticket_no = models.CharField(max_length=100, null=True, verbose_name="准考證號碼")
+    admission_ticket_no = models.CharField(max_length=100, null=True, default="-",verbose_name="准考證號碼")
     exam_id = models.CharField(max_length=100, null=True, verbose_name="考試編號")
     ic_id = models.CharField(max_length=100, null=True)
     # user = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
@@ -93,6 +94,7 @@ class ExamLogs(models.Model):
                                    verbose_name="考試狀態")
     exam_finish = models.BooleanField(null=True, default=False, verbose_name="考試是否結束")
     exam_place = models.CharField(max_length=100, null=True, verbose_name="考試地點")
+    exam_room = models.CharField(max_length=100, null=True, verbose_name="考場")
     date_created = models.DateTimeField(auto_now_add=True, null=True, verbose_name="考試創建日期")
     date_modified = models.DateTimeField(auto_now=True, null=True, verbose_name="考試修改日期")
 
