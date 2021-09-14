@@ -124,13 +124,13 @@ class ExamLogsAdmin(admin.ModelAdmin):
         return my_urls + urls
 
     def generate_adtics(self, request):
-        res = self.model.objects.filter(Q(admission_ticket_no="-") | Q(admission_ticket_no__isnull=True))
+        res = self.model.objects.filter(Q(admission_ticket_no="-") & Q(exam_status="同意"))
         mess = "Admission Ticket is generated."
         if len(res) <= 0:
-            mess = "All Admission Ticket have generated, please check again the data."
+            mess = "Can not generating Admission Ticket, please check again the data or approve some registration data."
         for a in res:
             tickets = utils.generate_admission_ticket(a.exam_id)
-            print(tickets)
+            # print(tickets)
             self.model.objects.filter(auto_increment_id=a.auto_increment_id).update(admission_ticket_no=tickets)
 
         self.message_user(request,mess )

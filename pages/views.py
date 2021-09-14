@@ -247,6 +247,10 @@ def profile_page(request):
     result = QueryExamsLogs.exams_get(exams_filter, True)
     # print(params)
     # print(result)
+    exams_data = {
+        "exam_is_active": 1,
+    }
+    params["exams_fields_active"] = QueryExams.exams_get(exams_data, True)
     params["exams_fields"] = result
     params["title"] = ""
     params["body"] = ""
