@@ -2,7 +2,7 @@ from . import models
 import logging
 from django.core import serializers
 import json
-from icdesign.utils import get_fields_only
+from icdesign import utils
 from django.db import IntegrityError
 from icdesign import error_messages
 
@@ -53,7 +53,7 @@ class QueryUsers:
         users = models.Users.objects.filter(**my_filter).distinct()
         users_json = serializers.serialize('json', users)
         users_json = json.loads(users_json)
-        users_json = get_fields_only(users_json)
+        users_json = utils.get_fields_only(users_json)
         if select_all:
             return users_json
         if len(users_json) == 1:
@@ -123,7 +123,7 @@ class QueryExams:
         exams_json = serializers.serialize('json', exams)
         exams_json = json.loads(exams_json)
 
-        exams_json = get_fields_only(exams_json)
+        exams_json = utils.get_fields_only(exams_json)
         if select_all:
             return exams_json
         if len(exams_json) == 1:
@@ -185,7 +185,7 @@ class QueryExamsLogs:
         exams_json = serializers.serialize('json', exams)
         exams_json = json.loads(exams_json)
 
-        exams_json = get_fields_only(exams_json)
+        exams_json = utils.get_fields_only(exams_json)
         if select_all:
             return exams_json
         if len(exams_json) == 1:
@@ -218,7 +218,7 @@ class QueryNews:
         news = models.News.objects.filter(news_is_active=1).distinct()
         news_json = serializers.serialize('json', news)
         news_json = json.loads(news_json)
-        news_json = get_fields_only(news_json)
+        news_json = utils.get_fields_only(news_json)
 
         return news_json
 

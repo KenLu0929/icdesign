@@ -81,7 +81,7 @@ class Users(models.Model):
 class ExamLogs(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
     exam_ticket_no = models.CharField(max_length=100, null=True, verbose_name="准考證號碼")
-    admission_ticket_no = models.CharField(max_length=100, null=True, default="-",verbose_name="准考證號碼")
+    admission_ticket_no = models.CharField(max_length=100, null=False, default="-", verbose_name="准考證號碼")
     exam_id = models.CharField(max_length=100, null=True, verbose_name="考試編號")
     ic_id = models.CharField(max_length=100, null=True)
     # user = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
@@ -94,7 +94,7 @@ class ExamLogs(models.Model):
                                    verbose_name="考試狀態")
     exam_finish = models.BooleanField(null=True, default=False, verbose_name="考試是否結束")
     exam_place = models.CharField(max_length=100, null=True, verbose_name="考試地點")
-    exam_room = models.CharField(max_length=100, null=True, verbose_name="考場")
+    exam_room = models.CharField(max_length=100, null=True, default="-", verbose_name="考場")
     date_created = models.DateTimeField(auto_now_add=True, null=True, verbose_name="考試創建日期")
     date_modified = models.DateTimeField(auto_now=True, null=True, verbose_name="考試修改日期")
 
@@ -117,10 +117,19 @@ class Exams(models.Model):
                                   choices=ExamsLevelClass.choices,
                                   null=True, verbose_name="考試科目")
     exam_is_active = models.IntegerField(null=True, default=0, verbose_name="是否啟用")  # 0 = Not Active, 1 = Active
+    exam_user_taken = models.IntegerField(null=True, default=0)  # 0 = Not Active, 1 = Active
     exam_prerequisite = models.CharField(max_length=100, null=True, default="-",
                                          verbose_name="考試門檻")  # string with separator ","
     date_created = models.DateTimeField(auto_now_add=True, null=True, verbose_name="創建日期")
     date_modified = models.DateTimeField(auto_now=True, null=True, verbose_name="變更日期")
+
+    @property
+    def _get_month_exam(self):
+        return self.exam_start_time.strftime('%m')
+
+    @property
+    def _get_user_exam(self):
+        return self.exam_user_taken
 
     class Meta:
         ordering = ['date_created', 'exam_start_time', 'exam_end_time']

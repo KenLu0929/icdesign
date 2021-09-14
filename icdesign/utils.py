@@ -3,9 +3,12 @@ from datetime import datetime
 from django.core.mail import BadHeaderError, send_mail
 import logging
 import time
+
+from django.db.models import F
+
 from icdesign import settings
 import uuid
-from pages.models import CounterExamsLogs
+from pages.models import CounterExamsLogs, Exams
 from pages import queries
 
 # Get an instance of a logger
@@ -105,3 +108,23 @@ def generate_exams_ticket_v2():
     if not res:
         logger.error("cannot increment counterExamsLogs.")
     return ticket
+
+
+def generate_admission_ticket(exam_id):
+    filexam = {
+        "exam_id": exam_id
+    }
+    exam = queries.QueryExams.exams_get(filexam)
+    date_time_obj = datetime.strptime(exam.get("exam_start_time"), '%Y-%m-%dT%H:%M:%S')
+    first = date_time_obj.strftime("%m%d")
+    # print(first)
+    second = exam.get("exam_user_taken")
+    second = str(second + 1).zfill(2)
+
+    # print(second)
+
+    admission_ticket = first + str(second)
+    # print(admission_ticket)
+    Exams.objects.filter(exam_id=exam_id).update(exam_user_taken=F('exam_user_taken') + 1)
+
+    return admission_ticket
