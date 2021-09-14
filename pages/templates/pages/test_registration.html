@@ -200,15 +200,14 @@
                                 <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
                                     <span>目前非報名階段，已註冊之使用者如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
                                 </div>
-                                <!--<div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">-->
-                                <!--    {% for field in exams_fields %} <div class="form-check form-check-inline">-->
-                                <!--        <input class="form-check-input" type="checkbox" name="ic_test"-->
-                                <!--            id="selectCourse1"-->
-                                <!--            value="{{field.exam_id}}">-->
-                                <!--        <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }}-->
-                                <!--            (Place: {{ field.exam_place }}) | {{ field.exam_start_time }} --->
-                                <!--            {{ field.exam_end_time }}</label>-->
-                                <!--    </div> {% endfor %} </div>-->
+                                <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
+                                    {% for field in exams_fields %} <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="ic_test"
+                                            id="selectCourse1" value="{{field.exam_id}}">
+                                        <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }}
+                                            (Place: {{ field.exam_place }}) | {{ field.exam_start_time }} -
+                                            {{ field.exam_end_time }}</label>
+                                    </div> {% endfor %} </div>
                             </div>
                         </div>
                 </div>
@@ -220,13 +219,11 @@
                             </label>
                         </div>
                         <div>
-                            <!--                                <button class="btn btn-primary mt-4 col-12" disabled>-->
-                            <!--                                    <span class="spinner-border spinner-border-sm" role="status"-->
-                            <!--                                          aria-hidden="true"></span>-->
-                            <!--                                    Loading...-->
-                            <!--                                </button>-->
-                            <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit" disabled>
-                                <!--                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
+                            <button class="btn btn-primary mt-4 col-12" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Loading... </button>
+                            <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 送出 </button>
                         </div>
                     </div>
@@ -343,10 +340,9 @@
                     <div class="col">
                         <button id="btn_modify_reg" class="btn btn-outline-secondary mt-4 col-4" type="button"> 修改
                         </button>
-                        <!--                        <button class="btn btn-primary mt-4 col-3" type="button" disabled>-->
-                        <!--                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>-->
-                        <!--                            Loading...-->
-                        <!--                        </button>-->
+                        <button class="btn btn-primary mt-4 col-3" type="button">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading... </button>
                         <button id="btn_final_submit" type="button" class="btn btn-primary mt-4 col-4"> 確認 </button>
                     </div>
                 </div>
