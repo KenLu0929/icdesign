@@ -248,7 +248,7 @@ def profile_page(request):
     # print(params)
     # print(result)
     for a in result:
-        print(a.get("admission_ticket_no"))
+        # print(a.get("admission_ticket_no"))
         if a.get("admission_ticket_no") != "-" and a.get("admission_ticket_no") != "":
             exams_admission_ticket.append(a.get("admission_ticket_no"))
     # print(exams_admission_ticket)
