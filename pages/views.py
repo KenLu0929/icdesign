@@ -240,14 +240,25 @@ def profile_page(request):
     params = QueryUsers.users_get(data)
     params = utils.dict_clean(params)
     # print(params)
-
+    exams_admission_ticket = []
     exams_filter = {
         "ic_id": ic_id,
     }
     result = QueryExamsLogs.exams_get(exams_filter, True)
     # print(params)
     # print(result)
+    for a in result:
+        # print(a.get("admission_ticket_no"))
+        if a.get("admission_ticket_no") != "-" and a.get("admission_ticket_no") != "":
+            exams_admission_ticket.append(a.get("admission_ticket_no"))
+    # print(exams_admission_ticket)
+    exams_data = {
+        "exam_is_active": 1,
+    }
+
+    params["exams_fields_active"] = QueryExams.exams_get(exams_data, True)
     params["exams_fields"] = result
+    params["admission_ticket_list"] = exams_admission_ticket
     params["title"] = ""
     params["body"] = ""
     return render(request, url_page, params)
@@ -509,11 +520,13 @@ def ic_admission_ticket(request):
     }
     exams = QueryExams.exams_get(exams_filter, False)
     exams_date = []
+    exams_admission_ticket = []
     exams_id = []
     for a in exams:
         # print(a)
         exams_id.append(a.get("exam_id"))
         exams_date.append(str(a.get("exam_start_time")).split("T")[0])
+
 
     exams_date = list(set(exams_date))
     # print(exams_id)
@@ -523,9 +536,15 @@ def ic_admission_ticket(request):
     }
     # print(exams)
     exam_logs = QueryExamsLogs.exams_get(exams_logs_filter, False)
+    for a in exam_logs:
+        # print(a)
+        exams_admission_ticket.append(a.get("admission_ticket_no"))
+
     if len(exams) > 1:
+
         exams = exams[0]
     exams["exam_start_time"] = ", ".join(exams_date)
+    exams["exams_admission_ticket"] = ", ".join(exams_admission_ticket)
     final_output["exams"] = exams
 
     if len(exam_logs) > 1:
