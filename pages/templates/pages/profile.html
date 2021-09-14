@@ -235,7 +235,13 @@
                         <div class="container">
                             <h4 class="mb-4">准考證下載</h4>
                             <ul class="icon-list">
-                                <li><a rel="noopener" target="_blank">准考證將於2021/9/24開放下載 </a></li>
+                                {% if admission_ticket_list %}
+                                <li><a rel="noopener" href="{% url 'ic_admission_ticket' %}">准考證將於2021/9/24開放下載 </a>
+                                </li>
+                                {% else %}
+                                <li> you do not have any admission ticket. please contact admin to approved you exam registration.
+                                </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
