@@ -127,12 +127,20 @@ class ExamLogsAdmin(admin.ModelAdmin):
     def generate_adtics(self, request):
         res = self.model.objects.filter(Q(admission_ticket_no="-") & Q(exam_status="同意"))
         mess = "Admission Ticket is generated."
+        fail_update = []
         if len(res) <= 0:
             mess = "Can not generating Admission Ticket, please check again the data or approve some registration data."
         for a in res:
             tickets = utils.generate_admission_ticket(a.exam_id)
-            # print(tickets)
-            self.model.objects.filter(auto_increment_id=a.auto_increment_id).update(admission_ticket_no=tickets)
+            if tickets == "-":
+                fail_update.append(a.exam_ticket_no)
+            else:
+                print(tickets)
+                self.model.objects.filter(auto_increment_id=a.auto_increment_id).update(admission_ticket_no=tickets)
+
+        if len(fail_update) > 0:
+            list_exam_ticket_no = ", ".join(fail_update)
+            mess = "this is row cannot generate the admission ticket: " + list_exam_ticket_no
 
         self.message_user(request, mess)
         return HttpResponseRedirect("../")
