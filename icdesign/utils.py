@@ -115,8 +115,9 @@ def generate_admission_ticket(exam_id):
         "exam_id": exam_id
     }
     exam = queries.QueryExams.exams_get(file_exams)
-    if str(exam.get("exam_start_time")) is None:
-        print("exam_id: ", file_exams)
+    logger.info(exam)
+    if exam.get("exam_start_time") is None or str(exam.get("exam_start_time")) == "":
+        logger.error("exam_id: " + str(exam_id))
         return "-"
     date_time_obj = datetime.strptime(str(exam.get("exam_start_time")), '%Y-%m-%dT%H:%M:%S')
     first = date_time_obj.strftime("%m%d")
