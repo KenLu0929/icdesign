@@ -112,8 +112,9 @@ class ExamLogsAdmin(admin.ModelAdmin):
     filter_horizontal = ()
     list_filter = ["exam_finish", "exam_status"]
     fieldsets = ()
-    actions = ['make_approved', 'make_rejected', 'download_csv',
-               'download_exams_report', 'download_candidate_report']
+
+    actions = ['make_approved', 'make_rejected', 'download_candidate_report',
+               'download_exams_report', 'download_csv']
 
     def get_urls(self):
         urls = super().get_urls()
@@ -133,7 +134,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
             # print(tickets)
             self.model.objects.filter(auto_increment_id=a.auto_increment_id).update(admission_ticket_no=tickets)
 
-        self.message_user(request,mess )
+        self.message_user(request, mess)
         return HttpResponseRedirect("../")
 
     @admin.action(description='Mark selected logs as APPROVED')
@@ -265,6 +266,7 @@ class CounterExamsLogsAdmin(admin.ModelAdmin):
     fieldsets = ()
 
 
+admin.site.disable_action('delete_selected')
 admin.site.register(Users, UsersAdmin)
 admin.site.register(Exams, ExamsAdmin)
 admin.site.register(ExamLogs, ExamLogsAdmin)

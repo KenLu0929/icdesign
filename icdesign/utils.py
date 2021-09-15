@@ -111,11 +111,11 @@ def generate_exams_ticket_v2():
 
 
 def generate_admission_ticket(exam_id):
-    filexam = {
+    filexams = {
         "exam_id": exam_id
     }
-    exam = queries.QueryExams.exams_get(filexam)
-    date_time_obj = datetime.strptime(exam.get("exam_start_time"), '%Y-%m-%dT%H:%M:%S')
+    exam = queries.QueryExams.exams_get(filexams)
+    date_time_obj = datetime.strptime(str(exam.get("exam_start_time")), '%Y-%m-%dT%H:%M:%S')
     first = date_time_obj.strftime("%m%d")
     # print(first)
     second = exam.get("exam_user_taken")
