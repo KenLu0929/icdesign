@@ -135,7 +135,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
             if tickets == "-":
                 fail_update.append(a.exam_ticket_no)
             else:
-                print(tickets)
+                # print(tickets)
                 self.model.objects.filter(auto_increment_id=a.auto_increment_id).update(admission_ticket_no=tickets)
 
         if len(fail_update) > 0:
