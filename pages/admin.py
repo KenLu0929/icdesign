@@ -135,7 +135,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
             if tickets == "-":
                 fail_update.append(a.exam_ticket_no)
             else:
-                print(tickets)
+                # print(tickets)
                 self.model.objects.filter(auto_increment_id=a.auto_increment_id).update(admission_ticket_no=tickets)
 
         if len(fail_update) > 0:
@@ -195,7 +195,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
             exam = QueryExams.exams_get(exam_data)
 
             writer.writerow([exam.get("exam_start_time"), s.exam_id, exam.get("exam_name"),
-                             s.exam_room, s.exam_ticket_no, user.get("ic_name")])
+                             s.exam_room, s.admission_ticket_no, user.get("ic_name")])
 
         f.seek(0)
         response = HttpResponse(f, content_type='text/csv')
@@ -207,7 +207,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
         f = StringIO()
         writer = csv.writer(f)
         writer.writerow(["Admission ticket number", "Test ID", "Test Name",
-                         "Test Area", "Test room", "ID",
+                         "Test Area", "Test room", "Test Date", "ID",
                          "Name", "Gender", "Date of Birth", "Email",
                          "Phone Number", "Address", "University",
                          "Major Courses", "Status", "Graduate Status",
@@ -227,8 +227,8 @@ class ExamLogsAdmin(admin.ModelAdmin):
                 else:
                     test_status = "FAIL"
 
-            writer.writerow([s.exam_ticket_no, s.exam_id, exam.get("exam_name"),
-                             exam.get("exam_place"), s.exam_room, user.get("ic_id"),
+            writer.writerow([s.admission_ticket_no, s.exam_id, exam.get("exam_name"),
+                             exam.get("exam_place"), s.exam_room, exam.get("exam_start_time"), user.get("ic_id"),
                              user.get("ic_name"), user.get("ic_gender"), user.get("ic_bod"), user.get("ic_email"),
                              user.get("ic_phone_no"), user.get("ic_address"), user.get("ic_school"),
                              user.get("ic_department"), s.exam_status, user.get("ic_status_school"),
