@@ -2,9 +2,11 @@ from django.contrib import admin
 from django.utils.translation import ngettext
 from django.contrib import messages
 import csv
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from io import StringIO
-
+from icdesign import utils
+from django.db.models import Q
+from django.urls import path
 from .models import Users, ExamLogs, Exams, News, Sponsorship, CounterExamsLogs
 from .queries import QueryUsers, QueryExams
 
@@ -101,6 +103,7 @@ class ExamsAdmin(admin.ModelAdmin):
 
 class ExamLogsAdmin(admin.ModelAdmin):
     # print()
+    change_list_template = "pages/pages_changelist.html"
     list_display = [field.name for field in ExamLogs._meta.get_fields() if field.name not in exclude_field]
 
     readonly_fields = ("date_created", "date_modified", "exam_ticket_no")
@@ -109,8 +112,38 @@ class ExamLogsAdmin(admin.ModelAdmin):
     filter_horizontal = ()
     list_filter = ["exam_finish", "exam_status"]
     fieldsets = ()
-    actions = ['make_approved', 'make_rejected', 'download_csv',
-               'download_exams_report', 'download_candidate_report']
+
+    actions = ['make_approved', 'make_rejected', 'download_candidate_report',
+               'download_exams_report', 'download_csv']
+
+    def get_urls(self):
+        urls = super().get_urls()
+
+        my_urls = [
+            path('generate_admission_ticket/', self.generate_adtics),
+        ]
+        return my_urls + urls
+
+    def generate_adtics(self, request):
+        res = self.model.objects.filter(Q(admission_ticket_no="-") & Q(exam_status="同意"))
+        mess = "Admission Ticket is generated."
+        fail_update = []
+        if len(res) <= 0:
+            mess = "Can not generating Admission Ticket, please check again the data or approve some registration data."
+        for a in res:
+            tickets = utils.generate_admission_ticket(a.exam_id)
+            if tickets == "-":
+                fail_update.append(a.exam_ticket_no)
+            else:
+                print(tickets)
+                self.model.objects.filter(auto_increment_id=a.auto_increment_id).update(admission_ticket_no=tickets)
+
+        if len(fail_update) > 0:
+            list_exam_ticket_no = ", ".join(fail_update)
+            mess = "this is row cannot generate the admission ticket: " + list_exam_ticket_no
+
+        self.message_user(request, mess)
+        return HttpResponseRedirect("../")
 
     @admin.action(description='Mark selected logs as APPROVED')
     def make_approved(self, request, queryset):
@@ -241,6 +274,7 @@ class CounterExamsLogsAdmin(admin.ModelAdmin):
     fieldsets = ()
 
 
+admin.site.disable_action('delete_selected')
 admin.site.register(Users, UsersAdmin)
 admin.site.register(Exams, ExamsAdmin)
 admin.site.register(ExamLogs, ExamLogsAdmin)
