@@ -176,3 +176,10 @@ class CounterExamsLogs(models.Model):
 
     class Meta:
         ordering = ['date_created']
+
+
+class SettingApp(models.Model):
+    registration = models.BooleanField(null=False, default=False,)
+    admission_ticket_download = models.BooleanField(null=False, default=False,)
+    certification_download = models.BooleanField(null=False, default=False,)
+

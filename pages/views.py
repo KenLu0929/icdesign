@@ -6,7 +6,7 @@ from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign import error_messages
 from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, \
-    prerequisite_exams
+    prerequisite_exams, with_setting
 
 # for pdf rendering/view
 from easy_pdf.views import PDFTemplateResponseMixin
@@ -88,7 +88,10 @@ def registration_page(request):
 
 
 @login_only
+@with_setting
 def test_registration_page(request):
+    if request.custom_settings["registration"] == False:
+        return redirect("profile")
     url_page = 'pages/test_registration.html'
     ic_id = request.session.get('user')
 
@@ -232,11 +235,13 @@ def ic_faqs(request):
 
 
 @login_only
+@with_setting
 def profile_page(request):
     ic_id = request.session.get('user')
     url_page = 'pages/profile.html'
     data = {"ic_id": ic_id}
     # print(data)
+    # print(request.custom_settings)
     params = QueryUsers.users_get(data)
     params = utils.dict_clean(params)
     # print(params)
@@ -511,7 +516,10 @@ def ic_report(request):
     return render(request, 'pages/report.html', final_output)
 
 
+@with_setting
 def ic_admission_ticket(request):
+    if request.custom_settings["admission_ticket_download"] == False:
+        return redirect("profile")
     ic_id = request.session.get('user')
     final_output = {}
 
@@ -527,7 +535,6 @@ def ic_admission_ticket(request):
         exams_id.append(a.get("exam_id"))
         exams_date.append(str(a.get("exam_start_time")).split("T")[0])
 
-
     exams_date = list(set(exams_date))
     # print(exams_id)
     exams_logs_filter = {
@@ -541,7 +548,6 @@ def ic_admission_ticket(request):
         exams_admission_ticket.append(a.get("admission_ticket_no"))
 
     if len(exams) > 1:
-
         exams = exams[0]
     exams["exam_start_time"] = ", ".join(exams_date)
     exams["exams_admission_ticket"] = ", ".join(exams_admission_ticket)

@@ -236,3 +236,24 @@ class QueryCounterExamsLogs:
         except Exception as e:
             logger.error('Failed to insert data user to database: ', str(e))
             return False
+
+
+class QuerySettingApp:
+
+    @staticmethod
+    def setting_get(select_all=False):
+        # print(my_filter)
+
+        setting = models.SettingApp.objects.all()
+        setting_json = serializers.serialize('json', setting)
+        setting_json = json.loads(setting_json)
+
+        setting_json = utils.get_fields_only(setting_json)
+        if select_all:
+            return setting_json
+        if len(setting_json) == 1:
+            exams_json = setting_json[0]
+            return exams_json
+        elif len(setting_json) == 0:
+            return {}
+        return setting_json
