@@ -31,7 +31,7 @@
             <use xlink:href="#info-fill"/>
         </svg>
         <div>
-            {% if exams_fields_active %}
+            {% if request.custom_settings.registration %}
             <strong> <a href="{% url 'test_registration' %}" class="alert-link">立即報考</a></strong>
             {% else %}
             <span>目前非報名階段，已註冊之使用者如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
@@ -235,7 +235,7 @@
                         <div class="container">
                             <h4 class="mb-4">准考證下載</h4>
                             <ul class="icon-list">
-                                {% if admission_ticket_list %}
+                                {% if request.custom_settings.admission_ticket_download %}
                                 <li><a rel="noopener" href="{% url 'ic_admission_ticket' %}">准考證將於2021/9/24開放下載 </a>
                                 </li>
                                 {% else %}
@@ -279,6 +279,8 @@
         e.preventDefault()
         $(this).tab('show')
     })
+
+    // console.log("{{ custom_settings }}")
     $('#changepasswordform').on('submit', function (e) {
         e.preventDefault();
         $.ajax({
