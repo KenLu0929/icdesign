@@ -207,7 +207,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
         f = StringIO()
         writer = csv.writer(f)
         writer.writerow(["Admission ticket number", "Test ID", "Test Name",
-                         "Test Area", "Test room", "ID",
+                         "Test Area", "Test room", "Test Date", "ID",
                          "Name", "Gender", "Date of Birth", "Email",
                          "Phone Number", "Address", "University",
                          "Major Courses", "Status", "Graduate Status",
@@ -228,7 +228,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
                     test_status = "FAIL"
 
             writer.writerow([s.admission_ticket_no, s.exam_id, exam.get("exam_name"),
-                             exam.get("exam_place"), s.exam_room, user.get("ic_id"),
+                             exam.get("exam_place"), s.exam_room, exam.get("exam_start_time"), user.get("ic_id"),
                              user.get("ic_name"), user.get("ic_gender"), user.get("ic_bod"), user.get("ic_email"),
                              user.get("ic_phone_no"), user.get("ic_address"), user.get("ic_school"),
                              user.get("ic_department"), s.exam_status, user.get("ic_status_school"),
