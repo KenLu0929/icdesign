@@ -7,7 +7,7 @@ from io import StringIO
 from icdesign import utils
 from django.db.models import Q
 from django.urls import path
-from .models import Users, ExamLogs, Exams, News, Sponsorship, CounterExamsLogs
+from .models import Users, ExamLogs, Exams, News, Sponsorship, CounterExamsLogs, SettingApp
 from .queries import QueryUsers, QueryExams
 
 # Register your models here.
@@ -281,3 +281,4 @@ admin.site.register(ExamLogs, ExamLogsAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Sponsorship, SponsorshipAdmin)
 admin.site.register(CounterExamsLogs, CounterExamsLogsAdmin)
+admin.site.register(SettingApp)

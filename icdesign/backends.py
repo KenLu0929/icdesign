@@ -1,5 +1,5 @@
 from pages.models import Users
-from pages.queries import QueryExams, QueryExamsLogs
+from pages.queries import QueryExams, QueryExamsLogs, QuerySettingApp
 from django.shortcuts import redirect
 from icdesign import utils
 from icdesign import error_messages
@@ -31,6 +31,16 @@ def login_only(view_function):
         else:
             return redirect('login')
 
+    return wrap
+
+
+def with_setting(view_function):
+    def wrap(request, *args, **kwargs):
+        settings = QuerySettingApp.setting_get()
+        # print(settings)
+        request.custom_settings = settings
+        # print(request)
+        return view_function(request, *args, **kwargs)
     return wrap
 
 
