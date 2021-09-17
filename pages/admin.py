@@ -195,7 +195,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
             exam = QueryExams.exams_get(exam_data)
 
             writer.writerow([exam.get("exam_start_time"), s.exam_id, exam.get("exam_name"),
-                             s.exam_room, s.exam_ticket_no, user.get("ic_name")])
+                             s.exam_room, s.admission_ticket_no, user.get("ic_name")])
 
         f.seek(0)
         response = HttpResponse(f, content_type='text/csv')
@@ -227,7 +227,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
                 else:
                     test_status = "FAIL"
 
-            writer.writerow([s.exam_ticket_no, s.exam_id, exam.get("exam_name"),
+            writer.writerow([s.admission_ticket_no, s.exam_id, exam.get("exam_name"),
                              exam.get("exam_place"), s.exam_room, user.get("ic_id"),
                              user.get("ic_name"), user.get("ic_gender"), user.get("ic_bod"), user.get("ic_email"),
                              user.get("ic_phone_no"), user.get("ic_address"), user.get("ic_school"),
