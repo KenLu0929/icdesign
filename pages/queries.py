@@ -119,7 +119,7 @@ class QueryExams:
     def exams_get(my_filter, select_all=False):
         # print(my_filter)
 
-        exams = models.Exams.objects.filter(**my_filter).distinct()
+        exams = models.Exams.objects.filter(**my_filter).order_by("-exam_start_time").distinct()
         exams_json = serializers.serialize('json', exams)
         exams_json = json.loads(exams_json)
 
