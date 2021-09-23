@@ -549,8 +549,11 @@ def ic_admission_ticket(request):
 
     if len(exams) > 1:
         exams = exams[0]
-    exams["exam_start_time"] = ", ".join(exams_date)
-    exams["exams_admission_ticket"] = ", ".join(exams_admission_ticket)
+
+    # print(exams_date)
+    # print(exams_admission_ticket)
+    exams["exam_start_time"] = min(exams_date)
+    exams["exams_admission_ticket"] = min(exams_admission_ticket)
     final_output["exams"] = exams
 
     if len(exam_logs) > 1:
