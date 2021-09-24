@@ -530,10 +530,11 @@ def ic_admission_ticket(request):
     exams_date = []
     exams_admission_ticket = []
     exams_id = []
+    exams_id_2nd = []
     for a in exams:
         # print(a)
         exams_id.append(a.get("exam_id"))
-        exams_date.append(str(a.get("exam_start_time")).split("T")[0])
+        # exams_date.append(str(a.get("exam_start_time")).split("T")[0])
 
     exams_date = list(set(exams_date))
     # print(exams_id)
@@ -545,16 +546,24 @@ def ic_admission_ticket(request):
     exam_logs = QueryExamsLogs.exams_get(exams_logs_filter, False)
     for a in exam_logs:
         # print(a)
+        exams_id_2nd.append(a.get("exam_id"))
         exams_admission_ticket.append(a.get("admission_ticket_no"))
 
-    if len(exams) > 1:
-        exams = exams[0]
+    exams_filter_2nd = {
+        "exam_id__in": exams_id_2nd
+    }
+    exams_2nd = QueryExams.exams_get(exams_filter_2nd, False)
+    for a in exams_2nd:
+        exams_date.append(str(a.get("exam_start_time")).split("T")[0])
+
+    if len(exams_2nd) > 1:
+        exams_2nd = exams_2nd[0]
 
     # print(exams_date)
     # print(exams_admission_ticket)
-    exams["exam_start_time"] = min(exams_date)
-    exams["exams_admission_ticket"] = min(exams_admission_ticket)
-    final_output["exams"] = exams
+    exams_2nd["exam_start_time"] = min(exams_date)
+    exams_2nd["exams_admission_ticket"] = min(exams_admission_ticket)
+    final_output["exams"] = exams_2nd
 
     if len(exam_logs) > 1:
         exam_logs = exam_logs[0]
