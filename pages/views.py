@@ -614,8 +614,8 @@ def download_file_User_case_diagram(request):
 
 def download_file_test_table(request):
     # fill these variables with real values
-    fl_path = 'pages/0930_test_table_.pdf'
-    filename = 'test_table_.pdf'
+    fl_path = 'pages/ic_test_table.pdf'
+    filename = 'ic_test_table.pdf'
     fl = open(fl_path, 'rb')
     mime_type, _ = mimetypes.guess_type(fl_path)
     response = HttpResponse(fl, content_type=mime_type)
