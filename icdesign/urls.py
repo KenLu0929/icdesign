@@ -43,6 +43,7 @@ urlpatterns = [
     path('brief_download', views.download_file_brief, name="ic_brief_download"),
     path('question_bank_download', views.download_file_question_bank,name="ic_question_bank_download"),
     path('User_case_diagram', views.download_file_User_case_diagram,name="ic_User_case_diagram_download"),
+    path('test_table_download', views.download_file_test_table, name="ic_test_table_download"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
