@@ -611,3 +611,13 @@ def download_file_User_case_diagram(request):
     response = HttpResponse(fl, content_type=mime_type)
     response['Content-Disposition'] = "attachment; filename=%s" % filename
     return response
+    
+def download_file_Test_Seating_Plan(request):
+    # fill these variables with real values
+    fl_path = 'pages/Test_Seating_Plan.pdf'
+    filename = 'Test_Seating_Plan.pdf'
+    fl = open(fl_path, 'rb')
+    mime_type, _ = mimetypes.guess_type(fl_path)
+    response = HttpResponse(fl, content_type=mime_type)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
