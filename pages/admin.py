@@ -2,13 +2,17 @@ from django.contrib import admin
 from django.utils.translation import ngettext
 from django.contrib import messages
 import csv
+import os
 from django.http import HttpResponse, HttpResponseRedirect
 from io import StringIO
 from icdesign import utils
+from django import forms
 from django.db.models import Q
-from django.urls import path
+from django.shortcuts import render
+from django.urls import path, reverse
 from .models import Users, ExamLogs, Exams, News, Sponsorship, CounterExamsLogs, SettingApp
-from .queries import QueryUsers, QueryExams
+from .queries import QueryUsers, QueryExams, QueryExamsLogs
+from tablib import Dataset
 
 # Register your models here.
 
@@ -101,9 +105,13 @@ class ExamsAdmin(admin.ModelAdmin):
         return response
 
 
+class FileImportForm(forms.Form):
+    file_score = forms.FileField()
+
+
 class ExamLogsAdmin(admin.ModelAdmin):
     # print()
-    change_list_template = "pages/pages_changelist.html"
+    change_list_template = "admin/pages_changelist.html"
     list_display = [field.name for field in ExamLogs._meta.get_fields() if field.name not in exclude_field]
 
     readonly_fields = ("date_created", "date_modified", "exam_ticket_no")
@@ -121,8 +129,50 @@ class ExamLogsAdmin(admin.ModelAdmin):
 
         my_urls = [
             path('generate_admission_ticket/', self.generate_adtics),
+            path('upload-score-csv/', self.upload_score),
         ]
         return my_urls + urls
+
+    def upload_score(self, request):
+        if request.method == "POST":
+
+            file_object = request.FILES["file_score"]
+            # print(file_object)
+
+            if not file_object.name.endswith('.csv') and not file_object.name.endswith('.xls') \
+                    and not file_object.name.endswith('.xlsx'):
+                messages.warning(request, 'The wrong file type was uploaded. please upload csv or xls (xlsx) file.')
+                return HttpResponseRedirect(request.path_info)
+
+            _, file_extension = os.path.splitext(file_object.name)
+            file_extension = file_extension.replace(".", "")
+            # print(file_extension)
+
+            data_record = Dataset().load(file_object.read(), format=file_extension)
+            # data_record = load_workbook(filename=file_object.file)
+            # print(data_record)
+            for fields in data_record:
+                if fields[0] != "":
+                    # print(fields[0])
+                    admission_ticket = str(fields[0]).strip()
+                    if admission_ticket != "":
+                        # print(admission_ticket)
+                        #
+                        # print(fields[3])
+                        # print(fields[6])
+
+                        self.model.objects.filter(
+                            Q(admission_ticket_no=admission_ticket) & Q(exam_id=fields[3])
+                        ).update(
+                            exam_grade=str(fields[6])
+                        )
+
+            url = reverse('admin:index')
+            return HttpResponseRedirect(url)
+
+        form = FileImportForm()
+        data = {"form": form}
+        return render(request, "admin/csv_upload.html", data)
 
     def generate_adtics(self, request):
         res = self.model.objects.filter(Q(admission_ticket_no="-") & Q(exam_status="同意"))
