@@ -582,8 +582,8 @@ def ic_admission_ticket(request):
 
 def download_file_brief(request):
     # fill these variables with real values
-    fl_path = 'pages/IC_layout_brief_110_v2.pdf'
-    filename = 'IC_layout_brief_110_v2.pdf'
+    fl_path = 'pages/IC_layout_brief_110_v3.pdf'
+    filename = 'IC_layout_brief_110_v3.pdf'
     fl = open(fl_path, 'rb')
     mime_type, _ = mimetypes.guess_type(fl_path)
     response = HttpResponse(fl, content_type=mime_type)
@@ -606,6 +606,16 @@ def download_file_User_case_diagram(request):
     # fill these variables with real values
     fl_path = 'pages/User_case_diagram.pdf'
     filename = 'User case diagram.pdf'
+    fl = open(fl_path, 'rb')
+    mime_type, _ = mimetypes.guess_type(fl_path)
+    response = HttpResponse(fl, content_type=mime_type)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
+    
+def download_file_Test_Seating_Plan(request):
+    # fill these variables with real values
+    fl_path = 'pages/Test_Seating_Plan.pdf'
+    filename = 'Test_Seating_Plan.pdf'
     fl = open(fl_path, 'rb')
     mime_type, _ = mimetypes.guess_type(fl_path)
     response = HttpResponse(fl, content_type=mime_type)

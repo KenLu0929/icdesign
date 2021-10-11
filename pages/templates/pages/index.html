@@ -21,9 +21,8 @@
         <p class="lead mb-4">
           立即註冊幫你快速完成報名！
         </p>
-
-        <div class="d-flex flex-column flex-md-row">
-          <a href="{% url 'test_registration' %}" class="btn btn-lg btn-outline-primary mb-3" onclick="">立刻報名</a>
+        <div class="d-grid gap-2 d-md-block">
+          <a href="{% url 'test_registration' %}" class="btn btn-lg btn-outline-primary" >立刻報名</a>
         </div>
       </div>
     </div>
@@ -55,19 +54,21 @@
                     {% for field in news_fields %}
                     <div class="col">
                         <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ field.news_title }}</h5>
+                             <div class="card-body">
+                                <h5 class="card-title">110/09/29 考場座位圖公告</h5>
+                                <ul class="icon-list">
+                                    <li><a href="Test_Seating_Plan" rel="noopener" target="_blank">考場座位圖</a></li>
+                                </ul>
+                                <!--<h5 class="card-title">{{ field.news_title }}</h5>
                                 <hr>
-                                <p class="card-text">{{ field.news_body }}</p>
+                                <p class="card-text">{{ field.news_body }}</p>-->
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>
 </body>
