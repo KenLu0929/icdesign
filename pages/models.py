@@ -81,7 +81,7 @@ class Users(models.Model):
 class ExamLogs(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
     exam_ticket_no = models.CharField(max_length=100, null=True, verbose_name="准考證號碼")
-    admission_ticket_no = models.CharField(max_length=100, null=False, default="-", verbose_name="准考證號碼")
+    admission_ticket_no = models.CharField(max_length=100, null=False, default="-", verbose_name="admission_ticket_no")
     exam_id = models.CharField(max_length=100, null=True, verbose_name="考試編號")
     ic_id = models.CharField(max_length=100, null=True)
     # user = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
