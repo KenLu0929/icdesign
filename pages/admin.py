@@ -154,7 +154,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
             for fields in data_record:
                 if fields[0] != "":
                     # print(fields[0])
-                    admission_ticket = str(fields[0]).strip()
+                    admission_ticket = str(fields[0]).strip().replace('.0', '')
                     if admission_ticket != "":
                         # print(admission_ticket)
                         #
@@ -164,8 +164,10 @@ class ExamLogsAdmin(admin.ModelAdmin):
                         self.model.objects.filter(
                             Q(admission_ticket_no=admission_ticket) & Q(exam_id=fields[3])
                         ).update(
-                            exam_grade=str(fields[6])
+                            exam_grade=str(fields[6]),
+                            exam_finish=True
                         )
+                        # print(test)
 
             url = reverse('admin:index')
             return HttpResponseRedirect(url)
