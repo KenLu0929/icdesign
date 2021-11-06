@@ -182,6 +182,7 @@ class SettingApp(models.Model):
     registration = models.BooleanField(null=False, default=False,)
     admission_ticket_download = models.BooleanField(null=False, default=False,)
     certification_download = models.BooleanField(null=False, default=False,)
+    show_score = models.BooleanField(null=False, default=False,)
     date_modified = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
