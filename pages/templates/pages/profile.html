@@ -261,13 +261,13 @@
                                             <td class="col-12 col-md-1">{{ field.exam_grade }}</td>
                                             <td class="col-12 col-md-1">{{ field.admission_ticket_no }}</td>
                                             <td class="col-12 col-md-1">{{ field.exam_status }}</td>
-                                            <td class="col-12 col-md-1">
-                                                <button class="btn btn-outline-success"
-                                                        {% if field.exam_status != "同意" %} disabled {% endif %}
-                                                        onclick="print_report('{{ field.exam_ticket_no }}')">Download
-                                                    Tickets
-                                                </button>
-                                            </td>
+{#                                            <td class="col-12 col-md-1">#}
+{#                                                <button class="btn btn-outline-success"#}
+{#                                                        {% if field.exam_status != "同意" %} disabled {% endif %}#}
+{#                                                        onclick="print_report('{{ field.exam_ticket_no }}')">Download#}
+{#                                                    Tickets#}
+{#                                                </button>#}
+{#                                            </td>#}
                                         </tr> {% endfor %} </table>
                                 {% else %}
                                     <ul class="icon-list">
