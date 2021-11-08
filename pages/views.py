@@ -478,41 +478,62 @@ def ic_privacy(request):
 
 def ic_report(request):
     # print(ticket_no)
+    exam_ticket_no = request.GET.get('id')
+    # print("this is ID: ", exam_ticket_no)
     ic_id = request.session.get('user')
     final_output = {}
-    exams_filter = {
-        "exam_is_active": 1,
-    }
-    exams = QueryExams.exams_get(exams_filter, False)
-
-    exams_id = []
-    for a in exams:
-        # print(a)
-        exams_id.append(a.get("exam_id"))
-
-    # print(exams_id)
+    exams_id_list = []
     exams_logs_filter = {
         "ic_id": ic_id,
-        "exam_id__in": exams_id
+        "exam_ticket_no": exam_ticket_no
     }
 
     exam_logs = QueryExamsLogs.exams_get(exams_logs_filter, False)
-    final_output["exam_logs"] = exam_logs
     # print(exam_logs)
+
+    for a in exam_logs:
+        exams_id_list.append(a.get("exam_id"))
+        final_output["admission_ticket_no"] = a.get("admission_ticket_no")
+    # print(exams_id_list)
+    exams_filter = {
+        "exam_id": exams_id_list[0],
+    }
+    exams = QueryExams.exams_get(exams_filter, False)
+    final_output["start_time_exams"] = str(exams.get("exam_start_time")).split("T")[0]
+
+    # print(exams)
+    exams_filter = {
+        "exam_id__in": exams_id_list,
+    }
+    exams_2nd = QueryExams.exams_get(exams_filter, False)
+    exam_name_list = {}
+    # print(exams_2nd)
+    for b in exams_2nd:
+        exam_name_list[b.get("exam_id")] = b.get("exam_name")
+
+    # print(exam_name_list)
+    exams_logs_final = []
+    for c in exam_logs:
+        exams_log_dict = {
+            "exam_id": c.get("exam_id"),
+            "exam_name": exam_name_list.get(c.get("exam_id")),
+            "exam_grade": c.get("exam_grade"),
+        }
+        if float(c.get("exam_grade")) > 65:
+            exams_log_dict["exam_finish"] = True
+        else:
+            exams_log_dict["exam_finish"] = False
+        exams_logs_final.append(exams_log_dict)
+
+    final_output["exam_logs"] = exams_logs_final
     data = {"ic_id": ic_id}
     # print(data)
     user = QueryUsers.users_get(data)
-    final_output["user"] = user
+    final_output["user_ic_id"] = user.get("ic_id")
+    final_output["user_name"] = user.get("ic_name")
     # print(user)
 
-    # print(exam_logs)
-    exams_data = {
-        "exam_id": exam_logs[0].get("exam_id"),
-    }
-    final_output["exams"] = QueryExams.exams_get(exams_data, False)
     # print(final_output)
-
-    # final_output
     return render(request, 'pages/report.html', final_output)
 
 

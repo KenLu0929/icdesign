@@ -18,41 +18,43 @@
         <tbody class="">
         <tr>
             <th scope="row" style="width: 25%;">姓名</th>
-            <td style="width: 25%;">{{ user.ic_name }}</td>
+            <td style="width: 25%;">{{ user_name }}</td>
             <th scope="row" style="width: 25%;">身份證字號</th>
-            <td style="width: 25%;">{{ user.ic_id }}</td>
+            <td style="width: 25%;">{{ user_ic_id }}</td>
         </tr>
         <tr>
             <th scope="row" style="width: 25%;">准考證號碼</th>
-            <td style="width: 25%;">{{ exam_logs.exam_ticket_no }}</td>
+            <td style="width: 25%;">{{ admission_ticket_no }}</td>
             <th scope="row" style="width: 25%;">考試日期</th>
-            <td style="width: 25%;">{{ exams.exam_start_time }}</td>
+            <td style="width: 25%;">{{ start_time_exams }}</td>
         </tr>
         <tr class="text-center">
             <th scope="row" colspan="4">鑑定考試成績</th>
         </tr>
+        {% for field in exam_logs %}
         <tr>
-            <th scope="row" style="width: 25%;">學科成績</th>
-            <td style="width: 25%;">成績 {{ exam_logs.exam_grade }} 分</td>
+            <th scope="row" style="width: 25%;">{{ field.exam_name }}</th>
+            <td style="width: 25%;">成績 {{ field.exam_grade }} 分</td>
             <td colspan="2">
-                {% if exam_logs.exam_finish %}
+                {% if field.exam_finish %}
                 <span>合格</span>
                 {% else %}
                 <span>不合格</span>
                 {% endif %}
             </td>
         </tr>
-        <tr>
-            <th scope="row" style="width: 25%;">術科成績（實作）</th>
-            <td style="width: 25%;">成績 {{ exam_logs.exam_grade }} 分</td>
-            <td colspan="2">
-                {% if exam_logs.exam_finish %}
-                <span>合格</span>
-                {% else %}
-                <span>不合格</span>
-                {% endif %}
-            </td>
-        </tr>
+        {% endfor %}
+{#        <tr>#}
+{#            <th scope="row" style="width: 25%;">術科成績（實作）</th>#}
+{#            <td style="width: 25%;">成績 {{ exam_logs.exam_grade }} 分</td>#}
+{#            <td colspan="2">#}
+{#                {% if exam_logs.exam_finish %}#}
+{#                <span>合格</span>#}
+{#                {% else %}#}
+{#                <span>不合格</span>#}
+{#                {% endif %}#}
+{#            </td>#}
+{#        </tr>#}
         <tr class="text-center">
             <th scope="row" colspan="4">說明</th>
         </tr>
