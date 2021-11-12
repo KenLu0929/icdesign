@@ -65,7 +65,7 @@ def registration_page(request):
                 return JsonResponse(params)
             obj, q = QueryUsers.users_getsert(data)
             # print(obj, q, type(q))
-            if q == False:
+            if not q:
                 params = {
                     "error": True,
                     "message": obj
@@ -90,7 +90,7 @@ def registration_page(request):
 @login_only
 @with_setting
 def test_registration_page(request):
-    if request.custom_settings["registration"] == False:
+    if not request.custom_settings["registration"]:
         return redirect("profile")
     url_page = 'pages/test_registration.html'
     ic_id = request.session.get('user')
@@ -507,21 +507,39 @@ def ic_report(request):
     }
     exams_2nd = QueryExams.exams_get(exams_filter, False)
     exam_name_list = {}
+    exam_level_list = {}
     # print(exams_2nd)
     for b in exams_2nd:
         exam_name_list[b.get("exam_id")] = b.get("exam_name")
+        exam_level_list[b.get("exam_id")] = b.get("exam_level")
 
     # print(exam_name_list)
+    # print(exam_level_list)
+    # print(exam_n  ame_list)
     exams_logs_final = []
+    pass_score = 65.0
     for c in exam_logs:
+        # print(c.get("exam_id"))
         exams_log_dict = {
             "exam_id": c.get("exam_id"),
             "exam_name": exam_name_list.get(c.get("exam_id")),
+            "exam_level": exam_level_list.get(c.get("exam_id")),
             "exam_grade": c.get("exam_grade"),
         }
-        if float(c.get("exam_grade")) > 65:
+        if exam_level_list.get(c.get("exam_id")) == "學科":
+            # print("SUBJECT")
+            pass_score = 80.0
+        elif exam_level_list.get(c.get("exam_id")) == "術科":
+            # print("PRACTICAL")
+            pass_score = 70.0
+
+        exam_score = float(c.get("exam_grade"))
+        # print(exam_score)
+        if exam_score >= pass_score:
+            # print("PASS")
             exams_log_dict["exam_finish"] = True
         else:
+            # print("NOT PASS")
             exams_log_dict["exam_finish"] = False
         exams_logs_final.append(exams_log_dict)
 
@@ -539,7 +557,7 @@ def ic_report(request):
 
 @with_setting
 def ic_admission_ticket(request):
-    if request.custom_settings["admission_ticket_download"] == False:
+    if not request.custom_settings["admission_ticket_download"]:
         return redirect("profile")
     ic_id = request.session.get('user')
     final_output = {}
@@ -632,7 +650,8 @@ def download_file_User_case_diagram(request):
     response = HttpResponse(fl, content_type=mime_type)
     response['Content-Disposition'] = "attachment; filename=%s" % filename
     return response
-    
+
+
 def download_file_Test_Seating_Plan(request):
     # fill these variables with real values
     fl_path = 'pages/Test_Seating_Plan.pdf'
