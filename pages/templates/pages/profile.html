@@ -32,7 +32,7 @@
             </svg>
             <div>
                 {% if request.custom_settings.registration %}
-                    <strong> <a href="{% url 'test_registration' %}" class="alert-link">立即報考</a></strong>
+                    <!--<strong> <a href="{% url 'test_registration' %}" class="alert-link">立即報考</a></strong>-->
                 {% else %}
                     <span>目前非報名階段，已註冊之使用者如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
                 {% endif %}
@@ -251,21 +251,20 @@
                         <div class="tab-pane py-3 px-3 fade" id="v-pills-messages" role="tabpanel"
                              aria-labelledby="v-pills-messages-tab" style="min-height: 37vh;">
                             <div class="container">
-                                <h4 class="mb-4">成績與證書下載</h4>
+                                <h4 class="mb-4">考試成績下載</h4>
                                 {% if request.custom_settings.show_score %}
-                                    <table class="table row"> {% for field in exams_fields %}
+                                    <table class="table row"> {% for field in exams_fields|slice:":1"  %}
                                         <tr class="row">
-                                            <td class="col-12 col-md-4">{{ field.exam_ticket_no }}</td>
-                                            <td class="col-12 col-md-2">{{ field.exam_id }}</td>
-                                            <td class="col-12 col-md-2">{{ field.exam_place }}</td>
-                                            <td class="col-12 col-md-1">{{ field.exam_grade }}</td>
-                                            <td class="col-12 col-md-1">{{ field.admission_ticket_no }}</td>
-                                            <td class="col-12 col-md-1">{{ field.exam_status }}</td>
-                                            <td class="col-12 col-md-1">
+                                            <!--<td class="col-12 col-md-4">{{ field.exam_ticket_no }}</td>-->
+                                            <!--<td class="col-12 col-md-2">{{ field.exam_id }}</td>-->
+                                            <!--<td class="col-12 col-md-2">{{ field.exam_place }}</td>-->
+                                            <!--<td class="col-12 col-md-1">{{ field.exam_grade }}</td>-->
+                                            <!--<td class="col-12 col-md-1">{{ field.admission_ticket_no }}</td>-->
+                                            <!--<td class="col-12 col-md-1">{{ field.exam_status }}</td>-->
+                                            <td class="col-12 col-md-1" style="width: 20%;">
                                                 <button class="btn btn-outline-success"
                                                         {% if field.exam_status != "同意" %} disabled {% endif %}
-                                                        onclick="print_report('{{ field.exam_ticket_no }}')">Download
-                                                    Tickets
+                                                        onclick="print_report('{{ field.exam_ticket_no }}')">下載成績單
                                                 </button>
                                             </td>
                                         </tr> {% endfor %} </table>

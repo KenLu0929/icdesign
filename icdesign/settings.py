@@ -27,9 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3((ssnt1z0dy(0y++jh--5gger%x-!x9vh3gl0v%fecl1m(fl2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["icdesign.tw", "www.icdesign.tw"]
+# ALLOWED_HOSTS = ["icdesign.tw", "www.icdesign.tw"]
+ALLOWED_HOSTS = ['*']
 
 # Maintenance Configuration
 
@@ -99,6 +100,7 @@ WSGI_APPLICATION = 'icdesign.wsgi.application'
 #     }
 # }
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -110,6 +112,24 @@ DATABASES = {
         },
         'USER': 'icdesign_admin',
         'PASSWORD': 'icdesign!@#123',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+}
+"""
+
+#DB test
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'icdesign',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True,
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+        'USER': 'root',
+        'PASSWORD': 'KENken_880929',
         'HOST': 'localhost',
         'PORT': '3306',
     },
@@ -163,6 +183,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATIC_URL = '/static/'
 STATIC_ROOT = "/home/lqa1luur9zxd/public_html/static"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR/'pages'/'templates', "static"),
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

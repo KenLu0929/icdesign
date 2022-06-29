@@ -1,0 +1,153 @@
+Return-Path: <no_reply_support@trust-provider.com>
+Delivered-To: admin@icdesign.tw
+Received: from sg2plzcpnl476824.prod.sin2.secureserver.net
+	by sg2plzcpnl476824.prod.sin2.secureserver.net with LMTP
+	id fJUIC8YcD2JntScAcMgBWw
+	(envelope-from <no_reply_support@trust-provider.com>)
+	for <admin@icdesign.tw>; Thu, 17 Feb 2022 21:12:54 -0700
+Return-path: <no_reply_support@trust-provider.com>
+Envelope-to: admin@icdesign.tw
+Delivery-date: Thu, 17 Feb 2022 21:12:54 -0700
+Received: from opsmail.dc.sectigo.com ([91.212.12.133]:34439 helo=ssmail3.sec.dc.comodoca.net)
+	by sg2plzcpnl476824.prod.sin2.secureserver.net with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <no_reply_support@trust-provider.com>)
+	id 1nKudU-00AuHB-53
+	for admin@icdesign.tw; Thu, 17 Feb 2022 21:12:54 -0700
+Received: (qmail 9761 invoked by uid 1027); 18 Feb 2022 04:12:05 -0000
+Authentication-Results: ssmail3.sec.dc.comodoca.net; auth=none
+Received: from scdpcasasp1.sec.dc.comodoca.net (HELO saspmail.dc.comodoca.net) (10.49.128.81)
+ by ssmail3.sec.dc.comodoca.net (qpsmtpd/0.96) with SMTP ; Fri, 18 Feb 2022 04:12:05 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=trust-provider.com; h=subject:from:to:date:mime-version:content-type; s=smail; bh=ZJFjKi8yc1gwgm/+8hNnOeT4wqeyLaup+BiBJYO+MsY=; b=XyCaNxaG0K9XVBgj4D9p11q7Va84weGd7wl9A7VTrHyo908iEqL+p3Yuhqxn/fPL6m0v1EU2njUafJF2pawLxAYAaJ0dKBZW9cblhZMo24BfU4mhpvrPZLFpjCffzapsgodV5gz1gEOBeCPq2KFXeNKaRJdyzQSbHzyTiQcZqGY=
+Subject: Verify Domains  (reference #1645)
+From: "ZeroSSL" <noreply@trust-provider.com>
+To: "admin@icdesign.tw" <admin@icdesign.tw>
+Date: Fri, 18 Feb 2022 04:11:59 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="(fklmbqt1m0yajtog)"
+X-Spam-Status: No, score=-0.1
+X-Spam-Score: 0
+X-Spam-Bar: /
+X-Ham-Report: Spam detection software, running on the system "sg2plzcpnl476824.prod.sin2.secureserver.net",
+ has NOT identified this incoming email as spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ root\@localhost for details.
+ Content preview:  Dear admin@icdesign.tw, We have received a request to issue
+    an SSL certificate for the following domains: icdesign.tw<br>www.icdesign.tw.
+    To verify ownership of your domains, please use the link below to navigate
+    to our veri [...] 
+ Content analysis details:   (-0.1 points, 5.0 required)
+  pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+  0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+                             blocked.  See
+                             http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+                              for more information.
+                             [URIs: zerossl.com]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+  0.1 TRACKER_ID             BODY: Incorporates a tracking ID number
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+                             envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+                             author's domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+X-Spam-Flag: NO
+
+--(fklmbqt1m0yajtog)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Dear admin@icdesign.tw,
+
+We have received a request to issue an SSL certificate for the following domains: icdesign.tw<br>www.icdesign.tw. To verify ownership of your domains, please use the link below to navigate to our verification page and enter your verification key.
+
+https://secure.trust-provider.com/products/EnterDCVCode?orderNumber=797092380
+
+On the verification page, please enter the following key:
+
+24G8RkmeRdAvvLAZgYKl2JWXQO0kKeAc
+
+*** IMPORTANT: CHOOSING THE OPTION BELOW WILL CANCEL YOUR CERTIFICATE ***
+
+If you think this request was sent in error, you can reject domain verification using the link below. Please note that rejecting domain verification will cancel the associated SSL certificate irrevocably.
+
+https://secure.trust-provider.com/products/RejectDCVCode?orderNumber=797092380&dcvCode=24G8RkmeRdAvvLAZgYKl2JWXQO0kKeAc
+
+Need assistance? Our team here at ZeroSSL is ready to help with any questions you might have. Feel free to reach out by sending an email to support@zerossl.com.
+
+Thank you for choosing us,
+
+ZeroSSL Team
+
+
+--(fklmbqt1m0yajtog)
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+<body style="background-color: rgb(255,255,255);">
+<div style="font-size: 15px;color: rgb(47,41,54);padding: 0;font-family: Helvetica Neue,Helvetica, sans-serif;width: 100%;font-weight: 400;margin: 0;background-color: rgb(255,255,255); background: #ffffff;">
+<div style="padding: 0;font-size: 0;display: none;max-height: 0;font-weight: 400;line-height: 0;"></div>
+<table style="border-radius: 4px;font-size: 15px;color: rgb(47,41,54);border-collapse: separate;border-spacing: 0;max-width: 700px;font-family: Helvetica Neue, helvetica, sans-serif;border: 1.0px solid rgb(199,208,212);padding: 0;width: 100%;font-weight: 400;margin: 15.0px auto;background-color: rgb(255,255,255);     background: #ffffff;">
+  <tr style="font-weight: 400;">
+    <td style="padding: 0;font-weight: 400;margin: 0;text-align: center;">
+      <div style="padding: 25px 0 25px 0;font-size: 14px;font-weight: 400;border-bottom: 1.0px solid rgb(222,231,235);">
+        <div style="padding: 0 20px;max-width: 600px;font-weight: 400;margin: 0 auto;text-align: left;">
+            <table style="width: 100%;font-weight: 400;margin-bottom: 0;border-collapse: collapse;">
+              <tr style="font-weight: 400;">
+                <td width="125px" style="padding: 0;font-weight: 400;margin: 0;text-align: center;">
+                    <h1 style="font-size: 38px;color: rgb(0,0,0);letter-spacing: -1px;padding: 0;font-weight: normal;margin: 0;line-height: 42px;">
+                      <a href="https://zerossl.com" style="color: rgb(77, 112, 213);font-weight: 500;text-decoration: none;" target="_blank"><img src="https://zerossl.com/assets/images/zerossl_logo_email.png" height="50px" alt="ZeroSSL" style="font-weight: 400;" /></a>
+                    </h1>
+                	</td><td style="padding: 0;font-weight: 400;margin: 0;text-align: right;">
+                    <span style="font-weight: 600; font-size: 14px; position: relative; top: -2px;">Recipient Email</span>
+                    <br/>
+                    <span style="font-size: 14px; position: relative; top: 2px;">admin@icdesign.tw</span>
+                </td>
+              </tr>
+            </table>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr style="font-weight: 400;">
+    <td style="padding: 0;font-weight: 400;margin: 0;text-align: center;">
+      <div style="padding: 0 20px;max-width: 600px;font-weight: 400;margin: 0 auto;text-align: left;">
+        <div style="padding: 30.0px 0 20px;font-weight: 400;background-color: rgb(255,255,255);">
+  <h3 style="font-size: 22px;font-weight: 500;margin: 0 0 20px;">Verify Domains: icdesign.tw<br>www.icdesign.tw</h3>
+  <p style="font-weight: 400;margin: 0 0 20px;font-size: 15px;line-height: 22px;">We have received a request to issue an SSL certificate for the following domains: <strong>icdesign.tw<br>www.icdesign.tw</strong>. To verify ownership of your domains, please use the link below to navigate to our verification page and enter your verification key. </p>
+  <p style="font-weight: 400;margin: 0 0 20px;font-size: 15px;line-height: 22px;"><a href="https://secure.trust-provider.com/products/EnterDCVCode?orderNumber=797092380" style="cursor: pointer; color: rgb(77, 112, 213);font-size: 16px;font-weight: 500;text-decoration: none;" target="_blank">Go To Verification Page</a></p>
+   <h4 style="font-size: 15px;font-weight: 400;margin: 25px 0 15px 0;">On the verification page, please enter the following key:</h4>
+    <table style="border-radius: 4px;border-collapse: separate;border-spacing: 0;width: 100%;margin: 0 0 30px;font-weight: 400;border: 1.0px solid rgb(213,207,219);">
+      <tbody style="font-weight: 400;">
+        <tr style="font-weight: 400;">
+          <td style="padding: 12.0px 15px;width: 50%;border-left: none;font-weight: 400;margin: 0;text-align: left;">
+            <div style="color: rgb(104,114,118);font-size: 13px;font-weight: 400;margin-bottom: 5px;">Verification Key</div>
+            <div style="color: rgb(0, 0, 0);font-size: 16px;font-weight: 400;">24G8RkmeRdAvvLAZgYKl2JWXQO0kKeAc</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-weight: 400;margin: 0 0 20px;font-size: 15px;line-height: 22px;"> If you think this request was sent in error, you can <a href="https://secure.trust-provider.com/products/RejectDCVCode?orderNumber=797092380&dcvCode=24G8RkmeRdAvvLAZgYKl2JWXQO0kKeAc" style="cursor: pointer; color: rgb(77, 112, 213);font-weight: 500;text-decoration: none;">reject domain verification</a>. Please note that rejecting domain verification will cancel the associated SSL certificate.</p>
+    <p style="font-weight: 400;margin: 0 0 20px;font-size: 15px;line-height: 22px;">Need assistance? Our team here at ZeroSSL is ready to help with any questions you might have. Feel free to reach out by sending an email to <a href="mailto:support@zerossl.com?subject=Domain Verification for icdesign.tw<br>www.icdesign.tw" style="cursor: pointer; color: rgb(104,114,118); font-weight: 500; text-decoration: none;">support@zerossl.com</a>.</p> 
+    <p style="font-weight: 400;margin: 0 0 20px;font-size: 15px;line-height: 22px;">Thank you for choosing us,<br>ZeroSSL Team</p> 
+        </div>
+      </div>
+      <div style="max-width: 600px; padding: 0 20px; font-weight: 400;margin: 0 auto;text-align: left;">
+        <div style="padding: 20px 0 40px 0;border-top: 1px solid rgb(231,235,238);font-weight: 400;">
+            <a href="https://zerossl.com/login" style="cursor: pointer; color: rgb(104,114,118);float: right;font-weight: 500;text-decoration: none;" target="_blank">Account Login</a>
+            <a href="https://zerossl.com/help" style="cursor: pointer; color: rgb(104,114,118);font-weight: 500;text-decoration: none;" target="_blank">Help Center</a>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+</div>
+</body>
+</html>
+--(fklmbqt1m0yajtog)--

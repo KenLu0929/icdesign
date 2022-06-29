@@ -621,8 +621,8 @@ def ic_admission_ticket(request):
 
 def download_file_brief(request):
     # fill these variables with real values
-    fl_path = 'pages/IC_layout_brief_110_v3.pdf'
-    filename = 'IC_layout_brief_110_v3.pdf'
+    fl_path = 'pages/IC_layout_brief_111_v1.pdf'
+    filename = 'IC_layout_brief_111_v1.pdf'
     fl = open(fl_path, 'rb')
     mime_type, _ = mimetypes.guess_type(fl_path)
     response = HttpResponse(fl, content_type=mime_type)
