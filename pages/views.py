@@ -13,7 +13,7 @@ from easy_pdf.views import PDFTemplateResponseMixin
 from django.views.generic import DetailView
 
 
-# Create your views here.
+# render index page
 def index(request):
     url_page = 'pages/index.html'
     CUS_PARAMS = {
