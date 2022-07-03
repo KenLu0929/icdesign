@@ -144,6 +144,7 @@ class News(models.Model):
     news_body = models.CharField(max_length=500, null=True, verbose_name="內文")
     news_author = models.CharField(max_length=100, null=True, verbose_name="作者")
     news_is_active = models.IntegerField(null=True, default=1, verbose_name="狀態")  # 0 = Not Active, 1 = Active
+    news_is_img = models.IntegerField(null=True, default=0, verbose_name="是否為圖片")
     date_created = models.DateTimeField(auto_now_add=True, null=True, verbose_name="創建日期")
     date_modified = models.DateTimeField(auto_now=True, null=True, verbose_name="修改日期")
 

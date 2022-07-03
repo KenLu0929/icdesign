@@ -13,32 +13,55 @@ from easy_pdf.views import PDFTemplateResponseMixin
 from django.views.generic import DetailView
 
 
-# render index page
 def index(request):
+    """ Query news data and 
+    Query user data(if login) and
+    render index page 
+
+    Args:
+        request (HttpResquest): http request
+
+    Returns:
+        HttpResponse : render
+    """    
+
     url_page = 'pages/index.html'
     CUS_PARAMS = {
         "ic_id": "",
         "ic_name": "",
     }
+
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
-        # print(data)
         CUS_PARAMS = QueryUsers.users_get(data)
 
     CUS_PARAMS["news_fields"] = QueryNews.news_get()
-    # print(params)
     return render(request, url_page, CUS_PARAMS)
 
 
 def registration_page(request):
+    """ If submit registeration data
+    Check registeration data (is null or not and double check password) and
+    Check user is existing or not and
+    create user and go to test registration page
+    
+    If not submit any data
+    Just render registration page
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: render()
+    """
+
     if request.method == "POST":
-        # print(request.POST)
         ic_id = request.POST.get("ic_show", "")
         ic_name = request.POST.get("ic_name", "")
         ic_pass = request.POST.get("ic_password", "")
         confirm_ic_pass = request.POST.get("confirm_ic_password", "")
-        # print(ic_pass)
+        
         if ic_id == "" or ic_name == "" or ic_pass == "":
             params = {
                 "error": True,
@@ -55,8 +78,7 @@ def registration_page(request):
         else:
             data = {"ic_id": ic_id, "ic_name": ic_name, "ic_pass": ic_pass,
                     "last_login": utils.currentUnixTimeStamp()}
-            # print("testing")
-            # print(data)
+            
             if QueryUsers.users_checking_fields_exists({"ic_id": ic_id}):
                 params = {
                     "error": True,
@@ -64,7 +86,7 @@ def registration_page(request):
                 }
                 return JsonResponse(params)
             obj, q = QueryUsers.users_getsert(data)
-            # print(obj, q, type(q))
+            
             if not q:
                 params = {
                     "error": True,
@@ -72,9 +94,7 @@ def registration_page(request):
                 }
                 return JsonResponse(params)
             else:
-                # print("test2")
                 request.session['user'] = ic_id
-                # url_page = 'pages/test_registration.html'
                 redirect("test_registration")
 
     url_page = 'pages/registration.html'
@@ -90,6 +110,16 @@ def registration_page(request):
 @login_only
 @with_setting
 def test_registration_page(request):
+    """If test's registration isn't opening, redirect to profile page and
+
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        _type_: _description_
+    """    
+
     if not request.custom_settings["registration"]:
         return redirect("profile")
     url_page = 'pages/test_registration.html'
@@ -179,6 +209,15 @@ def test_registration_page(request):
 
 
 def ic_test_info_page(request):
+    """Render test info page and if already login, get user data
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: render
+    """
+
     url_page = 'pages/ic_test_info.html'
     CUS_PARAMS = {
         "ic_id": "",
@@ -187,12 +226,20 @@ def ic_test_info_page(request):
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
-        # print(data)
         CUS_PARAMS = QueryUsers.users_get(data)
     return render(request, url_page, CUS_PARAMS)
 
 
 def ic_sponsorship(request):
+    """Render sponsorship page and if already login, get user data
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: render
+    """
+
     url_page = 'pages/sponsorship.html'
     CUS_PARAMS = {
         "ic_id": "",
@@ -201,12 +248,20 @@ def ic_sponsorship(request):
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
-        # print(data)
         CUS_PARAMS = QueryUsers.users_get(data)
     return render(request, url_page, CUS_PARAMS)
 
 
 def ic_pre_exam(request):
+    """Render pre_exam page and if already login, get user data
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: render
+    """
+
     url_page = 'pages/pre_exam.html'
     CUS_PARAMS = {
         "ic_id": "",
@@ -215,12 +270,20 @@ def ic_pre_exam(request):
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
-        # print(data)
         CUS_PARAMS = QueryUsers.users_get(data)
     return render(request, url_page, CUS_PARAMS)
 
 
 def ic_faqs(request):
+    """Render faqs page and if already login, get user data
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: render
+    """
+
     url_page = 'pages/faqs.html'
     CUS_PARAMS = {
         "ic_id": "",
@@ -229,7 +292,6 @@ def ic_faqs(request):
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
-        # print(data)
         CUS_PARAMS = QueryUsers.users_get(data)
     return render(request, url_page, CUS_PARAMS)
 
@@ -237,26 +299,34 @@ def ic_faqs(request):
 @login_only
 @with_setting
 def profile_page(request):
+    """Get user's data and replacing data's None to "" and
+        Get examslogs data and filter the condition(admission_ticket_no) and
+        Get exams data if it meet condition(exam_is_active) and
+        render profile page
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: render
+    """
+
     ic_id = request.session.get('user')
     url_page = 'pages/profile.html'
     data = {"ic_id": ic_id}
-    # print(data)
     # print(request.custom_settings)
     params = QueryUsers.users_get(data)
     params = utils.dict_clean(params)
-    # print(params)
     exams_admission_ticket = []
     exams_filter = {
         "ic_id": ic_id,
     }
     result = QueryExamsLogs.exams_get(exams_filter, True)
-    # print(params)
-    # print(result)
+    
     for a in result:
-        # print(a.get("admission_ticket_no"))
         if a.get("admission_ticket_no") != "-" and a.get("admission_ticket_no") != "":
             exams_admission_ticket.append(a.get("admission_ticket_no"))
-    # print(exams_admission_ticket)
+    
     exams_data = {
         "exam_is_active": 1,
     }
@@ -271,16 +341,21 @@ def profile_page(request):
 
 @login_only
 def profile_modify(request):
+    """Update user's data if any data are submited
+    Render profile modify page
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse or JsonResponse: render or JsonResponse
+    """    
+
     ic_id = request.session.get('user')
-
-    # print(request)
-
     if request.method == "POST":
-
         filterQ = {"ic_id": ic_id}
 
         data = update_profile(request.POST)
-        # print("testing: ",data)
         q, message = QueryUsers.users_update(filterQ, data)
         if message is not None:
             params = {
@@ -361,12 +436,27 @@ def change_password(request):
 
 
 def login_page(request):
+    """Go to profile page if it's already login
+
+    If submit login data ,check data in DB and
+    When identify the user successfully ,set user ID in session and
+    Update the last login time and go to profile page
+
+    If no any data submit ,just render login page
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: render or redirect
+    """
+
     ic_id = request.session.get('user')
-    # print(ic_id)
+    
     if ic_id is not None:
         return redirect("profile")
     if request.method == "POST":
-        # print("test")
+        
         ic_id = request.POST.get("ic_id", "")
         ic_pass = request.POST.get("ic_password", "")
         data = {
@@ -376,8 +466,6 @@ def login_page(request):
         user = QueryUsers.users_get(data)
 
         if bool(user):
-            # login(request, user)
-            # print(user)
             request.session['user'] = ic_id
             request.session.modified = True
             filter_sql = {
@@ -392,7 +480,6 @@ def login_page(request):
                 "error": True,
                 "message": error_messages.INVALID_LOGIN
             }
-            # print(resp)
             return render(request, 'pages/login.html', resp)
 
     CUS_PARAMS = {
@@ -405,6 +492,15 @@ def login_page(request):
 
 
 def logout_page(request):
+    """take out the user's ID from session and redirect the login page
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: redirect
+    """
+
     try:
         del request.session['user']
     except:
@@ -620,6 +716,15 @@ def ic_admission_ticket(request):
 
 
 def download_file_brief(request):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+
     # fill these variables with real values
     fl_path = 'pages/IC_layout_brief_111_v1.pdf'
     filename = 'IC_layout_brief_111_v1.pdf'

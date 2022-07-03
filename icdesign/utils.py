@@ -31,11 +31,26 @@ def send_email(subject, message, recipient_list):
 
 
 def currentUnixTimeStamp():
+    """ current UnixTime Stamp(conversion type to int)
+
+    Returns:
+        int: current UnixTime Stamp
+    """
+
     unixTime = int(time.time())
     return unixTime
 
 
 def remove_dict_key_empty(listDict):
+    """_summary_
+
+    Args:
+        listDict (): _description_
+
+    Returns:
+        _type_: _description_
+    """
+
     clean = {}
     for k, v in listDict.items():
         if isinstance(v, dict):
@@ -48,8 +63,15 @@ def remove_dict_key_empty(listDict):
 
 
 def dict_clean(items):
-    # checking for dictionary and replacing if None
-    # print(items)
+    """replacing None to "" (use recursive)
+
+    Args:
+        items (dict or list): object is replaced
+
+    Returns:
+        any: not dict or not list
+    """
+
     if isinstance(items, dict):
 
         for key in items:
@@ -58,7 +80,6 @@ def dict_clean(items):
             else:
                 dict_clean(items[key])
 
-    # checking for list, and testing for each value
     elif isinstance(items, list):
         for val in items:
             dict_clean(val)
@@ -72,12 +93,19 @@ def date_string_date(date_string):
 
 
 def get_fields_only(data):
-    # print(data)
+    """ Get value of fields from parameter and return
+
+    Args:
+        list : Data with fields
+
+    Returns:
+        list : value of fields
+    """    
+    
     new_data = []
     for a in data:
-        # print(a)
         new_data.append(a.get("fields"))
-    # print(new_data)
+
     return new_data
 
 

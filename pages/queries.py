@@ -13,7 +13,6 @@ logger = logging.getLogger(__name__)
 Query for table Users
 '''
 
-
 class QueryUsers:
     # insert users data
     @staticmethod
@@ -33,13 +32,21 @@ class QueryUsers:
 
     @staticmethod
     def users_getsert(data):
-        # user = models.User(**data)
+        """get users data or create data
+        (If not existing ,create new user
+        If it is existing ,get user data
+        If something is wrong, record in log)
+
+        Args:
+            data (dict): user data
+
+        Returns:
+            any, bool: model.users or none, created or not
+        """
+
         try:
-            # user.save()
             obj, created = models.Users.objects.get_or_create(**data)
             # logger.info("Data created Successfully: ", created)
-            # print(obj)
-            # print(created)
             return obj, created
         except Exception as e:
             logger.error("Data: ", data)
@@ -48,12 +55,22 @@ class QueryUsers:
 
     @staticmethod
     def users_get(my_filter, select_all=False):
-        # print(my_filter)
+        """ Get users data if it meet conditions
 
+        Args:
+            my_filter (dict): filter condition
+            select_all (bool): get all user data or not. Defaults to False.
+
+        Returns:
+            list or dict : users data
+        """        
+
+        # print(my_filter)
         users = models.Users.objects.filter(**my_filter).distinct()
         users_json = serializers.serialize('json', users)
         users_json = json.loads(users_json)
         users_json = utils.get_fields_only(users_json)
+
         if select_all:
             return users_json
         if len(users_json) == 1:
@@ -65,9 +82,16 @@ class QueryUsers:
 
     @staticmethod
     def users_update(filter_data, updated_data):
-        # print(my_filter)
-        # print(updated_data)
-        # print("testing")
+        """update the user's data
+
+        Args:
+            filter_data (dict): filter condition
+            updated_data (dict): update data
+
+        Returns:
+            int,error_messages: result,error message
+        """        
+
         try:
             q = models.Users.objects.filter(**filter_data).update(**updated_data)
             return q, None
@@ -76,6 +100,15 @@ class QueryUsers:
 
     @staticmethod
     def users_checking_fields_exists(filter_data):
+        """Check user is existing or not
+
+        Args:
+            filter_data (dict): filter condition
+
+        Returns:
+            bool: result of checking
+        """
+
         q = models.Users.objects.filter(**filter_data).exists()
         return q
 
@@ -117,13 +150,23 @@ class QueryExams:
 
     @staticmethod
     def exams_get(my_filter, select_all=False):
-        # print(my_filter)
+        """Get exams data if meet condition and
+        order by the "exam start time" and return
 
+        Args:
+            my_filter (dict): condition (ex: exam_is_active)
+            select_all (bool): get all data or not. Defaults to False.
+
+        Returns:
+            list or dict : exams data(Exams model)
+        """
+
+        # print(my_filter)
         exams = models.Exams.objects.filter(**my_filter).order_by("-exam_start_time").distinct()
         exams_json = serializers.serialize('json', exams)
         exams_json = json.loads(exams_json)
-
         exams_json = utils.get_fields_only(exams_json)
+        
         if select_all:
             return exams_json
         if len(exams_json) == 1:
@@ -179,13 +222,23 @@ class QueryExamsLogs:
 
     @staticmethod
     def exams_get(my_filter, select_all=False):
+        """Get examslog data if meet condition and return
+
+        Args:
+            my_filter (dict): conditions (ex : user's ID)
+            select_all (bool): get all data or not. Defaults to False.
+
+        Returns:
+            list or dict: exam logs data (ExamLogs model)
+        """        
+
         # print(my_filter)
 
         exams = models.ExamLogs.objects.filter(**my_filter).distinct()
         exams_json = serializers.serialize('json', exams)
         exams_json = json.loads(exams_json)
-
         exams_json = utils.get_fields_only(exams_json)
+        
         if select_all:
             return exams_json
         if len(exams_json) == 1:
@@ -209,12 +262,20 @@ class QueryExamsLogs:
         q = models.ExamLogs.objects.filter(**data)
         return q
 
+'''
+Query for table news
+'''
 
 class QueryNews:
 
     @staticmethod
     def news_get():
-        # print(my_filter)
+        """ Get news data(only active=1)
+
+        Returns:
+            list or dict : value of fields( news model )
+        """        
+
         news = models.News.objects.filter(news_is_active=1).distinct()
         news_json = serializers.serialize('json', news)
         news_json = json.loads(news_json)
@@ -238,10 +299,24 @@ class QueryCounterExamsLogs:
             return False
 
 
+"""
+Query for table settingapp
+"""
+
+
 class QuerySettingApp:
 
     @staticmethod
     def setting_get(select_all=False):
+        """get setting data
+
+        Args:
+            select_all (bool): get all data or not. Defaults to False.
+
+        Returns:
+            dict or list: setting data(SettingApp model)
+        """
+
         # print(my_filter)
 
         setting = models.SettingApp.objects.all()

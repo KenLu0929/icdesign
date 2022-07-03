@@ -25,6 +25,12 @@ class CustomBackend(object):
 
 
 def login_only(view_function):
+    """If not login ,redirect to login page
+
+    Args:
+        view_function (func): view function
+    """
+
     def wrap(request, *args, **kwargs):
         if 'user' in request.session:
             return view_function(request, *args, **kwargs)
@@ -35,11 +41,15 @@ def login_only(view_function):
 
 
 def with_setting(view_function):
+    """Get setting data and set in request.custom_settings
+
+    Args:
+        view_function (func): view function
+    """   
+    
     def wrap(request, *args, **kwargs):
         settings = QuerySettingApp.setting_get()
-        # print(settings)
         request.custom_settings = settings
-        # print(request)
         return view_function(request, *args, **kwargs)
     return wrap
 
@@ -97,6 +107,15 @@ def update_registration(data_post, ic_id):
 
 
 def update_profile(data_post):
+    """Get all updated data from post method
+
+    Args:
+        data_post (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+
     updated_data = {
         "ic_address": data_post.get("ic_address", ""),
         "ic_gender": data_post.get("ic_gender", ""),
