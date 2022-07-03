@@ -44,7 +44,7 @@ def registration_page(request):
     """ If submit registeration data
     Check registeration data (is null or not and double check password) and
     Check user is existing or not and
-    create user and go to test registration page
+    create user and go to profile page
     
     If not submit any data
     Just render registration page
@@ -53,7 +53,7 @@ def registration_page(request):
         request (HttpRequest): http request
 
     Returns:
-        HttpResponse: render()
+        HttpResponse or JsonResponse: render or JsonResponse
     """
 
     if request.method == "POST":
@@ -95,7 +95,7 @@ def registration_page(request):
                 return JsonResponse(params)
             else:
                 request.session['user'] = ic_id
-                redirect("test_registration")
+                redirect("profile")
 
     url_page = 'pages/registration.html'
     CUS_PARAMS = {
