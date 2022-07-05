@@ -55,6 +55,16 @@ def with_setting(view_function):
 
 
 def update_registration(data_post, ic_id):
+    """_summary_
+
+    Args:
+        data_post (any): request post
+        ic_id (dict): user id
+
+    Returns:
+        _type_: _description_
+    """
+
     # print(data_post)
     data = {
         "ic_address": data_post.get("ic_address", ""),
@@ -139,21 +149,37 @@ def update_profile(data_post):
 
 
 def checking_user_taken_exam(ic_id, exam_list):
-    exams_filter = {
-        "ic_id": ic_id,
-        "exam_finish": False
-    }
+    """return the test which user is register ,not finish but user register again
+
+    Args:
+        ic_id (dict): user id
+        exam_list (list or dict):  test id
+
+    Returns:
+        list: the register repetitivly test
+    """    
+
     taken_exam = []
-    result = QueryExamsLogs.exams_get(exams_filter, True)
+    result = get_user_taken_exam(ic_id)
     for a in result:
         e_id = a.get("exam_id")
         if e_id in exam_list:
             taken_exam.append(e_id)
-    # print("checking_user_taken_exam:", result)
+    
     return taken_exam
 
 
 def prerequisite_exams(ic_id, exam_list):
+    """check user is qualified for test or not(prerequisite)
+
+    Args:
+        ic_id (dict): user id
+        exam_list (list or dict): test id
+
+    Returns:
+        list: error message
+    """
+
     unavailable_exams = []
     finish_exams = []
     filter_sql = {
@@ -163,7 +189,7 @@ def prerequisite_exams(ic_id, exam_list):
     res = QueryExamsLogs.exams_get(filter_sql, True)
     for taken_exams in res:
         finish_exams.append(taken_exams.get("exam_id"))
-    # print(finish_exams)
+    
     for exam_id in exam_list:
         filter_exams = {
             "exam_id": exam_id
@@ -189,3 +215,46 @@ def prerequisite_exams(ic_id, exam_list):
             unavailable_exams.append(string_msg)
 
     return unavailable_exams
+
+def get_user_taken_exam(ic_id):
+    """get user already register but not finsih exam
+
+    Args:
+        ic_id (dict): user id
+
+    Returns:
+        list or dict: exam data
+    """
+
+    exams_filter = {
+    "ic_id": ic_id,
+    "exam_finish": False
+    }
+    result = QueryExamsLogs.exams_get(exams_filter, True)
+
+    return result
+
+def get_user_taken_exam_name(ic_id):
+    """get the test which user already register but no finish and
+    return test name
+
+    Args:
+        ic_id (dict): user id
+
+    Returns:
+        list: test name
+    """    
+
+    result = get_user_taken_exam(ic_id)
+    exam_data = []
+
+    for a in result:
+        e_id = a.get("exam_id")
+        exams_filter = {
+            "exam_id":e_id,
+        }
+        exam_result = QueryExams.exams_get(exams_filter, True)
+        for i in exam_result:
+            exam_data.append(i.get("exam_name"))
+
+    return exam_data

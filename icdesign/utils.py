@@ -110,6 +110,15 @@ def get_fields_only(data):
 
 
 def generate_exams_ticket(exams_id):
+    """
+
+    Args:
+        exams_id (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+
     last_logs = CounterExamsLogs.objects.all().order_by('auto_increment_id').last()
     suffix = "0001"
     if last_logs:

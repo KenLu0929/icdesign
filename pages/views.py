@@ -6,7 +6,7 @@ from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign import error_messages
 from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, \
-    prerequisite_exams, with_setting
+    prerequisite_exams, with_setting, get_user_taken_exam_name
 
 # for pdf rendering/view
 from easy_pdf.views import PDFTemplateResponseMixin
@@ -110,14 +110,16 @@ def registration_page(request):
 @login_only
 @with_setting
 def test_registration_page(request):
-    """If test's registration isn't opening, redirect to profile page and
+    """1,If test's registration isn't opening, redirect to profile page
+    2, If any datas are submited, check test is repetitive or not
+    3, Render test registeration page and get user's data and get exam's data
 
 
     Args:
         request (HttpRequest): http request
 
     Returns:
-        _type_: _description_
+        HttpResponse or JsonResponse: redirect or render or JsonResponse
     """    
 
     if not request.custom_settings["registration"]:
@@ -126,9 +128,6 @@ def test_registration_page(request):
     ic_id = request.session.get('user')
 
     if request.method == "POST":
-        # print(request.POST)
-
-        # checking if user already took the exam
         ic_test = request.POST.getlist("ic_test[]", [])
 
         if not ic_test:
@@ -138,9 +137,9 @@ def test_registration_page(request):
                 "body": error_messages.SELECT_EXAM
             }
             return JsonResponse(params)
+        
         res = checking_user_taken_exam(ic_id, ic_test)
         if res:
-            # print("test_registration_page:", res)
             taken_exams = ", ".join(res)
             params = {
                 "error": True,
@@ -151,14 +150,13 @@ def test_registration_page(request):
 
         res = prerequisite_exams(ic_id, ic_test)
         if res:
-            # print("test_registration_page:", res)
             params = {
                 "error": True,
                 "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": "<hr>".join(res)
             }
             return JsonResponse(params)
-        # print("test_registration_page 2:", res)
+        
         data, exams_list = update_registration(request.POST, ic_id)
         if data == {}:
             params = {
@@ -194,17 +192,16 @@ def test_registration_page(request):
         return JsonResponse(params)
 
     data = {"ic_id": ic_id}
-    # print(data)
     CUS_PARAMS = QueryUsers.users_get(data)
     CUS_PARAMS = utils.dict_clean(CUS_PARAMS)
     exams_data = {
         "exam_is_active": 1,
     }
     CUS_PARAMS["exams_fields"] = QueryExams.exams_get(exams_data, True)
+    CUS_PARAMS["exams_name"] = get_user_taken_exam_name(ic_id)
     CUS_PARAMS["title"] = ""
     CUS_PARAMS["body"] = ""
-    # params["exams_fields"] = {"test": "test"}
-    # print(CUS_PARAMS)
+
     return render(request, url_page, CUS_PARAMS)
 
 
@@ -314,7 +311,6 @@ def profile_page(request):
     ic_id = request.session.get('user')
     url_page = 'pages/profile.html'
     data = {"ic_id": ic_id}
-    # print(request.custom_settings)
     params = QueryUsers.users_get(data)
     params = utils.dict_clean(params)
     exams_admission_ticket = []
@@ -391,9 +387,17 @@ def profile_modify(request):
 
 @login_only
 def change_password(request):
+    """change user's password
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse or JsonResponse :redirect or JsonResponse
+    """
+
     ic_id = request.session.get('user')
     if request.method == "POST":
-        # print(request.POST)
         ic_pass = request.POST.get("ic_password", "")
         ic_new_repassword = request.POST.get("ic_new_repassword", "")
         ic_new_password = request.POST.get("ic_new_password", "")
@@ -429,7 +433,6 @@ def change_password(request):
                 "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": error_messages.WRONG_OLD_PASSWORD
             }
-            # print(resp)
             return JsonResponse(params)
 
     return redirect("profile")
@@ -557,6 +560,15 @@ class PDFView(PDFTemplateResponseMixin, DetailView):
 
 
 def ic_privacy(request):
+    """Render privacy page and if already login, get user data
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: render
+    """
+
     url_page = 'pages/privacy_notice.html'
     CUS_PARAMS = {
         "ic_id": "",
@@ -567,7 +579,6 @@ def ic_privacy(request):
     if 'user' in request.session:
         ic_id = request.session.get('user')
         data = {"ic_id": ic_id}
-        # print(data)
         CUS_PARAMS = QueryUsers.users_get(data)
     return render(request, url_page, CUS_PARAMS)
 
@@ -716,13 +727,13 @@ def ic_admission_ticket(request):
 
 
 def download_file_brief(request):
-    """_summary_
+    """download brief
 
     Args:
-        request (_type_): _description_
+        request (HttpRequest): http request
 
     Returns:
-        _type_: _description_
+        HttpResponse: http response
     """
 
     # fill these variables with real values
@@ -736,6 +747,15 @@ def download_file_brief(request):
 
 
 def download_file_question_bank(request):
+    """download question bank
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: http response
+    """
+
     # fill these variables with real values
     fl_path = 'pages/IC_layout_110_question_bank.pdf'
     filename = 'IC_layout_110_question_bank.pdf'
