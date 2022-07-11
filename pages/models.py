@@ -92,6 +92,7 @@ class ExamLogs(models.Model):
                                    null=True,
                                    default=ExamsStatusClass.WAITING,
                                    verbose_name="考試狀態")
+    exam_change = models.BooleanField(null=False, default=False, verbose_name="考試是否更改過")
     exam_finish = models.BooleanField(null=True, default=False, verbose_name="考試是否結束")
     exam_place = models.CharField(max_length=100, null=True, verbose_name="考試地點")
     exam_room = models.CharField(max_length=100, null=True, default="-", verbose_name="考場")

@@ -55,14 +55,14 @@ def with_setting(view_function):
 
 
 def update_registration(data_post, ic_id):
-    """_summary_
+    """get register test data and save in examlogs table
 
     Args:
         data_post (any): request post
         ic_id (dict): user id
 
     Returns:
-        _type_: _description_
+        dict , list : data(post), exam data
     """
 
     # print(data_post)
@@ -82,26 +82,18 @@ def update_registration(data_post, ic_id):
         "ic_job_position": data_post.get("ic_job_position", ""),
         "ic_yearofexp": data_post.get("ic_yearofexp", 0)
     }
-
-    # personal data
-
-    # education data
-
     ic_test = data_post.getlist("ic_test[]", [])
     exam_ticket_no = utils.generate_exams_ticket_v2()
+
     exam_list = []
     for exam_id in ic_test:
-        # print(exam_id)
         exam = {}
         filter_exam = {"exam_id": exam_id}
         exam_info = QueryExams.exams_get(filter_exam)
         exam["ic_id"] = ic_id
         exam["exam_id"] = exam_id
-        # exam["user"] = ic_id
         exam["exam_place"] = exam_info.get("exam_place", "")
-        # exam["exam_ticket_no"] = utils.generate_exams_ticket(exam_id)
         exam["exam_ticket_no"] = exam_ticket_no
-        # print(exam)
         q = QueryExamsLogs.exams_upsert(exam)
         if not q:
             return {}
@@ -110,11 +102,62 @@ def update_registration(data_post, ic_id):
         exam["exam_end_time"] = exam_info.get("exam_end_time", "")
         exam_list.append(exam)
 
-    # print(data)
-
-    # print(data)
     return data, exam_list
 
+
+def change_exams(data_post, ic_id):
+    data = {
+        "ic_address": data_post.get("ic_address", ""),
+        "ic_gender": data_post.get("ic_gender", ""),
+        "ic_email": data_post.get("ic_email", ""),
+        "ic_bod": data_post.get("ic_bod", ""),
+        "ic_phone_no": data_post.get("ic_phone_no", ""),
+        "ic_telephone": data_post.get("ic_telephone", ""),
+        "ic_school": data_post.get("ic_school", ""),
+        "ic_status_school": data_post.get("ic_status_school", ""),
+        "ic_degree": data_post.get("ic_degree", ""),
+        "ic_company": data_post.get("ic_company", ""),
+        "ic_department": data_post.get("ic_department", ""),
+        "ic_service_department": data_post.get("ic_service_department", ""),
+        "ic_job_position": data_post.get("ic_job_position", ""),
+        "ic_yearofexp": data_post.get("ic_yearofexp", 0)
+    }
+    ic_test = data_post.getlist("ic_test[]", [])
+
+    exam_list = []
+    for exam_id in ic_test:
+        filter_taken_exam = {
+            "ic_id" : ic_id,
+            "exam_change": False,
+            "exam_finish": False
+        }
+        taken_exam = QueryExamsLogs.exams_get(filter_taken_exam)
+        taken_exam_first_data = utils.get_first_data(taken_exam)
+        print(taken_exam_first_data)
+
+        filter_update = {
+            "ic_id":ic_id,
+            "exam_id": taken_exam_first_data.get("exam_id")
+        }
+        print(filter_update)
+
+        filter_exam = {"exam_id":exam_id}
+        exam_info = QueryExams.exams_get(filter_exam)
+        exam = {}
+        exam["exam_id"] = exam_id
+        exam["exam_place"] = exam_info.get("exam_place", "")
+        exam["exam_change"] = True
+
+        q = QueryExamsLogs.exams_update(filter_update,exam)
+        if not q:
+            return {}
+        
+        exam["exam_name"] = exam_info.get("exam_name", "")
+        exam["exam_start_time"] = exam_info.get("exam_start_time", "")
+        exam["exam_end_time"] = exam_info.get("exam_end_time", "")
+        exam_list.append(exam)
+        
+    return data, exam_list
 
 def update_profile(data_post):
     """Get all updated data from post method
@@ -156,7 +199,7 @@ def checking_user_taken_exam(ic_id, exam_list):
         exam_list (list or dict):  test id
 
     Returns:
-        list: the register repetitivly test
+        list: the register repetitivly test's id
     """    
 
     taken_exam = []
@@ -171,6 +214,12 @@ def checking_user_taken_exam(ic_id, exam_list):
 
 def prerequisite_exams(ic_id, exam_list):
     """check user is qualified for test or not(prerequisite)
+
+    First, get user's exam which had finished, and
+    Get exam's data which is resgistered by user, and
+    Check prerequisite,
+    IF have prerequisite, check user had already finished or not,
+    and return the result of check
 
     Args:
         ic_id (dict): user id
@@ -195,6 +244,7 @@ def prerequisite_exams(ic_id, exam_list):
             "exam_id": exam_id
         }
         exam_res = QueryExams.exams_get(filter_exams)
+
         prerequisite = exam_res.get("exam_prerequisite")
         # print("prerequisite: ", prerequisite)
         if prerequisite == "-" or prerequisite == "":

@@ -6,7 +6,7 @@ from .queries import QueryUsers, QueryExams, QueryExamsLogs, QueryNews
 from icdesign import utils
 from icdesign import error_messages
 from icdesign.backends import login_only, update_registration, checking_user_taken_exam, update_profile, \
-    prerequisite_exams, with_setting, get_user_taken_exam_name
+    prerequisite_exams, with_setting, get_user_taken_exam_name, change_exams
 
 # for pdf rendering/view
 from easy_pdf.views import PDFTemplateResponseMixin
@@ -111,8 +111,15 @@ def registration_page(request):
 @with_setting
 def test_registration_page(request):
     """1,If test's registration isn't opening, redirect to profile page
-    2, If any datas are submited, check test is repetitive or not
-    3, Render test registeration page and get user's data and get exam's data
+    2, If any datas are submited:
+    Check exams are selected or not,
+    Check test is repetitive or not,
+    Check prerequisite have already finished or not,
+    Check user's registered data are recieved or not,
+    and update user's data
+
+    3, Render test registeration page and get user's data 
+    and get exam's data and exam's name
 
 
     Args:
@@ -124,12 +131,34 @@ def test_registration_page(request):
 
     if not request.custom_settings["registration"]:
         return redirect("profile")
+
     url_page = 'pages/test_registration.html'
     ic_id = request.session.get('user')
+    data = {"ic_id": ic_id}
+    CUS_PARAMS = QueryUsers.users_get(data)
+    CUS_PARAMS = utils.dict_clean(CUS_PARAMS)
 
-    if request.method == "POST":
+    exams_data = {
+        "exam_is_active": 1,
+    }
+    CUS_PARAMS["exams_fields"] = QueryExams.exams_get(exams_data, True)
+    
+    user_taken_exams = get_user_taken_exam_name(ic_id)
+    CUS_PARAMS["exams_name"] = user_taken_exams
+
+    change_check = {
+        "ic_id": ic_id,
+        "exam_change": True,
+        "exam_finish": False
+    }
+    change_result = QueryExamsLogs.exams_get(change_check, True)
+    if change_result:
+        CUS_PARAMS["change_exam"]= True
+    else:
+        CUS_PARAMS["change_exam"]= False
+
+    if request.method == "POST" and not change_result:
         ic_test = request.POST.getlist("ic_test[]", [])
-
         if not ic_test:
             params = {
                 "error": True,
@@ -137,7 +166,7 @@ def test_registration_page(request):
                 "body": error_messages.SELECT_EXAM
             }
             return JsonResponse(params)
-        
+
         res = checking_user_taken_exam(ic_id, ic_test)
         if res:
             taken_exams = ", ".join(res)
@@ -157,7 +186,11 @@ def test_registration_page(request):
             }
             return JsonResponse(params)
         
-        data, exams_list = update_registration(request.POST, ic_id)
+        if user_taken_exams:
+            data, exams_list = change_exams(request.POST, ic_id)
+        else:
+            data, exams_list = update_registration(request.POST, ic_id)
+        
         if data == {}:
             params = {
                 "error": True,
@@ -191,14 +224,6 @@ def test_registration_page(request):
         # print(params)
         return JsonResponse(params)
 
-    data = {"ic_id": ic_id}
-    CUS_PARAMS = QueryUsers.users_get(data)
-    CUS_PARAMS = utils.dict_clean(CUS_PARAMS)
-    exams_data = {
-        "exam_is_active": 1,
-    }
-    CUS_PARAMS["exams_fields"] = QueryExams.exams_get(exams_data, True)
-    CUS_PARAMS["exams_name"] = get_user_taken_exam_name(ic_id)
     CUS_PARAMS["title"] = ""
     CUS_PARAMS["body"] = ""
 

@@ -14,9 +14,18 @@ Query for table Users
 '''
 
 class QueryUsers:
-    # insert users data
+    
     @staticmethod
     def users_upsert(data):
+        """update users data or create data
+
+        Args:
+            data (dict): user data
+
+        Returns:
+            bool: successful
+        """        
+
         # user = models.User(**data)
         try:
             # user.save()
@@ -122,6 +131,15 @@ class QueryExams:
     # insert users data
     @staticmethod
     def exams_upsert(data):
+        """update exams data or create (if not existing )
+
+        Args:
+            data (dict): exams data
+
+        Returns:
+            bool : successful
+        """        
+
         # user = models.User(**data)
         try:
             # user.save()
@@ -137,6 +155,15 @@ class QueryExams:
 
     @staticmethod
     def exams_getsert(data):
+        """get exams data or create (if not existing)
+
+        Args:
+            data (dict): exams data
+
+        Returns:
+            any, bool : data object or none, successful
+        """        
+
         # user = models.User(**data)
         try:
             # user.save()
@@ -178,6 +205,16 @@ class QueryExams:
 
     @staticmethod
     def exams_update(filter_data, updated_data):
+        """update exams data
+
+        Args:
+            filter_data (dict): filter data
+            updated_data (dict): update data
+
+        Returns:
+            int : successful
+        """        
+
         # print(my_filter)
 
         q = models.Exams.objects.filter(**filter_data).update(**updated_data)
@@ -192,9 +229,17 @@ Query for table exams_logs
 
 
 class QueryExamsLogs:
-    # insert users data
     @staticmethod
     def exams_upsert(data):
+        """update examslogs date or create (if not existing)
+
+        Args:
+            data (dict): examslogs data
+
+        Returns:
+            bool: successful
+        """        
+
         # user = models.User(**data)
         try:
             # user.save()
@@ -209,6 +254,15 @@ class QueryExamsLogs:
 
     @staticmethod
     def exams_getsert(data):
+        """get examslogs data or create ( if not existing )
+
+        Args:
+            data (dict): examslogs data
+
+        Returns:
+            any or none, bool: data object, successful
+        """        
+
         # user = models.User(**data)
         try:
             # user.save()
@@ -250,6 +304,16 @@ class QueryExamsLogs:
 
     @staticmethod
     def exams_update(filter_data, updated_data):
+        """update examslogs data
+
+        Args:
+            filter_data (dict): filter data
+            updated_data (dict or list): update data
+
+        Returns:
+            int: successful
+        """
+
         # print(my_filter)
 
         q = models.ExamLogs.objects.filter(**filter_data).update(**updated_data)
@@ -284,10 +348,20 @@ class QueryNews:
         return news_json
 
 
+"""
+Query for table counterexamslogs
+"""
+
 class QueryCounterExamsLogs:
 
     @staticmethod
     def users_upsert():
+        """create a blank data in counterexamslogs table
+
+        Returns:
+            bool: successful
+        """        
+
         # user = models.User(**data)
         try:
             cel = models.CounterExamsLogs()
@@ -302,7 +376,6 @@ class QueryCounterExamsLogs:
 """
 Query for table settingapp
 """
-
 
 class QuerySettingApp:
 

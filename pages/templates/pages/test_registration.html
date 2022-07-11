@@ -222,16 +222,59 @@
                         <div class="align-items-center" >
                             <div class="row g-2 mt-4">
                                 <div class="col-12 col-md-4">
-                                    <span>您已經報考: 
+                                    <span>您已經報考: <br><br>
                                         {% for a in exams_name %}
-                                            {{a|add:" "}}
+                                            {{a}}
+                                            <br>
                                         {% endfor %}
                                     </span>
                                 </div>
+
+                                <!--change exam-->
+                                {% if change_exam %}
+                                <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
+                                    <span>您已更改過考場，無法再進行更改</span>
+                                    <span>如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
+                                </div>
+                                {% else %}
+                                <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
+                                    {% if exams_fields%}
+                                        <span>您可以更改考場( 只有一次機會 )</span><br>
+                                        {% for field in exams_fields %}
+                                            {% if field.exam_name not in exams_name %}
+                                                <div class="form-check form-check-inline" id="{{field.exam_id}}">
+                                                    <input class="form-check-input" type="checkbox" name="ic_test"
+                                                        id="selectCourse1"
+                                                        value="{{field.exam_id}}" onchange="disabled_checkbox()">
+                                                    <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }}
+                                                        (Place: {{ field.exam_place }}) | {{ field.exam_start_time }} -
+                                                        {{ field.exam_end_time }}</label>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                    <span>目前非報名階段，已註冊之使用者如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
+                                    {% endif %}
+
+                                    <hr class="my-4">
+
+                                    <div class="row justify-content-start mt-4">
+                                        <div class="col">
+                                            <div>
+                                                <label> 按下送出表示您已同意上述 <a href="#">注意事項</a></label>
+                                            </div>
+            
+                                            <div>
+                                                <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit">
+                                                送出
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
-
-
                     </div>
                     
                     <!--not registeration yet-->
@@ -245,20 +288,19 @@
                                 <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
                                     {% if exams_fields %}
                                     {% for field in exams_fields %}
-                                    <div class="form-check form-check-inline">
+                                    <div class="form-check form-check-inline" id="{{field.exam_id}}">
                                         <input class="form-check-input" type="checkbox" name="ic_test"
-                                               id="selectCourse1"
-                                               value="{{field.exam_id}}">
+                                            id="selectCourse1"
+                                            value="{{field.exam_id}}" onchange="disabled_checkbox()">
                                         <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }}
                                             (Place: {{ field.exam_place }}) | {{ field.exam_start_time }} -
                                             {{ field.exam_end_time }}</label>
                                     </div>
                                     {% endfor %}
+                                    <span>(注意：初階 , 進階只能擇一報名)</span>
                                     {% else %}
                                     <span>目前非報名階段，已註冊之使用者如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
                                     {% endif %}
-    
-    
                                 </div>
                             </div>
                         </div>
@@ -481,6 +523,44 @@
         $("#see_schedule").show();
     }
 
+    //check box setting
+    function disabled_checkbox(){
+        if($("#SLV1 > input").is(":checked")){
+            $("#SLV2 > input").prop("disabled", true);
+            $("#PLV2 > input").prop("disabled", true);
+        }
+        else if($("#PLV1 > input").is(":checked")){
+            $("#SLV2 > input").prop("disabled", true);
+            $("#PLV2 > input").prop("disabled", true);
+        }
+        else if($("#SLV2 > input").is(":checked")){
+            $("#SLV1 > input").prop("disabled", true);
+            $("#PLV1 > input").prop("disabled", true);
+        }
+        else if($("#PLV2 > input").is(":checked")){
+            $("#SLV1 > input").prop("disabled", true);
+            $("#PLV1 > input").prop("disabled", true);
+        }
+        else{
+            $("#SLV2 > input").prop("disabled", false);
+            $("#PLV2 > input").prop("disabled", false);
+            $("#SLV1 > input").prop("disabled", false);
+            $("#PLV1 > input").prop("disabled", false);
+        }
+    }
+
+    /*
+    $("#SLV1 > input").change(function(){
+        console.log($("#SLV1 > input").is(":checked"));
+        $("#SLV1 > input").prop("checked", $("#SLV1 > input").is(":checked"));
+        $("#PLV1 > input").prop("checked", $("#SLV1 > input").is(":checked"));
+    });
+    $("#PLV1 > input").change(function(){
+        console.log($("#PLV1 > input").is(":checked"));
+        $("#PLV1 > input").prop("checked", $("#PLV1 > input").is(":checked"));
+        $("#SLV1 > input").prop("checked", $("#PLV1 > input").is(":checked"));
+    });*/
+    
     document.getElementById('form_test_registration').onsubmit = function (e) {
         e.preventDefault();
         // console.log("test")

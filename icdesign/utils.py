@@ -85,6 +85,11 @@ def dict_clean(items):
             dict_clean(val)
     return items
 
+def get_first_data(items):
+    if isinstance(items, dict):
+        return items
+    else:
+        return items[0]
 
 # %Y-%m-%d%
 def date_string_date(date_string):
@@ -132,6 +137,12 @@ def generate_exams_ticket(exams_id):
 
 
 def generate_exams_ticket_v2():
+    """create a ticket
+
+    Returns:
+        string : ticket
+    """    
+
     last_logs = CounterExamsLogs.objects.all().order_by('auto_increment_id').last()
     prefix = "EXAM"
     suffix = "0001"
@@ -141,6 +152,7 @@ def generate_exams_ticket_v2():
     x = str(x)[:5].upper()
     # ticket = exams_id + x + str(currentUnixTimeStamp()) + suffix
     ticket = prefix + x + suffix
+
     res = queries.QueryCounterExamsLogs.users_upsert()
     if not res:
         logger.error("cannot increment counterExamsLogs.")
