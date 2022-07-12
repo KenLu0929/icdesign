@@ -782,8 +782,8 @@ def download_file_question_bank(request):
     """
 
     # fill these variables with real values
-    fl_path = 'pages/IC_layout_110_question_bank.pdf'
-    filename = 'IC_layout_110_question_bank.pdf'
+    fl_path = 'pages/IC_layout_111_question_bank.pdf'
+    filename = 'IC_layout_111_question_bank.pdf'
     fl = open(fl_path, 'rb')
     mime_type, _ = mimetypes.guess_type(fl_path)
     response = HttpResponse(fl, content_type=mime_type)
@@ -792,6 +792,15 @@ def download_file_question_bank(request):
 
 
 def download_file_User_case_diagram(request):
+    """download user case diagram
+
+    Args:
+        request (HttpRequest): http request
+
+    Returns:
+        HttpResponse: http response
+    """    
+
     # fill these variables with real values
     fl_path = 'pages/User_case_diagram.pdf'
     filename = 'User case diagram.pdf'
