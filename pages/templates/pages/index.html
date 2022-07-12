@@ -6,70 +6,72 @@
 {% include "pages/header.html" %}
 <section class="background-overlay"></section>
 <div class="container py-5">
-<!--    <div class="container-fluid py-5">-->
-<!--        <h3 class="display-6 fw-bold">歡迎來到 半導體佈局設計工程師能力鑑定</h3>-->
-<!--        <p class="col-md-8 fs-4">立即註冊幫你快速完成報名！</p>-->
-<!--        <button class="btn btn-primary btn-lg" type="button">Example button</button>-->
-<!--    </div>-->
-    <div class="container px-4 px-md-3">
+  <!--index img and title-->
+  <div class="container px-4 px-md-3">
     <div class="row align-items-lg-center">
+      <!--index img-->
       <div class="col-12 mx-auto col-md-4 order-md-2 col-lg-6 mb-4">
         <img id="post" src="{% static 'images/5059285-01.png' %}" style="max-width:100%;height:auto;" >
       </div>
+
+      <!--title-->
       <div class="col-md-8 order-md-1 col-lg-6 text-center text-md-start">
         <h1 class="mb-3">歡迎來到<br>半導體佈局設計工程師能力鑑定</h1>
-        <p class="lead mb-4">
-          立即註冊幫你快速完成報名！
-        </p>
+        <p class="lead mb-4">立即註冊幫你快速完成報名！</p>
         <div class="d-grid gap-2 d-md-block">
           <a href="{% url 'test_registration' %}" class="btn btn-lg btn-outline-primary" >立刻報名</a>
         </div>
       </div>
     </div>
   </div>
-    <div class="container px-4 py-5" id="icon-grid">
-        <div class="row row-cols-1 py-3">
-            <div class="col-12 col-md-6 mb-4">
-                <div class="row">
-                    <div class="col-12">
-                        <h4 class="mb-3">半導體佈局設計工程師能力鑑定資訊</h4>
-                        <p class="text-h3 mb-3">立即註冊幫你快速完成報名!</p>
-                        <ul class="list-group mb-3">
-                          <li class="list-group-item" aria-current="true"><a href="{% url 'ic_test_info' %}">快速了解你為什麼需要測驗</a></li>
-                          <li class="list-group-item"><a href="/preexam">考前準備</a></li>
-                          <li class="list-group-item"><a href="/faqs">FAQS</a></li>
-                        </ul>
-                        <a href="/ictestinfo" class="icon-link">
-                          了解更多>>
-                          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-5 offset-md-1">
-                <div class="col-12">
-                    <div class="col mb-4">
-                        <h4>最新消息</h4>
-                    </div>
-                    {% for field in news_fields %}
-                    <div class="col">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ field.news_title }}</h5>
-                                <hr>
-                                {% if field.news_is_img%}
-                                  <img src="{% static 'images/'|add:field.news_body %}" alt="" width="100%" height="auto">
-                                {% else %}
-                                  <p class="card-text">{{ field.news_body }}</p>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+
+  <!--連結和news-->
+  <div class="container px-4 py-5" id="icon-grid">
+    <div class="row row-cols-1 py-3">
+      <!--連結Bar-->
+      <div class="col-12 col-md-6 mb-4">
+        <div class="row">
+          <div class="col-12">
+            <h4 class="mb-3">半導體佈局設計工程師能力鑑定資訊</h4>
+            <p class="text-h3 mb-3">立即註冊幫你快速完成報名!</p>
+            <ul class="list-group mb-3">
+              <li class="list-group-item" aria-current="true"><a href="{% url 'ic_test_info' %}">快速了解你為什麼需要測驗</a></li>
+              <li class="list-group-item"><a href="/preexam">考前準備</a></li>
+              <li class="list-group-item"><a href="/faqs">FAQS</a></li>
+            </ul>
+            <a href="/ictestinfo" class="icon-link">
+            了解更多>>
+            <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+            </a>
+          </div>
         </div>
+      </div>
+      <!--news-->
+      <div class="col-12 col-md-5 offset-md-1">
+        <div class="col-12">
+          <div class="col mb-4">
+            <h4>最新消息</h4>
+          </div>
+
+          {% for field in news_fields %}
+          <div class="col">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">{{ field.news_title }}</h5>
+                <hr>
+                {% if field.news_is_img%}
+                <img src="{% static 'images/'|add:field.news_body %}" alt="" max-width="100%" height="auto">
+                {% else %}
+                <p class="card-text">{{ field.news_body }}</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 </body>
 {% endblock %}
