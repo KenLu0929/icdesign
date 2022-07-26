@@ -1,235 +1,264 @@
 {% extends "pages/base.html" %}
 {% block title %}Profile{% endblock %}
 {% block content %}
-{% include "pages/header.html" %}
 <body>
-<div class="container py-5 bg-custom mt-5 mb-3 rounded-3 text-center">
-    <div class="row">
-        <div class="col text-white">
-            <div class=""></div>
-            <h1>更新個人檔案</h1>
-            <span>此處可以更新您先前填寫的個人資訊</span>
+    {% include "pages/header.html" %}
+    <!--page title-->
+    <div class="container py-5 bg-custom mt-5 mb-3 rounded-3 text-center">
+        <div class="row">
+            <div class="col text-white">
+                <div class=""></div>
+                <h1>更新個人檔案</h1>
+                <span>此處可以更新您先前填寫的個人資訊</span>
+            </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-        </symbol>
-        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-        </symbol>
-        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-        </symbol>
-    </svg>
-    <div class="alert alert-primary d-flex align-items-center" role="alert">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
-            <use xlink:href="#info-fill"/>
-        </svg>
-        <div>
-            <strong> <a href="{% url 'test_registration' %}" class="alert-link">立即報考</a></strong></div>
-    </div>
-</div>
-<div class="container pt-2 pb-5">
-    <div class="row">
-        <div class="col col-md-12">
-            <div class="card">
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane py-3 px-3 fade show active" id="v-pills-home" role="tabpanel"
-                         aria-labelledby="v-pills-home-tab">
-                        <div id="test_registration" class="col-12">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h1>個人資訊：</h1>
-                                    <!-- <p class="text-h3">This should contains what user need to know before they fill
-                                        their personal
-                                        information. </p> -->
-                                </div>
-                            </div>
-                            <hr>
-                            <form id="form_profile_modify">
-                                <div class="row g-2 mt-2">
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="text" name="ic_id" id="icid" class="form-control"
-                                                   placeholder="ID"
-                                                   maxlength="10" value="{{ ic_id }}" disabled>
-                                            <label for="icid">身分證字號</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="idname" name="ic_name"
-                                                   placeholder="e.g, Jhon Doe" value="{{ ic_name }}" disabled>
-                                            <label for="icid">姓名</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="align-items-center mt-4">
-                                    <div class="form-floating row g-2">
-                                        <div class="col-md-12">
-                                            <label for="datepicker"><a style="color:red;">*</a>出生日期</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input id="datepicker" name="ic_bod" type="date" class="form-control"
-                                                   placeholder="yyyy/mm/dd" value="{{ ic_bod }}"
-                                                   required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="align-items-center mt-4">
-                                    <div class="row g-2">
-                                        <div class="col-md">
-                                            <span><a style="color:red;">*</a>性別</span>
-                                        </div>
-                                        <div class="col-md row g-2" style="margin-left: 0rem;">
-                                            <div class="form-check form-check-inline">
 
-                                                <input class="form-check-input" type="radio" name="ic_gender"
-                                                       id="selectGender1" value="男" {% if ic_gender == "男" %} checked{% endif %}>
-                                                <label class="form-check-label" for="selectGender1">男</label>
+    <!--快訊-->
+    <div class="container">
+        <!--define symbol-->
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+        </svg>
+
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                <use xlink:href="#info-fill"/>
+            </svg>
+            <div>
+                <strong> <a href="{% url 'test_registration' %}" class="alert-link">立即報考</a></strong>
+            </div>
+        </div>
+    </div>
+
+    <!---->
+    <div class="container pt-2 pb-5">
+        <div class="row">
+            <div class="col col-md-12">
+                <div class="card">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane py-3 px-3 fade show active" id="v-pills-home" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">
+                            <div id="test_registration" class="col-12">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h1>個人資訊：</h1>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <form id="form_profile_modify">
+                                    <!--user id and name-->
+                                    <div class="row g-2 mt-2">
+                                        <!--user id-->
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="text" name="ic_id" id="icid" class="form-control"
+                                                    placeholder="ID"
+                                                    maxlength="10" value="{{ ic_id }}" disabled>
+                                                <label for="icid">身分證字號</label>
                                             </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="ic_gender"
-                                                       id="selectGender2" value="女" {% if ic_gender == "女" %} checked{% endif %}>
-                                                <label class="form-check-label" for="selectGender2">女</label>
+                                        </div>
+
+                                        <!--user name-->
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="idname" name="ic_name"
+                                                    placeholder="e.g, Jhon Doe" value="{{ ic_name }}" disabled>
+                                                <label for="icid">姓名</label>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row g-2 mt-4">
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="number" name="ic_phone_no" id="icphonenumber"
-                                                   class="form-control"
-                                                   placeholder="ID"
-                                                   maxlength="10" value="{{ ic_phone_no }}">
-                                            <label for="icphonenumber"><a style="color:red;">*</a>手機號碼</label>
+
+                                    <!--user birthday-->
+                                    <div class="align-items-center mt-4">
+                                        <div class="form-floating row g-2">
+                                            <div class="col-md-12">
+                                                <label for="datepicker"><a style="color:red;">*</a>出生日期</label>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <input id="datepicker" name="ic_bod" type="date" class="form-control"
+                                                    placeholder="yyyy/mm/dd" value="{{ ic_bod }}"
+                                                    required>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="ictelpnumber"
-                                                   name="ic_telephone"
-                                                   placeholder="e.g, Jhon Doe" value="{{ ic_telephone }}">
-                                            <label for="ictelpnumber"><a style="color:red;">*</a>電話號碼</label>
+
+                                    <!--user sex-->
+                                    <div class="align-items-center mt-4">
+                                        <div class="row g-2">
+                                            <div class="col-md">
+                                                <span><a style="color:red;">*</a>性別</span>
+                                            </div>
+                                            <div class="col-md row g-2" style="margin-left: 0rem;">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="ic_gender"
+                                                        id="selectGender1" value="男" {% if ic_gender == "男" %} checked{% endif %}>
+                                                    <label class="form-check-label" for="selectGender1">男</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="ic_gender"
+                                                        id="selectGender2" value="女" {% if ic_gender == "女" %} checked{% endif %}>
+                                                    <label class="form-check-label" for="selectGender2">女</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="align-items-center mt-4">
-                                    <div class="form-floating">
-                                        <input type="email" id="idemail" name="ic_email" class="form-control"
-                                               placeholder="this@youremail.com" value="{{ ic_email }}" required>
-                                        <label for="idemail">Email</label>
-                                    </div>
-                                </div>
-                                <div class="align-items-center mt-4">
-                                    <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
-                                      style="height : 100px;" name="ic_address"
-                                      required>{{ ic_address }}</textarea>
-                                        <label for="textareaAddress"><a style="color:red;">*</a>郵寄地址</label>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mt-2">
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="text" id="schoolName" name="ic_school" class="form-control"
-                                                   placeholder="School name" value="{{ ic_school }}">
-                                            <label for="schoolName"><a style="color:red;">*</a>學校名稱</label>
+
+                                    <!--user number-->
+                                    <div class="row g-2 mt-4">
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="number" name="ic_phone_no" id="icphonenumber"
+                                                    class="form-control"
+                                                    placeholder="ID"
+                                                    maxlength="10" value="{{ ic_phone_no }}">
+                                                <label for="icphonenumber"><a style="color:red;">*</a>手機號碼</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="ictelpnumber"
+                                                    name="ic_telephone"
+                                                    placeholder="e.g, Jhon Doe" value="{{ ic_telephone }}">
+                                                <label for="ictelpnumber"><a style="color:red;">*</a>電話號碼</label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md">
+
+                                    <!--user email-->
+                                    <div class="align-items-center mt-4">
                                         <div class="form-floating">
-                                            <input type="text" id="department" name="ic_department" class="form-control"
-                                                   placeholder="Department" value="{{ ic_department }}">
-                                            <label for="department"><a style="color:red;">*</a>系所／年級</label>
+                                            <input type="email" id="idemail" name="ic_email" class="form-control"
+                                                placeholder="this@youremail.com" value="{{ ic_email }}" required>
+                                            <label for="idemail">Email</label>
                                         </div>
                                     </div>
-                                    <div class="col-md">
+
+                                    <!--user address-->
+                                    <div class="align-items-center mt-4">
                                         <div class="form-floating">
-                                            <select class="form-select" id="selectStatusschool" name="ic_status_school"
+                                            <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
+                                                style="height : 100px;" name="ic_address"
+                                                required>{{ ic_address }}</textarea>
+                                            <label for="textareaAddress"><a style="color:red;">*</a>郵寄地址</label>
+                                        </div>
+                                    </div>
+
+                                    <!--user school-->
+                                    <div class="row g-3 mt-2">
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="text" id="schoolName" name="ic_school" class="form-control"
+                                                    placeholder="School name" value="{{ ic_school }}">
+                                                <label for="schoolName"><a style="color:red;">*</a>學校名稱</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="text" id="department" name="ic_department" class="form-control"
+                                                    placeholder="Department" value="{{ ic_department }}">
+                                                <label for="department"><a style="color:red;">*</a>系所／年級</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="selectStatusschool" name="ic_status_school"
                                                     aria-label="Floating label select example">
-                                                    <option value="" selected>--請選擇--</option>
-                                                    <option value="在學">在學</option>
-                                                    <option value="畢業">畢業</option>
-                                                    <option value="肄業">肄業</option>
-                                            </select>
-                                            <label for="selectStatusschool"><a style="color:red;">*</a>就學狀態</label>
+                                                        <option value="" selected>--請選擇--</option>
+                                                        <option value="在學">在學</option>
+                                                        <option value="畢業">畢業</option>
+                                                        <option value="肄業">肄業</option>
+                                                </select>
+                                                <label for="selectStatusschool"><a style="color:red;">*</a>就學狀態</label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
-                                <div class="row g-3 mt-2">
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="text" id="companyName" name="ic_company" class="form-control"
-                                                   placeholder="Company name" value="{{ ic_company }}">
-                                            <label for="companyName">公司名稱</label>
+
+                                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+                                    <!--user company-->
+                                    <div class="row g-3 mt-2">
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="text" id="companyName" name="ic_company" class="form-control"
+                                                    placeholder="Company name" value="{{ ic_company }}">
+                                                <label for="companyName">公司名稱</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="text" id="selectPosition" name="ic_service_department"
+                                                    class="form-control"
+                                                    placeholder="Service Department" value="{{ ic_service_department }}">
+                                                <label for="selectPosition">服務部門</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
+                                                    placeholder="Year of experience" value="{{ ic_yearofexp|default:0 }}" min="0">
+                                                <label for="companyName">相關工作經驗年資</label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="text" id="selectPosition" name="ic_service_department"
-                                                   class="form-control"
-                                                   placeholder="Service Department" value="{{ ic_service_department }}">
-                                            <label for="selectPosition">服務部門</label>
+
+                                    <!--user position and degree-->
+                                    <div class="row g-2 mt-2">
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="text" id="userTitle" name="ic_job_position"
+                                                    class="form-control"
+                                                    placeholder="Job Position" value="{{ ic_job_position }}">
+                                                <label for="userTitle">職稱</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
-                                                   placeholder="Year of experience" value="{{ ic_yearofexp|default:0 }}" min="0">
-                                            <label for="companyName">相關工作經驗年資</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row g-2 mt-2">
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="text" id="userTitle" name="ic_job_position"
-                                                   class="form-control"
-                                                   placeholder="Job Position" value="{{ ic_job_position }}">
-                                            <label for="userTitle">職稱</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="selectDegree" name="ic_degree"
+
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="selectDegree" name="ic_degree"
                                                     aria-label="Floating label select example">
                                                     <option value="" selected>--請選擇--</option>
                                                     <option value="高中">高中</option>
-                                                     <option value="專科">專科</option>
+                                                    <option value="專科">專科</option>
                                                     <option value="學士">學士</option>
                                                     <option value="碩士">碩士</option>
                                                     <option value="博士">博士</option>
-                                            </select>
-                                            <label for="selectDegree"><a style="color:red;">*</a>最高學歷</label>
+                                                </select>
+                                                <label for="selectDegree"><a style="color:red;">*</a>最高學歷</label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <hr class="my-4">
-                                <div class="row g-2 mb-4">
-                            <div class="col col-md-6">
-                                <button class="btn btn-primary col-12" type="submit">確認修改</button>
+
+                                    <hr class="my-4">
+                                    <div class="row g-2 mb-4">
+                                        <div class="col col-md-6">
+                                            <button class="btn btn-primary col-12" type="submit">確認修改</button>
+                                        </div>
+                                        <div class="col col-md-6">
+                                            <button class="btn btn-outline-primary col-12" id="cancel_modify">取消</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="col col-md-6">
-                                <button class="btn btn-outline-primary col-12" id="cancel_modify">取消</button>
-                            </div>
-                        </div>
-                            </form>
 
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-</div>
 {% include "pages/modal_message.html" %}
 </body>
 

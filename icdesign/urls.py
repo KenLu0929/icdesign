@@ -44,6 +44,7 @@ urlpatterns = [
     path('question_bank_download', views.download_file_question_bank,name="ic_question_bank_download"),
     path('User_case_diagram', views.download_file_User_case_diagram,name="ic_User_case_diagram_download"),
     path('Test_Seating_Plan', views.download_file_Test_Seating_Plan,name="ic_Test_Seating_Plan_download"),
+    path('2022_Task_download', views.download_file_2022_Task_Zip,name = "2022_Task_download")
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

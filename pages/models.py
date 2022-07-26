@@ -57,9 +57,9 @@ class Users(models.Model):
                                         null=True,
                                         verbose_name="就學狀態")
     ic_degree = models.CharField(max_length=100,
-                                 choices=DegreeClass.choices,
-                                 null=True,
-                                 verbose_name="最高學歷")
+                                choices=DegreeClass.choices,
+                                null=True,
+                                verbose_name="最高學歷")
     ic_company = models.CharField(max_length=100, null=True, verbose_name="公司名稱")
     ic_department = models.CharField(max_length=100, null=True, verbose_name="系所名稱")
     ic_service_department = models.CharField(max_length=100, null=True, verbose_name="服務部門")
@@ -75,23 +75,24 @@ class Users(models.Model):
         ordering = ['last_login']
         managed = True
         verbose_name = "user"
-        verbose_name_plural = "users"
+        verbose_name_plural = "用戶 users"
+        # verbose_name_plural = "users"
 
 
 class ExamLogs(models.Model):
     auto_increment_id = models.AutoField(primary_key=True)
-    exam_ticket_no = models.CharField(max_length=100, null=True, verbose_name="准考證號碼")
-    admission_ticket_no = models.CharField(max_length=100, null=False, default="-", verbose_name="admission_ticket_no")
+    exam_ticket_no = models.CharField(max_length=100, null=True, verbose_name="報考編號")
+    admission_ticket_no = models.CharField(max_length=100, null=False, default="-", verbose_name="准考證號碼")
     exam_id = models.CharField(max_length=100, null=True, verbose_name="考試編號")
-    ic_id = models.CharField(max_length=100, null=True)
+    ic_id = models.CharField(max_length=100, null=True, verbose_name="身分證字號")
     # user = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
     exam_grade = models.CharField(max_length=5, null=True, default="-", verbose_name="考試成績")
     exam_minutes = models.CharField(max_length=5, null=True, default="-", verbose_name="考試時間")
     exam_status = models.CharField(max_length=100,
-                                   choices=ExamsStatusClass.choices,
-                                   null=True,
-                                   default=ExamsStatusClass.WAITING,
-                                   verbose_name="考試狀態")
+                                choices=ExamsStatusClass.choices,
+                                null=True,
+                                default=ExamsStatusClass.WAITING,
+                                verbose_name="考試狀態")
     exam_change = models.BooleanField(null=False, default=False, verbose_name="考試是否更改過")
     exam_finish = models.BooleanField(null=True, default=False, verbose_name="考試是否結束")
     exam_place = models.CharField(max_length=100, null=True, verbose_name="考試地點")
@@ -103,7 +104,8 @@ class ExamLogs(models.Model):
         ordering = ["date_created", "exam_status", "exam_grade"]
         managed = True
         verbose_name = "exam log"
-        verbose_name_plural = "exam logs"
+        verbose_name_plural = "報考資料 exam logs"
+        # verbose_name_plural = "exam logs"
 
 
 class Exams(models.Model):
@@ -115,12 +117,12 @@ class Exams(models.Model):
     exam_place = models.CharField(max_length=100, null=True, verbose_name="考試地點")
     # exam_prefix = models.CharField(max_length=100, null=True)
     exam_level = models.CharField(max_length=100,
-                                  choices=ExamsLevelClass.choices,
-                                  null=True, verbose_name="考試科目")
+                                choices=ExamsLevelClass.choices,
+                                null=True, verbose_name="考試科目")
     exam_is_active = models.IntegerField(null=True, default=0, verbose_name="是否啟用")  # 0 = Not Active, 1 = Active
-    exam_user_taken = models.IntegerField(null=True, default=0)  # 0 = Not Active, 1 = Active
+    exam_user_taken = models.IntegerField(null=True, default=0, verbose_name="報考人數")  # 0 = Not Active, 1 = Active
     exam_prerequisite = models.CharField(max_length=100, null=True, default="-",
-                                         verbose_name="考試門檻")  # string with separator ","
+                                        verbose_name="考試門檻")  # string with separator ","
     date_created = models.DateTimeField(auto_now_add=True, null=True, verbose_name="創建日期")
     date_modified = models.DateTimeField(auto_now=True, null=True, verbose_name="變更日期")
 
@@ -136,15 +138,16 @@ class Exams(models.Model):
         ordering = ['date_created', 'exam_start_time', 'exam_end_time']
         managed = True
         verbose_name = "exam"
-        verbose_name_plural = "exams"
+        verbose_name_plural = "考試 exams"
+        # verbose_name_plural = "exams"
 
 
 class News(models.Model):
     news_id = models.AutoField(primary_key=True)
     news_title = models.CharField(max_length=100, null=True, verbose_name="最新消息標題")
-    news_body = models.CharField(max_length=500, null=True, verbose_name="內文")
+    news_body = models.CharField(max_length=500, null=True, verbose_name="內文或圖片連結")
     news_author = models.CharField(max_length=100, null=True, verbose_name="作者")
-    news_is_active = models.IntegerField(null=True, default=1, verbose_name="狀態")  # 0 = Not Active, 1 = Active
+    news_is_active = models.IntegerField(null=True, default=1, verbose_name="是否啟用")  # 0 = Not Active, 1 = Active
     news_is_img = models.IntegerField(null=True, default=0, verbose_name="是否為圖片")
     date_created = models.DateTimeField(auto_now_add=True, null=True, verbose_name="創建日期")
     date_modified = models.DateTimeField(auto_now=True, null=True, verbose_name="修改日期")
@@ -153,7 +156,8 @@ class News(models.Model):
         ordering = ['date_created']
         managed = True
         verbose_name = "news"
-        verbose_name_plural = "news"
+        verbose_name_plural = "最新消息 news"
+        # verbose_name_plural = "news"
 
 
 class Sponsorship(models.Model):
@@ -167,7 +171,8 @@ class Sponsorship(models.Model):
         ordering = ['date_created']
         managed = True
         verbose_name = "Sponsorship"
-        verbose_name_plural = "Sponsorship"
+        verbose_name_plural = "企業認同 Sponsorship"
+        # verbose_name_plural = "Sponsorship"
 
 
 class CounterExamsLogs(models.Model):
@@ -178,6 +183,7 @@ class CounterExamsLogs(models.Model):
 
     class Meta:
         ordering = ['date_created']
+        verbose_name_plural = "CounterExamsLogs (用於自動產生報考編號)"
 
 
 class SettingApp(models.Model):
@@ -189,4 +195,5 @@ class SettingApp(models.Model):
 
     class Meta:
         ordering = ['date_modified']
+        verbose_name_plural = "設定 Setting"
 

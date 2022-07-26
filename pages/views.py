@@ -1,3 +1,4 @@
+from fileinput import filename
 import mimetypes
 
 from django.shortcuts import render, redirect
@@ -429,9 +430,17 @@ def change_password(request):
 
         if ic_new_password != ic_new_repassword:
             params = {
-                "error": False,
-                "title": error_messages.HEAD_MESSAGE_SUCCESS,
+                "error": True,
+                "title": error_messages.HEAD_MESSAGE_FAILED,
                 "body": error_messages.UNMATCHED_PASS
+            }
+            return JsonResponse(params)
+
+        if ic_pass == ic_new_password:
+            params = {
+                "error": True,
+                "title": error_messages.HEAD_MESSAGE_FAILED,
+                "body": error_messages.NOT_OLD_PASS
             }
             return JsonResponse(params)
 
@@ -815,6 +824,16 @@ def download_file_Test_Seating_Plan(request):
     # fill these variables with real values
     fl_path = 'pages/Test_Seating_Plan.pdf'
     filename = 'Test_Seating_Plan.pdf'
+    fl = open(fl_path, 'rb')
+    mime_type, _ = mimetypes.guess_type(fl_path)
+    response = HttpResponse(fl, content_type=mime_type)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
+
+
+def download_file_2022_Task_Zip(request):
+    fl_path = 'pages/IC_layout_2022_task.zip'
+    filename = 'IC_layout_2022_task.zip'
     fl = open(fl_path, 'rb')
     mime_type, _ = mimetypes.guess_type(fl_path)
     response = HttpResponse(fl, content_type=mime_type)
