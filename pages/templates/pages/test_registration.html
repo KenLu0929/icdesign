@@ -50,14 +50,14 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" name="ic_id" id="icid" class="form-control" placeholder="ID"
-                                       maxlength="10" value="{{ ic_id }}" readonly>
+                                        maxlength="10" value="{{ ic_id }}" disabled>
                                 <label for="icid">身分證字號</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="idname" name="ic_name"
-                                       placeholder="e.g, Jhon Doe" value="{{ ic_name }}" readonly>
+                                       placeholder="e.g, Jhon Doe" value="{{ ic_name }}" disabled>
                                 <label for="icid">姓名</label>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                             </div>
                             <div class="col-md-12">
                                 <input id="datepicker" name="ic_bod" type="date" class="form-control"
-                                       placeholder="yyyy-mm-dd" value="{{ ic_bod }}" required>
+                                        placeholder="yyyy-mm-dd" value="{{ ic_bod }}" required>
                             </div>
                         </div>
                     </div>
@@ -85,12 +85,12 @@
                             <div class="col-md row g-2" style="margin-left: 0rem;">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="ic_gender" id="selectGender1"
-                                           value="男" {% if ic_gender == "男" %} checked{% endif %}>
+                                            value="男" {% if ic_gender == "男" %} checked{% endif %}>
                                     <label class="form-check-label" for="selectGender1">男</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="ic_gender" id="selectGender2"
-                                           value="女" {% if ic_gender == "女" %} checked{% endif %}>
+                                            value="女" {% if ic_gender == "女" %} checked{% endif %}>
                                     <label class="form-check-label" for="selectGender2">女</label>
                                 </div>
                             </div>
@@ -102,14 +102,14 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control"
-                                       placeholder="ID" value="{{ ic_phone_no }}" , pattern="[09][0-9]*">
+                                        placeholder="ID" value="{{ ic_phone_no }}" , pattern="[09][0-9]*">
                                 <label for="icphonenumber"><a style="color:red;">*</a>手機號碼</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="ictelpnumber" name="ic_telephone"
-                                       placeholder="e.g, Jhon Doe" value="{{ ic_telephone }}" pattern="[0][0-9]*">
+                                        placeholder="e.g, Jhon Doe" value="{{ ic_telephone }}" pattern="[0][0-9]*">
                                 <label for="ictelpnumber"><a style="color:red;">*</a>電話號碼</label>
                             </div>
                         </div>
@@ -119,8 +119,8 @@
                     <div class="align-items-center mt-4">
                         <div class="form-floating">
                             <input type="email" id="idemail" name="ic_email" class="form-control"
-                                   placeholder="this@youremail.com" value="{{ ic_email }}" {% if ic_email %} readonly
-                                   {% endif %}>
+                                    placeholder="this@youremail.com" value="{{ ic_email }}" {% if ic_email %} readonly
+                                    {% endif %}>
                             <label for="idemail">Email <a style="color:red;">*相關後續考試聯絡資訊將透過此聯絡</a></label>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                     <div class="align-items-center mt-4">
                         <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
-                                          style="height : 100px;" name="ic_address" required>{{ ic_address }}</textarea>
+                                            style="height : 100px;" name="ic_address" required>{{ ic_address }}</textarea>
                             <label for="textareaAddress"><a style="color:red;">*</a>郵寄地址</label>
                         </div>
                     </div>
@@ -139,14 +139,14 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="schoolName" name="ic_school" class="form-control"
-                                       placeholder="School name" value="{{ ic_school }}">
+                                        placeholder="School name" value="{{ ic_school }}">
                                 <label for="schoolName"><a style="color:red;">*</a>學校名稱</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="department" name="ic_department" class="form-control"
-                                       placeholder="Department" value="{{ ic_department }}">
+                                        placeholder="Department" value="{{ ic_department }}">
                                 <label for="department"><a style="color:red;">*</a>系所／年級</label>
                             </div>
                         </div>
@@ -171,22 +171,22 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="companyName" name="ic_company" class="form-control"
-                                       placeholder="Company name" value="{{ ic_company }}">
+                                        placeholder="Company name" value="{{ ic_company }}">
                                 <label for="companyName">公司名稱</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="selectPosition" name="ic_service_department"
-                                       class="form-control" placeholder="Service Department"
-                                       value="{{ ic_service_department }}">
+                                        class="form-control" placeholder="Service Department"
+                                        value="{{ ic_service_department }}">
                                 <label for="selectPosition">服務部門</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
-                                       placeholder="Year of experience" value="{{ ic_yearofexp }}" min="0">
+                                        placeholder="Year of experience" value="{{ ic_yearofexp }}" min="0">
                                 <label for="companyName">相關工作經驗年資</label>
                             </div>
                         </div>
@@ -197,7 +197,7 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <input type="text" id="userTitle" name="ic_job_position" class="form-control"
-                                       placeholder="Job Position" value="{{ ic_job_position }}">
+                                        placeholder="Job Position" value="{{ ic_job_position }}">
                                 <label for="userTitle">職稱</label>
                             </div>
                         </div>
@@ -221,36 +221,42 @@
                     <div id="isRegisterTest">
                         <div class="align-items-center" >
                             <div class="row g-2 mt-4">
-                                <div class="col-12 col-md-4">
-                                    <span>您已經報考: <br><br>
+                                <div class="col-sm-8">
+                                    <span><h5>您已經報考:</h5><br>
                                         {% for a in exams_name %}
-                                            {{a}}
-                                            <br>
+                                            <span style="font-weight: bold;font-size: large;color: red">{{a}}</span> &emsp;
                                         {% endfor %}
                                     </span>
+                                    <hr>
                                 </div>
-
+                                
                                 <!--change exam-->
                                 {% if change_exam %}
-                                <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
-                                    <span>您已更改過考場，無法再進行更改</span>
-                                    <span>如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
+                                <div class="col-12 col-md-8 row g-2">
+                                    <br><br>
+                                    <h5>您已更改過考場，無法再進行更改</h5>
+                                    <span>如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span><hr>
+                                    <p><i class="fas fa-envelope" style="margin: 10px;"></i>
+                                        <span>如有任何問題，請聯絡主辦單位：</span>
+                                        <a href="mailto:icdesign.nycu@gmail.com.tw">icdesign.nycu@gmail.com</a></p>
                                 </div>
                                 {% else %}
-                                <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
+                                <div class="col-12 col-md-8 row g-2 mt-4">
+                                    <br>
                                     {% if exams_fields%}
-                                        <span>您可以更改考場( 只有一次機會 )</span><br>
+                                        <span><h5>您可以重新報名(更改)考試( 只有<span style="color:red;">一次</span>機會 )</h5></span>
+                                        <p>注意：新的報名將會覆蓋原本的資料</p><br>
+                                        
                                         {% for field in exams_fields %}
-                                            {% if field.exam_name not in exams_name %}
-                                                <div class="form-check form-check-inline" id="{{field.exam_id}}">
-                                                    <input class="form-check-input" type="checkbox" name="ic_test"
-                                                        id="selectCourse1"
-                                                        value="{{field.exam_id}}" onchange="disabled_checkbox()">
-                                                    <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }}
-                                                        (Place: {{ field.exam_place }}) | {{ field.exam_start_time }} -
-                                                        {{ field.exam_end_time }}</label>
-                                                </div>
-                                            {% endif %}
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="ic_test"
+                                                id="{{field.exam_id}}" value="{{field.exam_id}}">
+                                            <label class="form-check-label" for="selectCourse1"readonly> | 
+                                                <strong> {{ field.exam_name }} </strong>
+                                                (考試地點: {{ field.exam_place }}) | <br>
+                                                考試日期：{{ field.exam_start_time|slice:":10" }}</label>
+                                        </div>
+                                        <!--{% if forloop.revcounter == 3  %} <hr class="my-4"> {% endif %} -->                         
                                         {% endfor %}
                                     {% else %}
                                     <span>目前非報名階段，已註冊之使用者如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
@@ -288,20 +294,32 @@
                                 <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
                                     {% if exams_fields %}
                                     {% for field in exams_fields %}
-                                    <div class="form-check form-check-inline" id="{{field.exam_id}}">
+                                    <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" name="ic_test"
-                                            id="selectCourse1"
-                                            value="{{field.exam_id}}" onchange="disabled_checkbox()">
-                                        <label class="form-check-label" for="selectCourse1"> | {{ field.exam_name }}
-                                            (Place: {{ field.exam_place }}) | {{ field.exam_start_time }} -
-                                            {{ field.exam_end_time }}</label>
+                                            id="{{field.exam_id}}" value="{{field.exam_id}}">
+                                        <label class="form-check-label" for="selectCourse1"readonly> | 
+                                            <strong> {{ field.exam_name }} </strong>
+                                            (考試地點: {{ field.exam_place }}) | <br>
+                                            考試日期：{{ field.exam_start_time|slice:":10" }}</label>
                                     </div>
                                     {% endfor %}
-                                    <span>(注意：初階 , 進階只能擇一報名)</span>
                                     {% else %}
                                     <span>目前非報名階段，已註冊之使用者如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
                                     {% endif %}
+                                    <br>
                                 </div>
+
+                                <hr>
+                                <div class="col-12 col-md-4">
+                                    <span><a style="color:red;">*</a>報名注意事項</span>
+                                </div>
+                                <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
+                                    <ol>
+                                        <li>初階考試與進階考試，只能<strong style="color:red;">擇一報名</strong></li>
+                                        <li><strong>不允許</strong>沒考過學科，而<strong>單獨</strong>報名術科</li>
+                                    </ol>
+                                </div>
+                                
                             </div>
                         </div>
     
@@ -336,7 +354,7 @@
                 <hr>
                 <!--<form id="form_summary_test_registration">-->
                 <div class="mb-3 row">
-                    <label for="showCourse" class="col-sm-4 col-form-label">報考考科</label>
+                    <label for="showCourse" class="col-sm-4 col-form-label"> 報考考科</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showCourse" value="">
                     </div>
@@ -353,7 +371,7 @@
                     <label for="showFullname" class="col-sm-4 col-form-label">姓名</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="showFullname"
-                           value="{{ ic_name }}">
+                            value="{{ ic_name }}">
                     </div>
                 </div>
 
@@ -450,14 +468,7 @@
 
                 <div class="row justify-content-start mt-4">
                     <div class="col">
-                        <button id="btn_modify_reg" class="btn btn-outline-secondary mt-4 col-4" type="button"> 修改
-                        </button>
-
-                        <button class="btn btn-primary mt-4 col-3" type="button">
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            Loading...
-                        </button>
-                    
+                        <button id="btn_modify_reg" class="btn btn-outline-secondary mt-4 col-4" type="button"> 修改</button> 
                         <button id="btn_final_submit" type="button" class="btn btn-primary mt-4 col-4"> 確認</button>
                 </div>
             </div>
@@ -523,43 +534,62 @@
         $("#see_schedule").show();
     }
 
-    //check box setting
-    function disabled_checkbox(){
-        if($("#SLV1 > input").is(":checked")){
-            $("#SLV2 > input").prop("disabled", true);
-            $("#PLV2 > input").prop("disabled", true);
-        }
-        else if($("#PLV1 > input").is(":checked")){
-            $("#SLV2 > input").prop("disabled", true);
-            $("#PLV2 > input").prop("disabled", true);
-        }
-        else if($("#SLV2 > input").is(":checked")){
-            $("#SLV1 > input").prop("disabled", true);
-            $("#PLV1 > input").prop("disabled", true);
-        }
-        else if($("#PLV2 > input").is(":checked")){
-            $("#SLV1 > input").prop("disabled", true);
-            $("#PLV1 > input").prop("disabled", true);
+    /*
+    //考試id
+    let examSLV1 = "input#"+"SE0917";
+    let examPLV1 = "input#"+"PE0917";
+    let examSLV2 = "input#"+"SA0917";
+    let examPLV2 = "input#"+"PA0917";
+
+    //初階考試--學科
+    document.querySelector(examSLV1).onclick = function (e) {
+        if($(examSLV1).is(":checked")){
+            $(examSLV2).prop("disabled",true);
+            $(examPLV2).prop("disabled",true);
         }
         else{
-            $("#SLV2 > input").prop("disabled", false);
-            $("#PLV2 > input").prop("disabled", false);
-            $("#SLV1 > input").prop("disabled", false);
-            $("#PLV1 > input").prop("disabled", false);
+            $(examSLV2).prop("disabled",false);
+            $(examPLV2).prop("disabled",false);
+            $(examPLV1).prop("checked",false);
         }
-    }
+    };
 
-    /*
-    $("#SLV1 > input").change(function(){
-        console.log($("#SLV1 > input").is(":checked"));
-        $("#SLV1 > input").prop("checked", $("#SLV1 > input").is(":checked"));
-        $("#PLV1 > input").prop("checked", $("#SLV1 > input").is(":checked"));
-    });
-    $("#PLV1 > input").change(function(){
-        console.log($("#PLV1 > input").is(":checked"));
-        $("#PLV1 > input").prop("checked", $("#PLV1 > input").is(":checked"));
-        $("#SLV1 > input").prop("checked", $("#PLV1 > input").is(":checked"));
-    });*/
+    //初階考試--術科
+    document.querySelector(examPLV1).onclick = function (e) {
+        if($(examPLV1).is(":checked")){
+            $(examSLV2).prop("disabled",true);
+            $(examPLV2).prop("disabled",true);
+        }
+        else{
+            $(examSLV2).prop("disabled",false);
+            $(examPLV2).prop("disabled",false);
+        }
+    };
+
+    //進階考試--學科
+    document.querySelector(examSLV2).onclick = function (e) {
+        if($(examSLV2).is(":checked")){
+            $(examSLV1).prop("disabled",true);
+            $(examPLV1).prop("disabled",true);
+        }
+        else{
+            $(examSLV1).prop("disabled",false);
+            $(examPLV1).prop("disabled",false);
+            $(examPLV2).prop("checked",false);
+        }
+    };
+
+    //進階考試--術科
+    document.querySelector(examPLV2).onclick = function (e) {
+        if($(examPLV2).is(":checked")){
+            $(examSLV1).prop("disabled",true);
+            $(examPLV1).prop("disabled",true);
+        }
+        else{
+            $(examSLV1).prop("disabled",false);
+            $(examPLV1).prop("disabled",false);
+        }
+    };*/
     
     document.getElementById('form_test_registration').onsubmit = function (e) {
         e.preventDefault();
@@ -599,12 +629,12 @@
     document.getElementById('btn_final_submit').onclick = function (e) {
         e.preventDefault();
         let loginForm = $('#form_test_registration').serializeArray();
-        // console.log(loginForm)
+        //console.log(loginForm)
         let loginFormObject = {};
         $.each(loginForm, function (i, v) {
             loginFormObject[v.name] = v.value;
         });
-        // console.log(loginFormObject)
+        console.log(loginFormObject)
         let values = [];
         $("input[name='ic_test']:checked").each(function () {
             values.push($(this).val());
@@ -670,7 +700,7 @@
                                     </svg>
                                     <div>
                                         <h5 class="fw-bold mb-2">考試時間</h5>
-                                        <p>${item.exam_start_time} - ${item.exam_end_time}</p>
+                                        <p>${item.exam_start_time}</p>
                                     </div>
                                 </div>
                             </div>

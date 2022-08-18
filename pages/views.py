@@ -168,15 +168,58 @@ def test_registration_page(request):
             }
             return JsonResponse(params)
 
-        res = checking_user_taken_exam(ic_id, ic_test)
-        if res:
-            taken_exams = ", ".join(res)
+        LV1S = "SE0917"
+        LV1P = "PE0917"
+        LV2S = "SA0917"
+        LV2P = "PA0917"
+
+        # 暫時寫死
+        if LV1S not in ic_test and LV2S not in ic_test:
             params = {
                 "error": True,
                 "title": error_messages.HEAD_MESSAGE_FAILED,
-                "body": error_messages.TOOK_EXAM + taken_exams
+                "body": "無法單報術科，請選擇學科"
             }
             return JsonResponse(params)
+
+        if LV1S in ic_test and LV2S in ic_test:
+            params = {
+                "error": True,
+                "title": error_messages.HEAD_MESSAGE_FAILED,
+                "body": "初階、進階考試，請擇一報名"
+            }
+            return JsonResponse(params)
+        elif LV1S in ic_test and LV2P in ic_test:
+            params = {
+                "error": True,
+                "title": error_messages.HEAD_MESSAGE_FAILED,
+                "body": "初階、進階考試，請擇一報名"
+            }
+            return JsonResponse(params)
+        elif LV1P in ic_test and LV2S in ic_test:
+            params = {
+                "error": True,
+                "title": error_messages.HEAD_MESSAGE_FAILED,
+                "body": "初階、進階考試，請擇一報名"
+            }
+            return JsonResponse(params)
+        elif LV1P in ic_test and LV2P in ic_test:
+            params = {
+                "error": True,
+                "title": error_messages.HEAD_MESSAGE_FAILED,
+                "body": "初階、進階考試，請擇一報名"
+            }
+            return JsonResponse(params)
+
+        #res = checking_user_taken_exam(ic_id, ic_test)
+        #if res:
+            #taken_exams = ", ".join(res)
+            #params = {
+            #    "error": True,
+            #    "title": error_messages.HEAD_MESSAGE_FAILED,
+            #    "body": error_messages.TOOK_EXAM + taken_exams
+            #}
+            #return JsonResponse(params)
 
         res = prerequisite_exams(ic_id, ic_test)
         if res:
@@ -555,10 +598,12 @@ def forget_password(request):
         }
         user = QueryUsers.users_get(data)
 
+
         if bool(user):
             # send to the email
             email = user.get("ic_email", "")
-            if email == '' or email == '-':
+            print(email)
+            if not email or email == '-':
                 resp = {
                     "error": True,
                     "message": error_messages.EMAIL_NOT_REGISTERED
@@ -566,7 +611,7 @@ def forget_password(request):
                 return JsonResponse(resp)
 
             utils.send_email(error_messages.SUBJECT_EMAIL_FORGET_PASS,
-                             error_messages.BODY_EMAIL_FORGET_PASS + user.get("ic_pass"), [email])
+                            error_messages.BODY_EMAIL_FORGET_PASS + user.get("ic_pass"), [email])
             # print(res)
             resp = {
                 "error": False,

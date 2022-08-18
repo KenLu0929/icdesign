@@ -177,7 +177,7 @@ class ExamLogsAdmin(admin.ModelAdmin):
     search_fields = ("ic_id", "exam_id", "exam_place", "exam_ticket_no")
 
     filter_horizontal = ()
-    list_filter = ["exam_finish", "exam_status"]
+    list_filter = ["exam_finish", "exam_status", "exam_id"]
     fieldsets = ()
 
     actions = ['make_approved', 'make_rejected', 'download_candidate_report',
@@ -236,13 +236,13 @@ class ExamLogsAdmin(admin.ModelAdmin):
         return render(request, "admin/csv_upload.html", data)
 
     def generate_adtics(self, request):
-        """_summary_
+        """generate admission ticket if not existing and status is '同意'
 
         Args:
-            request (_type_): _description_
+            request (HttpRequest): http request
 
         Returns:
-            _type_: _description_
+            HttpResponse: http response
         """        
 
         res = self.model.objects.filter(Q(admission_ticket_no="-") & Q(exam_status="同意"))
@@ -466,7 +466,7 @@ class NewsAdmin(admin.ModelAdmin):
     search_fields = ("news_title", "news_body", "news_author")
 
     filter_horizontal = ()
-    list_filter = ["news_author"]
+    list_filter = ["news_author","news_is_active"]
     fieldsets = ()
 
 

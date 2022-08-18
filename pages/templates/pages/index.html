@@ -59,10 +59,26 @@
               <div class="card-body">
                 <h5 class="card-title">{{ field.news_title }}</h5>
                 <hr>
-                {% if field.news_is_img%}
-                <img src="{% static 'images/'|add:field.news_body %}" alt="" max-width="100%" height="auto">
+                <!--have hyperlink-->
+                {% if field.news_hyperlink %}
+                <a href={{field.news_hyperlink}} class="alert-link">
+                  {% if field.news_img %}
+                  <img src="{% static 'images/'|add:field.news_img %}" alt="" width="100%" height="auto">
+                  <hr>
+                  {% endif %}
+                  {% if field.news_body %}
+                  <p class="card-text">{{ field.news_body }}</p>
+                  {% endif %}
+                </a>
+                <!--not have hyperlink-->
                 {% else %}
-                <p class="card-text">{{ field.news_body }}</p>
+                  {% if field.news_img %}
+                  <img src="{% static 'images/'|add:field.news_img %}" alt="" width="100%" height="auto">
+                  <hr>
+                  {% endif %}
+                  {% if field.news_body %}
+                  <p class="card-text">{{ field.news_body }}</p>
+                  {% endif %}
                 {% endif %}
               </div>
             </div>

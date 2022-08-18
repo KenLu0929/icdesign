@@ -18,7 +18,9 @@ logger = logging.getLogger(__name__)
 def send_email(subject, message, recipient_list):
     if subject and message and recipient_list:
         try:
+            print(recipient_list)
             send_mail(subject, message, settings.EMAIL_HOST, recipient_list)
+            #send_mail(subject, message, settings.EMAIL_HOST_USER, recipient_list)
         except BadHeaderError:
             logger.error('Invalid header found.')
             return False
@@ -160,6 +162,15 @@ def generate_exams_ticket_v2():
 
 
 def generate_admission_ticket(exam_id):
+    """generate admission ticket
+
+    Args:
+        exam_id (string): exam id
+
+    Returns:
+        string: admission ticket
+    """    
+
     file_exams = {
         "exam_id": exam_id
     }

@@ -27,6 +27,7 @@
                 </symbol>
             </svg>
 
+            <!--快訊內容-->
             <div class="alert alert-primary d-flex align-items-center" role="alert">
                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
                     <use xlink:href="#info-fill"/>
@@ -34,9 +35,9 @@
 
                 <div>
                     {% if request.custom_settings.registration %}
-                    <!--<strong> <a href="{% url 'test_registration' %}" class="alert-link">立即報考</a></strong>-->
+                    <span>考試報名已經開放！將開放至 111/08/22 ! <strong><a href="{% url 'test_registration' %}" class="alert-link">立即報考</a></strong></span>
                     {% else %}
-                    <span>目前非報名階段，已註冊之使用者如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
+                    <span>目前非報名階段：報名將於 111/08/02 開放</span>
                     {% endif %}
                 </div>
             </div>
@@ -295,7 +296,7 @@
                                         <li><a rel="noopener" href="{% url 'ic_admission_ticket' %}">准考證下載 </a>
                                         </li>
                                         {% else %}
-                                        <li>准考證將於2021/9/24開放下載
+                                        <li>准考證將於111/9/7(三)開放下載
                                         </li>
                                         {% endif %}
                                     </ul>
@@ -328,7 +329,7 @@
                                         </table>
                                     {% else %}
                                         <ul class="icon-list">
-                                            <li><a rel="noopener" target="_blank">成績將於110/11/10(三)後開放查詢</a></li>
+                                            <li><a rel="noopener" target="_blank">成績將於111/10/25(二)後開放查詢</a></li>
                                         </ul>
                                     {% endif %}
                                 </div>

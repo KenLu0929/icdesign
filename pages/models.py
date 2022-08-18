@@ -76,7 +76,6 @@ class Users(models.Model):
         managed = True
         verbose_name = "user"
         verbose_name_plural = "用戶 users"
-        # verbose_name_plural = "users"
 
 
 class ExamLogs(models.Model):
@@ -145,10 +144,12 @@ class Exams(models.Model):
 class News(models.Model):
     news_id = models.AutoField(primary_key=True)
     news_title = models.CharField(max_length=100, null=True, verbose_name="最新消息標題")
-    news_body = models.CharField(max_length=500, null=True, verbose_name="內文或圖片連結")
+    news_body = models.CharField(max_length=500, null=True, blank=True, verbose_name="內文")
+    news_hyperlink = models.CharField(max_length=100, null=True, blank=True, verbose_name="超連結")
+    news_img = models.CharField(max_length=100, null=True, blank=True, verbose_name="圖片檔名")
     news_author = models.CharField(max_length=100, null=True, verbose_name="作者")
     news_is_active = models.IntegerField(null=True, default=1, verbose_name="是否啟用")  # 0 = Not Active, 1 = Active
-    news_is_img = models.IntegerField(null=True, default=0, verbose_name="是否為圖片")
+    #news_is_img = models.IntegerField(null=True, default=0, verbose_name="是否為圖片")
     date_created = models.DateTimeField(auto_now_add=True, null=True, verbose_name="創建日期")
     date_modified = models.DateTimeField(auto_now=True, null=True, verbose_name="修改日期")
 
@@ -157,7 +158,6 @@ class News(models.Model):
         managed = True
         verbose_name = "news"
         verbose_name_plural = "最新消息 news"
-        # verbose_name_plural = "news"
 
 
 class Sponsorship(models.Model):
@@ -187,13 +187,16 @@ class CounterExamsLogs(models.Model):
 
 
 class SettingApp(models.Model):
-    registration = models.BooleanField(null=False, default=False,)
-    admission_ticket_download = models.BooleanField(null=False, default=False,)
-    certification_download = models.BooleanField(null=False, default=False,)
-    show_score = models.BooleanField(null=False, default=False,)
-    date_modified = models.DateTimeField(auto_now=True, null=True)
+    registration = models.BooleanField(null=False, default=False, verbose_name="開放報名")
+    admission_ticket_download = models.BooleanField(null=False, default=False, verbose_name="准考證下載")
+    certification_download = models.BooleanField(null=False, default=False)
+    show_score = models.BooleanField(null=False, default=False, verbose_name="分數查詢")
+    date_modified = models.DateTimeField(auto_now=True, null=True, verbose_name="修改日期")
 
     class Meta:
         ordering = ['date_modified']
         verbose_name_plural = "設定 Setting"
+
+    def __str__(self):
+        return "網站功能設定"
 

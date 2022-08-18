@@ -124,39 +124,40 @@ def change_exams(data_post, ic_id):
     }
     ic_test = data_post.getlist("ic_test[]", [])
 
-    exam_list = []
-    for exam_id in ic_test:
-        filter_taken_exam = {
+    filter_taken_exam = {
             "ic_id" : ic_id,
             "exam_change": False,
             "exam_finish": False
         }
-        taken_exam = QueryExamsLogs.exams_get(filter_taken_exam)
-        taken_exam_first_data = utils.get_first_data(taken_exam)
-        print(taken_exam_first_data)
+    taken_exam = QueryExamsLogs.exams_get(filter_taken_exam)
+    taken_exam_first_data = utils.get_first_data(taken_exam)
+    exam_ticket_no = taken_exam_first_data.get("exam_ticket_no")
 
-        filter_update = {
-            "ic_id":ic_id,
-            "exam_id": taken_exam_first_data.get("exam_id")
-        }
-        print(filter_update)
-
-        filter_exam = {"exam_id":exam_id}
-        exam_info = QueryExams.exams_get(filter_exam)
+    exam_list = []
+    for exam_id in ic_test:
         exam = {}
+        filter_exam = {"exam_id": exam_id}
+        exam_info = QueryExams.exams_get(filter_exam)
+        exam["ic_id"] = ic_id
         exam["exam_id"] = exam_id
         exam["exam_place"] = exam_info.get("exam_place", "")
+        exam["exam_ticket_no"] = exam_ticket_no
         exam["exam_change"] = True
 
-        q = QueryExamsLogs.exams_update(filter_update,exam)
+        q = QueryExamsLogs.exams_upsert(exam)
         if not q:
             return {}
-        
+
+        q = QueryExamsLogs.exams_delete(filter_taken_exam)
+        if not q:
+            return {}
+
         exam["exam_name"] = exam_info.get("exam_name", "")
         exam["exam_start_time"] = exam_info.get("exam_start_time", "")
         exam["exam_end_time"] = exam_info.get("exam_end_time", "")
         exam_list.append(exam)
-        
+
+    print(exam_list)
     return data, exam_list
 
 def update_profile(data_post):

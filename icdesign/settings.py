@@ -200,19 +200,24 @@ SESSION_COOKIE_AGE = 60 * 60
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_SECURE = True
 
+EMAIL_HOST_USER = "aaa710140505@gmail.com"
+EMAIL_HOST_PASSWORD = "eujtxgxdnocuuljb"
+#EMAIL_HOST_USER = "icdesigntaiwan@gmail.com"
+#EMAIL_HOST_PASSWORD = ""
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = "smtp.gmail.com"
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-EMAIL_HOST = 'icdesign.tw'
-EMAIL_HOST_USER = "no-reply@icdesign.tw"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+#EMAIL_HOST = 'icdesign.tw'
+#EMAIL_HOST_USER = "no-reply@icdesign.tw"
+
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = "icdesign!@#123"
-EMAIL_PORT = 465
+#EMAIL_HOST_PASSWORD = "icdesign!@#123"
+
+#EMAIL_PORT = 465
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
-
 
 # LOGGING = {
 #     'version': 1,

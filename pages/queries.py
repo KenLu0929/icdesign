@@ -189,7 +189,7 @@ class QueryExams:
         """
 
         # print(my_filter)
-        exams = models.Exams.objects.filter(**my_filter).order_by("-exam_start_time").distinct()
+        exams = models.Exams.objects.filter(**my_filter).order_by("exam_name").distinct()
         exams_json = serializers.serialize('json', exams)
         exams_json = json.loads(exams_json)
         exams_json = utils.get_fields_only(exams_json)
@@ -320,6 +320,16 @@ class QueryExamsLogs:
         # print(q)
         # print("output:", users_json[0])
         return q
+
+    @staticmethod
+    def exams_delete(my_filter):
+        try:
+            q = models.ExamLogs.objects.filter(**my_filter).delete()
+            return True
+        except Exception as e:
+            logger.error("Data: ", my_filter)
+            logger.error('Failed to delete data user to database: ', str(e))
+            return False
 
     @staticmethod
     def exams_ins(data):
