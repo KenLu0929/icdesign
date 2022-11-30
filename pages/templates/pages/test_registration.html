@@ -1,0 +1,717 @@
+{% extends "pages/base.html" %} {% block title %}Registration{% endblock %} {% block content %}
+
+<body class=""> {% include "pages/header.html" %}
+<section>
+    <div class="container my-5 ">
+        <div class="row justify-content-center">
+            <!--考試須知-->
+            <div class="col-12 col-md-4 col-lg-4 col-xl-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>考試需知：</h1>
+                        <!-- <p class="text-h3">Far far away, behind the word mountains, far from the countries Vokalia and
+                        Consonantia. </p> -->
+                    </div>
+                    <div class="col-12">
+                        <ul class="list-group">
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 1.
+                                本人所檢附的報名資料：中文姓名、身分證字號、出生年月日、聯絡電話、行動電話、通訊地址、E-Mail、身分別、就讀/畢業學校名稱、科系名稱、年級與班級、學歷、任職公司名稱及職稱，僅供「主辦單位」辦理鑑定考試使用、寄送相關考試資料及學習資訊、進行測驗相關統計、進行企業就業媒合之用。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 2.
+                                主辦單位將於原蒐集之特定目的、本次以外之產業之推廣、宣導及就業輔導、以及其他公務機關請求行政協助之目的範圍內，合理利用您的個人資料。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 3.
+                                本人瞭解所提供之個人資料，假如經由檢舉或主辦單位發現有不符真實身分或有冒用、盜用其他個人資料、資料不實等情事經查證屬實時，主辦單位有權取消本人的當次考試資格、成績或未來報名資格，並有權不提供鑑定考試相關服務。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 4.
+                                本人瞭解必須填寫完整且正確之報名資料，通訊地址、身分證字號、電話號碼及E-mail應正確，否則無法通知而致延誤考試及其他重要事項，其後果自行負責。
+                            </li>
+                            <li class="list-group-item"><i class="mdi mdi-drag"></i> 5.
+                                考生對自己所有之個人資料，須負保密責任，若因洩漏予第三者，導致考生個人資料外洩、遺失、或無法正常使用本服務之情況，概由該考生自行負責，本網站得拒絕該考生使用本網站報名考試之權利。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--報名資料-->
+            <div id="test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1>個人資訊：</h1>
+                    </div>
+                </div>
+                <hr>
+
+                <!--form-->
+                <form id="form_test_registration">
+                    <!--ID and name-->
+                    <div class="row g-2 mt-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" name="ic_id" id="icid" class="form-control" placeholder="ID"
+                                        maxlength="10" value="{{ ic_id }}" disabled>
+                                <label for="icid">身分證字號</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="idname" name="ic_name"
+                                       placeholder="e.g, Jhon Doe" value="{{ ic_name }}" disabled>
+                                <label for="icid">姓名</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--birthday-->
+                    <div class="align-items-center mt-4">
+                        <div class="form-floating row g-2">
+                            <div class="col-md-12">
+                                <label for="datepicker"><a style="color:red;">*</a>出生日期</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input id="datepicker" name="ic_bod" type="date" class="form-control"
+                                        placeholder="yyyy-mm-dd" value="{{ ic_bod }}" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--sex-->
+                    <div class="align-items-center mt-4">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <span><a style="color:red;">*</a>性別</span>
+                            </div>
+                            <div class="col-md row g-2" style="margin-left: 0rem;">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="ic_gender" id="selectGender1"
+                                            value="男" {% if ic_gender == "男" %} checked{% endif %}>
+                                    <label class="form-check-label" for="selectGender1">男</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="ic_gender" id="selectGender2"
+                                            value="女" {% if ic_gender == "女" %} checked{% endif %}>
+                                    <label class="form-check-label" for="selectGender2">女</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--phone number-->
+                    <div class="row g-2 mt-4">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="number" name="ic_phone_no" id="icphonenumber" class="form-control"
+                                        placeholder="ID" value="{{ ic_phone_no }}" , pattern="[09][0-9]*">
+                                <label for="icphonenumber"><a style="color:red;">*</a>手機號碼</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="ictelpnumber" name="ic_telephone"
+                                        placeholder="e.g, Jhon Doe" value="{{ ic_telephone }}" pattern="[0][0-9]*">
+                                <label for="ictelpnumber"><a style="color:red;">*</a>電話號碼</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--email-->
+                    <div class="align-items-center mt-4">
+                        <div class="form-floating">
+                            <input type="email" id="idemail" name="ic_email" class="form-control"
+                                    placeholder="this@youremail.com" value="{{ ic_email }}" {% if ic_email %} readonly
+                                    {% endif %}>
+                            <label for="idemail">Email <a style="color:red;">*相關後續考試聯絡資訊將透過此聯絡</a></label>
+                        </div>
+                    </div>
+
+                    <!--address-->
+                    <div class="align-items-center mt-4">
+                        <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="textareaAddress"
+                                            style="height : 100px;" name="ic_address" required>{{ ic_address }}</textarea>
+                            <label for="textareaAddress"><a style="color:red;">*</a>郵寄地址</label>
+                        </div>
+                    </div>
+
+                    <!--about school-->
+                    <div class="row g-3 mt-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" id="schoolName" name="ic_school" class="form-control"
+                                        placeholder="School name" value="{{ ic_school }}">
+                                <label for="schoolName"><a style="color:red;">*</a>學校名稱</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" id="department" name="ic_department" class="form-control"
+                                        placeholder="Department" value="{{ ic_department }}">
+                                <label for="department"><a style="color:red;">*</a>系所／年級</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <select class="form-select" id="selectStatusschool" name="ic_status_school"
+                                        aria-label="Floating label select example" value="{{ ic_department }}">
+                                    <option value="" selected>--請選擇--</option>
+                                    <option value="在學">在學</option>
+                                    <option value="畢業">畢業</option>
+                                    <option value="肄業">肄業</option>
+                                </select>
+                                <label for="selectStatusschool"><a style="color:red;">*</a>就學狀態</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+                    
+                    <!--about company-->
+                    <div class="row g-3 mt-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" id="companyName" name="ic_company" class="form-control"
+                                        placeholder="Company name" value="{{ ic_company }}">
+                                <label for="companyName">公司名稱</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" id="selectPosition" name="ic_service_department"
+                                        class="form-control" placeholder="Service Department"
+                                        value="{{ ic_service_department }}">
+                                <label for="selectPosition">服務部門</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="number" id="yearofExp" name="ic_yearofexp" class="form-control"
+                                        placeholder="Year of experience" value="{{ ic_yearofexp }}" min="0">
+                                <label for="companyName">相關工作經驗年資</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--job and degree-->
+                    <div class="row g-2 mt-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="text" id="userTitle" name="ic_job_position" class="form-control"
+                                        placeholder="Job Position" value="{{ ic_job_position }}">
+                                <label for="userTitle">職稱</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <select class="form-select" id="selectDegree" name="ic_degree"
+                                        aria-label="Floating label select example">
+                                    <option value="" selected>--請選擇--</option>
+                                    <option value="高中">高中</option>
+                                    <option value="專科">專科</option>
+                                    <option value="學士">學士</option>
+                                    <option value="碩士">碩士</option>
+                                    <option value="博士">博士</option>
+                                </select>
+                                <label for="selectDegree"><a style="color:red;">*</a>最高學歷</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--is already registeration-->
+                    <div id="isRegisterTest">
+                        <div class="align-items-center" >
+                            <div class="row g-2 mt-4">
+                                <div class="col-sm-8">
+                                    <span><h5>您已經報考:</h5><br>
+                                        {% for a in exams_name %}
+                                            <span style="font-weight: bold;font-size: large;color: red">{{a}}</span> &emsp;
+                                        {% endfor %}
+                                    </span>
+                                    <hr>
+                                </div>
+                                
+                                <!--change exam-->
+                                {% if change_exam %}
+                                <div class="col-12 col-md-8 row g-2">
+                                    <br><br>
+                                    <h5>您已更改過考場，無法再進行更改</h5>
+                                    <span>如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span><hr>
+                                    <p><i class="fas fa-envelope" style="margin: 10px;"></i>
+                                        <span>如有任何問題，請聯絡主辦單位：</span>
+                                        <a href="mailto:icdesign.nycu@gmail.com.tw">icdesign.nycu@gmail.com</a></p>
+                                </div>
+                                {% else %}
+                                <div class="col-12 col-md-8 row g-2 mt-4">
+                                    <br>
+                                    {% if exams_fields%}
+                                        <span><h5>您可以重新報名(更改)考試( 只有<span style="color:red;">一次</span>機會 )</h5></span>
+                                        <p>注意：新的報名將會覆蓋原本的資料</p><br>
+                                        
+                                        {% for field in exams_fields %}
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="ic_test"
+                                                id="{{field.exam_id}}" value="{{field.exam_id}}">
+                                            <label class="form-check-label" for="selectCourse1"readonly> | 
+                                                <strong> {{ field.exam_name }} </strong>
+                                                (考試地點: {{ field.exam_place }}) | <br>
+                                                考試日期：{{ field.exam_start_time|slice:":10" }}</label>
+                                        </div>
+                                        <!--{% if forloop.revcounter == 3  %} <hr class="my-4"> {% endif %} -->                         
+                                        {% endfor %}
+                                    {% else %}
+                                    <span>目前非報名階段，已註冊之使用者如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
+                                    {% endif %}
+
+                                    <hr class="my-4">
+
+                                    <div class="row justify-content-start mt-4">
+                                        <div class="col">
+                                            <div>
+                                                <label> 按下送出表示您已同意上述 <a href="#">注意事項</a></label>
+                                            </div>
+            
+                                            <div>
+                                                <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit">
+                                                送出
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--not registeration yet-->
+                    <div id="isNotRegisterTest">
+                        <div class="align-items-center">
+                            <div class="row g-2 mt-4">
+                                <div class="col-12 col-md-4">
+                                    <span><a style="color:red;">*</a>選擇考試科目</span>
+                                </div>
+                                
+                                <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
+                                    {% if exams_fields %}
+                                    {% for field in exams_fields %}
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="ic_test"
+                                            id="{{field.exam_id}}" value="{{field.exam_id}}">
+                                        <label class="form-check-label" for="selectCourse1"readonly> | 
+                                            <strong> {{ field.exam_name }} </strong>
+                                            (考試地點: {{ field.exam_place }}) | <br>
+                                            考試日期：{{ field.exam_start_time|slice:":10" }}</label>
+                                    </div>
+                                    {% endfor %}
+                                    {% else %}
+                                    <span>目前非報名階段，已註冊之使用者如需更改資料請由<a href="/profile">個人檔案</a>頁面進行變更</span>
+                                    {% endif %}
+                                    <br>
+                                </div>
+
+                                <hr>
+                                <div class="col-12 col-md-4">
+                                    <span><a style="color:red;">*</a>報名注意事項</span>
+                                </div>
+                                <div class="col-12 col-md-8 row g-2" style="margin-left: 0rem;">
+                                    <ol>
+                                        <li>初階考試與進階考試，只能<strong style="color:red;">擇一報名</strong></li>
+                                        <li><strong>不允許</strong>沒考過學科，而<strong>單獨</strong>報名術科</li>
+                                    </ol>
+                                </div>
+                                
+                            </div>
+                        </div>
+    
+                        <hr class="my-4">
+
+                        <div class="row justify-content-start mt-4">
+                            <div class="col">
+                                <div>
+                                    <label> 按下送出表示您已同意上述 <a href="#">注意事項</a></label>
+                                </div>
+    
+                                <div>
+                                    <button id="btn_test_reg" class="btn btn-primary mt-4 col-12" type="submit">
+                                    送出
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--報名成功確認-->
+            <div id="summary_test_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1>個人資訊：</h1>
+                        <p class="text-h3">請確認資訊沒有錯誤 </p>
+                    </div>
+                </div>
+
+                <hr>
+                <!--<form id="form_summary_test_registration">-->
+                <div class="mb-3 row">
+                    <label for="showCourse" class="col-sm-4 col-form-label"> 報考考科</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showCourse" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="displayicID" class="col-sm-4 col-form-label">身分證字號</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="displayicID" value="{{ ic_id }}">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showFullname" class="col-sm-4 col-form-label">姓名</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showFullname"
+                            value="{{ ic_name }}">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showEmail" class="col-sm-4 col-form-label">Email</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showEmail" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showGender" class="col-sm-4 col-form-label">性別</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showGender" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showPhone" class="col-sm-4 col-form-label">手機號碼</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showPhone" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showTelp" class="col-sm-4 col-form-label">電話號碼</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showTelp" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showAddress" class="col-sm-4 col-form-label">郵寄地址</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showAddress" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showSchoolName" class="col-sm-4 col-form-label">學校名稱</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showSchoolName" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showDepartment" class="col-sm-4 col-form-label">系所／年級</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showDepartment" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showStatusSchool" class="col-sm-4 col-form-label">就學狀態</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showStatusSchool" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showCompanyName" class="col-sm-4 col-form-label">公司名稱</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showCompanyName" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showPosition" class="col-sm-4 col-form-label">服務部門</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showPosition" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showExp" class="col-sm-4 col-form-label">相關工作經驗年資</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showExp" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showTitle" class="col-sm-4 col-form-label">職稱</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showTitle" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="showDegree" class="col-sm-4 col-form-label">最高學歷</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control-plaintext" id="showDegree" value="">
+                    </div>
+                </div>
+
+                <div class="row justify-content-start mt-4">
+                    <div class="col">
+                        <button id="btn_modify_reg" class="btn btn-outline-secondary mt-4 col-4" type="button"> 修改</button> 
+                        <button id="btn_final_submit" type="button" class="btn btn-primary mt-4 col-4"> 確認</button>
+                </div>
+            </div>
+        </div>
+
+        <!--未開放報名-->
+        <div id="see_schedule" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h1>請選擇欲報名的科別</h1>
+                    <p class="text-h3">目前尚未開放任何考試科別 <a href="brief_download">查看簡章</a></p>
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        <div id="last_stage_registration" class="col-12 col-md-8 col-lg-8 col-xl-6 offset-lg-1">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h1>您已完成報名與註冊</h1>
+                    <p class="text-h3">請留意准考證訊息，祝您考試順利！</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    {% include "pages/modal_message.html" %}
+</section>
+</body>
+
+<script>
+    function selectElement(id, valueToSelect) {
+        let element = document.getElementById(id);
+        element.value = valueToSelect;
+    }
+
+    selectElement('selectStatusschool', '{{ ic_status_school }}')
+    selectElement('selectDegree', '{{ ic_degree }}')
+    $("#test_registration").show();
+
+    $("#summary_test_registration").hide();
+    $("#last_stage_registration").hide();
+    $("#see_schedule").hide();
+
+    //if already register test and not finish
+    let test_name = '{{exams_name}}'
+    if(test_name == '{}' || test_name == "[]"){
+        $("#isRegisterTest").hide();
+        $("#isNotRegisterTest").show();
+    }else{
+        $("#isRegisterTest").show();
+        $("#isNotRegisterTest").hide();
+    }
+
+    // if no any test
+    let test = '{{ exams_fields }}';
+    if (test == '{}' || test == "[]") {
+        $("#test_registration").hide();
+        $("#summary_test_registration").hide();
+        $("#see_schedule").show();
+    }
+
+    /*
+    //考試id
+    let examSLV1 = "input#"+"SE0917";
+    let examPLV1 = "input#"+"PE0917";
+    let examSLV2 = "input#"+"SA0917";
+    let examPLV2 = "input#"+"PA0917";
+
+    //初階考試--學科
+    document.querySelector(examSLV1).onclick = function (e) {
+        if($(examSLV1).is(":checked")){
+            $(examSLV2).prop("disabled",true);
+            $(examPLV2).prop("disabled",true);
+        }
+        else{
+            $(examSLV2).prop("disabled",false);
+            $(examPLV2).prop("disabled",false);
+            $(examPLV1).prop("checked",false);
+        }
+    };
+
+    //初階考試--術科
+    document.querySelector(examPLV1).onclick = function (e) {
+        if($(examPLV1).is(":checked")){
+            $(examSLV2).prop("disabled",true);
+            $(examPLV2).prop("disabled",true);
+        }
+        else{
+            $(examSLV2).prop("disabled",false);
+            $(examPLV2).prop("disabled",false);
+        }
+    };
+
+    //進階考試--學科
+    document.querySelector(examSLV2).onclick = function (e) {
+        if($(examSLV2).is(":checked")){
+            $(examSLV1).prop("disabled",true);
+            $(examPLV1).prop("disabled",true);
+        }
+        else{
+            $(examSLV1).prop("disabled",false);
+            $(examPLV1).prop("disabled",false);
+            $(examPLV2).prop("checked",false);
+        }
+    };
+
+    //進階考試--術科
+    document.querySelector(examPLV2).onclick = function (e) {
+        if($(examPLV2).is(":checked")){
+            $(examSLV1).prop("disabled",true);
+            $(examPLV1).prop("disabled",true);
+        }
+        else{
+            $(examSLV1).prop("disabled",false);
+            $(examPLV1).prop("disabled",false);
+        }
+    };*/
+    
+    document.getElementById('form_test_registration').onsubmit = function (e) {
+        e.preventDefault();
+        // console.log("test")
+        $('#displayicID').val($('#icid').val());
+        let values = [];
+        $("input[name='ic_test']:checked").each(function () {
+            values.push($(this).val());
+        });
+        // console.log(values)
+        $('#showCourse').val(values.toString());
+        $('#showFullname').val($('#idname').val());
+        $('#showEmail').val($('#idemail').val());
+        let val = document.querySelector('input[name="ic_gender"]:checked').value;
+        // console.log(val)
+        $('#showGender').val(val);
+        $('#showAddress').val($('#textareaAddress').val());
+        $('#showDegree').val($('#selectDegree').val());
+        $('#showSchoolName').val($('#schoolName').val());
+        $('#showDepartment').val($('#department').val());
+        $('#showStatusSchool').val($('#selectStatusschool').val());
+        $('#showCompanyName').val($('#companyName').val());
+        $('#showPosition').val($('#selectPosition').val());
+        $('#showExp').val($('#yearofExp').val());
+        $('#showTitle').val($('#userTitle').val());
+        $('#showPhone').val($('#icphonenumber').val());
+        $('#showTelp').val($('#ictelpnumber').val());
+        // console.log( loginFormObject );
+        $("#test_registration").hide();
+        $("#summary_test_registration").show();
+    };
+    document.getElementById('btn_modify_reg').onclick = function (e) {
+        e.preventDefault();
+        $("#test_registration").show();
+        $("#summary_test_registration").hide();
+    };
+    document.getElementById('btn_final_submit').onclick = function (e) {
+        e.preventDefault();
+        let loginForm = $('#form_test_registration').serializeArray();
+        //console.log(loginForm)
+        let loginFormObject = {};
+        $.each(loginForm, function (i, v) {
+            loginFormObject[v.name] = v.value;
+        });
+        console.log(loginFormObject)
+        let values = [];
+        $("input[name='ic_test']:checked").each(function () {
+            values.push($(this).val());
+        });
+        loginFormObject["ic_test"] = values
+        // console.log(loginFormObject)
+        $.ajax({
+            type: "POST",
+            url: "{% url 'test_registration' %}",
+            data: loginFormObject,
+            success: function (data) {
+                /* response message */
+                // console.log(data)
+                if (data.error) {
+                    $('#modalMessageTitle').html(data.title);
+                    $('#modalMessageBody').html(data.body);
+                    $('#messageModal').modal('show');
+                } else {
+                    // window.location.href = "{% url 'profile' %}";
+                    data.body.forEach(function (item) {
+                        $('#last_stage_registration').append(`
+            <hr>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="col d-flex align-items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+                        </svg>
+                        <div>
+                            <h5 class="fw-bold mb-2">考試名稱</h5>
+                            <p>${item.exam_name}</p>
+                        </div>
+                    </div>
+                </div>
+                            <div class="col-12">
+                                <div class="col d-flex align-items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                                        <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z"/>
+                                        <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z"/>
+                                    </svg>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">報名序號</h5>
+                                        <p>${item.exam_ticket_no}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="col d-flex align-items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
+                                    </svg>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">考試地點</h5>
+                                        <p>${item.exam_place}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="col d-flex align-items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-currency-dollar text-muted flex-shrink-0 me-3 mt-1"" viewBox="0 0 16 16">
+                                        <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+                                        <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                                    </svg>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">考試時間</h5>
+                                        <p>${item.exam_start_time}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `)
+                    })
+                    $("#test_registration").hide();
+                    $("#summary_test_registration").hide();
+                    $("#last_stage_registration").show();
+                }
+            }
+        });
+    };
+</script> {% endblock %}

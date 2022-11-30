@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}This Based HTML{% endblock %}</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+    </head>
+
+{% block content %} {% endblock %}
+    <!--footer-->
+    <footer class="text-center text-lg-start bg-light text-muted">
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"></section>
+        <div class="container text-center text-md-start mt-5">
+            <div class="row mt-3">
+                <!--聯絡我們-->
+                <div class="col-md-3 col-lg-3 col-xl-4 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3" style="text-align: center;">聯絡我們</h6>
+                    <hr>
+                    <p><i class="fas fa-envelope" style="margin: 10px;"></i><a href="mailto:icdesign.nycu@gmail.com.tw">icdesign.nycu@gmail.com</a></p>
+                    <p><i class="fas fa-phone" style="margin: 10px;"></i>(03)571-2121 轉 54431</p>
+                    <p><i class="fas fa-map-marker-alt" style="margin: 10px;"></i>通訊地址：</p><p style="margin-left:35px;margin-top:-10px;" ><a href="https://goo.gl/maps/ZzFfgiLo4kQq8UuHA">30010 新竹市大學路1001號</a><br>國立陽明交通大學工程五館721室<br>半導體佈局設計工程師能力鑑定工作小組</p>
+                </div>
+
+                <!--相關單位-->
+                <div class="col-md-5 col-lg-5 col-xl-5 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3" style="text-align: center;">IC佈局設計能力鑑定</h6>
+                    <hr>
+                    <p class="text-reset" style="margin-bottom: 2rem;margin-left: 20px">指導單位：<a href="https://www.moeaidb.gov.tw/view/rwd_tw/"><img src="{% static 'images/IDB_logo.svg' %}" alt="" width="130px" height="45x"></a></p>
+                    <p class="text-reset" style="margin-bottom: 2rem;margin-left: 20px">委辦單位：<a href="https://www.iei.org.tw/new/"><img src="{% static 'images/IEI_logo.svg' %}" alt="" width="130px" height="45px"></a></p>
+                    <p class="text-reset" style="margin-bottom: 2rem;margin-left: 20px">執行單位：<a href="https://www.nycu.edu.tw/"><img src="{% static 'images/NYCU_logo.png' %}" alt="" width="200px" height="40px" ></a></p>
+                    <p class="text-reset" style="margin-bottom: 2rem;margin-left: 20px">協辦單位：<a href="http://www.ciee.org.tw/"><img src="{% static 'images/CIEE_icon.png' %}" alt="" width="40px" height="40px"><img src="{% static 'images/CIEE_logo.png' %}" alt="" width="200px" height="28px" ></a></p>
+                </div>
+
+                <!--隱私保護及網站安全政策-->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <p style="text-align: center;"><a href="/">回首頁</a></p>
+                    <br>
+                    <p style="text-align: center;"><a href="privacy">隱私保護及網站安全政策</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center text-light p-4" style="background-color: #0a1f2f">
+            Design for IC Design.&emsp;&emsp;Copyright 2022
+        </div>
+    </footer>
+    
+<script language="JavaScript">
+    const numInputs = document.querySelectorAll('input[type=number]')
+
+    numInputs.forEach(function (input) {
+        input.addEventListener('change', function (e) {
+            if (e.target.value == '') {
+                e.target.value = 0
+            }
+        })
+    })
+
+</script>
+
+</html>

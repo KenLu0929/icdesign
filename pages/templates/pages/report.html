@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Report{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'sheets-of-paper-a4.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+</head>
+<body class="document">
+<div class="page" contenteditable="false">
+    <img src="{% static 'images/IDB_logo.svg' %}" alt="" width="130px" height="45x">
+    <img src="{% static 'images/IEI_logo.svg' %}" alt="" width="130px" height="45px">
+    <h3 class="mb-4" style="text-align: center; line-height: 1.5em;">經濟部工業局智慧電子人才應用發展推動計畫</br>半導體佈局設計工程師能力鑑定 成績單</h3>
+    <table class="table table-bordered mb-5">
+        <tbody class="">
+        <tr>
+            <th scope="row" style="width: 25%;">姓名</th>
+            <td style="width: 25%;">{{ user_name }}</td>
+            <th scope="row" style="width: 25%;">身份證字號</th>
+            <td style="width: 25%;">{{ user_ic_id }}</td>
+        </tr>
+        <tr>
+            <th scope="row" style="width: 25%;">准考證號碼</th>
+            <td style="width: 25%;">{{ admission_ticket_no }}</td>
+            <th scope="row" style="width: 25%;">考試日期</th>
+            <td style="width: 25%;">{{ start_time_exams }}</td>
+        </tr>
+        <tr class="text-center">
+            <th scope="row" colspan="4">鑑定考試成績</th>
+        </tr>
+        
+        {% for field in exam_logs %}
+        <tr>
+            <th scope="row" style="width: 25%;">{{ field.exam_name }}</th>
+                {% if field.exam_grade < 0 %}
+                <td style="width: 25%;">缺考或未報名</td>
+                {% else %}
+                <td style="width: 25%;">成績 {{ field.exam_grade }} 分</td>
+                {% endif %}
+            <td colspan="2">
+                {% if field.exam_finish %}
+                <span>合格</span>
+                {% else %}
+                <span>不合格</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+{#        <tr>#}
+{#            <th scope="row" style="width: 25%;">術科成績（實作）</th>#}
+{#            <td style="width: 25%;">成績 {{ exam_logs.exam_grade }} 分</td>#}
+{#            <td colspan="2">#}
+{#                {% if exam_logs.exam_finish %}#}
+{#                <span>合格</span>#}
+{#                {% else %}#}
+{#                <span>不合格</span>#}
+{#                {% endif %}#}
+{#            </td>#}
+{#        </tr>#}
+        <tr class="text-center">
+            <th scope="row" colspan="4">說明</th>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">1. 初階學科認證需達 70 分(含)以上為合格 </li>
+                    <li class="list-group-item danger">2. 進階學科認證須達 85 分(含)以上為合格</li>
+                    <li class="list-group-item danger">3. 術科成績，成績滿分100分，需達70分（含）以上始為合格</li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-12">
+					<span>
+                        <p class="text-reset" style="margin-bottom: 2rem;margin-left: 20px">執行單位：<img src="{% static 'images/NYCU_logo.png' %}" alt=""  width="200px" height="40px"><br>
+                        <p class="text-reset" style="margin-bottom: 2rem;margin-left: 20px">協辦單位：
+                            <img src="{% static 'images/CIEE_icon.png' %}" alt="" width="40px" height="40px">
+					        <img src="{% static 'images/CIEE_logo.png' %}" alt="" width="200px" height="28px">
+					    
+					</span>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    window.print();
+</script>
+</body>
+</html>

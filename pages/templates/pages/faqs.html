@@ -1,0 +1,134 @@
+{% extends "pages/base.html" %}
+{% block title %}FAQs{% endblock %}
+{% block content %}
+<body>
+{% include "pages/header.html" %}
+    <!--考試常見問題-->
+    <div class="row my-4">
+        <div class="text-center">
+            <h4>考試常見問題</h4>
+        </div>
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="accordion" id="accordionItem">
+                <!--no.1 question-->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelHeadingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                aria-controls="panelHeadingOne">
+                            1. 如何註冊？如何報名？
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            <ul class="icon-list">
+                                <li><a href="User_case_diagram" rel="noopener"
+                                    target="_blank">使用者操作手冊</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--no.2 question-->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelHeadingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                aria-controls="ppanelHeadingTwo">
+                            2. 學科是否有考古題可以練習?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingTwo">
+                        <div class="accordion-body">
+                            <span>主辦單位將於考前提供兩題題庫供考生練習<br>
+                                <a href="question_bank_download" rel="noopener" target="_blank">IC佈局考古題下載(包含50題測驗題與3題實作題)</a><br>
+                                <a href="2022_Task_download" rel="noopener" target="_blank">術科練習題下載(包含兩題題目與所需檔案)</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelHeadingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                aria-controls="ppanelHeadingThree">
+                            3. 學生團報的標準與費用多少?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingThree">
+                        <div class="accordion-body">
+                            <span>學生團報需5人以上，提供5折優惠。</span>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!--no.3 question-->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelHeadingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+                                aria-controls="panelHeadingFour">
+                            3. 術科檢定時是否可攜帶筆記本?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingFour">
+                        <div class="accordion-body">
+                            <span>可自行攜帶參考資料，但考試時不可相互交談。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--考試專業問題-->
+    <div class="row my-4">
+        <div class="text-center">
+            <h4>考試專業問題</h4>
+        </div>
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="accordion" id="accordionItem">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelHeadingSix">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseSix">
+                            術科實作所使用的Tools為何?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse show"
+                        aria-labelledby="panelHeadingSix">
+                        <div class="accordion-body">
+                            <table class="table mb-4">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">製程資料(Technology)</th>
+                                    <td>TSRI Virtual 0.18um CMOS Technology</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">佈局編輯軟體(Layout Editor)</th>
+                                    <td>Cadence - Virtuoso (IC 6.1) Synopsys – Laker</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">DRC驗證軟體(DRC Verification)</th>
+                                    <td>Siemens – Calibre DRC</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">LVS驗證軟體(LVS Verification)</th>
+                                    <td>Siemens – Calibre LVS</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

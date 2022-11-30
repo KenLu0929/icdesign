@@ -1,0 +1,384 @@
+{% extends "pages/base.html" %} {% block title %}Profile{% endblock %} {% block content %}
+    <body>
+        {% include "pages/header.html" %}
+        <!--page title-->
+        <div class="container py-5 bg-custom mt-5 mb-3 rounded-3 text-center">
+            <div class="row">
+                <div class="col text-white">
+                    <div class=""></div>
+                    <h1>個人資訊</h1>
+                    <span>此為詳細報名資料</span>
+                </div>
+            </div>
+        </div>
+
+        <!--快訊-->
+        <div class="container">
+            <!--define symbol-->
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </symbol>
+                <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                </symbol>
+                <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </symbol>
+            </svg>
+
+            <!--快訊內容-->
+            <div class="alert alert-primary d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                    <use xlink:href="#info-fill"/>
+                </svg>
+
+                <div>
+                    {% if request.custom_settings.registration %}
+                    <span>考試報名已經開放！將開放至 111/08/22 ! <strong><a href="{% url 'test_registration' %}" class="alert-link">立即報考</a></strong></span>
+                    {% else %}
+                    <!--<span>目前非報名階段：報名將於 111/08/02 開放</span>-->
+                    <span>111年度考試報名已截止</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!--內容-->
+        <div class="container pt-2 pb-5">
+            <div class="row g-2">
+                <!--left bar-->
+                <div class="col-12 col-md-4">
+                    <div class="card py-3 px-3">
+                        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
+                        aria-orientation="vertical">
+                            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                                aria-selected="true">個人資料
+                            </button>
+
+                            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-profile" type="button" role="tab"
+                                aria-controls="v-pills-profile"
+                                aria-selected="false">安全性
+                            </button>
+
+                            <button class="nav-link" id="v-pills-ticket-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-ticket" type="button" role="tab" aria-controls="v-pills-ticket"
+                                aria-selected="false">准考證
+                            </button>
+
+                            <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-messages" type="button" role="tab"
+                                aria-controls="v-pills-messages"
+                                aria-selected="false">成績
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--right-->
+                <div class="col-12 col-md-8">
+                    <div class="card">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <!--資訊欄-->
+                            <div class="tab-pane py-3 px-3 fade show active" id="v-pills-home" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">
+                                <!--user's imformation-->
+                                <div class="container">
+                                    <h4 class="mb-4">基本資訊</h4>
+
+                                    <!--user id-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="displayicID" class="col-sm-4 col-form-label">身分證字號</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="displayicID" value="{{ ic_id }}" disabled>
+                                        </div>
+                                    </div>
+
+                                    <!--user name-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showFullname" class="col-sm-4 col-form-label">姓名</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showFullname" value="{{ ic_name }}" disabled>
+                                        </div>
+                                    </div>
+
+                                    <!--user birthday-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showBirth" class="col-sm-4 col-form-label">出生日期</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showBirth" value="{{ ic_bod }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user email-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showEmail" class="col-sm-4 col-form-label">Email</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showEmail" value="{{ ic_email }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user gender-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showGender" class="col-sm-4 col-form-label">性別</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showGender" value="{{ ic_gender }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user phone number-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showPhone" class="col-sm-4 col-form-label">手機號碼</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showPhone" value="{{ ic_phone_no }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user telephone number-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showTelp" class="col-sm-4 col-form-label">電話號碼</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showTelp" value="{{ ic_telephone }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user address-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showAddress" class="col-sm-4 col-form-label">地址</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showAddress" value="{{ ic_address }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user school name-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showSchoolName" class="col-sm-4 col-form-label">學校名稱</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showSchoolName" value="{{ ic_school }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user department-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showDepartment" class="col-sm-4 col-form-label">系所／年級</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showDepartment" value="{{ ic_department }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user school status-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showStatusSchool" class="col-sm-4 col-form-label">就學狀態</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showStatusSchool" value="{{ ic_status_school }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user company-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showCompanyName" class="col-sm-4 col-form-label">公司名稱</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showCompanyName" value="{{ ic_company }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user service department-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showPosition" class="col-sm-4 col-form-label">服務部門</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showPosition" value="{{ ic_service_department }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user's working experience-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showExp" class="col-sm-4 col-form-label">相關工作年資</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showExp" value="{{ ic_yearofexp }}">
+                                        </div>
+                                    </div>
+
+                                    <!--user position -->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showTitle" class="col-sm-4 col-form-label">職稱</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showTitle" value="{{ ic_job_position }}">
+                                        </div>
+                                    </div>
+                                    
+                                    <!--user degree-->
+                                    <div class="row g-2 mb-2">
+                                        <label for="showDegree" class="col-sm-4 col-form-label">最高學歷</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" readonly="readonly" class="form-control-plaintext"
+                                                id="showDegree" value="{{ ic_degree }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-secondary col-12" type="button" id="modify_form">修改</button>
+                            </div>
+
+                            <!--change password-->
+                            <div class="tab-pane py-3 px-3 fade" id="v-pills-profile" role="tabpanel"
+                                aria-labelledby="v-pills-profile-tab" style="min-height: 37vh;">
+                                <div class="container">
+                                    <h4 class="mb-4">變更密碼</h4>
+                                    <form id="changepasswordform">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <!--old password-->
+                                                <div class="col">
+                                                    <div class="form-floating">
+                                                        <input type="password" class="form-control" id="idpassword"
+                                                            name="ic_password" placeholder="Keep it secret" required>
+                                                        <label for="idpassword">舊密碼</label>
+                                                    </div>
+                                                </div>
+
+                                                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+                                                <!--new password-->
+                                                <div class="row g-2">
+                                                    <div class="col">
+                                                        <div class="form-floating mt-4">
+                                                            <input type="password" class="form-control" id="idnewpassword"
+                                                                name="ic_new_password" placeholder="Keep it secret"
+                                                                required>
+                                                            <label for="idnewpassword">新密碼</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <div class="form-floating mt-4">
+                                                            <input type="password" class="form-control" id="idnewrepassword"
+                                                                name="ic_new_repassword" placeholder="Keep it secret"
+                                                                required>
+                                                            <label for="idnewrepassword">確認密碼</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-4">
+                                                    <div class="col">
+                                                        <button class="btn btn-outline-primary" type="submit"> 變更密碼
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!--download admission ticket-->
+                            <div class="tab-pane py-3 px-3 fade" id="v-pills-ticket" role="tabpanel"
+                                aria-labelledby="v-pills-ticket-tab" style="min-height: 37vh;">
+                                <div class="container">
+                                    <h4 class="mb-4">准考證下載</h4>
+                                    <ul class="icon-list">
+                                        {% if request.custom_settings.admission_ticket_download %}
+                                        <li><a rel="noopener" href="{% url 'ic_admission_ticket' %}">准考證下載 </a>
+                                        </li>
+                                        <li>
+                                            <a rel="noopener" href="{% url '2022_exam_seat_download' %}">考場座位圖下載 </a>
+                                        </li>
+                                        {% else %}
+                                        <li>准考證將於111/9/7(三)開放下載
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!--成績-->
+                            <div class="tab-pane py-3 px-3 fade" id="v-pills-messages" role="tabpanel"
+                                aria-labelledby="v-pills-messages-tab" style="min-height: 37vh;">
+                                <div class="container">
+                                    <h4 class="mb-4">考試成績下載</h4>
+                                    {% if request.custom_settings.show_score %}
+                                        <table class="table row"> 
+                                            {% for field in exams_fields|slice:":1"  %}
+                                            <tr class="row">
+                                                <!--<td class="col-12 col-md-4">{{ field.exam_ticket_no }}</td>-->
+                                                <!--<td class="col-12 col-md-2">{{ field.exam_id }}</td>-->
+                                                <!--<td class="col-12 col-md-2">{{ field.exam_place }}</td>-->
+                                                <!--<td class="col-12 col-md-1">{{ field.exam_grade }}</td>-->
+                                                <!--<td class="col-12 col-md-1">{{ field.admission_ticket_no }}</td>-->
+                                                <!--<td class="col-12 col-md-1">{{ field.exam_status }}</td>-->
+                                                <td class="col-12 col-md-1" style="width: 20%;">
+                                                    <button class="btn btn-outline-success"
+                                                        {% if field.exam_status != "同意" %} disabled {% endif %}
+                                                        onclick="print_report('{{ field.exam_ticket_no }}')">下載成績單
+                                                    </button>
+                                                </td>
+                                            </tr> 
+                                            {% endfor %} 
+                                        </table>
+                                    {% else %}
+                                        <ul class="icon-list">
+                                            <li><a rel="noopener" target="_blank">成績將於111/10/25(二)後開放查詢</a></li>
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% include "pages/modal_message.html" %}
+    </body>
+    <script>
+        $('#v-pills-tab a').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+
+        // change password
+        $('#changepasswordform').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'change_password' %}",
+                data: $(this).serialize(),
+                success: function (data) {
+                    /* response message */
+                    $('#modalMessageTitle').html(data.title);
+                    $('#modalMessageBody').html(data.body);
+                    $('#messageModal').modal('show');
+                }
+            });
+        });
+
+        function print_report(logs_id) {
+            console.log(logs_id)
+            window.location.href = "{% url 'ic_report' %}?id=" + logs_id;
+        }
+
+        $(document).on('hidden.bs.modal', '#messageModal', function () {
+            window.location.href = "{% url 'profile' %}";
+        });
+        $(document).ready(function () {
+            $('#modify_form').click(function () {
+                window.location.href = "{% url 'profile_modify' %}";
+            });
+        });
+    </script> {% endblock %}
